@@ -97,6 +97,7 @@ protected:
     QWidget *m_pCenterWidget;
     QWidget *m_pSideBarWidget;
     int m_timerId;
+    FrameBar *m_pFrameBar;
     //// end protected member
 
     //// begin private member
@@ -109,7 +110,6 @@ private:
     const int BORDER_WIDTH = 10;    // Breite des unsichtbaren Ziehbereichs am Rand (in Pixeln)
     const int DRAG_AREA_HEIGHT = 45; // Höhe des Bereichs am oberen Rand, in dem das Fenster verschoben werden kann (in Pixeln)
 
-    FrameBar *m_pFrameBar;
     //// end private member
 
     //// begin public slots

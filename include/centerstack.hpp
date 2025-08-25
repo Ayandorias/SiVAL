@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
-#define HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
+#ifndef HEADER_GUARD_SiVAL_CenterStack_HPP
+#define HEADER_GUARD_SiVAL_CenterStack_HPP
 
 /*
  * GhostWriter
@@ -10,12 +10,10 @@
  *
  */
 //// begin includes
-#include <QWidget>
+#include <QStackedWidget>
 //// end includes
 
 //// begin specific includes
-#include "nw/framebarbutton.hpp"
-#include "nw/titlebar.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -30,26 +28,21 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace NW {
 /**
- * class FrameBar
+ * class CenterStack
  *
  * @brief
  *
  */
-class FrameBar : public TitleBar
+class CenterStack : public QStackedWidget
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit FrameBar(QWidget *parent);
+    explicit CenterStack(QWidget *parent);
     /// Destructor
-    virtual ~FrameBar();
-    ///
-    void checkMaximized(bool max);
-    ///
-    void insertWidget(int pos, QWidget *widget);
+    virtual ~CenterStack();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -78,12 +71,6 @@ protected:
 
     //// begin private member
 private:
-    FrameBarButton *m_pButtonMax;
-    FrameBarButton *m_pButtonMenu;
-    FrameBarButton *m_pButtonMin;
-    FrameBarButton *m_pButtonNormal;
-    FrameBarButton *m_pButtonQuit;
-    FrameBarButton *m_pButtonSidebar;
     //// end private member
 
     //// begin public slots
@@ -100,13 +87,6 @@ private slots:
 
     //// begin signals
 signals:
-    void iconize();
-    void mainMenu();
-    void maximize();
-    void normal();
-    void quit();
-    void toggled(bool toggle);
     //// end signals
 };
-}
-#endif // HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
+#endif // HEADER_GUARD_SiVAL_CenterStack_HPP

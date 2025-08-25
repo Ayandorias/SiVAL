@@ -8,8 +8,6 @@
 
 //// begin includes
 #include <QPainter>
-
-#include <iostream>
 //// end includes
 
 //// begin specific includes
@@ -38,19 +36,15 @@
  *
  */
 NW::Card::Card(QWidget *parent)
-:QWidget(parent) {//, ui(new Ui::Card) {
-    //ui->setupUi(this);
-    m_bHovered = false;
-    m_bPressed = false;
-    setMouseTracking(true);
-    setMinimumHeight(64);
-    setMaximumHeight(64);
+:QWidget(parent) {
 
-    m_pIconRenderer = nullptr; //
-    m_bChecvron = true;
-    m_pChevronRenderer = new QSvgRenderer(QString::fromUtf8(":/icon/chevron-right_dark.svg"), this);
+    init();
 }
 
+NW::Card::Card(const QString &title, const QString &info, QWidget *parent)
+    : QWidget(parent), m_sTitle(title), m_sInfoText(info){
+    init();
+}
 /**************************************************************************************************/
 /**
  *
@@ -64,16 +58,8 @@ void NW::Card::setChecvron(bool enable) {
 void NW::Card::setIcon(const QString &icon) {
     m_pIconRenderer = new QSvgRenderer(icon, this);
 }
-void NW::Card::setInfoText(const QString &info) {
+void NW::Card::setInfo(const QString &info) {
     m_sInfoText = info;
-}
-
-void NW::Card::setInfoText2(const QString &info, const QString &value) {
-    m_sInfoText2 = info + QString(": ") + value;
-}
-
-void NW::Card::setInfoText3(const QString &info, const QString &value) {
-    m_sInfoText3 = info + QString(": ") + value;
 }
 
 void NW::Card::setTitle(const QString &title) {
@@ -157,33 +143,6 @@ void NW::Card::paintEvent(QPaintEvent *event) {
     pen.setColor(QColor(160, 160, 160));
     painter.setPen(pen);
     painter.drawText(QRect(80, height() / 2, width(), height() / 2 - 7), Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, m_sInfoText);
-
-    QFontMetrics fm(painter.font());
-
-    int startx = 0;
-    int length = fm.horizontalAdvance(m_sInfoText);
-    int length1 = fm.horizontalAdvance(m_sInfoText2);
-    int length2 = fm.horizontalAdvance(m_sInfoText3);
-
-    if(m_sInfoText2 != QString()) {
-        startx = width() - 10 - length2 - length1 - 20 - 20 - 20;
-        painter.setBrush(infoBrush);
-        painter.setPen(Qt::NoPen);
-        painter.drawRoundedRect(startx, height() / 2, length1 + 20, height() / 2 - 7, 12, 12);
-        pen.setColor(QColor(48, 48, 48));
-        painter.setPen(pen);
-        painter.drawText(QRect(startx, height() / 2, length1 + 20, height() / 2 - 7), Qt::AlignHCenter | Qt::AlignVCenter | Qt::TextSingleLine, m_sInfoText2);
-    }
-
-    if(m_sInfoText3 != QString()) {
-        startx = startx + length1 + 20 + 20;
-        painter.setBrush(infoBrush);
-        painter.setPen(Qt::NoPen);
-        painter.drawRoundedRect(startx, height() / 2, length2 + 20, height() / 2 - 7, 12, 12);
-        pen.setColor(QColor(48, 48, 48));
-        painter.setPen(pen);
-        painter.drawText(QRect(startx, height() / 2, length2 + 20, height() / 2 - 7), Qt::AlignHCenter | Qt::AlignVCenter | Qt::TextSingleLine, m_sInfoText3);
-    }
 }
 //// end protected member methods
 
@@ -191,6 +150,17 @@ void NW::Card::paintEvent(QPaintEvent *event) {
 //// end protected member methods (internal use only)
 
 //// begin private member methods
+void NW::Card::init() {
+    m_bHovered = false;
+    m_bPressed = false;
+    setMouseTracking(true);
+    setMinimumHeight(64);
+    setMaximumHeight(64);
+
+    m_pIconRenderer = nullptr; //
+    m_bChecvron = false;
+    m_pChevronRenderer = new QSvgRenderer(QString::fromUtf8(":/icon/chevron-right_dark.svg"), this);
+}
 //// end private member methods
 
 //// begin public slots

@@ -47,13 +47,12 @@ namespace NW {
   public:
     /// Constructor
     explicit Card(QWidget *parent);
+    explicit Card(const QString &title, const QString &info, QWidget *parent);
     /// Destructor
     virtual ~Card();
     void setChecvron(bool enable);
     void setIcon(const QString &icon);
-    void setInfoText(const QString &info);
-    void setInfoText2(const QString &info, const QString &value);
-    void setInfoText3(const QString &info, const QString &value);
+    void setInfo(const QString &info);
     void setTitle(const QString &title);
     //// end public member methods
 
@@ -77,6 +76,7 @@ namespace NW {
 
     //// begin private member methods
   private:
+    void init();
     //// end private member methods
 
     //// begin public member
@@ -86,8 +86,6 @@ namespace NW {
     //// begin protected member
   protected:
     QString m_sInfoText;
-    QString m_sInfoText2;
-    QString m_sInfoText3;
     QString m_sTitle;
     bool m_bChecvron;
     //// end protected member

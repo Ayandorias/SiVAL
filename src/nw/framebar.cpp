@@ -98,6 +98,9 @@ void NW::FrameBar::checkMaximized(bool max) {
         m_pButtonMax->show();
     }
 }
+void NW::FrameBar::insertWidget(int pos, QWidget *widget) {
+    m_pLayout->insertWidget(pos, widget);
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)

@@ -139,7 +139,7 @@ void NW::NavBarPanel::toggle(bool checked) {
 
 //// begin private member methods
 void NW::NavBarPanel::insertPanel(const QString &icon, const QString &icon_hover, int btn_id, int position, QWidget *panel) {
-    int count = m_pButtonLayout->count() - 2;
+    // int count = m_pButtonLayout->count() - 2;
     NW::NavBarButton *toolButton = new NW::NavBarButton(icon, icon_hover, this);
     toolButton->setMinimumSize(QSize(48, 48));
     toolButton->setMaximumSize(QSize(48, 48));

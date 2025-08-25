@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
-#define HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
+#ifndef HEADER_GUARD_SiVAL_SiVALWindow_HPP
+#define HEADER_GUARD_SiVAL_SiVALWindow_HPP
 
 /*
  * GhostWriter
@@ -10,15 +10,28 @@
  *
  */
 //// begin includes
-#include <QWidget>
+#include <QButtonGroup>
+#include <QMainWindow>
+#include <QStackedWidget>
+#include "centerstack.hpp"
+#include "encloserwidget.hpp"
+#include "homepanel.hpp"
+#include "projectpanel.hpp"
+#include "speakerdata.hpp"
+#include "speakersettingswidget.hpp"
+#include "nw/mainwindow.hpp"
+#include "nw/selectionbutton.hpp"
 //// end includes
 
 //// begin specific includes
-#include "nw/framebarbutton.hpp"
-#include "nw/titlebar.hpp"
 //// end specific includes
 
 //// begin using namespaces
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
+QT_END_NAMESPACE
 //// end using namespaces
 
 //// begin global definition
@@ -30,26 +43,21 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace NW {
 /**
- * class FrameBar
+ * class SiVALWindow
  *
  * @brief
  *
  */
-class FrameBar : public TitleBar
+class SiVALWindow : public NW::MainWindow
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit FrameBar(QWidget *parent);
+    explicit SiVALWindow(SpeakerData *data, QWidget *parent = nullptr);
     /// Destructor
-    virtual ~FrameBar();
-    ///
-    void checkMaximized(bool max);
-    ///
-    void insertWidget(int pos, QWidget *widget);
+    virtual ~SiVALWindow();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -66,6 +74,8 @@ protected:
 
     //// begin private member methods
 private:
+    void speakerSettings();
+    void menu(bool visible, QButtonGroup *group);
     //// end private member methods
 
     //// begin public member
@@ -78,12 +88,31 @@ protected:
 
     //// begin private member
 private:
-    FrameBarButton *m_pButtonMax;
-    FrameBarButton *m_pButtonMenu;
-    FrameBarButton *m_pButtonMin;
-    FrameBarButton *m_pButtonNormal;
-    FrameBarButton *m_pButtonQuit;
-    FrameBarButton *m_pButtonSidebar;
+    QButtonGroup *m_pGroup;
+    QButtonGroup *m_pSettingsGroup;
+
+    CenterStack *m_pCenterStack;
+    EnclosureWidget *m_pCenterView;
+
+    QStackedWidget *m_pSettingsStack;
+    SpeakerSettingsWidget *m_pSettingsWidget;
+    NW::SelectionButton *m_pEnclosureBtn;
+
+    NW::SelectionButton *m_pSpeakerBtn;
+    NW::SelectionButton *m_pSpeakerSearchBtn;
+
+    HomePanel *m_pHomePanel;
+    ProjectPanel *m_pProjectPanel;
+
+    SpeakerData *m_pSpeakerData;
+
+    enum BTN_POS {
+        BTN_NONE = 0,
+        BTN_Enclosure,
+        BTN_Speaker,
+        BTN_Search
+    };
+
     //// end private member
 
     //// begin public slots
@@ -92,6 +121,10 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void centerViewSelection(int id);
+    void enclosureSelection(int id);
+    void mainMenu() override;
+    void settingsSelection(int id);
     //// end protected slots
 
     //// begin private slots
@@ -100,13 +133,6 @@ private slots:
 
     //// begin signals
 signals:
-    void iconize();
-    void mainMenu();
-    void maximize();
-    void normal();
-    void quit();
-    void toggled(bool toggle);
     //// end signals
 };
-}
-#endif // HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
+#endif // HEADER_GUARD_SiVAL_SiVALWindow_HPP

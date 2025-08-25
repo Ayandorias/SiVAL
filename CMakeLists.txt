@@ -1,30 +1,129 @@
 cmake_minimum_required(VERSION 3.19)
 project(SiVAL LANGUAGES CXX)
 
+# Standard C++-Standard setzen
+# Entspricht CONFIG += c++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Qt-Automatisierungen für UI-Dateien, Ressourcen und MOC aktivieren
+# MOC: Meta-Object Compiler, für Q_OBJECT Makros
+# UIC: UI Compiler, für .ui Dateien
+# RCC: Resource Compiler, für .qrc Dateien
+# TR: Translation (für .ts Dateien, in Qt6 bevorzugt gegenüber LinguistTools)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOTR ON) # Dies ist für die automatische Handhabung von .ts Dateien in Qt6
+
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Svg)
 
 qt_standard_project_setup()
 
 qt_add_executable(SiVAL
     WIN32 MACOSX_BUNDLE
-    src/main.cpp
-    src/mainwindow.cpp
-    src/mainwindow.ui
-    include/mainwindow.hpp
-    include/nw/assistant.hpp include/nw/button.hpp include/nw/card.hpp include/nw/counter.hpp include/nw/date.hpp include/nw/frame.hpp include/nw/framebar.hpp include/nw/framebarbutton.hpp include/nw/headerlabel.hpp include/nw/label.hpp include/nw/mainwindow.hpp include/nw/navbarbutton.hpp include/nw/navbarpanel.hpp include/nw/overlaydialog.hpp include/nw/selectionbar.hpp include/nw/selectionbutton.hpp include/nw/skilllabel.hpp include/nw/style.hpp include/nw/styleselectionbutton.hpp include/nw/titlebar.hpp include/nw/toolbutton.hpp
-    src/nw/assistant.cpp src/nw/assistant.ui src/nw/button.cpp src/nw/card.cpp src/nw/counter.cpp src/nw/date.cpp src/nw/frame.cpp src/nw/framebar.cpp src/nw/framebarbutton.cpp src/nw/headerlabel.cpp src/nw/label.cpp src/nw/mainwindow.cpp src/nw/navbarbutton.cpp src/nw/navbarpanel.cpp src/nw/overlaydialog.cpp src/nw/overlaydialog.ui src/nw/selectionbar.cpp src/nw/selectionbutton.cpp src/nw/skilllabel.cpp src/nw/style.cpp src/nw/styleselectionbutton.cpp src/nw/titlebar.cpp src/nw/toolbutton.cpp
-    include/aadefines.hpp
-    resource/nw.qrc
 
+    # Nebenwelten Deklarations Dateien.
+    # Überprüfen, welche tatsächlich genutzt werden.
+    include/nw/assistant.hpp
+    include/nw/button.hpp
+    include/nw/card.hpp
+    include/nw/counter.hpp
+    include/nw/date.hpp
+    include/nw/frame.hpp
+    include/nw/framebar.hpp
+    include/nw/framebarbutton.hpp
+    include/nw/headerlabel.hpp
+    include/nw/label.hpp
+    include/nw/mainwindow.hpp
+    include/nw/navbarbutton.hpp
+    include/nw/navbarpanel.hpp
+    include/nw/overlaydialog.hpp
+    include/nw/selectionbar.hpp
+    include/nw/selectionbutton.hpp
+    include/nw/skilllabel.hpp
+    include/nw/style.hpp
+    include/nw/styleselectionbutton.hpp
+    include/nw/titlebar.hpp
+    include/nw/toolbutton.hpp
+
+    # Nebenwelten Definitions Dateien.
+    # Überprüfen, welche tatsächlich genutzt werden.
+    src/nw/assistant.cpp
+    src/nw/assistant.ui
+    src/nw/button.cpp
+    src/nw/card.cpp
+    src/nw/counter.cpp
+    src/nw/date.cpp
+    src/nw/frame.cpp
+    src/nw/framebar.cpp
+    src/nw/framebarbutton.cpp
+    src/nw/headerlabel.cpp
+    src/nw/label.cpp
+    src/nw/mainwindow.cpp
+    src/nw/navbarbutton.cpp
+    src/nw/navbarpanel.cpp
+    src/nw/overlaydialog.cpp
+    src/nw/overlaydialog.ui
+    src/nw/selectionbar.cpp
+    src/nw/selectionbutton.cpp
+    src/nw/skilllabel.cpp
+    src/nw/style.cpp
+    src/nw/styleselectionbutton.cpp
+    src/nw/titlebar.cpp
+    src/nw/toolbutton.cpp
+
+    #Deklarations Dateien
+    include/aadefines.hpp
+    include/centerstack.hpp
+    include/encloserwidget.hpp
+    include/homepanel.hpp
+    include/idocument.hpp
+    include/projectpanel.hpp
+    include/sivalwindow.hpp
+    include/speakerdata.hpp
+    include/speakersettingsmenu.hpp
+    include/speakersettingspage.hpp
+    include/speakersettingswidget.hpp
+
+    # Definitions Dateien
+    src/centerstack.cpp
+    src/encloserwidget.cpp
+    src/homepanel.cpp
+    src/main.cpp
+    src/projectpanel.cpp
+    src/sivalwindow.cpp
+    src/speakersettingsmenu.cpp
+    src/speakersettingspage.cpp
+    src/speakersettingswidget.cpp
+
+    # Forms Dateien
+    src/encloserwidget.ui
+    src/homepanel.ui
+    src/idocument.cpp
+    src/projectpanel.ui
+    src/sivalwindow.ui
+    src/speakerdata.cpp
+    src/speakersettingsmenu.ui
+    src/speakersettingspage.ui
+    src/speakersettingswidget.ui
+
+    # Ressource Dateien
+    resource/nw.qrc
+    resource/sival.qrc
+    include/speakerdocument.hpp src/speakerdocument.cpp
+    include/projectdocument.hpp src/projectdocument.cpp
+    include/settingsdocument.hpp src/settingsdocument.cpp
 )
 
 target_include_directories(SiVAL PRIVATE include)
 
 target_link_libraries(SiVAL
     PRIVATE
-        Qt::Core
-        Qt::Widgets
-        Qt6::Svg
+    Qt6::Widgets
+    Qt6::Gui
+    Qt6::Core
+    Qt6::Svg
 )
 
 include(GNUInstallDirs)

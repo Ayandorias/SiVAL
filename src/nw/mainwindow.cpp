@@ -114,9 +114,9 @@ NW::MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     connect(m_pFrameBar, &NW::FrameBar::quit, this, &NW::MainWindow::quit);
     connect(m_pFrameBar, &NW::FrameBar::toggled, this, &NW::MainWindow::toggleSidebar);
 
-    QWidget *eins = new QWidget(right);
-    eins->setStyleSheet("background-color: #eee;");
-    m_pRightLayout->addWidget(eins);
+    // QWidget *eins = new QWidget(right);
+    // eins->setStyleSheet("background-color: #eee;");
+    // m_pRightLayout->addWidget(eins);
 }
 /**************************************************************************************************/
 /**
