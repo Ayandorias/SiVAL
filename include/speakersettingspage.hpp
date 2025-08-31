@@ -15,6 +15,7 @@
 //// end includes
 
 //// begin specific includes
+#include "speakersettingsdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -47,6 +48,8 @@ public:
     explicit SpeakerSettingsPage(QWidget *parent = nullptr);
     /// Destructor
     virtual ~SpeakerSettingsPage();
+    ///
+    void setDocument(SpeakerSettingsDocument *doc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -76,6 +79,7 @@ protected:
     //// begin private member
 private:
     Ui::SpeakerSettingsPage *ui;
+    SpeakerSettingsDocument *m_pDocument;
     //// end private member
 
     //// begin public slots

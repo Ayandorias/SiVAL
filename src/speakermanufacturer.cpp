@@ -11,7 +11,7 @@
 //// end includes
 
 //// begin specific includes
-#include "idocument.hpp"
+#include "speakermanufacturer.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -30,59 +30,37 @@
 //// end static functions
 
 //// begin public member methods
-IDocument::IDocument() {
-
-}
 /**************************************************************************************************/
 /**
  *
  */
-IDocument::IDocument(const QString &filename)
-    : m_sFilename(filename){
-
-    QFile file(m_sFilename);
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QByteArray json = file.readAll();
-    file.close();
-    QJsonDocument doc = QJsonDocument::fromJson(json);
-
-    m_Object = doc.object();
+SpeakerManufacturer::SpeakerManufacturer(const QString &name, bool indexed, QStringList chassisList)
+    : m_sName(name), m_bIndexed(indexed), m_ChassisList(chassisList){
+    std::cout << "anzahl chassis: " << chassisList.count() << std::endl;
+    std::cout << "anzahl chassis: " << m_ChassisList.count() << std::endl;
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-IDocument::~IDocument() {
-}
-
-void IDocument::change() {
-    m_bChanged = true;
-}
-bool IDocument::isChanged() {
-    return m_bChanged;
+SpeakerManufacturer::~SpeakerManufacturer() {
 }
 /**
  *
  */
-bool IDocument::save() {
-    QJsonDocument doc(m_Object);
-    QByteArray a = doc.toJson();
-
-    QFile file(m_sFilename);
-    file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
-    qint64 res = file.write(doc.toJson());
-    file.close();
-
-    if(res > 0) {
-        return true;
-    } else {
-        return false;
-    }
+QStringList SpeakerManufacturer::chassisList(){
+    std::cout << "anzahl chassis: " << m_ChassisList.count() << std::endl;
+    return m_ChassisList;
 }
-bool IDocument::saveAs(const QString &filename) {
-    m_sFilename = filename;
-    return save();
+void SpeakerManufacturer::indexed(bool n) {
+    m_bIndexed = n;
+}
+bool SpeakerManufacturer::isIndexed() {
+    return m_bIndexed;
+}
+QString SpeakerManufacturer::name() {
+    return m_sName;
 }
 //// end public member methods
 

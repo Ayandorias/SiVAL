@@ -81,7 +81,7 @@ qt_add_executable(SiVAL
     include/idocument.hpp
     include/projectpanel.hpp
     include/sivalwindow.hpp
-    include/speakerdata.hpp
+    include/speakerparameter.hpp
     include/speakersettingsmenu.hpp
     include/speakersettingspage.hpp
     include/speakersettingswidget.hpp
@@ -103,7 +103,7 @@ qt_add_executable(SiVAL
     src/idocument.cpp
     src/projectpanel.ui
     src/sivalwindow.ui
-    src/speakerdata.cpp
+    src/speakerparameter.cpp
     src/speakersettingsmenu.ui
     src/speakersettingspage.ui
     src/speakersettingswidget.ui
@@ -111,9 +111,17 @@ qt_add_executable(SiVAL
     # Ressource Dateien
     resource/nw.qrc
     resource/sival.qrc
-    include/speakerdocument.hpp src/speakerdocument.cpp
+    include/speakersettingsdocument.hpp src/speakersettingsdocument.cpp
     include/projectdocument.hpp src/projectdocument.cpp
     include/settingsdocument.hpp src/settingsdocument.cpp
+    include/speakermanufacturer.hpp src/speakermanufacturer.cpp
+    include/speakermanufacturercard.hpp src/speakermanufacturercard.cpp
+    include/headerlabel.hpp src/headerlabel.cpp
+    include/projecttreewidget.hpp src/projecttreewidget.cpp
+    include/speakerdocument.hpp src/speakerdocument.cpp
+    include/ienclosure.hpp src/ienclosure.cpp
+    include/ventedenclosure.hpp src/ventedenclosure.cpp
+    include/sealedenclosure.hpp src/sealedenclosure.cpp
 )
 
 target_include_directories(SiVAL PRIVATE include)

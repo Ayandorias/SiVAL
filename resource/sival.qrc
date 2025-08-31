@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>sival/enclosure_dark.svg</file>
         <file>sival/enclosure_light.svg</file>
+        <file>sival/checked_dark.svg</file>
+        <file>sival/unchecked_dark.svg</file>
     </qresource>
 </RCC>

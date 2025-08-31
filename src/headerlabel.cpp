@@ -7,11 +7,10 @@
  */
 
 //// begin includes
-#include <iostream>
 //// end includes
 
 //// begin specific includes
-#include "idocument.hpp"
+#include "headerlabel.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -30,59 +29,25 @@
 //// end static functions
 
 //// begin public member methods
-IDocument::IDocument() {
+/**************************************************************************************************/
+/**
+ *
+ */
+HeaderLabel::HeaderLabel(const QString &label, QWidget *parent)
+    :NW::Label(label,parent) {
 
+    QLabel::setStyleSheet(QString::fromUtf8("color: #606060; font-size: 12pt; font-weight: bold;"));
+}
+HeaderLabel::HeaderLabel(QWidget *parent)
+    :NW::Label(parent) {
+
+    QLabel::setStyleSheet(QString::fromUtf8("color: #606060; font-size: 12pt; font-weight: bold;"));
 }
 /**************************************************************************************************/
 /**
  *
  */
-IDocument::IDocument(const QString &filename)
-    : m_sFilename(filename){
-
-    QFile file(m_sFilename);
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QByteArray json = file.readAll();
-    file.close();
-    QJsonDocument doc = QJsonDocument::fromJson(json);
-
-    m_Object = doc.object();
-}
-
-/**************************************************************************************************/
-/**
- *
- */
-IDocument::~IDocument() {
-}
-
-void IDocument::change() {
-    m_bChanged = true;
-}
-bool IDocument::isChanged() {
-    return m_bChanged;
-}
-/**
- *
- */
-bool IDocument::save() {
-    QJsonDocument doc(m_Object);
-    QByteArray a = doc.toJson();
-
-    QFile file(m_sFilename);
-    file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
-    qint64 res = file.write(doc.toJson());
-    file.close();
-
-    if(res > 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-bool IDocument::saveAs(const QString &filename) {
-    m_sFilename = filename;
-    return save();
+HeaderLabel::~HeaderLabel() {
 }
 //// end public member methods
 

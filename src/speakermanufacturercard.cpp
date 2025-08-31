@@ -7,11 +7,11 @@
  */
 
 //// begin includes
-#include <iostream>
+#include <QPainter>
 //// end includes
 
 //// begin specific includes
-#include "idocument.hpp"
+#include "speakermanufacturercard.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -30,59 +30,24 @@
 //// end static functions
 
 //// begin public member methods
-IDocument::IDocument() {
-
-}
 /**************************************************************************************************/
 /**
  *
  */
-IDocument::IDocument(const QString &filename)
-    : m_sFilename(filename){
+SpeakerManufacturerCard::SpeakerManufacturerCard(SpeakerManufacturer *man, QWidget *parent)
+    :NW::Card(parent), m_pManufacturer(man) {
+    m_sTitle = man->name();
+    m_sInfoText = tr("Available chassis: %1").arg(man->chassisList().count());
 
-    QFile file(m_sFilename);
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QByteArray json = file.readAll();
-    file.close();
-    QJsonDocument doc = QJsonDocument::fromJson(json);
-
-    m_Object = doc.object();
+    m_pCheckRenderer = new QSvgRenderer(QString::fromUtf8(":/sival/checked_dark.svg"), this);
+    m_pUncheckRenderer = new QSvgRenderer(QString::fromUtf8(":/sival/unchecked_dark.svg"), this);
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-IDocument::~IDocument() {
-}
-
-void IDocument::change() {
-    m_bChanged = true;
-}
-bool IDocument::isChanged() {
-    return m_bChanged;
-}
-/**
- *
- */
-bool IDocument::save() {
-    QJsonDocument doc(m_Object);
-    QByteArray a = doc.toJson();
-
-    QFile file(m_sFilename);
-    file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
-    qint64 res = file.write(doc.toJson());
-    file.close();
-
-    if(res > 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-bool IDocument::saveAs(const QString &filename) {
-    m_sFilename = filename;
-    return save();
+SpeakerManufacturerCard::~SpeakerManufacturerCard() {
 }
 //// end public member methods
 
@@ -90,6 +55,30 @@ bool IDocument::saveAs(const QString &filename) {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
+void SpeakerManufacturerCard::mouseReleaseEvent(QMouseEvent *event) {
+    if(this->rect().contains(event->pos())) {
+        if(m_bPressed) {
+            if(m_pManufacturer->isIndexed()) {
+                m_pManufacturer->indexed(false);
+            } else {
+                m_pManufacturer->indexed(true);
+            }
+        }
+    }
+
+    NW::Card::mouseReleaseEvent(event);
+}
+void SpeakerManufacturerCard::paintEvent(QPaintEvent *event) {
+    NW::Card::paintEvent(event);
+
+    QPainter painter(this);
+
+    if(m_pManufacturer->isIndexed()) {
+        m_pCheckRenderer->render(&painter, QRectF(8, 8, 48, 48));
+    } else {
+        m_pUncheckRenderer->render(&painter, QRectF(8, 8, 48, 48));
+    }
+}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

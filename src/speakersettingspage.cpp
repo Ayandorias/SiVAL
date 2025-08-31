@@ -7,13 +7,14 @@
  */
 
 //// begin includes
+#include <QString>
+#include <iostream>
 //// end includes
 
 //// begin specific includes
+#include "speakermanufacturercard.hpp"
 #include "speakersettingspage.hpp"
 #include "ui_speakersettingspage.h"
-
-#include "nw/card.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -42,7 +43,6 @@ SpeakerSettingsPage::SpeakerSettingsPage(QWidget *parent)
 
     ui->setupUi(this);
 
-    ui->verticalLayout->insertWidget(0, new NW::Card("Visaton", "120 Speaker", this));
 }
 
 /**************************************************************************************************/
@@ -51,6 +51,21 @@ SpeakerSettingsPage::SpeakerSettingsPage(QWidget *parent)
  */
 SpeakerSettingsPage::~SpeakerSettingsPage() {
     delete ui;
+}
+
+/**
+ *
+ */
+void SpeakerSettingsPage::setDocument(SpeakerSettingsDocument *doc) {
+    m_pDocument = doc;
+
+    QVector<SpeakerManufacturer*> list = doc->manufacturers();
+
+    std::cout << "anzahl: " << list.count() << std::endl;
+    for(SpeakerManufacturer *man : list) {
+
+        ui->verticalLayout->insertWidget(0, new SpeakerManufacturerCard(man, this));
+    }
 }
 //// end public member methods
 

@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_IDocument_HPP
-#define HEADER_GUARD_SiVAL_IDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_ProjectTreeWidget_HPP
+#define HEADER_GUARD_SiVAL_ProjectTreeWidget_HPP
 
 /*
  * GhostWriter
@@ -10,14 +10,12 @@
  *
  */
 //// begin includes
-#include <QByteArray>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QString>
+#include <QTreeWidget>
+#include <QVector>
 //// end includes
 
 //// begin specific includes
+#include "projectdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -33,26 +31,22 @@
 //// end extern declaration
 
 /**
- * class Document
+ * class ProjectTreeView
  *
  * @brief
  *
  */
-class IDocument
+class ProjectTreeWidget : public QTreeWidget
 {
+    Q_OBJECT
     //// begin public member methods
 public:
-    explicit IDocument();
     /// Constructor
-    explicit IDocument(const QString &filename);
+    explicit ProjectTreeWidget(QWidget *parent = nullptr);
     /// Destructor
-    virtual ~IDocument();
-
-    void change();
-    bool isChanged();
-    ///
-    virtual bool save();
-    virtual bool saveAs(const QString &filename);
+    virtual ~ProjectTreeWidget();
+    /// Adding new project to the view
+    void addProject(ProjectDocument *prjdoc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -65,7 +59,6 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read() = 0;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -78,13 +71,27 @@ public:
 
     //// begin protected member
 protected:
-    bool m_bChanged;
-    QJsonObject m_Object;
-    QString m_sFilename;
     //// end protected member
 
     //// begin private member
 private:
+    QVector<ProjectDocument*> m_PrjDocVector;
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_Document_HPP
+#endif // HEADER_GUARD_SiVAL_ProjectTreeWidget_ProjectTreeView_HPP

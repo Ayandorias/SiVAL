@@ -10,6 +10,7 @@
  *
  */
 //// begin includes
+#include <QJsonObject>
 //// end includes
 
 //// begin specific includes
@@ -38,10 +39,23 @@ class ProjectDocument : public IDocument
 {
     //// begin public member methods
 public:
+    explicit ProjectDocument();
     /// Constructor
     explicit ProjectDocument(const QString &filename);
     /// Destructor
     virtual ~ProjectDocument();
+    void setAuthor(const QString &author);
+    QString author();
+    void createEnclosure(const QString &speaker_uuid);
+    QString created();
+    void setDescription(const QString &description);
+    QString description();
+    void setName(const QString &prjname);
+    QString name();
+    bool save() override;
+    bool saveAs(const QString &filename) override;
+    QString projectId();
+    QString version();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -54,6 +68,7 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
+    virtual void read() override;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -88,4 +103,4 @@ private slots:
 signals:
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#endif // HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP

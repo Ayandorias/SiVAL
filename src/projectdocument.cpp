@@ -7,6 +7,8 @@
  */
 
 //// begin includes
+#include <QJsonArray>
+#include <QUuid>
 //// end includes
 
 //// begin specific includes
@@ -29,12 +31,84 @@
 //// end static functions
 
 //// begin public member methods
+/**
+ *
+{
+    "version": 1.0,
+    "project_id":"4b6c382f-5d41-47a8-8f9d-123456789abc",
+    "project_name":"Lautsprecher-Testprojekt",
+    "created_at":"2025-08-27T11:28:00Z",
+    "author":"SiVAL",
+    "description":"Die finale, vollständige Dokumentation für alle Gehäusekonstruktionen.",
+    "total_volume_m3":0.050,
+    "setups":[
+        {
+            "uuid":"a7b8c9d0-1e2f-3a4b-5c6d-7e8f9a0b1c2d",
+            "frequency_step_percent": 0.5,
+            "speaker":{
+                "uuid":"76e932b7-0248-43d8-a8d6-413d33299719",
+                "manufacturer": "Visaton",
+                "quantity":1
+            },
+            "enclosures":[
+                {
+                    "type":"Sealed",
+                    "volume_m3":0.050
+                }
+            ]
+        },
+        {
+            "uuid":"b8c9d0e1-2f3a-4b5c-6d7e-8f9a0b1c2d3e",
+            "speaker":{
+                "uuid":"d0124f57-e6ae-4357-9d7a-773c33ce427a",
+                "manufacturer": "Visaton",
+                "quantity":1
+            },
+            "enclosures":[
+                {
+                    "type":"Vented",
+                    "volume_m3":0.050,
+                    "ports":[
+                        {
+                            "tuning_frequency_hz":40.0,
+                            "length_mm":150.0,
+                            "wall_thickness_mm": 5.0,
+                            "shape":{
+                                "type":"circular",
+                                "diameter_mm":50.0
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+ * @brief ProjectDocument::ProjectDocument
+ */
+ProjectDocument::ProjectDocument()
+    :IDocument() {
+
+    m_bChanged = true;
+    m_Object["version"] = "";
+    m_Object["project_id"] = QUuid::createUuid().toString();
+    m_Object["project_name"] = "Unnamed*";
+    m_Object["created_at"] = "";
+    m_Object["author"] = "";
+    m_Object["description"] = "";
+
+    QJsonArray array;
+    m_Object.insert("liste_der_werte", array);
+}
 /**************************************************************************************************/
 /**
  *
  */
 ProjectDocument::ProjectDocument(const QString &filename)
     :IDocument(filename) {
+    m_bChanged = false;
+
+    read();
 }
 
 /**************************************************************************************************/
@@ -42,6 +116,48 @@ ProjectDocument::ProjectDocument(const QString &filename)
  *
  */
 ProjectDocument::~ProjectDocument() {
+}
+
+
+void ProjectDocument::setAuthor(const QString &author) {
+    m_Object["author"] = author;
+}
+QString ProjectDocument::author() {
+    return m_Object["author"].toString();
+}
+/**
+ * @brief ProjectDocument::createEnclosure
+ * @param speaker_uuid The uuid of the apeaker
+ */
+void ProjectDocument::createEnclosure(const QString &speaker_uuid) {
+
+}
+QString ProjectDocument::created() {
+    return m_Object["created_at"].toString();
+}
+void ProjectDocument::setDescription(const QString &description) {
+    m_Object["description"] = description;
+}
+QString ProjectDocument::description() {
+    return m_Object["description"].toString();
+}
+void ProjectDocument::setName(const QString &prjname) {
+    m_Object["project_name"] = prjname;
+}
+QString ProjectDocument::name() {
+    return m_Object["project_name"].toString();
+}
+bool ProjectDocument::save() {
+    return IDocument::save();
+}
+bool ProjectDocument::saveAs(const QString &filename) {
+    return IDocument::saveAs(filename);
+}
+QString ProjectDocument::projectId() {
+    return m_Object["project_id"].toString();
+}
+QString ProjectDocument::version() {
+    return m_Object["version"].toString();
 }
 //// end public member methods
 
@@ -52,6 +168,8 @@ ProjectDocument::~ProjectDocument() {
 //// end protected member methods
 
 //// begin protected member methods (internal use only)
+void ProjectDocument::read() {
+}
 //// end protected member methods (internal use only)
 
 //// begin private member methods

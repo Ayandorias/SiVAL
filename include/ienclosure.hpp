@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_SpeakerData_HPP
-#define HEADER_GUARD_SiVAL_SpeakerData_HPP
+#ifndef HEADER_GUARD_SiVAL_IEnclosure_HPP
+#define HEADER_GUARD_SiVAL_IEnclosure_HPP
 
 /*
  * GhostWriter
@@ -10,6 +10,7 @@
  *
  */
 //// begin includes
+#include <QJsonObject>
 //// end includes
 
 //// begin specific includes
@@ -28,19 +29,20 @@
 //// end extern declaration
 
 /**
- * class SpeakerData
+ * class IEnclosure
  *
  * @brief
  *
  */
-class SpeakerData
+class IEnclosure
 {
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerData();
+    explicit IEnclosure();
+    explicit IEnclosure(QJsonObject enclosure);
     /// Destructor
-    virtual ~SpeakerData();
+    virtual ~IEnclosure();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -70,5 +72,21 @@ protected:
     //// begin private member
 private:
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerData_HPP
+#endif // HEADER_GUARD_SiVAL_IEnclosure_HPP

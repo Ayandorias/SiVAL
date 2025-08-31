@@ -11,7 +11,7 @@
 //// end includes
 
 //// begin specific includes
-#include "speakerdata.hpp"
+#include "speakerparameter.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -34,14 +34,15 @@
 /**
  *
  */
-SpeakerData::SpeakerData() {
+SpeakerParameter::SpeakerParameter(QObject *parent)
+: QObject(parent) {
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SpeakerData::~SpeakerData() {
+SpeakerParameter::~SpeakerParameter() {
 }
 //// end public member methods
 

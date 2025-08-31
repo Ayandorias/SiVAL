@@ -56,7 +56,7 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="SpeakerSettingsPage" name="scrollAreaWidgetContents">
+     <widget class="SpeakerSettingsPage" name="m_pSettingsPage">
       <property name="geometry">
        <rect>
         <x>0</x>

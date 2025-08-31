@@ -17,7 +17,7 @@
 #include "encloserwidget.hpp"
 #include "homepanel.hpp"
 #include "projectpanel.hpp"
-#include "speakerdata.hpp"
+#include "speakersettingsdocument.hpp"
 #include "speakersettingswidget.hpp"
 #include "nw/mainwindow.hpp"
 #include "nw/selectionbutton.hpp"
@@ -55,7 +55,7 @@ class SiVALWindow : public NW::MainWindow
     //// begin public member methods
 public:
     /// Constructor
-    explicit SiVALWindow(SpeakerData *data, QWidget *parent = nullptr);
+    explicit SiVALWindow(const QString &projectfile, SpeakerSettingsDocument *doc, QWidget *parent = nullptr);
     /// Destructor
     virtual ~SiVALWindow();
     //// end public member methods
@@ -104,7 +104,7 @@ private:
     HomePanel *m_pHomePanel;
     ProjectPanel *m_pProjectPanel;
 
-    SpeakerData *m_pSpeakerData;
+    SpeakerSettingsDocument *m_pSpeakerDoc;
 
     enum BTN_POS {
         BTN_NONE = 0,

@@ -7,6 +7,7 @@
  */
 
 //// begin includes
+#include<QScrollArea>
 //// end includes
 
 //// begin specific includes
@@ -34,8 +35,8 @@
 /**
  *
  */
-SiVALWindow::SiVALWindow(SpeakerData *data, QWidget *parent)
-    :NW::MainWindow(parent), m_pSpeakerData(data) {
+SiVALWindow::SiVALWindow(const QString &projectfile, SpeakerSettingsDocument *doc, QWidget *parent)
+    :NW::MainWindow(parent), m_pSpeakerDoc(doc) {
 
     m_pGroup = new QButtonGroup(this);
     m_pGroup->setExclusive(true);
@@ -82,7 +83,7 @@ SiVALWindow::SiVALWindow(SpeakerData *data, QWidget *parent)
      * Die Ansicht in dem die Eisntellungen des Programms eingestellt werden können.
      * z.B. welche Lautsprecher Hersteller beim Starten geladen werden.
      */
-    m_pSettingsWidget = new SpeakerSettingsWidget(this);
+    m_pSettingsWidget = new SpeakerSettingsWidget(doc, this);
     m_pSettingsStack->addWidget(m_pSettingsWidget);
 
     NW::NavBarPanel *m_pNavBarPanel = new NW::NavBarPanel(this);
@@ -91,7 +92,11 @@ SiVALWindow::SiVALWindow(SpeakerData *data, QWidget *parent)
     m_pHomePanel = new HomePanel();
     m_pNavBarPanel->addPanel(QString(":/icon/home_light.svg"), QString(":/icon/home_dark.svg"), m_pHomePanel);
 
+    // QScrollArea *area = new QScrollArea();
+    // area->setMinimumSize(100, 100);
     m_pProjectPanel = new ProjectPanel();
+    // m_pProjectPanel->setMinimumSize(area->width(), area->height());
+    // area->setWidget(m_pProjectPanel);
     m_pNavBarPanel->addPanel(QString(":/sival/enclosure_light.svg"), QString(":/sival/enclosure_dark.svg"), m_pProjectPanel);
 
 
@@ -101,7 +106,7 @@ SiVALWindow::SiVALWindow(SpeakerData *data, QWidget *parent)
 
 
     QList<int> s;
-    s << 300 << width() - 300;
+    s << 450 << width() - 450;
     m_pSplitter->setSizes(s);
 }
 
@@ -110,7 +115,8 @@ SiVALWindow::SiVALWindow(SpeakerData *data, QWidget *parent)
  *
  */
 SiVALWindow::~SiVALWindow() {
-    delete m_pSpeakerData;
+    m_pSpeakerDoc->save();
+    delete m_pSpeakerDoc;
 }
 //// end public member methods
 

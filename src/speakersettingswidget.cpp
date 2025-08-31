@@ -34,11 +34,13 @@
 /**
  *
  */
-SpeakerSettingsWidget::SpeakerSettingsWidget(QWidget *parent)
+SpeakerSettingsWidget::SpeakerSettingsWidget(SpeakerSettingsDocument *doc, QWidget *parent)
     :QWidget(parent)
-    , ui(new Ui::SpeakerSettingsWidget){
+    , ui(new Ui::SpeakerSettingsWidget)
+    , m_pDocument(doc) {
 
     ui->setupUi(this);
+    ui->m_pSettingsPage->setDocument(doc);
 }
 
 /**************************************************************************************************/

@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_IDocument_HPP
-#define HEADER_GUARD_SiVAL_IDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_SpeakerManufacturer_HPP
+#define HEADER_GUARD_SiVAL_SpeakerManufacturer_HPP
 
 /*
  * GhostWriter
@@ -10,11 +10,9 @@
  *
  */
 //// begin includes
-#include <QByteArray>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
+#include <QObject>
 #include <QString>
+#include <QStringList>
 //// end includes
 
 //// begin specific includes
@@ -33,26 +31,23 @@
 //// end extern declaration
 
 /**
- * class Document
+ * class SpeakerManufacturer
  *
  * @brief
  *
  */
-class IDocument
+class SpeakerManufacturer
 {
     //// begin public member methods
 public:
-    explicit IDocument();
     /// Constructor
-    explicit IDocument(const QString &filename);
+    explicit SpeakerManufacturer(const QString &name, bool indexed, QStringList chassisList);
     /// Destructor
-    virtual ~IDocument();
-
-    void change();
-    bool isChanged();
-    ///
-    virtual bool save();
-    virtual bool saveAs(const QString &filename);
+    virtual ~SpeakerManufacturer();
+    QStringList chassisList();
+    void indexed(bool n);
+    bool isIndexed();
+    QString name();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -65,7 +60,6 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read() = 0;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -78,13 +72,13 @@ public:
 
     //// begin protected member
 protected:
-    bool m_bChanged;
-    QJsonObject m_Object;
-    QString m_sFilename;
     //// end protected member
 
     //// begin private member
 private:
+    QString m_sName;
+    bool m_bIndexed;
+    QStringList m_ChassisList;
     //// end private member
 };
-#endif // HEADER_GUARD_SiVAL_Document_HPP
+#endif // HEADER_GUARD_SiVAL_SpeakerManufacturer_HPP

@@ -47,6 +47,19 @@ ProjectPanel::ProjectPanel(QWidget *parent)
 ProjectPanel::~ProjectPanel() {
     delete ui;
 }
+/**
+ * @brief ProjectPanel::load
+ * @param projectfile
+ */
+void ProjectPanel::load(const QString &projectfile) {
+    m_pProjectDocument = new ProjectDocument(projectfile);
+}
+/**
+ * @brief ProjectPanel::save
+ */
+void ProjectPanel::save() {
+
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)

@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_IDocument_HPP
-#define HEADER_GUARD_SiVAL_IDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP
+#define HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP
 
 /*
  * GhostWriter
@@ -10,14 +10,12 @@
  *
  */
 //// begin includes
-#include <QByteArray>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QString>
+#include <QVector>
 //// end includes
 
 //// begin specific includes
+#include "idocument.hpp"
+#include "speakermanufacturer.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -33,26 +31,25 @@
 //// end extern declaration
 
 /**
- * class Document
+ * class SpeakerSettingsDocument
  *
  * @brief
  *
  */
-class IDocument
+class SpeakerSettingsDocument : public IDocument
 {
     //// begin public member methods
 public:
-    explicit IDocument();
     /// Constructor
-    explicit IDocument(const QString &filename);
+    explicit SpeakerSettingsDocument(const QString &filename);
     /// Destructor
-    virtual ~IDocument();
-
-    void change();
-    bool isChanged();
+    virtual ~SpeakerSettingsDocument();
     ///
-    virtual bool save();
-    virtual bool saveAs(const QString &filename);
+    virtual bool save() override;
+    ///
+    void import(const QString &filename);
+    ///
+    QVector<SpeakerManufacturer*>& manufacturers();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -65,7 +62,7 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read() = 0;
+    void read() override;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -78,13 +75,27 @@ public:
 
     //// begin protected member
 protected:
-    bool m_bChanged;
-    QJsonObject m_Object;
-    QString m_sFilename;
     //// end protected member
 
     //// begin private member
 private:
+    QVector<SpeakerManufacturer*> m_ManufacturerList;
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_Document_HPP
+#endif // HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP

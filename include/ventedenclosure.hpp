@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_IDocument_HPP
-#define HEADER_GUARD_SiVAL_IDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_VentedEnclosure_HPP
+#define HEADER_GUARD_SiVAL_VentedEnclosure_HPP
 
 /*
  * GhostWriter
@@ -10,14 +10,10 @@
  *
  */
 //// begin includes
-#include <QByteArray>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QString>
 //// end includes
 
 //// begin specific includes
+#include "ienclosure.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -33,26 +29,19 @@
 //// end extern declaration
 
 /**
- * class Document
+ * class VentedEnclosure
  *
  * @brief
  *
  */
-class IDocument
+class VentedEnclosure : public IEnclosure
 {
     //// begin public member methods
 public:
-    explicit IDocument();
     /// Constructor
-    explicit IDocument(const QString &filename);
+    explicit VentedEnclosure();
     /// Destructor
-    virtual ~IDocument();
-
-    void change();
-    bool isChanged();
-    ///
-    virtual bool save();
-    virtual bool saveAs(const QString &filename);
+    virtual ~VentedEnclosure();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -65,7 +54,6 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read() = 0;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -78,13 +66,26 @@ public:
 
     //// begin protected member
 protected:
-    bool m_bChanged;
-    QJsonObject m_Object;
-    QString m_sFilename;
     //// end protected member
 
     //// begin private member
 private:
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_Document_HPP
+#endif // HEADER_GUARD_SiVAL_VentedEnclosure_HPP

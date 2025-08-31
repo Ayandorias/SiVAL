@@ -88,6 +88,7 @@ namespace NW {
     QString m_sInfoText;
     QString m_sTitle;
     bool m_bChecvron;
+    bool m_bPressed;
     //// end protected member
 
     //// begin private member
@@ -95,7 +96,6 @@ namespace NW {
     Ui::Card *ui;
     QSvgRenderer *m_pIconRenderer;
     QSvgRenderer *m_pChevronRenderer;
-    bool m_bPressed;
     bool m_bHovered;
     //// end private member
 

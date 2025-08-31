@@ -29,7 +29,7 @@
 //// end extern declaration
 
 /**
- * class SpeakerDocument
+ * class SpeakerSettingsDocument
  *
  * @brief
  *
@@ -88,4 +88,4 @@ private slots:
 signals:
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#endif // HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP

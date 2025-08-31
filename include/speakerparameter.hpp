@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_IDocument_HPP
-#define HEADER_GUARD_SiVAL_IDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_SpeakerParameter_HPP
+#define HEADER_GUARD_SiVAL_SpeakerParameter_HPP
 
 /*
  * GhostWriter
@@ -10,11 +10,7 @@
  *
  */
 //// begin includes
-#include <QByteArray>
-#include <QFile>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QString>
+#include <QObject>
 //// end includes
 
 //// begin specific includes
@@ -33,26 +29,19 @@
 //// end extern declaration
 
 /**
- * class Document
+ * class SpeakerParameter
  *
  * @brief
  *
  */
-class IDocument
+class SpeakerParameter : public QObject
 {
     //// begin public member methods
 public:
-    explicit IDocument();
     /// Constructor
-    explicit IDocument(const QString &filename);
+    explicit SpeakerParameter(QObject *parent = nullptr);
     /// Destructor
-    virtual ~IDocument();
-
-    void change();
-    bool isChanged();
-    ///
-    virtual bool save();
-    virtual bool saveAs(const QString &filename);
+    virtual ~SpeakerParameter();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -65,7 +54,6 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read() = 0;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -78,13 +66,10 @@ public:
 
     //// begin protected member
 protected:
-    bool m_bChanged;
-    QJsonObject m_Object;
-    QString m_sFilename;
     //// end protected member
 
     //// begin private member
 private:
     //// end private member
 };
-#endif // HEADER_GUARD_SiVAL_Document_HPP
+#endif // HEADER_GUARD_SiVAL_SpeakerParameter_HPP

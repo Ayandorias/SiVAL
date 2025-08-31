@@ -10,10 +10,13 @@
  *
  */
 //// begin includes
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QWidget>
 //// end includes
 
 //// begin specific includes
+#include "projectdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -46,6 +49,8 @@ public:
     explicit ProjectPanel(QWidget *parent = nullptr);
     /// Destructor
     virtual ~ProjectPanel();
+    void load(const QString &projectfile);
+    void save();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -74,6 +79,7 @@ protected:
 
     //// begin private member
 private:
+    ProjectDocument *m_pProjectDocument;
     Ui::ProjektPanel *ui;
     //// end private member
 
