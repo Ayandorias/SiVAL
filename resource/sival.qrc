@@ -4,5 +4,10 @@
         <file>sival/enclosure_light.svg</file>
         <file>sival/checked_dark.svg</file>
         <file>sival/unchecked_dark.svg</file>
+        <file>sival/open_dark.svg</file>
+        <file>sival/home_dark.svg</file>
+        <file>sival/sound_system_dark.svg</file>
+        <file>sival/enclosure_pdark.svg</file>
+        <file>sival/project_dark.svg</file>
     </qresource>
 </RCC>

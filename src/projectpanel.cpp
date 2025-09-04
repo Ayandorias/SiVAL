@@ -38,6 +38,8 @@ ProjectPanel::ProjectPanel(QWidget *parent)
     :QWidget(parent)
     , ui(new Ui::ProjektPanel) {
     ui->setupUi(this);
+    connect(ui->m_pNewProject, &QToolButton::clicked, this, &ProjectPanel::newProject);
+    connect(ui->m_pNewEnclosure, &QToolButton::clicked, this, &ProjectPanel::newEnclosure);
 }
 
 /**************************************************************************************************/
@@ -51,8 +53,10 @@ ProjectPanel::~ProjectPanel() {
  * @brief ProjectPanel::load
  * @param projectfile
  */
-void ProjectPanel::load(const QString &projectfile) {
+void ProjectPanel::open(const QString &projectfile) {
     m_pProjectDocument = new ProjectDocument(projectfile);
+
+    ui->m_pPojectTree->addProject(m_pProjectDocument);
 }
 /**
  * @brief ProjectPanel::save

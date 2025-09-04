@@ -57,7 +57,7 @@ NW::Label::~Label() {
 
 //// begin protected member methods (internal use only)
 void NW::Label::setStyleSheet() {
-    QLabel::setStyleSheet("border: none; background-color: transparent; color: #606060; padding-left: 10px;");
+    QLabel::setStyleSheet("border: none; background-color: transparent; color: #606060;");
 }
 //// end protected member methods (internal use only)
 

@@ -39,7 +39,7 @@ class VentedEnclosure : public IEnclosure
     //// begin public member methods
 public:
     /// Constructor
-    explicit VentedEnclosure();
+    explicit VentedEnclosure(SpeakerDocument *doc);
     /// Destructor
     virtual ~VentedEnclosure();
     //// end public member methods

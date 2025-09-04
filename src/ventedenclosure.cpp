@@ -33,7 +33,9 @@
 /**
  *
  */
-VentedEnclosure::VentedEnclosure() {
+VentedEnclosure::VentedEnclosure(SpeakerDocument *doc)
+    : IEnclosure(doc) {
+    m_Type = SiVAL::ENC_VENTED;
 }
 
 /**************************************************************************************************/

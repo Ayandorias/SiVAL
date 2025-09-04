@@ -91,6 +91,7 @@ private slots:
 
     //// begin signals
 signals:
+    void newProject();
     //// end signals
 };
 #endif // HEADER_GUARD_SiVAL_HomePanel_HPP

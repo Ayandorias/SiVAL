@@ -13,17 +13,20 @@
 #include <QButtonGroup>
 #include <QMainWindow>
 #include <QStackedWidget>
-#include "centerstack.hpp"
-#include "encloserwidget.hpp"
-#include "homepanel.hpp"
-#include "projectpanel.hpp"
-#include "speakersettingsdocument.hpp"
-#include "speakersettingswidget.hpp"
-#include "nw/mainwindow.hpp"
-#include "nw/selectionbutton.hpp"
 //// end includes
 
 //// begin specific includes
+#include "nw/mainwindow.hpp"
+#include "nw/navbarpanel.hpp"
+#include "nw/selectionbutton.hpp"
+#include "centerstack.hpp"
+#include "encloserwidget.hpp"
+#include "homepanel.hpp"
+#include "homewidget.hpp"
+#include "projectnewdialog.hpp"
+#include "projectpanel.hpp"
+#include "speakersettingsdocument.hpp"
+#include "speakersettingswidget.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -74,8 +77,8 @@ protected:
 
     //// begin private member methods
 private:
-    void speakerSettings();
     void menu(bool visible, QButtonGroup *group);
+    void speakerSettings();
     //// end private member methods
 
     //// begin public member
@@ -91,6 +94,7 @@ private:
     QButtonGroup *m_pGroup;
     QButtonGroup *m_pSettingsGroup;
 
+    HomeWidget *m_pHomeWidget;
     CenterStack *m_pCenterStack;
     EnclosureWidget *m_pCenterView;
 
@@ -105,6 +109,9 @@ private:
     ProjectPanel *m_pProjectPanel;
 
     SpeakerSettingsDocument *m_pSpeakerDoc;
+    ProjectNewDialog *m_pProjectNewDialog;
+
+    NW::NavBarPanel *m_pNavBarPanel;
 
     enum BTN_POS {
         BTN_NONE = 0,
@@ -124,11 +131,13 @@ protected slots:
     void centerViewSelection(int id);
     void enclosureSelection(int id);
     void mainMenu() override;
+    void newProject();
     void settingsSelection(int id);
     //// end protected slots
 
     //// begin private slots
 private slots:
+    void openProject(const QString &filepath);
     //// end private slots
 
     //// begin signals

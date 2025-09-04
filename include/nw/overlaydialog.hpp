@@ -10,6 +10,16 @@
  *
  */
 //// begin includes
+#include <QVariant>
+#include <QIcon>
+#include <QApplication>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QSpacerItem>
+#include <QToolButton>
+#include <QVBoxLayout>
 #include <QWidget>
 //// end includes
 
@@ -17,10 +27,10 @@
 //// end specific includes
 
 //// begin using namespaces
-namespace Ui
-{
-class OverlayDialog;
-}
+// namespace Ui
+// {
+// class OverlayDialog;
+// }
 //// end using namespaces
 
 //// begin global definition
@@ -65,11 +75,34 @@ protected:
 
     //// begin private member methods
 private:
+    void setupUi(QWidget *OverlayDialog);
+    void retranslateUi(QWidget *OverlayDialog);
     //// end private member methods
 
     //// begin public member
 public:
-    Ui::OverlayDialog *m_pUi;
+    QHBoxLayout *horizontalLayout;
+    QWidget *widget;
+    QGridLayout *gridLayout;
+    QSpacerItem *verticalSpacer_4;
+    QSpacerItem *horizontalSpacer_8;
+    QWidget *m_pDialog;
+    QVBoxLayout *verticalLayout;
+    QWidget *m_pTitleBar;
+    QHBoxLayout *m_pTitleBarLayout;
+    QSpacerItem *horizontalSpacer_3;
+    QLabel *m_pLabel;
+    QSpacerItem *horizontalSpacer_5;
+    QToolButton *m_pClose;
+    QWidget *m_pCenterWidget;
+    QHBoxLayout *m_pButtonBar;
+    QSpacerItem *horizontalSpacer_6;
+    QPushButton *m_pPrevButton;
+    QPushButton *m_pNextButton;
+    QPushButton *m_pAccept;
+    QSpacerItem *horizontalSpacer_7;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer_2;
     //// end public member
 
     //// begin protected member

@@ -33,7 +33,9 @@
 /**
  *
  */
-SealedEnclosure::SealedEnclosure() {
+SealedEnclosure::SealedEnclosure(SpeakerDocument *doc)
+    : IEnclosure(doc) {
+    m_Type = SiVAL::ENC_SEALED;
 }
 
 /**************************************************************************************************/

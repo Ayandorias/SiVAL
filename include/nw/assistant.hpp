@@ -75,12 +75,12 @@ namespace NW {
     //// begin protected member
   protected:
     Ui::Assistant *m_pCenterUI;
+      NW::FrameBarButton *m_pNext;
+      NW::FrameBarButton *m_pPrevious;
     //// end protected member
 
     //// begin private member
   private:
-    NW::FrameBarButton *m_pNext;
-    NW::FrameBarButton *m_pPrevious;
     //// end private member
 
     //// begin public slots

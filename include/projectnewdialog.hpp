@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_ProjectPanel_HPP
-#define HEADER_GUARD_SiVAL_ProjectPanel_HPP
+#ifndef HEADER_GUARD_SiVAL_ProjectNewDialog_HPP
+#define HEADER_GUARD_SiVAL_ProjectNewDialog_HPP
 
 /*
  * GhostWriter
@@ -10,18 +10,16 @@
  *
  */
 //// begin includes
-#include <QJsonDocument>
-#include <QJsonObject>
 #include <QWidget>
 //// end includes
 
 //// begin specific includes
-#include "projectdocument.hpp"
+#include "nw/overlaydialog.hpp"
 //// end specific includes
 
 //// begin using namespaces
 namespace Ui {
-class ProjektPanel;
+class ProjectNewDialog;
 }
 //// end using namespaces
 
@@ -35,22 +33,20 @@ class ProjektPanel;
 //// end extern declaration
 
 /**
- * class ProjectPanel
+ * class ProjectNewDialog
  *
  * @brief
  *
  */
-class ProjectPanel : public QWidget
+class ProjectNewDialog : public NW::OverlayDialog
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit ProjectPanel(QWidget *parent = nullptr);
+    explicit ProjectNewDialog(QWidget *parent);
     /// Destructor
-    virtual ~ProjectPanel();
-    void open(const QString &projectfile);
-    void save();
+    virtual ~ProjectNewDialog();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -79,8 +75,7 @@ protected:
 
     //// begin private member
 private:
-    ProjectDocument *m_pProjectDocument;
-    Ui::ProjektPanel *ui;
+    Ui::ProjectNewDialog *ui;
     //// end private member
 
     //// begin public slots
@@ -89,6 +84,8 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void createNewProject();
+    void textChanged(const QString &text);
     //// end protected slots
 
     //// begin private slots
@@ -97,8 +94,7 @@ private slots:
 
     //// begin signals
 signals:
-    void newEnclosure();
-    void newProject();
+    void newProject(const QString &filepath);
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_ProjectPanel_HPP
+#endif // HEADER_GUARD_SiVAL_ProjectNewDialog_HPP

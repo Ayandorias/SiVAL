@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_ProjectPanel_HPP
-#define HEADER_GUARD_SiVAL_ProjectPanel_HPP
+#ifndef HEADER_GUARD_SiVAL_EnclosureDocument_HPP
+#define HEADER_GUARD_SiVAL_EnclosureDocument_HPP
 
 /*
  * GhostWriter
@@ -10,19 +10,17 @@
  *
  */
 //// begin includes
-#include <QJsonDocument>
 #include <QJsonObject>
-#include <QWidget>
+#include <QString>
 //// end includes
 
 //// begin specific includes
-#include "projectdocument.hpp"
+#include "ienclosure.hpp"
+#include "sival.hpp"
+#include "speakerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
-namespace Ui {
-class ProjektPanel;
-}
 //// end using namespaces
 
 //// begin global definition
@@ -35,22 +33,22 @@ class ProjektPanel;
 //// end extern declaration
 
 /**
- * class ProjectPanel
+ * class EnclosureDocument
  *
  * @brief
  *
  */
-class ProjectPanel : public QWidget
-{
-    Q_OBJECT
+class EnclosureDocument {
     //// begin public member methods
 public:
     /// Constructor
-    explicit ProjectPanel(QWidget *parent = nullptr);
+    explicit EnclosureDocument(const QString &speaker_uuid, SiVAL::ENCLOSURE_TYPE type);
     /// Destructor
-    virtual ~ProjectPanel();
-    void open(const QString &projectfile);
-    void save();
+    virtual ~EnclosureDocument();
+    ///
+    QJsonObject toJson();
+    void setType(SiVAL::ENCLOSURE_TYPE type);
+    SiVAL::ENCLOSURE_TYPE type();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -79,26 +77,9 @@ protected:
 
     //// begin private member
 private:
-    ProjectDocument *m_pProjectDocument;
-    Ui::ProjektPanel *ui;
+    SiVAL::ENCLOSURE_TYPE m_EncType;
+    IEnclosure *m_pEnclosure;
+    SpeakerDocument *m_pSpeakerDoc;
     //// end private member
-
-    //// begin public slots
-public slots:
-    //// end public slots
-
-    //// begin protected slots
-protected slots:
-    //// end protected slots
-
-    //// begin private slots
-private slots:
-    //// end private slots
-
-    //// begin signals
-signals:
-    void newEnclosure();
-    void newProject();
-    //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_ProjectPanel_HPP
+#endif // HEADER_GUARD_SiVAL_EnclosureDocument_HPP

@@ -119,6 +119,12 @@ void NW::NavBarPanel::appendPanel(const QString &icon, const QString &icon_hover
     // // Panel zum QStackedWidget hinzufügen.
     // m_pPanelStack->addWidget(panel);
 }
+void NW::NavBarPanel::select(int id) {
+    QAbstractButton *btn = m_pGroup->button(1);
+    if(btn) {
+        btn->click();//setChecked(true);
+    }
+}
 void NW::NavBarPanel::toggle(bool checked) {
     if(checked) {
         m_pPanelStack->hide();

@@ -122,6 +122,12 @@ qt_add_executable(SiVAL
     include/ienclosure.hpp src/ienclosure.cpp
     include/ventedenclosure.hpp src/ventedenclosure.cpp
     include/sealedenclosure.hpp src/sealedenclosure.cpp
+    include/sival.hpp
+    include/enclosuredocument.hpp src/enclosuredocument.cpp
+    include/homewidget.hpp src/homewidget.cpp src/homewidget.ui
+    include/projectnewdialog.hpp src/projectnewdialog.cpp src/projectnewdialog.ui
+
+
 )
 
 target_include_directories(SiVAL PRIVATE include)

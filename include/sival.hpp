@@ -1,0 +1,11 @@
+#ifndef HEADER_GUARD_SiVAL_SiVAL_HPP
+#define HEADER_GUARD_SiVAL_SiVAL_HPP
+
+namespace SiVAL {
+enum ENCLOSURE_TYPE {
+    ENC_SEALED = 0,
+    ENC_VENTED
+};
+}
+
+#endif // HEADER_GUARD_SiVAL_SiVAL_HPP

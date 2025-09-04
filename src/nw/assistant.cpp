@@ -38,20 +38,20 @@
 NW::Assistant::Assistant(QWidget *parent)
 :NW::OverlayDialog(parent), m_pCenterUI(new Ui::Assistant()) {
 
-    m_pUi->m_pDialog->setMinimumSize(800, 600);
-    m_pCenterUI->setupUi(m_pUi->m_pCenterWidget);
-    m_pUi->m_pAccept->hide();
-    m_pUi->m_pNextButton->hide();
-    m_pUi->m_pPrevButton->hide();
-    m_pNext = new NW::FrameBarButton(":/icon/chevron-right_dark.svg", ":/icon/chevron-right_light.svg", QString(), QString(), m_pUi->m_pTitleBar);
+    /*m_pUi->*/m_pDialog->setMinimumSize(800, 600);
+    m_pCenterUI->setupUi(/*m_pUi->*/m_pCenterWidget);
+    /*m_pUi->*/m_pAccept->hide();
+    /*m_pUi->*/m_pNextButton->hide();
+    /*m_pUi->*/m_pPrevButton->hide();
+    m_pNext = new NW::FrameBarButton(":/icon/chevron-right_dark.svg", ":/icon/chevron-right_light.svg", QString(), QString(), /*m_pUi->*/m_pTitleBar);
     m_pNext->setEnabled(false);
-    m_pUi->m_pTitleBarLayout->insertWidget(0, m_pNext);
+    /*m_pUi->*/m_pTitleBarLayout->insertWidget(0, m_pNext);
 
-    m_pPrevious = new NW::FrameBarButton(":/icon/chevron-left_dark.svg", ":/icon/chevron-left_light.svg", QString(), QString(), m_pUi->m_pTitleBar);
+    m_pPrevious = new NW::FrameBarButton(":/icon/chevron-left_dark.svg", ":/icon/chevron-left_light.svg", QString(), QString(), /*m_pUi->*/m_pTitleBar);
     m_pPrevious->setEnabled(false);
-    m_pUi->m_pTitleBarLayout->insertWidget(0, m_pPrevious);
+    /*m_pUi->*/m_pTitleBarLayout->insertWidget(0, m_pPrevious);
 
-    m_pUi->m_pLabel->setText(tr("Neuen Charakter erstellen ..."));
+    /*m_pUi->*/m_pLabel->setText(tr("Create New Enclosure"));
 }
 
 /**************************************************************************************************/

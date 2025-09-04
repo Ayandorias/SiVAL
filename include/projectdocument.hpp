@@ -11,10 +11,12 @@
  */
 //// begin includes
 #include <QJsonObject>
+#include <QVector>
 //// end includes
 
 //// begin specific includes
 #include "idocument.hpp"
+#include "enclosuredocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -46,7 +48,7 @@ public:
     virtual ~ProjectDocument();
     void setAuthor(const QString &author);
     QString author();
-    void createEnclosure(const QString &speaker_uuid);
+    void createEnclosure(const QString &speaker_uuid, SiVAL::ENCLOSURE_TYPE type);
     QString created();
     void setDescription(const QString &description);
     QString description();
@@ -85,6 +87,7 @@ protected:
 
     //// begin private member
 private:
+    QVector<EnclosureDocument*> m_Setups;
     //// end private member
 
     //// begin public slots

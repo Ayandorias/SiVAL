@@ -67,5 +67,7 @@
         <file>icon/__user_dark.svg</file>
         <file>icon/__user_light.svg</file>
         <file>icon/user_template_dark.svg</file>
+        <file>icon/warning_dark.svg</file>
+        <file>icon/check_dark.svg</file>
     </qresource>
 </RCC>

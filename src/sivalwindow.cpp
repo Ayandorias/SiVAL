@@ -8,6 +8,7 @@
 
 //// begin includes
 #include<QScrollArea>
+#include <iostream>
 //// end includes
 
 //// begin specific includes
@@ -67,7 +68,7 @@ SiVALWindow::SiVALWindow(const QString &projectfile, SpeakerSettingsDocument *do
     /*
      * Das Start-Ansicht. Von hier können Projekte erstellt werden und weitere Dinge.
      * */
-    QWidget *m_pHomeWidget = new QWidget(this);
+    m_pHomeWidget = new HomeWidget(this);
     m_pCenterStack->addWidget(m_pHomeWidget);
 
     /*
@@ -86,15 +87,17 @@ SiVALWindow::SiVALWindow(const QString &projectfile, SpeakerSettingsDocument *do
     m_pSettingsWidget = new SpeakerSettingsWidget(doc, this);
     m_pSettingsStack->addWidget(m_pSettingsWidget);
 
-    NW::NavBarPanel *m_pNavBarPanel = new NW::NavBarPanel(this);
+    m_pNavBarPanel = new NW::NavBarPanel(this);
     setSideBarWidget(m_pNavBarPanel);
 
     m_pHomePanel = new HomePanel();
+    connect(m_pHomePanel, &HomePanel::newProject, this, &SiVALWindow::newProject);
     m_pNavBarPanel->addPanel(QString(":/icon/home_light.svg"), QString(":/icon/home_dark.svg"), m_pHomePanel);
 
     // QScrollArea *area = new QScrollArea();
     // area->setMinimumSize(100, 100);
     m_pProjectPanel = new ProjectPanel();
+    connect(m_pProjectPanel, &ProjectPanel::newProject, this, &SiVALWindow::newProject);
     // m_pProjectPanel->setMinimumSize(area->width(), area->height());
     // area->setWidget(m_pProjectPanel);
     m_pNavBarPanel->addPanel(QString(":/sival/enclosure_light.svg"), QString(":/sival/enclosure_dark.svg"), m_pProjectPanel);
@@ -199,10 +202,21 @@ void SiVALWindow::enclosureSelection(int id) {
 void SiVALWindow::mainMenu() {
 }
 
+void SiVALWindow::newProject() {
+    m_pProjectNewDialog = new ProjectNewDialog(this);
+    m_pProjectNewDialog->showNormal();
+    m_pProjectNewDialog->raise();
+    connect(m_pProjectNewDialog, &ProjectNewDialog::newProject, this, &SiVALWindow::openProject);
+}
+
 void SiVALWindow::settingsSelection(int id) {
 
 }
 //// end protected slots
 
 //// begin private slots
+void SiVALWindow::openProject(const QString &filepath) {
+    m_pProjectPanel->open(filepath);
+    m_pNavBarPanel->select(1);
+}
 //// end private slots

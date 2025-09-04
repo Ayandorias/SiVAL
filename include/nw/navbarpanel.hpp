@@ -50,6 +50,7 @@ public:
     ///
     void addPanel(const QString &icon, const QString &icon_hover, QWidget *panel);
     void appendPanel(const QString &icon, const QString &icon_hover, QWidget *panel);
+    void select(int id);
     void toggle(bool checked);
     //// end public member methods
 

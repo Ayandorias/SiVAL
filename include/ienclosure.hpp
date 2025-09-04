@@ -14,6 +14,8 @@
 //// end includes
 
 //// begin specific includes
+#include "sival.hpp"
+#include "speakerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -39,10 +41,13 @@ class IEnclosure
     //// begin public member methods
 public:
     /// Constructor
-    explicit IEnclosure();
+    explicit IEnclosure(SpeakerDocument *doc);
     explicit IEnclosure(QJsonObject enclosure);
     /// Destructor
     virtual ~IEnclosure();
+    ///
+    QJsonObject toJson();
+    SiVAL::ENCLOSURE_TYPE type();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -67,6 +72,9 @@ public:
 
     //// begin protected member
 protected:
+    SpeakerDocument *m_pSpeaker;
+    QJsonObject m_EnclosureObject;
+    SiVAL::ENCLOSURE_TYPE m_Type;
     //// end protected member
 
     //// begin private member

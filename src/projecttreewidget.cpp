@@ -7,6 +7,8 @@
  */
 
 //// begin includes
+#include <QHeaderView>
+#include <QTreeWidgetItem>
 //// end includes
 
 //// begin specific includes
@@ -36,6 +38,10 @@
  */
 ProjectTreeWidget::ProjectTreeWidget(QWidget *parent)
     :QTreeWidget(parent) {
+
+    header()->setVisible(false);
+    QTreeWidgetItem *item = new QTreeWidgetItem(this);
+    item->setText(0, tr("SiVAL Sound System"));
 }
 /**************************************************************************************************/
 /**
@@ -50,6 +56,11 @@ ProjectTreeWidget::~ProjectTreeWidget() {
  */
 void ProjectTreeWidget::addProject(ProjectDocument *prjdoc) {
     m_PrjDocVector.append(prjdoc);
+    QTreeWidgetItem *ti = topLevelItem(0);
+    QTreeWidgetItem *item = new QTreeWidgetItem(ti);
+    item->setText(0, prjdoc->name());
+
+    expandItem(ti);
 }
 //// end public member methods
 

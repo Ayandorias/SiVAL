@@ -149,7 +149,7 @@ background-color: #fff</string>
                <string notr="true">color: rgb(60, 60, 60);</string>
               </property>
               <property name="text">
-               <string>TextLabel</string>
+               <string>Text</string>
               </property>
              </widget>
             </item>
@@ -257,7 +257,7 @@ QPushButton:hover {
               <string>PushButton</string>
              </property>
              <property name="icon">
-              <iconset resource="../../resource/atheriumarchivar.qrc">
+              <iconset resource="../../resource/nw.qrc">
                <normaloff>:/icon/chevron-left_dark.svg</normaloff>:/icon/chevron-left_dark.svg</iconset>
              </property>
             </widget>
@@ -294,7 +294,7 @@ QPushButton:hover {
               <string>PushButton</string>
              </property>
              <property name="icon">
-              <iconset resource="../../resource/atheriumarchivar.qrc">
+              <iconset resource="../../resource/nw.qrc">
                <normaloff>:/icon/chevron-right_dark.svg</normaloff>:/icon/chevron-right_dark.svg</iconset>
              </property>
             </widget>
@@ -383,7 +383,7 @@ QPushButton:hover {
   </layout>
  </widget>
  <resources>
-  <include location="../../resource/atheriumarchivar.qrc"/>
+  <include location="../../resource/nw.qrc"/>
  </resources>
  <connections/>
 </ui>

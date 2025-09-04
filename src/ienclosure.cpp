@@ -31,11 +31,20 @@
 //// begin public member methods
 /**************************************************************************************************/
 /**
- *
+ * @brief IEnclosure::IEnclosure
+ * @param doc
  */
-IEnclosure::IEnclosure() {
+IEnclosure::IEnclosure(SpeakerDocument *doc)
+    : m_pSpeaker(doc){
+    // Neues Enclosure Objekt erstellen.
 }
-IEnclosure::IEnclosure(QJsonObject enclosure) {
+/**
+ * @brief IEnclosure::IEnclosure
+ * @param enclosure
+ */
+IEnclosure::IEnclosure(QJsonObject enclosure)
+    : m_EnclosureObject(enclosure) {
+    // Neues Speaker Dokument erstellen.
 }
 
 /**************************************************************************************************/
@@ -43,6 +52,16 @@ IEnclosure::IEnclosure(QJsonObject enclosure) {
  *
  */
 IEnclosure::~IEnclosure() {
+}
+/**
+ * @brief IEnclosure::toJson
+ * @return
+ */
+QJsonObject IEnclosure::toJson() {
+    return m_EnclosureObject;
+}
+SiVAL::ENCLOSURE_TYPE IEnclosure::type() {
+    return m_Type;
 }
 //// end public member methods
 

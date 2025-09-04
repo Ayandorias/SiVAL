@@ -14,6 +14,7 @@
 
 //// begin specific includes
 #include "ienclosure.hpp"
+#include "speakerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -39,7 +40,7 @@ class SealedEnclosure : public IEnclosure
     //// begin public member methods
 public:
     /// Constructor
-    explicit SealedEnclosure();
+    explicit SealedEnclosure(SpeakerDocument *doc);
     /// Destructor
     virtual ~SealedEnclosure();
     //// end public member methods

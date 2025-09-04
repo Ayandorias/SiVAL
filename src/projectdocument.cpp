@@ -116,6 +116,10 @@ ProjectDocument::ProjectDocument(const QString &filename)
  *
  */
 ProjectDocument::~ProjectDocument() {
+    for(int i = 0; i < m_Setups.size(); ++i) {
+        EnclosureDocument *doc = m_Setups.at(i);
+        delete doc;
+    }
 }
 
 
@@ -129,8 +133,8 @@ QString ProjectDocument::author() {
  * @brief ProjectDocument::createEnclosure
  * @param speaker_uuid The uuid of the apeaker
  */
-void ProjectDocument::createEnclosure(const QString &speaker_uuid) {
-
+void ProjectDocument::createEnclosure(const QString &speaker_uuid, SiVAL::ENCLOSURE_TYPE type) {
+    m_Setups.append(new EnclosureDocument(speaker_uuid, type));
 }
 QString ProjectDocument::created() {
     return m_Object["created_at"].toString();
@@ -169,6 +173,20 @@ QString ProjectDocument::version() {
 
 //// begin protected member methods (internal use only)
 void ProjectDocument::read() {
+    QFile file(m_sFilename);
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qCritical() << "Fehler: Datei konnte nicht zum Lesen geöffnet werden.";
+        return;
+    }
+
+    QByteArray fileData = file.readAll();
+    file.close();
+
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(fileData, &parseError);
+
+    m_Object = jsonDoc.object();
 }
 //// end protected member methods (internal use only)
 
