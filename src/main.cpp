@@ -1,7 +1,10 @@
 #include "sivalwindow.hpp"
 
 #include <QApplication>
-#include "speakersettingsdocument.hpp"
+
+#include "settingsdocument.hpp"
+#include "speakerdocument.hpp"
+#include "manufacturerdocument.hpp"
 
 // Korrigierter logischer Ablauf der Entwicklung
 
@@ -18,7 +21,8 @@
 int main(int argc, char *argv[])
 {
     QString project;
-    SpeakerSettingsDocument *doc = new SpeakerSettingsDocument("speaker_overview.json");
+    SettingsDocument setdoc;
+    ManufacturerDocument *doc = new ManufacturerDocument(setdoc.speakerDb());
     QApplication a(argc, argv);
     SiVALWindow w(project, doc);
     w.show();

@@ -14,7 +14,7 @@
 //// end includes
 
 //// begin specific includes
-#include "speakersettingsdocument.hpp"
+#include "manufacturerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -44,7 +44,7 @@ class SpeakerSettingsWidget : public QWidget
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerSettingsWidget(SpeakerSettingsDocument *doc, QWidget *parent = nullptr);
+    explicit SpeakerSettingsWidget(ManufacturerDocument *doc, QWidget *parent = nullptr);
     /// Destructor
     virtual ~SpeakerSettingsWidget();
     //// end public member methods
@@ -76,7 +76,7 @@ protected:
     //// begin private member
 private:
     Ui::SpeakerSettingsWidget *ui;
-    SpeakerSettingsDocument *m_pDocument;
+    ManufacturerDocument *m_pDocument;
     //// end private member
 
     //// begin public slots

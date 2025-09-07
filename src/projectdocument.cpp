@@ -84,24 +84,7 @@
         }
     ]
 }
- * @brief ProjectDocument::ProjectDocument
- */
-ProjectDocument::ProjectDocument()
-    :IDocument() {
 
-    m_bChanged = true;
-    m_Object["version"] = "";
-    m_Object["project_id"] = QUuid::createUuid().toString();
-    m_Object["project_name"] = "Unnamed*";
-    m_Object["created_at"] = "";
-    m_Object["author"] = "";
-    m_Object["description"] = "";
-
-    QJsonArray array;
-    m_Object.insert("liste_der_werte", array);
-}
-/**************************************************************************************************/
-/**
  *
  */
 ProjectDocument::ProjectDocument(const QString &filename)
@@ -131,10 +114,10 @@ QString ProjectDocument::author() {
 }
 /**
  * @brief ProjectDocument::createEnclosure
- * @param speaker_uuid The uuid of the apeaker
+ * @param doc The uuid of the apeaker
  */
-void ProjectDocument::createEnclosure(const QString &speaker_uuid, SiVAL::ENCLOSURE_TYPE type) {
-    m_Setups.append(new EnclosureDocument(speaker_uuid, type));
+void ProjectDocument::createEnclosure(SpeakerDocument *doc, SiVAL::ENCLOSURE_TYPE type) {
+    m_Setups.append(new EnclosureDocument(doc, type));
 }
 QString ProjectDocument::created() {
     return m_Object["created_at"].toString();

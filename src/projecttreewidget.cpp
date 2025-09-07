@@ -7,12 +7,15 @@
  */
 
 //// begin includes
+#include <QObject>
 #include <QHeaderView>
-#include <QTreeWidgetItem>
+
+#include <iostream>
 //// end includes
 
 //// begin specific includes
 #include "projecttreewidget.hpp"
+#include "treeitem.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -38,16 +41,23 @@
  */
 ProjectTreeWidget::ProjectTreeWidget(QWidget *parent)
     :QTreeWidget(parent) {
+    m_sActiveProject = QString();
 
     header()->setVisible(false);
-    QTreeWidgetItem *item = new QTreeWidgetItem(this);
-    item->setText(0, tr("SiVAL Sound System"));
+    TreeItem *item = new TreeItem(this, SiVAL::DT_WORKSPACE);
+    item->setText(0, tr("SiVAL Sound Systems"));
+
+    connect(this, &QTreeWidget::itemSelectionChanged, this, &ProjectTreeWidget::itemChanged);
 }
 /**************************************************************************************************/
 /**
  * @brief ProjectTreeWidget::~ProjectTreeWidget
  */
 ProjectTreeWidget::~ProjectTreeWidget() {
+}
+void ProjectTreeWidget::addEnclosure(SpeakerDocument *doc) {
+    ProjectDocument *prjdoc = getActiveProject();
+    prjdoc->createEnclosure(doc);
 }
 /**************************************************************************************************/
 /**
@@ -57,10 +67,17 @@ ProjectTreeWidget::~ProjectTreeWidget() {
 void ProjectTreeWidget::addProject(ProjectDocument *prjdoc) {
     m_PrjDocVector.append(prjdoc);
     QTreeWidgetItem *ti = topLevelItem(0);
-    QTreeWidgetItem *item = new QTreeWidgetItem(ti);
+    TreeItem *item = new TreeItem(ti, SiVAL::DT_PROJECT);
+    item->setData(prjdoc);
     item->setText(0, prjdoc->name());
 
+    m_sActiveProject = prjdoc->projectId();
+
     expandItem(ti);
+}
+
+void ProjectTreeWidget::save() {
+
 }
 //// end public member methods
 
@@ -75,11 +92,34 @@ void ProjectTreeWidget::addProject(ProjectDocument *prjdoc) {
 
 //// begin private member methods
 //// end private member methods
+ProjectDocument* ProjectTreeWidget::getActiveProject() {
 
+    return nullptr;
+}
 //// begin public slots
 //// end public slots
 
 //// begin protected slots
+void ProjectTreeWidget::itemChanged() {
+    std::cout << "Item has changed" << std::endl;
+    QTreeWidgetItem *i = currentItem();
+    TreeItem *item = (TreeItem*)i;
+
+    switch(item->type()) {
+    case SiVAL::DT_WORKSPACE: {
+        break;
+    }
+    case SiVAL::DT_PROJECT: {
+        std::cout << "Projekt gefunden:" << std::endl;
+        ProjectDocument *doc = (ProjectDocument*)item->data();
+        m_sActiveProject = doc->projectId();
+        std::cout << m_sActiveProject.toStdString() << std::endl;
+        break;
+    }
+    default:
+        break;
+    }
+}
 //// end protected slots
 
 //// begin private slots

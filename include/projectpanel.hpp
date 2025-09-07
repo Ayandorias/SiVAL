@@ -49,8 +49,10 @@ public:
     explicit ProjectPanel(QWidget *parent = nullptr);
     /// Destructor
     virtual ~ProjectPanel();
+    ///
+    void addEnclosure(SpeakerDocument *doc);
+    ///
     void open(const QString &projectfile);
-    void save();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -67,6 +69,7 @@ protected:
 
     //// begin private member methods
 private:
+    void checkButtons();
     //// end private member methods
 
     //// begin public member
@@ -89,6 +92,8 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    ///
+    void save();
     //// end protected slots
 
     //// begin private slots
@@ -99,6 +104,7 @@ private slots:
 signals:
     void newEnclosure();
     void newProject();
+    void openProject();
     //// end signals
 };
 #endif // HEADER_GUARD_SiVAL_ProjectPanel_HPP

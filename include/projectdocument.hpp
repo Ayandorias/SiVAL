@@ -41,14 +41,13 @@ class ProjectDocument : public IDocument
 {
     //// begin public member methods
 public:
-    explicit ProjectDocument();
     /// Constructor
     explicit ProjectDocument(const QString &filename);
     /// Destructor
     virtual ~ProjectDocument();
     void setAuthor(const QString &author);
     QString author();
-    void createEnclosure(const QString &speaker_uuid, SiVAL::ENCLOSURE_TYPE type);
+    void createEnclosure(SpeakerDocument *doc, SiVAL::ENCLOSURE_TYPE type = SiVAL::ENC_SEALED);
     QString created();
     void setDescription(const QString &description);
     QString description();

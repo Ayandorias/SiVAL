@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP
-#define HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP
+#define HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP
 
 /*
  * GhostWriter
@@ -10,15 +10,20 @@
  *
  */
 //// begin includes
-#include <QVector>
+#include <QObject>
 //// end includes
 
 //// begin specific includes
-#include "idocument.hpp"
+#include "nw/overlaydialog.hpp"
+#include "speakerbrandcard.hpp"
 #include "speakermanufacturer.hpp"
+#include "manufacturerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
+namespace Ui {
+class EnclosureNewDialog;
+}
 //// end using namespaces
 
 //// begin global definition
@@ -31,25 +36,22 @@
 //// end extern declaration
 
 /**
- * class SpeakerSettingsDocument
+ * class EnclosureNewDialog
  *
  * @brief
  *
  */
-class SpeakerSettingsDocument : public IDocument
+class EnclosureNewDialog : public NW::OverlayDialog
 {
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerSettingsDocument(const QString &filename);
+    explicit EnclosureNewDialog(ManufacturerDocument *doc, QWidget *parent = nullptr);
     /// Destructor
-    virtual ~SpeakerSettingsDocument();
+    virtual ~EnclosureNewDialog();
     ///
-    virtual bool save() override;
-    ///
-    void import(const QString &filename);
-    ///
-    QVector<SpeakerManufacturer*>& manufacturers();
+    SpeakerDocument* speaker();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -62,11 +64,12 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    void read() override;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
 private:
+    void buildManufacturerList();
+    void clearSpeakerList();
     //// end private member methods
 
     //// begin public member
@@ -79,7 +82,13 @@ protected:
 
     //// begin private member
 private:
-    QVector<SpeakerManufacturer*> m_ManufacturerList;
+    Ui::EnclosureNewDialog *ui;
+    ManufacturerDocument *m_pSpeakerSettingsDoc;
+    QVBoxLayout *m_pVerticalLayout;
+    QVBoxLayout *m_pSpeakerLayout;
+    QSpacerItem *m_pVerticalSpacer;
+    SpeakerBrandCard *m_pLastSelected;
+    SpeakerDocument *m_pSpeakerDoc;
     //// end private member
 
     //// begin public slots
@@ -88,6 +97,8 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void changeSpeakerList(SpeakerManufacturer *man);
+    void speakerSelected(SpeakerDocument *doc);
     //// end protected slots
 
     //// begin private slots
@@ -96,6 +107,7 @@ private slots:
 
     //// begin signals
 signals:
+    void newEnclosure();
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP
+#endif // HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP

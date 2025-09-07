@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_SpeakerDocument_HPP
-#define HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#ifndef HEADER_GUARD_Nebenwelten_PushButton_HPP
+#define HEADER_GUARD_Nebenwelten_PushButton_HPP
 
 /*
  * GhostWriter
@@ -10,10 +10,10 @@
  *
  */
 //// begin includes
+#include <QPushButton>
 //// end includes
 
 //// begin specific includes
-#include "idocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -28,23 +28,22 @@
 //// begin extern declaration
 //// end extern declaration
 
+namespace NW {
 /**
- * class SpeakerDocument
+ * class PushButton
  *
  * @brief
  *
  */
-class SpeakerDocument : public IDocument
+class PushButton : public QPushButton
 {
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerDocument(const QString &filename);
+    explicit PushButton(QWidget *parent = nullptr);
     /// Destructor
-    virtual ~SpeakerDocument();
-    QString brand();
-    QString model();
-    QString uuid();
+    virtual ~PushButton();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -57,7 +56,6 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read();
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -92,4 +90,5 @@ private slots:
 signals:
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+}
+#endif // HEADER_GUARD_Nebenwelten_PushButton_HPP

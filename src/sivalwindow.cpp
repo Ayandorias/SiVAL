@@ -7,12 +7,14 @@
  */
 
 //// begin includes
+#include <QFileDialog>
 #include<QScrollArea>
 #include <iostream>
 //// end includes
 
 //// begin specific includes
 #include "nw/navbarpanel.hpp"
+#include "settingsdocument.hpp"
 #include "sivalwindow.hpp"
 //// end specific includes
 
@@ -36,7 +38,7 @@
 /**
  *
  */
-SiVALWindow::SiVALWindow(const QString &projectfile, SpeakerSettingsDocument *doc, QWidget *parent)
+SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, QWidget *parent)
     :NW::MainWindow(parent), m_pSpeakerDoc(doc) {
 
     m_pGroup = new QButtonGroup(this);
@@ -92,14 +94,14 @@ SiVALWindow::SiVALWindow(const QString &projectfile, SpeakerSettingsDocument *do
 
     m_pHomePanel = new HomePanel();
     connect(m_pHomePanel, &HomePanel::newProject, this, &SiVALWindow::newProject);
+    connect(m_pHomePanel, &HomePanel::openProject, this, &SiVALWindow::openProjectEnclosure);
     m_pNavBarPanel->addPanel(QString(":/icon/home_light.svg"), QString(":/icon/home_dark.svg"), m_pHomePanel);
 
-    // QScrollArea *area = new QScrollArea();
-    // area->setMinimumSize(100, 100);
     m_pProjectPanel = new ProjectPanel();
     connect(m_pProjectPanel, &ProjectPanel::newProject, this, &SiVALWindow::newProject);
-    // m_pProjectPanel->setMinimumSize(area->width(), area->height());
-    // area->setWidget(m_pProjectPanel);
+    connect(m_pProjectPanel, &ProjectPanel::newEnclosure, this, &SiVALWindow::newEnclosure);
+    connect(m_pProjectPanel, &ProjectPanel::openProject, this, &SiVALWindow::openProjectEnclosure);
+
     m_pNavBarPanel->addPanel(QString(":/sival/enclosure_light.svg"), QString(":/sival/enclosure_dark.svg"), m_pProjectPanel);
 
 
@@ -196,10 +198,25 @@ void SiVALWindow::centerViewSelection(int id) {
     m_pCenterStack->setCurrentIndex(id);
 }
 
+void SiVALWindow::createEnclosure() {
+    SpeakerDocument *doc = m_pNewEnclosure->speaker();
+
+    m_pProjectPanel->addEnclosure(doc);
+
+    m_pNewEnclosure->close();
+}
+
 void SiVALWindow::enclosureSelection(int id) {
 }
 
 void SiVALWindow::mainMenu() {
+}
+
+void SiVALWindow::newEnclosure() {
+    m_pNewEnclosure = new EnclosureNewDialog(m_pSpeakerDoc, this);
+    m_pNewEnclosure->showNormal();
+    m_pNewEnclosure->raise();
+    connect(m_pNewEnclosure, &EnclosureNewDialog::newEnclosure, this, &SiVALWindow::createEnclosure);
 }
 
 void SiVALWindow::newProject() {
@@ -209,14 +226,27 @@ void SiVALWindow::newProject() {
     connect(m_pProjectNewDialog, &ProjectNewDialog::newProject, this, &SiVALWindow::openProject);
 }
 
+void SiVALWindow::openProjectEnclosure() {
+    SettingsDocument doc;
+    std::cout << "Open Enclosure: " << doc.projectDir().toStdString() << std::endl;
+    QString file = QFileDialog::getOpenFileName(this, tr("Open Enclosure"),
+                                                doc.projectDir(),
+                                                tr("Enclosures (*.sivalprj)"));
+
+    if(file != QString()) {
+        openProject(file);
+    }
+}
+
+void SiVALWindow::openProject(const QString &filepath) {
+    m_pProjectPanel->open(filepath);
+    m_pNavBarPanel->select(1);
+}
+
 void SiVALWindow::settingsSelection(int id) {
 
 }
 //// end protected slots
 
 //// begin private slots
-void SiVALWindow::openProject(const QString &filepath) {
-    m_pProjectPanel->open(filepath);
-    m_pNavBarPanel->select(1);
-}
 //// end private slots

@@ -81,7 +81,23 @@
     </widget>
    </item>
    <item>
-    <widget class="NW::Card" name="m_pNewProject" native="true">
+    <widget class="NW::Card" name="m_pNewEnclosure" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>64</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>64</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="NW::Card" name="m_pOpenEnclosure" native="true">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -129,15 +145,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>HeaderLabel</class>
+   <extends>QLabel</extends>
+   <header>headerlabel.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>NW::Card</class>
    <extends>QWidget</extends>
    <header>nw/card.hpp</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>HeaderLabel</class>
-   <extends>QLabel</extends>
-   <header>headerlabel.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>

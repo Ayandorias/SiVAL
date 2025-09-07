@@ -7,6 +7,7 @@
  */
 
 //// begin includes
+#include <iostream>
 //// end includes
 
 //// begin specific includes
@@ -35,6 +36,8 @@
  */
 SpeakerDocument::SpeakerDocument(const QString &filename)
     :IDocument(filename) {
+
+    std::cout << filename.toStdString() << std::endl;
 }
 
 /**************************************************************************************************/
@@ -42,6 +45,16 @@ SpeakerDocument::SpeakerDocument(const QString &filename)
  *
  */
 SpeakerDocument::~SpeakerDocument() {
+}
+
+QString SpeakerDocument::brand() {
+    return m_Object["brand"].toString();
+}
+QString SpeakerDocument::model() {
+    return m_Object["model"].toString();
+}
+QString SpeakerDocument::uuid() {
+    return m_Object["uuid"].toString();
 }
 //// end public member methods
 

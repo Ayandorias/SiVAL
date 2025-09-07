@@ -34,7 +34,7 @@
 /**
  *
  */
-SpeakerSettingsWidget::SpeakerSettingsWidget(SpeakerSettingsDocument *doc, QWidget *parent)
+SpeakerSettingsWidget::SpeakerSettingsWidget(ManufacturerDocument *doc, QWidget *parent)
     :QWidget(parent)
     , ui(new Ui::SpeakerSettingsWidget)
     , m_pDocument(doc) {

@@ -48,9 +48,14 @@ HomePanel::HomePanel(QWidget *parent)
     ui->m_pOpenWorkspace->setIcon(":/sival/open_dark.svg");
     ui->m_pOpenWorkspace->hide();
 
-    ui->m_pNewProject->setTitle(tr("Create new Project ..."));
-    ui->m_pNewProject->setIcon(":/icon/new_dark.svg");
-    connect(ui->m_pNewProject, &NW::Card::clicked, this, &HomePanel::newProject);
+    ui->m_pNewEnclosure->setTitle(tr("New Enclosure ..."));
+    ui->m_pNewEnclosure->setIcon(":/icon/new_dark.svg");
+    connect(ui->m_pNewEnclosure, &NW::Card::clicked, this, &HomePanel::newProject);
+
+    ui->m_pOpenEnclosure->setTitle(tr("Open Enclosure ..."));
+    ui->m_pOpenEnclosure->setIcon(":/sival/open_dark.svg");
+    connect(ui->m_pOpenEnclosure, &NW::Card::clicked, this, &HomePanel::openProject);
+
 
     ui->m_pImportToWorkspace->setTitle(tr("Import Project to Sound System ..."));
     ui->m_pImportToWorkspace->setIcon(":/icon/import_dark.svg");

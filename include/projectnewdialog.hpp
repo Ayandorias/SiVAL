@@ -85,6 +85,7 @@ public slots:
     //// begin protected slots
 protected slots:
     void createNewProject();
+    void openProjectFolder();
     void textChanged(const QString &text);
     //// end protected slots
 

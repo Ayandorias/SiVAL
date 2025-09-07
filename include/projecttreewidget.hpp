@@ -45,8 +45,12 @@ public:
     explicit ProjectTreeWidget(QWidget *parent = nullptr);
     /// Destructor
     virtual ~ProjectTreeWidget();
+    ///
+    void addEnclosure(SpeakerDocument *doc);
     /// Adding new project to the view
     void addProject(ProjectDocument *prjdoc);
+    ///
+    void save();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -63,6 +67,7 @@ protected:
 
     //// begin private member methods
 private:
+    ProjectDocument* getActiveProject();
     //// end private member methods
 
     //// begin public member
@@ -76,6 +81,7 @@ protected:
     //// begin private member
 private:
     QVector<ProjectDocument*> m_PrjDocVector;
+    QString m_sActiveProject;
     //// end private member
 
     //// begin public slots
@@ -84,6 +90,7 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void itemChanged();
     //// end protected slots
 
     //// begin private slots

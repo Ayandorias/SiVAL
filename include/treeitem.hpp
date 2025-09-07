@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_SpeakerDocument_HPP
-#define HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_TreeItem_HPP
+#define HEADER_GUARD_SiVAL_TreeItem_HPP
 
 /*
  * GhostWriter
@@ -10,6 +10,8 @@
  *
  */
 //// begin includes
+#include <QObject>
+#include <QTreeWidgetItem>
 //// end includes
 
 //// begin specific includes
@@ -20,31 +22,28 @@
 //// end using namespaces
 
 //// begin global definition
-//// end global definition
-
-//// begin forward declarations
 //// end forward declarations
 
 //// begin extern declaration
 //// end extern declaration
 
 /**
- * class SpeakerDocument
+ * class SiVALTreeItem
  *
  * @brief
  *
  */
-class SpeakerDocument : public IDocument
+class TreeItem : public QTreeWidgetItem
 {
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerDocument(const QString &filename);
+    explicit TreeItem(QTreeWidget *parent, int type = Type);
+    TreeItem(QTreeWidgetItem *parent, int type = Type);
     /// Destructor
-    virtual ~SpeakerDocument();
-    QString brand();
-    QString model();
-    QString uuid();
+    virtual ~TreeItem();
+    IDocument* data();
+    void setData(IDocument *doc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -57,7 +56,6 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read();
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -74,6 +72,7 @@ protected:
 
     //// begin private member
 private:
+    IDocument *m_pDocument;
     //// end private member
 
     //// begin public slots
@@ -92,4 +91,4 @@ private slots:
 signals:
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#endif // HEADER_GUARD_SiVAL_TreeItem_HPP

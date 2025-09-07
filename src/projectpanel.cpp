@@ -38,8 +38,14 @@ ProjectPanel::ProjectPanel(QWidget *parent)
     :QWidget(parent)
     , ui(new Ui::ProjektPanel) {
     ui->setupUi(this);
+
+    m_pProjectDocument = nullptr;
     connect(ui->m_pNewProject, &QToolButton::clicked, this, &ProjectPanel::newProject);
     connect(ui->m_pNewEnclosure, &QToolButton::clicked, this, &ProjectPanel::newEnclosure);
+    connect(ui->m_pOpen, &QToolButton::clicked, this, &ProjectPanel::openProject);
+    connect(ui->m_pSave, &QToolButton::clicked, this, &ProjectPanel::save);
+
+    checkButtons();
 }
 
 /**************************************************************************************************/
@@ -49,6 +55,9 @@ ProjectPanel::ProjectPanel(QWidget *parent)
 ProjectPanel::~ProjectPanel() {
     delete ui;
 }
+void ProjectPanel::addEnclosure(SpeakerDocument *doc) {
+    ui->m_pPojectTree->addEnclosure(doc);
+}
 /**
  * @brief ProjectPanel::load
  * @param projectfile
@@ -57,12 +66,15 @@ void ProjectPanel::open(const QString &projectfile) {
     m_pProjectDocument = new ProjectDocument(projectfile);
 
     ui->m_pPojectTree->addProject(m_pProjectDocument);
+
+    ui->m_pNewEnclosure->setDisabled(false);
+    checkButtons();
 }
 /**
  * @brief ProjectPanel::save
  */
 void ProjectPanel::save() {
-
+    ui->m_pPojectTree->save();
 }
 //// end public member methods
 
@@ -76,6 +88,14 @@ void ProjectPanel::save() {
 //// end protected member methods (internal use only)
 
 //// begin private member methods
+void ProjectPanel::checkButtons() {
+    if(m_pProjectDocument == nullptr) {
+        ui->m_pNewEnclosure->setDisabled(true);
+    } else {
+        ui->m_pNewEnclosure->setDisabled(false);
+    }
+
+}
 //// end private member methods
 
 //// begin public slots

@@ -15,7 +15,7 @@
 //// end includes
 
 //// begin specific includes
-#include "speakersettingsdocument.hpp"
+#include "manufacturerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -49,7 +49,7 @@ public:
     /// Destructor
     virtual ~SpeakerSettingsPage();
     ///
-    void setDocument(SpeakerSettingsDocument *doc);
+    void setDocument(ManufacturerDocument *doc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -79,7 +79,7 @@ protected:
     //// begin private member
 private:
     Ui::SpeakerSettingsPage *ui;
-    SpeakerSettingsDocument *m_pDocument;
+    ManufacturerDocument *m_pDocument;
     //// end private member
 
     //// begin public slots

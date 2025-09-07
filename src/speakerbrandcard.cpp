@@ -11,7 +11,7 @@
 //// end includes
 
 //// begin specific includes
-#include "speakermanufacturercard.hpp"
+#include "speakerbrandcard.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -34,21 +34,25 @@
 /**
  *
  */
-SpeakerManufacturerCard::SpeakerManufacturerCard(SpeakerManufacturer *man, QWidget *parent, bool indexed)
-    :NW::Card(parent), m_pManufacturer(man) {
-    m_bWithIndex = indexed;
-    m_sTitle = man->name();
-    m_sInfoText = tr("Available chassis: %1").arg(man->chassisList().count());
+SpeakerBrandCard::SpeakerBrandCard(SpeakerDocument *doc, QWidget *parent)
+    :NW::Card(parent),
+    m_pSpeakerDoc(doc) {
+    setAttribute(Qt::WA_DeleteOnClose);
 
-    m_pCheckRenderer = new QSvgRenderer(QString::fromUtf8(":/sival/checked_dark.svg"), this);
-    m_pUncheckRenderer = new QSvgRenderer(QString::fromUtf8(":/sival/unchecked_dark.svg"), this);
+    m_bSelected = false;
+    m_pCheckRenderer = new QSvgRenderer(QString::fromUtf8(":/icon/check_dark.svg"), this);
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SpeakerManufacturerCard::~SpeakerManufacturerCard() {
+SpeakerBrandCard::~SpeakerBrandCard() {
+}
+
+void SpeakerBrandCard::setSelected(bool selected) {
+    m_bSelected = selected;
+    update();
 }
 //// end public member methods
 
@@ -56,34 +60,31 @@ SpeakerManufacturerCard::~SpeakerManufacturerCard() {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
-void SpeakerManufacturerCard::mouseReleaseEvent(QMouseEvent *event) {
+void SpeakerBrandCard::mouseReleaseEvent(QMouseEvent *event) {
     if(this->rect().contains(event->pos())) {
         if(m_bPressed) {
-            if(m_bWithIndex) {
-                if(m_pManufacturer->isIndexed()) {
-                    m_pManufacturer->indexed(false);
-                } else {
-                    m_pManufacturer->indexed(true);
-                }
+            if(m_bSelected) {
+                m_bSelected = false;
+            } else {
+                m_bSelected = true;
             }
-
-            emit selected(m_pManufacturer);
+            emit selected(m_pSpeakerDoc);
         }
     }
 
     NW::Card::mouseReleaseEvent(event);
 }
-void SpeakerManufacturerCard::paintEvent(QPaintEvent *event) {
+void SpeakerBrandCard::paintEvent(QPaintEvent *event) {
     NW::Card::paintEvent(event);
 
-    if(m_bWithIndex) {
+    if(m_bSelected) {
         QPainter painter(this);
+        m_pCheckRenderer->render(&painter, QRectF(8, 16, 32, 32));
 
-        if(m_pManufacturer->isIndexed()) {
-            m_pCheckRenderer->render(&painter, QRectF(8, 8, 48, 48));
-        } else {
-            m_pUncheckRenderer->render(&painter, QRectF(8, 8, 48, 48));
-        }
+        // if(m_pManufacturer->isIndexed()) {
+        // } else {
+        //     m_pUncheckRenderer->render(&painter, QRectF(8, 8, 48, 48));
+        // }
     }
 }
 //// end protected member methods

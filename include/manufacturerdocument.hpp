@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_SpeakerDocument_HPP
-#define HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP
+#define HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP
 
 /*
  * GhostWriter
@@ -10,10 +10,12 @@
  *
  */
 //// begin includes
+#include <QVector>
 //// end includes
 
 //// begin specific includes
 #include "idocument.hpp"
+#include "speakermanufacturer.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -29,22 +31,27 @@
 //// end extern declaration
 
 /**
- * class SpeakerDocument
+ * class ManufacturerDocument
  *
  * @brief
  *
  */
-class SpeakerDocument : public IDocument
+class ManufacturerDocument : public IDocument
 {
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerDocument(const QString &filename);
+    explicit ManufacturerDocument(const QString &filename);
     /// Destructor
-    virtual ~SpeakerDocument();
-    QString brand();
-    QString model();
-    QString uuid();
+    virtual ~ManufacturerDocument();
+    ///
+    virtual bool save() override;
+    ///
+    void import(const QString &filename);
+    ///
+    QVector<SpeakerManufacturer*>& manufacturers();
+    ///
+    void read(const QString &filename);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -53,11 +60,11 @@ public:
 
     //// begin protected member methods
 protected:
+    void read() override;
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read();
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -74,6 +81,7 @@ protected:
 
     //// begin private member
 private:
+    QVector<SpeakerManufacturer*> m_ManufacturerList;
     //// end private member
 
     //// begin public slots
@@ -92,4 +100,4 @@ private slots:
 signals:
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#endif // HEADER_GUARD_SiVAL_SpeakerSettingsDocument_HPP

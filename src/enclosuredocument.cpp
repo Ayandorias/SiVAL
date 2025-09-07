@@ -35,10 +35,10 @@
 /**
  *
  */
-EnclosureDocument::EnclosureDocument(const QString &speaker_uuid, SiVAL::ENCLOSURE_TYPE type) {
+EnclosureDocument::EnclosureDocument(SpeakerDocument *doc, SiVAL::ENCLOSURE_TYPE type) {
     m_pEnclosure = nullptr;
 
-    m_pSpeakerDoc = new SpeakerDocument(speaker_uuid);
+    m_pSpeakerDoc = doc;
     setType(type);
 
 }

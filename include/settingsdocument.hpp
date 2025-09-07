@@ -29,7 +29,7 @@
 //// end extern declaration
 
 /**
- * class SpeakerSettingsDocument
+ * class ManufacturerDocument
  *
  * @brief
  *
@@ -39,9 +39,11 @@ class SettingsDocument : public IDocument
     //// begin public member methods
 public:
     /// Constructor
-    explicit SettingsDocument(const QString &filename);
+    explicit SettingsDocument();
     /// Destructor
     virtual ~SettingsDocument();
+    QString projectDir();
+    QString speakerDb();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -54,6 +56,8 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
+    void create();
+    void read() override;
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -70,6 +74,9 @@ protected:
 
     //// begin private member
 private:
+    QString m_sSettingsPath;
+    QString m_sSettingsFile;
+    QString m_sSpeakerPath;
     //// end private member
 
     //// begin public slots

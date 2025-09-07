@@ -10,6 +10,8 @@
 #include <QDateTime>
 #include <QDir>
 #include <QDoubleValidator>
+#include <QFileDialog>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QStandardPaths>
@@ -76,6 +78,8 @@ ProjectNewDialog::ProjectNewDialog(QWidget *parent)
 
         connect(ui->m_pProjectName, &QLineEdit::textChanged, this, &ProjectNewDialog::textChanged);
         connect(m_pAccept, &QPushButton::clicked, this, &ProjectNewDialog::createNewProject);
+
+        connect(ui->m_pProjectFolder, &QPushButton::clicked, this, &ProjectNewDialog::openProjectFolder);
 }
 
 /**************************************************************************************************/
@@ -125,8 +129,9 @@ void ProjectNewDialog::createNewProject() {
         obj["author"] = ui->m_pAuthor->text();
         obj["description"] = QString();
         obj["total_volume_m3"] = ui->m_pVolume->text().toDouble();
+        obj["setups"] = QJsonArray();
 
-        filepath = path + QString("/") + projectname + QString(".sivalpr");
+        filepath = path + QString("/") + projectname + QString(".sivalprj");
         QFile file(filepath);
         QJsonDocument newDoc(obj);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
@@ -140,6 +145,13 @@ void ProjectNewDialog::createNewProject() {
     }
     emit newProject(filepath);
     close();
+}
+void ProjectNewDialog::openProjectFolder() {
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open Folder"), ui->m_pProjectPath->text());
+
+    if(dir != QString()) {
+        ui->m_pProjectPath->setText(dir);
+    }
 }
 /**
  * @brief ProjectNewDialog::textChanged

@@ -12,7 +12,7 @@
 
 //// begin specific includes
 #include <QJsonArray>
-#include "speakersettingsdocument.hpp"
+#include "manufacturerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -33,25 +33,25 @@
 //// begin public member methods
 /**************************************************************************************************/
 /**
- * @brief SpeakerSettingsDocument::SpeakerSettingsDocument
+ * @brief ManufacturerDocument::ManufacturerDocument
  * @param filename
  */
-SpeakerSettingsDocument::SpeakerSettingsDocument(const QString &filename)
+ManufacturerDocument::ManufacturerDocument(const QString &filename)
     :IDocument(filename) {
 
     read();
 }
 /**************************************************************************************************/
 /**
- * @brief SpeakerSettingsDocument::~SpeakerSettingsDocument
+ * @brief ManufacturerDocument::~ManufacturerDocument
  */
-SpeakerSettingsDocument::~SpeakerSettingsDocument() {
+ManufacturerDocument::~ManufacturerDocument() {
 }
 /**
- * @brief SpeakerSettingsDocument::save
+ * @brief ManufacturerDocument::save
  * @return
  */
-bool SpeakerSettingsDocument::save() {
+bool ManufacturerDocument::save() {
     QJsonArray man_arr;
     for(SpeakerManufacturer *man : m_ManufacturerList) {
         QJsonObject obj;
@@ -70,18 +70,17 @@ bool SpeakerSettingsDocument::save() {
     return IDocument::save();
 }
 /**
- * @brief SpeakerSettingsDocument::import
+ * @brief ManufacturerDocument::import
  * @param obj
  */
-void SpeakerSettingsDocument::import(const QString &filename) {
+void ManufacturerDocument::import(const QString &filename) {
 
 }
 /**
- * @brief SpeakerSettingsDocument::manufacturers
+ * @brief ManufacturerDocument::manufacturers
  * @return
  */
-QVector<SpeakerManufacturer*>& SpeakerSettingsDocument::manufacturers() {
-    std::cout << "anzahl hier: " << m_ManufacturerList.count() <<std::endl;
+QVector<SpeakerManufacturer*>& ManufacturerDocument::manufacturers() {
     return m_ManufacturerList;
 }
 //// end public member methods
@@ -94,9 +93,9 @@ QVector<SpeakerManufacturer*>& SpeakerSettingsDocument::manufacturers() {
 
 //// begin protected member methods (internal use only)
 /**
- * @brief SpeakerSettingsDocument::read
+ * @brief ManufacturerDocument::read
  */
-void SpeakerSettingsDocument::read() {
+void ManufacturerDocument::read() {
     QJsonArray man = m_Object["manufacturers"].toArray();
 
     for (const QJsonValue &value : man) {
@@ -116,8 +115,6 @@ void SpeakerSettingsDocument::read() {
             for(const QJsonValue &uuid: uuids) {
                 list << uuid.toString();
             }
-            std::cout << "uuids_anzahl: " << list.count() << std::endl;
-
             SpeakerManufacturer *m = new SpeakerManufacturer(manufacturer, indexed, list);
             m_ManufacturerList.append(m);
         } else {

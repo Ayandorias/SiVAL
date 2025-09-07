@@ -42,7 +42,7 @@ class EnclosureDocument {
     //// begin public member methods
 public:
     /// Constructor
-    explicit EnclosureDocument(const QString &speaker_uuid, SiVAL::ENCLOSURE_TYPE type);
+    explicit EnclosureDocument(SpeakerDocument *doc, SiVAL::ENCLOSURE_TYPE type = SiVAL::ENC_SEALED);
     /// Destructor
     virtual ~EnclosureDocument();
     ///

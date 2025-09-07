@@ -6,6 +6,15 @@ enum ENCLOSURE_TYPE {
     ENC_SEALED = 0,
     ENC_VENTED
 };
+
+enum DOCUMENT_TYPE {
+    DT_WORKSPACE = 0,
+    DT_PROJECT,
+    DT_SETTINGS,
+    DT_SPEAKER,
+    DT_MANUFACTURER
+
+};
 }
 
 #endif // HEADER_GUARD_SiVAL_SiVAL_HPP

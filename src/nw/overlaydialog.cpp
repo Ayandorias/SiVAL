@@ -61,7 +61,6 @@ NW::OverlayDialog::~OverlayDialog() {
 
 //// begin protected member methods
 bool NW::OverlayDialog::eventFilter(QObject *obj, QEvent *event) {
-    std::cout << "Größenanpassung" <<std::endl;
     // Prüfen, ob das Event vom Parent-Widget kommt
     if (obj == parentWidget()) {
         // --- 1. Auf Größen- und Positionsänderungen reagieren ---

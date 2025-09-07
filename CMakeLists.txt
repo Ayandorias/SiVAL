@@ -111,7 +111,7 @@ qt_add_executable(SiVAL
     # Ressource Dateien
     resource/nw.qrc
     resource/sival.qrc
-    include/speakersettingsdocument.hpp src/speakersettingsdocument.cpp
+    include/manufacturerdocument.hpp src/manufacturerdocument.cpp
     include/projectdocument.hpp src/projectdocument.cpp
     include/settingsdocument.hpp src/settingsdocument.cpp
     include/speakermanufacturer.hpp src/speakermanufacturer.cpp
@@ -126,6 +126,10 @@ qt_add_executable(SiVAL
     include/enclosuredocument.hpp src/enclosuredocument.cpp
     include/homewidget.hpp src/homewidget.cpp src/homewidget.ui
     include/projectnewdialog.hpp src/projectnewdialog.cpp src/projectnewdialog.ui
+    include/enclosurenewdialog.hpp src/enclosurenewdialog.cpp src/enclosurenewdialog.ui
+    include/speakerbrandcard.hpp src/speakerbrandcard.cpp
+    include/treeitem.hpp src/treeitem.cpp
+    include/nw/pushbutton.hpp src/nw/pushbutton.cpp
 
 
 )

@@ -7,11 +7,15 @@
  */
 
 //// begin includes
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 #include <iostream>
 //// end includes
 
 //// begin specific includes
 #include "speakermanufacturer.hpp"
+#include "settingsdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -36,8 +40,8 @@
  */
 SpeakerManufacturer::SpeakerManufacturer(const QString &name, bool indexed, QStringList chassisList)
     : m_sName(name), m_bIndexed(indexed), m_ChassisList(chassisList){
-    std::cout << "anzahl chassis: " << chassisList.count() << std::endl;
-    std::cout << "anzahl chassis: " << m_ChassisList.count() << std::endl;
+
+    init();
 }
 
 /**************************************************************************************************/
@@ -50,7 +54,6 @@ SpeakerManufacturer::~SpeakerManufacturer() {
  *
  */
 QStringList SpeakerManufacturer::chassisList(){
-    std::cout << "anzahl chassis: " << m_ChassisList.count() << std::endl;
     return m_ChassisList;
 }
 void SpeakerManufacturer::indexed(bool n) {
@@ -61,6 +64,9 @@ bool SpeakerManufacturer::isIndexed() {
 }
 QString SpeakerManufacturer::name() {
     return m_sName;
+}
+QVector<SpeakerDocument*> SpeakerManufacturer::speakerList() {
+    return m_SpeakerList;
 }
 //// end public member methods
 
@@ -74,6 +80,16 @@ QString SpeakerManufacturer::name() {
 //// end protected member methods (internal use only)
 
 //// begin private member methods
+void SpeakerManufacturer::init() {
+    SettingsDocument setdoc;
+    QFileInfo fileInfo(setdoc.speakerDb());
+
+    for(int i = 0; i < m_ChassisList.count(); ++i) {
+        SpeakerDocument *doc = new SpeakerDocument(fileInfo.absolutePath() + QString(QDir::separator() + name().toLower() + QString(QDir::separator()) +  m_ChassisList.at(i) + QString(".json")));
+
+        m_SpeakerList.append(doc);
+    }
+}
 //// end private member methods
 
 //// begin public slots

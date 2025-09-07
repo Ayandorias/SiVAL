@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_SpeakerDocument_HPP
-#define HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_SpeakerBrandCard_HPP
+#define HEADER_GUARD_SiVAL_SpeakerBrandCard_HPP
 
 /*
  * GhostWriter
@@ -13,7 +13,8 @@
 //// end includes
 
 //// begin specific includes
-#include "idocument.hpp"
+#include "nw/card.hpp"
+#include "speakerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -29,22 +30,21 @@
 //// end extern declaration
 
 /**
- * class SpeakerDocument
+ * class SpeakerBrandCard
  *
  * @brief
  *
  */
-class SpeakerDocument : public IDocument
+class SpeakerBrandCard : public NW::Card
 {
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerDocument(const QString &filename);
+    explicit SpeakerBrandCard(SpeakerDocument *doc, QWidget *parent);
     /// Destructor
-    virtual ~SpeakerDocument();
-    QString brand();
-    QString model();
-    QString uuid();
+    virtual ~SpeakerBrandCard();
+    void setSelected(bool select);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -53,11 +53,12 @@ public:
 
     //// begin protected member methods
 protected:
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void paintEvent(QPaintEvent *event);
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
 protected:
-    virtual void read();
     //// end protected member methods (internal use only)
 
     //// begin private member methods
@@ -74,6 +75,9 @@ protected:
 
     //// begin private member
 private:
+    bool m_bSelected;
+    QSvgRenderer *m_pCheckRenderer;
+    SpeakerDocument *m_pSpeakerDoc;
     //// end private member
 
     //// begin public slots
@@ -90,6 +94,7 @@ private slots:
 
     //// begin signals
 signals:
+    void selected(SpeakerDocument *doc);
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_SpeakerDocument_HPP
+#endif // HEADER_GUARD_SiVAL_SpeakerBrandCard_HPP

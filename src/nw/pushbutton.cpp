@@ -1,5 +1,5 @@
 /*
- * SiVAL
+ * Nebenwelten
  *
  * Copyright (C) 2021 Bruno Pierucki
  *
@@ -7,14 +7,10 @@
  */
 
 //// begin includes
-#include <QString>
-#include <iostream>
 //// end includes
 
 //// begin specific includes
-#include "speakermanufacturercard.hpp"
-#include "speakersettingspage.hpp"
-#include "ui_speakersettingspage.h"
+#include "nw/pushbutton.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -37,35 +33,28 @@
 /**
  *
  */
-SpeakerSettingsPage::SpeakerSettingsPage(QWidget *parent)
-    :QWidget(parent)
-    , ui(new Ui::SpeakerSettingsPage) {
-
-    ui->setupUi(this);
-
+NW::PushButton::PushButton(QWidget *parent)
+    :QPushButton(parent) {
+    setStyleSheet(QString::fromUtf8("QPushButton { \n"
+                                    "	background-color: #FFFFFF;\n"
+                                    "	color: rgb(160, 160, 160);\n"
+                                    "	border: none; \n"
+                                    "	padding: 10px 20px; \n"
+                                    "	border: 1px solid #A0A0A0;\n"
+                                    "	border-radius: 5px;\n"
+                                    "}\n"
+                                    "QPushButton:hover { \n"
+                                    "	background-color: rgb(235, 100, 254); \n"
+                                    "	color: #FFF; \n"
+                                    "}\n"
+                                    ""));
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SpeakerSettingsPage::~SpeakerSettingsPage() {
-    delete ui;
-}
-
-/**
- *
- */
-void SpeakerSettingsPage::setDocument(ManufacturerDocument *doc) {
-    m_pDocument = doc;
-
-    QVector<SpeakerManufacturer*> list = doc->manufacturers();
-
-    std::cout << "anzahl: " << list.count() << std::endl;
-    for(SpeakerManufacturer *man : list) {
-
-        ui->verticalLayout->insertWidget(0, new SpeakerManufacturerCard(man, this));
-    }
+NW::PushButton::~PushButton() {
 }
 //// end public member methods
 

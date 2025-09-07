@@ -89,19 +89,6 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QLineEdit" name="m_pProjectPath">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color:#ffffff; color: #606060;</string>
-       </property>
-      </widget>
-     </item>
      <item row="6" column="0">
       <widget class="NW::Label" name="label_4">
        <property name="text">
@@ -196,10 +183,23 @@
        </property>
       </spacer>
      </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="m_pProjectPath">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:#ffffff; color: #606060;</string>
+       </property>
+      </widget>
+     </item>
      <item row="6" column="2">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="NW::PushButton" name="m_pProjectFolder">
        <property name="text">
-        <string>PushButton</string>
+        <string>Auswählen...</string>
        </property>
       </widget>
      </item>
@@ -225,14 +225,19 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>NW::Label</class>
+   <extends>QLabel</extends>
+   <header>nw/label.hpp</header>
+  </customwidget>
+  <customwidget>
    <class>NW::HeaderLabel</class>
    <extends>QLabel</extends>
    <header>nw/headerlabel.hpp</header>
   </customwidget>
   <customwidget>
-   <class>NW::Label</class>
-   <extends>QLabel</extends>
-   <header>nw/label.hpp</header>
+   <class>NW::PushButton</class>
+   <extends>QPushButton</extends>
+   <header>nw/pushbutton.hpp</header>
   </customwidget>
  </customwidgets>
  <resources>

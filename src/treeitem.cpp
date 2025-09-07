@@ -7,14 +7,10 @@
  */
 
 //// begin includes
-#include <QString>
-#include <iostream>
 //// end includes
 
 //// begin specific includes
-#include "speakermanufacturercard.hpp"
-#include "speakersettingspage.hpp"
-#include "ui_speakersettingspage.h"
+#include "treeitem.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -37,36 +33,32 @@
 /**
  *
  */
-SpeakerSettingsPage::SpeakerSettingsPage(QWidget *parent)
-    :QWidget(parent)
-    , ui(new Ui::SpeakerSettingsPage) {
+TreeItem::TreeItem(QTreeWidget *parent, int type)
+    :QTreeWidgetItem(parent, type) {
 
-    ui->setupUi(this);
+    m_pDocument = nullptr;
+}
 
+TreeItem::TreeItem(QTreeWidgetItem *parent, int type)
+    : QTreeWidgetItem(parent, type) {
+    m_pDocument = nullptr;
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SpeakerSettingsPage::~SpeakerSettingsPage() {
-    delete ui;
+TreeItem::~TreeItem() {
 }
 
-/**
- *
- */
-void SpeakerSettingsPage::setDocument(ManufacturerDocument *doc) {
+IDocument* TreeItem::data() {
+    return m_pDocument;
+}
+
+void TreeItem::setData(IDocument *doc) {
     m_pDocument = doc;
-
-    QVector<SpeakerManufacturer*> list = doc->manufacturers();
-
-    std::cout << "anzahl: " << list.count() << std::endl;
-    for(SpeakerManufacturer *man : list) {
-
-        ui->verticalLayout->insertWidget(0, new SpeakerManufacturerCard(man, this));
-    }
 }
+
 //// end public member methods
 
 //// begin public member methods (internal use only)

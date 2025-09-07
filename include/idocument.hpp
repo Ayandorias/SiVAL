@@ -53,6 +53,7 @@ public:
     ///
     virtual bool save();
     virtual bool saveAs(const QString &filename);
+    int type();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -81,6 +82,7 @@ protected:
     bool m_bChanged;
     QJsonObject m_Object;
     QString m_sFilename;
+    int m_iType;
     //// end protected member
 
     //// begin private member

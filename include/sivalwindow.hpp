@@ -20,12 +20,13 @@
 #include "nw/navbarpanel.hpp"
 #include "nw/selectionbutton.hpp"
 #include "centerstack.hpp"
+#include "enclosurenewdialog.hpp"
 #include "encloserwidget.hpp"
 #include "homepanel.hpp"
 #include "homewidget.hpp"
 #include "projectnewdialog.hpp"
 #include "projectpanel.hpp"
-#include "speakersettingsdocument.hpp"
+#include "manufacturerdocument.hpp"
 #include "speakersettingswidget.hpp"
 //// end specific includes
 
@@ -58,7 +59,7 @@ class SiVALWindow : public NW::MainWindow
     //// begin public member methods
 public:
     /// Constructor
-    explicit SiVALWindow(const QString &projectfile, SpeakerSettingsDocument *doc, QWidget *parent = nullptr);
+    explicit SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, QWidget *parent = nullptr);
     /// Destructor
     virtual ~SiVALWindow();
     //// end public member methods
@@ -96,6 +97,7 @@ private:
 
     HomeWidget *m_pHomeWidget;
     CenterStack *m_pCenterStack;
+    EnclosureNewDialog *m_pNewEnclosure;
     EnclosureWidget *m_pCenterView;
 
     QStackedWidget *m_pSettingsStack;
@@ -108,7 +110,7 @@ private:
     HomePanel *m_pHomePanel;
     ProjectPanel *m_pProjectPanel;
 
-    SpeakerSettingsDocument *m_pSpeakerDoc;
+    ManufacturerDocument *m_pSpeakerDoc;
     ProjectNewDialog *m_pProjectNewDialog;
 
     NW::NavBarPanel *m_pNavBarPanel;
@@ -129,15 +131,18 @@ public slots:
     //// begin protected slots
 protected slots:
     void centerViewSelection(int id);
+    void createEnclosure();
     void enclosureSelection(int id);
     void mainMenu() override;
+    void newEnclosure();
     void newProject();
+    void openProjectEnclosure();
+    void openProject(const QString &filepath);
     void settingsSelection(int id);
     //// end protected slots
 
     //// begin private slots
 private slots:
-    void openProject(const QString &filepath);
     //// end private slots
 
     //// begin signals

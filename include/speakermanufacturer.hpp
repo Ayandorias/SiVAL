@@ -16,6 +16,7 @@
 //// end includes
 
 //// begin specific includes
+#include "speakerdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -48,6 +49,7 @@ public:
     void indexed(bool n);
     bool isIndexed();
     QString name();
+    QVector<SpeakerDocument*> speakerList();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -64,6 +66,7 @@ protected:
 
     //// begin private member methods
 private:
+    void init();
     //// end private member methods
 
     //// begin public member
@@ -79,6 +82,7 @@ private:
     QString m_sName;
     bool m_bIndexed;
     QStringList m_ChassisList;
+    QVector<SpeakerDocument*> m_SpeakerList;
     //// end private member
 };
 #endif // HEADER_GUARD_SiVAL_SpeakerManufacturer_HPP

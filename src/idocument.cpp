@@ -41,12 +41,16 @@ IDocument::IDocument(const QString &filename)
     : m_sFilename(filename){
 
     QFile file(m_sFilename);
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
-    QByteArray json = file.readAll();
-    file.close();
-    QJsonDocument doc = QJsonDocument::fromJson(json);
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QByteArray json = file.readAll();
+        file.close();
+        QJsonDocument doc = QJsonDocument::fromJson(json);
+        // std::cout << doc.toJson().toStdString() << std::endl;
 
-    m_Object = doc.object();
+        m_Object = doc.object();
+    } else {
+        // std::cout << "Kann die Datei: " << filename.toStdString() << " nicht öffnen" << std::endl;
+    }
 }
 
 /**************************************************************************************************/
@@ -67,7 +71,8 @@ bool IDocument::isChanged() {
  */
 bool IDocument::save() {
     QJsonDocument doc(m_Object);
-    QByteArray a = doc.toJson();
+
+    std::cout << "Einstellungen: " << m_sFilename.toStdString() << std::endl;
 
     QFile file(m_sFilename);
     file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
@@ -83,6 +88,10 @@ bool IDocument::save() {
 bool IDocument::saveAs(const QString &filename) {
     m_sFilename = filename;
     return save();
+}
+
+int IDocument::type() {
+    return m_iType;
 }
 //// end public member methods
 
