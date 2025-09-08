@@ -10,9 +10,8 @@
 //// end includes
 
 //// begin specific includes
-#include "enclosuredocument.hpp"
-#include "sealedenclosure.hpp"
-#include "ventedenclosure.hpp"
+#include "enclosurewidget.hpp"
+#include "ui_enclosurewidget.h"
 //// end specific includes
 
 //// begin using namespaces
@@ -35,51 +34,24 @@
 /**
  *
  */
-EnclosureDocument::EnclosureDocument(const SpeakerDocument &doc, SiVAL::ENCLOSURE_TYPE type)
-    : m_SpeakerDoc(doc) {
-    m_pEnclosure = nullptr;
+EnclosureWidget::EnclosureWidget(QWidget *parent)
+    :QWidget(parent),
+    ui(new Ui::EnclosureWidget) {
 
-    setType(type);
-
+    ui->setupUi(this);
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-EnclosureDocument::~EnclosureDocument() {
-
+EnclosureWidget::~EnclosureWidget() {
+    delete ui;
 }
 
-QJsonObject EnclosureDocument::toJson() {
-    return QJsonObject();
-}
-
-void EnclosureDocument::setType(SiVAL::ENCLOSURE_TYPE type) {
-
-    if(m_pEnclosure != nullptr) {
-        if(m_pEnclosure->type() == type) {
-            return;
-        }
-        delete m_pEnclosure;
-    }
-
-    m_EncType = type;
-
-    switch(m_EncType) {
-        case SiVAL::ENC_SEALED: {
-            m_pEnclosure = new SealedEnclosure(&m_SpeakerDoc);
-            break;
-        }
-        case SiVAL::ENC_VENTED: {
-            m_pEnclosure = new VentedEnclosure(&m_SpeakerDoc);
-            break;
-        }
-    }
-}
-
-SiVAL::ENCLOSURE_TYPE EnclosureDocument::type() {
-    return m_EncType;
+void EnclosureWidget::setProject(ProjectDocument *doc) {
+    m_pProjectDoc = doc;
+    updateMenu();
 }
 //// end public member methods
 
@@ -93,6 +65,9 @@ SiVAL::ENCLOSURE_TYPE EnclosureDocument::type() {
 //// end protected member methods (internal use only)
 
 //// begin private member methods
+void EnclosureWidget::updateMenu() {
+
+}
 //// end private member methods
 
 //// begin public slots

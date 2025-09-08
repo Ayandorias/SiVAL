@@ -38,6 +38,7 @@ class SpeakerDocument : public IDocument
 {
     //// begin public member methods
 public:
+    SpeakerDocument(const SpeakerDocument &doc);
     /// Constructor
     explicit SpeakerDocument(const QString &filename);
     /// Destructor

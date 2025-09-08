@@ -16,7 +16,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOTR ON) # Dies ist für die automatische Handhabung von .ts Dateien in Qt6
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Svg)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Svg Charts)
 
 qt_standard_project_setup()
 
@@ -76,7 +76,7 @@ qt_add_executable(SiVAL
     #Deklarations Dateien
     include/aadefines.hpp
     include/centerstack.hpp
-    include/encloserwidget.hpp
+    include/enclosurewidget.hpp
     include/homepanel.hpp
     include/idocument.hpp
     include/projectpanel.hpp
@@ -88,7 +88,7 @@ qt_add_executable(SiVAL
 
     # Definitions Dateien
     src/centerstack.cpp
-    src/encloserwidget.cpp
+    src/enclosurewidget.cpp
     src/homepanel.cpp
     src/main.cpp
     src/projectpanel.cpp
@@ -98,7 +98,7 @@ qt_add_executable(SiVAL
     src/speakersettingswidget.cpp
 
     # Forms Dateien
-    src/encloserwidget.ui
+    src/enclosurewidget.ui
     src/homepanel.ui
     src/idocument.cpp
     src/projectpanel.ui
@@ -130,6 +130,7 @@ qt_add_executable(SiVAL
     include/speakerbrandcard.hpp src/speakerbrandcard.cpp
     include/treeitem.hpp src/treeitem.cpp
     include/nw/pushbutton.hpp src/nw/pushbutton.cpp
+    include/projectmenu.hpp src/projectmenu.cpp src/projectmenu.ui
 
 
 )
@@ -142,6 +143,7 @@ target_link_libraries(SiVAL
     Qt6::Gui
     Qt6::Core
     Qt6::Svg
+    Qt6::Charts
 )
 
 include(GNUInstallDirs)

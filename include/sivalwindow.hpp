@@ -21,7 +21,7 @@
 #include "nw/selectionbutton.hpp"
 #include "centerstack.hpp"
 #include "enclosurenewdialog.hpp"
-#include "encloserwidget.hpp"
+#include "enclosurewidget.hpp"
 #include "homepanel.hpp"
 #include "homewidget.hpp"
 #include "projectnewdialog.hpp"
@@ -98,10 +98,11 @@ private:
     HomeWidget *m_pHomeWidget;
     CenterStack *m_pCenterStack;
     EnclosureNewDialog *m_pNewEnclosure;
-    EnclosureWidget *m_pCenterView;
+    EnclosureWidget *m_pEnclosureView;
 
     QStackedWidget *m_pSettingsStack;
     SpeakerSettingsWidget *m_pSettingsWidget;
+    NW::SelectionButton *m_pProjectButton;
     NW::SelectionButton *m_pEnclosureBtn;
 
     NW::SelectionButton *m_pSpeakerBtn;
@@ -117,6 +118,7 @@ private:
 
     enum BTN_POS {
         BTN_NONE = 0,
+        BTN_Project,
         BTN_Enclosure,
         BTN_Speaker,
         BTN_Search
@@ -138,6 +140,7 @@ protected slots:
     void newProject();
     void openProjectEnclosure();
     void openProject(const QString &filepath);
+    void projectChanged(ProjectDocument *doc);
     void settingsSelection(int id);
     //// end protected slots
 

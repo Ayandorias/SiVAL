@@ -117,7 +117,7 @@ QString ProjectDocument::author() {
  * @param doc The uuid of the apeaker
  */
 void ProjectDocument::createEnclosure(SpeakerDocument *doc, SiVAL::ENCLOSURE_TYPE type) {
-    m_Setups.append(new EnclosureDocument(doc, type));
+    m_Setups.append(new EnclosureDocument(*doc, type));
 }
 QString ProjectDocument::created() {
     return m_Object["created_at"].toString();

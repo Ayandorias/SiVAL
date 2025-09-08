@@ -45,6 +45,8 @@ ProjectPanel::ProjectPanel(QWidget *parent)
     connect(ui->m_pOpen, &QToolButton::clicked, this, &ProjectPanel::openProject);
     connect(ui->m_pSave, &QToolButton::clicked, this, &ProjectPanel::save);
 
+    connect(ui->m_pPojectTree, &ProjectTreeWidget::projectChanged, this, &ProjectPanel::projectChanged);
+
     checkButtons();
 }
 

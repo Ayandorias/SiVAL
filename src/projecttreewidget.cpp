@@ -54,10 +54,19 @@ ProjectTreeWidget::ProjectTreeWidget(QWidget *parent)
  * @brief ProjectTreeWidget::~ProjectTreeWidget
  */
 ProjectTreeWidget::~ProjectTreeWidget() {
+
 }
+
 void ProjectTreeWidget::addEnclosure(SpeakerDocument *doc) {
-    ProjectDocument *prjdoc = getActiveProject();
-    prjdoc->createEnclosure(doc);
+    TreeItem *item = getActiveProject();
+    std::cout << "Neues Gehäuse wird angelegt" << std::endl;
+    ProjectDocument *prjdoc = (ProjectDocument*)item->data();
+    if(prjdoc != nullptr) {
+        prjdoc->createEnclosure(doc);
+        TreeItem *speaker = new TreeItem(item, SiVAL::DT_SPEAKER);
+        speaker->setText(0, doc->model());
+        expandItem(item);
+    }
 }
 /**************************************************************************************************/
 /**
@@ -74,6 +83,7 @@ void ProjectTreeWidget::addProject(ProjectDocument *prjdoc) {
     m_sActiveProject = prjdoc->projectId();
 
     expandItem(ti);
+    emit projectChanged(prjdoc);
 }
 
 void ProjectTreeWidget::save() {
@@ -92,8 +102,26 @@ void ProjectTreeWidget::save() {
 
 //// begin private member methods
 //// end private member methods
-ProjectDocument* ProjectTreeWidget::getActiveProject() {
+TreeItem* ProjectTreeWidget::getActiveProject() {
+    QTreeWidgetItem *item = topLevelItem(0);
+    int count = item->childCount();
+    for(int i = 0; i < count; i++) {
+        QTreeWidgetItem *child = item->child(i);
+        TreeItem *it = (TreeItem*)child;
+        switch(it->type()) {
+        case SiVAL::DT_PROJECT: {
+            ProjectDocument *doc = (ProjectDocument*)it->data();
 
+            std::cout << doc->projectId().toStdString() << " == " << m_sActiveProject.toStdString() << std::endl;
+
+            if(doc->projectId() == m_sActiveProject) {
+                return it;
+            }
+            break;
+        }
+        default: break;
+        }
+    }
     return nullptr;
 }
 //// begin public slots
@@ -114,6 +142,7 @@ void ProjectTreeWidget::itemChanged() {
         ProjectDocument *doc = (ProjectDocument*)item->data();
         m_sActiveProject = doc->projectId();
         std::cout << m_sActiveProject.toStdString() << std::endl;
+        emit projectChanged(doc);
         break;
     }
     default:

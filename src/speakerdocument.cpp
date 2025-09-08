@@ -30,6 +30,12 @@
 //// end static functions
 
 //// begin public member methods
+SpeakerDocument::SpeakerDocument(const SpeakerDocument &doc)
+    :IDocument() {
+    m_Object = doc.m_Object;
+    m_bChanged = doc.m_bChanged;
+    m_iType = doc.m_iType;
+}
 /**************************************************************************************************/
 /**
  *

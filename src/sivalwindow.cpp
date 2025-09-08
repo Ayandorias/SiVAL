@@ -46,12 +46,22 @@ SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, 
     connect(m_pGroup, &QButtonGroup::idClicked, this, &SiVALWindow::enclosureSelection);
 
     /* Fensterleiste bearbeiten, damit die Button ausgeblendet werden können. */
+    m_pProjectButton = new NW::SelectionButton("Project", m_pFrameBar);
+    m_pProjectButton->hide();
+    m_pProjectButton->setCheckable(true);
+    m_pProjectButton->setMinimumHeight(45);
+    m_pProjectButton->setMaximumHeight(45);
+    m_pProjectButton->setChecked(true);
+    m_pFrameBar->insertWidget(BTN_Project, m_pProjectButton);
+    m_pGroup->addButton(m_pProjectButton, 0);
+
+    /* Fensterleiste bearbeiten, damit die Button ausgeblendet werden können. */
     m_pEnclosureBtn = new NW::SelectionButton("Enclosure", m_pFrameBar);
     m_pEnclosureBtn->hide();
     m_pEnclosureBtn->setCheckable(true);
     m_pEnclosureBtn->setMinimumHeight(45);
     m_pEnclosureBtn->setMaximumHeight(45);
-    m_pEnclosureBtn->setChecked(true);
+    // m_pEnclosureBtn->setChecked(true);
     m_pFrameBar->insertWidget(BTN_Enclosure, m_pEnclosureBtn);
     m_pGroup->addButton(m_pEnclosureBtn, 0);
 
@@ -76,8 +86,8 @@ SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, 
     /*
      * Die Ansicht, in der die Eigenschaften des Gehäuses überprüft werden können.
      * */
-    m_pCenterView = new EnclosureWidget(this);
-    m_pCenterStack->addWidget(m_pCenterView);
+    m_pEnclosureView = new EnclosureWidget(this);
+    m_pCenterStack->addWidget(m_pEnclosureView);
 
 
     m_pSettingsStack = new QStackedWidget(m_pCenterStack);
@@ -101,6 +111,7 @@ SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, 
     connect(m_pProjectPanel, &ProjectPanel::newProject, this, &SiVALWindow::newProject);
     connect(m_pProjectPanel, &ProjectPanel::newEnclosure, this, &SiVALWindow::newEnclosure);
     connect(m_pProjectPanel, &ProjectPanel::openProject, this, &SiVALWindow::openProjectEnclosure);
+    connect(m_pProjectPanel, &ProjectPanel::projectChanged, this, &SiVALWindow::projectChanged);
 
     m_pNavBarPanel->addPanel(QString(":/sival/enclosure_light.svg"), QString(":/sival/enclosure_dark.svg"), m_pProjectPanel);
 
@@ -241,6 +252,10 @@ void SiVALWindow::openProjectEnclosure() {
 void SiVALWindow::openProject(const QString &filepath) {
     m_pProjectPanel->open(filepath);
     m_pNavBarPanel->select(1);
+}
+
+void SiVALWindow::projectChanged(ProjectDocument *doc) {
+    std::cout << "Project hat sich geändert" << std::endl;
 }
 
 void SiVALWindow::settingsSelection(int id) {

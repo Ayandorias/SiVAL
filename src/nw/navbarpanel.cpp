@@ -61,7 +61,7 @@ NW::NavBarPanel::NavBarPanel(QWidget *parent)
 
 
     // verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
-    NW::NavBarButton *toolButton = new NW::NavBarButton(":/icon/aa_light.svg", ":/icon/aa_pink.svg", this, NB_Menu);
+    NW::NavBarButton *toolButton = new NW::NavBarButton(":/sival/logo.svg", ":/sival/logo.svg", this, NB_Menu);
     toolButton->setMinimumSize(QSize(45, 45));
     toolButton->setMaximumSize(QSize(45, 45));
     toolButton->setObjectName("toolButton");

@@ -1,5 +1,5 @@
-#ifndef HEADER_GUARD_SiVAL_EnclosureDocument_HPP
-#define HEADER_GUARD_SiVAL_EnclosureDocument_HPP
+#ifndef HEADER_GUARD_SiVAL_EnclosureWidget_HPP
+#define HEADER_GUARD_SiVAL_EnclosureWidget_HPP
 
 /*
  * GhostWriter
@@ -10,17 +10,17 @@
  *
  */
 //// begin includes
-#include <QJsonObject>
-#include <QString>
+#include <QWidget>
 //// end includes
 
 //// begin specific includes
-#include "ienclosure.hpp"
-#include "sival.hpp"
-#include "speakerdocument.hpp"
+#include "projectdocument.hpp"
 //// end specific includes
 
 //// begin using namespaces
+namespace Ui {
+class EnclosureWidget;
+}
 //// end using namespaces
 
 //// begin global definition
@@ -33,22 +33,22 @@
 //// end extern declaration
 
 /**
- * class EnclosureDocument
+ * class EnclosureWidget
  *
  * @brief
  *
  */
-class EnclosureDocument {
+class EnclosureWidget : public QWidget
+{
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit EnclosureDocument(const SpeakerDocument &doc, SiVAL::ENCLOSURE_TYPE type = SiVAL::ENC_SEALED);
+    explicit EnclosureWidget(QWidget *parent);
     /// Destructor
-    virtual ~EnclosureDocument();
+    virtual ~EnclosureWidget();
     ///
-    QJsonObject toJson();
-    void setType(SiVAL::ENCLOSURE_TYPE type);
-    SiVAL::ENCLOSURE_TYPE type();
+    void setProject(ProjectDocument *doc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -65,6 +65,7 @@ protected:
 
     //// begin private member methods
 private:
+    void updateMenu();
     //// end private member methods
 
     //// begin public member
@@ -77,9 +78,24 @@ protected:
 
     //// begin private member
 private:
-    SiVAL::ENCLOSURE_TYPE m_EncType;
-    IEnclosure *m_pEnclosure;
-    SpeakerDocument m_SpeakerDoc;
+    ProjectDocument *m_pProjectDoc;
+    Ui::EnclosureWidget *ui;
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_EnclosureDocument_HPP
+#endif // HEADER_GUARD_SiVAL_EnclosureWidget_HPP

@@ -16,6 +16,7 @@
 
 //// begin specific includes
 #include "projectdocument.hpp"
+#include "treeitem.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -67,7 +68,7 @@ protected:
 
     //// begin private member methods
 private:
-    ProjectDocument* getActiveProject();
+    TreeItem *getActiveProject();
     //// end private member methods
 
     //// begin public member
@@ -99,6 +100,7 @@ private slots:
 
     //// begin signals
 signals:
+    void projectChanged(ProjectDocument *doc);
     //// end signals
 };
 #endif // HEADER_GUARD_SiVAL_ProjectTreeWidget_ProjectTreeView_HPP

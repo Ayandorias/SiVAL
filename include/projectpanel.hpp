@@ -105,6 +105,7 @@ signals:
     void newEnclosure();
     void newProject();
     void openProject();
+    void projectChanged(ProjectDocument *doc);
     //// end signals
 };
 #endif // HEADER_GUARD_SiVAL_ProjectPanel_HPP
