@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -43,6 +43,10 @@ VentedEnclosure::VentedEnclosure(SpeakerDocument *doc)
  *
  */
 VentedEnclosure::~VentedEnclosure() {
+}
+
+void VentedEnclosure::setProperties(QJsonObject obj) {
+
 }
 //// end public member methods
 

@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_SettingsDocument_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -42,8 +42,10 @@ public:
     explicit SettingsDocument();
     /// Destructor
     virtual ~SettingsDocument();
+    static SettingsDocument* instance();
     QString projectDir();
     QString speakerDb();
+    QString speakerPath();
     //// end public member methods
 
     //// begin public member methods (internal use only)

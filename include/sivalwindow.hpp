@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_SiVALWindow_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -134,12 +134,11 @@ public slots:
 protected slots:
     void centerViewSelection(int id);
     void createEnclosure();
-    void enclosureSelection(int id);
+    void enclosureSelection(QAbstractButton *btn);
     void mainMenu() override;
     void newEnclosure();
     void newProject();
-    void openProjectEnclosure();
-    void openProject(const QString &filepath);
+    void openProject();
     void projectChanged(ProjectDocument *doc);
     void settingsSelection(int id);
     //// end protected slots

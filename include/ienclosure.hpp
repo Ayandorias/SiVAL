@@ -2,19 +2,19 @@
 #define HEADER_GUARD_SiVAL_IEnclosure_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
  */
 //// begin includes
 #include <QJsonObject>
+#include <sival/sival.hpp>
 //// end includes
 
 //// begin specific includes
-#include "sival.hpp"
 #include "speakerdocument.hpp"
 //// end specific includes
 
@@ -48,6 +48,7 @@ public:
     ///
     QJsonObject toJson();
     SiVAL::ENCLOSURE_TYPE type();
+    virtual void setProperties(QJsonObject obj) = 0;
     //// end public member methods
 
     //// begin public member methods (internal use only)

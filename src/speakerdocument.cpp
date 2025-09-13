@@ -1,16 +1,18 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
 
 //// begin includes
+#include <QDir>
 #include <iostream>
 //// end includes
 
 //// begin specific includes
+#include "settingsdocument.hpp"
 #include "speakerdocument.hpp"
 //// end specific includes
 
@@ -30,6 +32,17 @@
 //// end static functions
 
 //// begin public member methods
+SpeakerDocument::SpeakerDocument() {
+
+}
+SpeakerDocument::SpeakerDocument(QJsonObject obj) {
+    QString man = obj["manufacturer"].toString().toLower();
+    QString uuid = obj["uuid"].toString();
+
+    SettingsDocument *doc = SettingsDocument::instance();
+    QString filename = doc->speakerPath() + QDir::separator() + man + QDir::separator() + uuid + QString(".json");
+    open(filename);
+}
 SpeakerDocument::SpeakerDocument(const SpeakerDocument &doc)
     :IDocument() {
     m_Object = doc.m_Object;
@@ -55,6 +68,9 @@ SpeakerDocument::~SpeakerDocument() {
 
 QString SpeakerDocument::brand() {
     return m_Object["brand"].toString();
+}
+QString SpeakerDocument::manufacturer() {
+    return m_Object["manufacturer"].toString();
 }
 QString SpeakerDocument::model() {
     return m_Object["model"].toString();

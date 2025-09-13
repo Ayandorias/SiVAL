@@ -1,7 +1,7 @@
 /*
  * SiVAL_ProjectTreeWidget
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -57,6 +57,7 @@ ProjectTreeWidget::~ProjectTreeWidget() {
 
 }
 
+
 void ProjectTreeWidget::addEnclosure(SpeakerDocument *doc) {
     TreeItem *item = getActiveProject();
     std::cout << "Neues Gehäuse wird angelegt" << std::endl;
@@ -84,10 +85,16 @@ void ProjectTreeWidget::addProject(ProjectDocument *prjdoc) {
 
     expandItem(ti);
     emit projectChanged(prjdoc);
+
+    addEnclosure(prjdoc);
 }
 
 void ProjectTreeWidget::save() {
-
+    TreeItem *item = getActiveProject();
+    ProjectDocument *prjdoc = (ProjectDocument*)item->data();
+    if(prjdoc != nullptr) {
+        prjdoc->save();
+    }
 }
 //// end public member methods
 
@@ -101,7 +108,17 @@ void ProjectTreeWidget::save() {
 //// end protected member methods (internal use only)
 
 //// begin private member methods
-//// end private member methods
+void ProjectTreeWidget::addEnclosure(ProjectDocument *doc) {
+    TreeItem *item = getActiveProject();
+    QJsonArray arr = doc->enclosures();
+
+    for(int i = 0; i < arr.count(); ++i) {
+        QJsonObject obj = arr.at(i).toObject();
+        TreeItem *speaker = new TreeItem(item, SiVAL::DT_SPEAKER);
+        speaker->setText(0, obj["name"].toString());
+        expandItem(item);
+    }
+}
 TreeItem* ProjectTreeWidget::getActiveProject() {
     QTreeWidgetItem *item = topLevelItem(0);
     int count = item->childCount();
@@ -124,6 +141,7 @@ TreeItem* ProjectTreeWidget::getActiveProject() {
     }
     return nullptr;
 }
+//// end private member methods
 //// begin public slots
 //// end public slots
 

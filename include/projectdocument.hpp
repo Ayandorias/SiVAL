@@ -2,14 +2,15 @@
 #define HEADER_GUARD_SiVAL_ProjectDocument_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
  */
 //// begin includes
+#include <QJsonArray>
 #include <QJsonObject>
 #include <QVector>
 //// end includes
@@ -51,12 +52,15 @@ public:
     QString created();
     void setDescription(const QString &description);
     QString description();
+    QJsonArray enclosures();
     void setName(const QString &prjname);
     QString name();
     bool save() override;
     bool saveAs(const QString &filename) override;
     QString projectId();
     QString version();
+    void setVolume(const double &vol);
+    double volume();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -74,6 +78,7 @@ protected:
 
     //// begin private member methods
 private:
+    void readSetups();
     //// end private member methods
 
     //// begin public member

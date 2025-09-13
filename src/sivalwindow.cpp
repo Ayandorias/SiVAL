@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -43,7 +43,7 @@ SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, 
 
     m_pGroup = new QButtonGroup(this);
     m_pGroup->setExclusive(true);
-    connect(m_pGroup, &QButtonGroup::idClicked, this, &SiVALWindow::enclosureSelection);
+    connect(m_pGroup, &QButtonGroup::buttonClicked, this, &SiVALWindow::enclosureSelection);
 
     /* Fensterleiste bearbeiten, damit die Button ausgeblendet werden können. */
     m_pProjectButton = new NW::SelectionButton("Project", m_pFrameBar);
@@ -52,6 +52,7 @@ SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, 
     m_pProjectButton->setMinimumHeight(45);
     m_pProjectButton->setMaximumHeight(45);
     m_pProjectButton->setChecked(true);
+    m_pProjectButton->setId(BTN_Project);
     m_pFrameBar->insertWidget(BTN_Project, m_pProjectButton);
     m_pGroup->addButton(m_pProjectButton, 0);
 
@@ -62,6 +63,7 @@ SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, 
     m_pEnclosureBtn->setMinimumHeight(45);
     m_pEnclosureBtn->setMaximumHeight(45);
     // m_pEnclosureBtn->setChecked(true);
+    m_pEnclosureBtn->setId(BTN_Enclosure);
     m_pFrameBar->insertWidget(BTN_Enclosure, m_pEnclosureBtn);
     m_pGroup->addButton(m_pEnclosureBtn, 0);
 
@@ -104,20 +106,18 @@ SiVALWindow::SiVALWindow(const QString &projectfile, ManufacturerDocument *doc, 
 
     m_pHomePanel = new HomePanel();
     connect(m_pHomePanel, &HomePanel::newProject, this, &SiVALWindow::newProject);
-    connect(m_pHomePanel, &HomePanel::openProject, this, &SiVALWindow::openProjectEnclosure);
+    connect(m_pHomePanel, &HomePanel::openProject, this, &SiVALWindow::openProject);
     m_pNavBarPanel->addPanel(QString(":/icon/home_light.svg"), QString(":/icon/home_dark.svg"), m_pHomePanel);
 
     m_pProjectPanel = new ProjectPanel();
     connect(m_pProjectPanel, &ProjectPanel::newProject, this, &SiVALWindow::newProject);
+    connect(m_pProjectPanel, &ProjectPanel::openProject, this, &SiVALWindow::openProject);
     connect(m_pProjectPanel, &ProjectPanel::newEnclosure, this, &SiVALWindow::newEnclosure);
-    connect(m_pProjectPanel, &ProjectPanel::openProject, this, &SiVALWindow::openProjectEnclosure);
     connect(m_pProjectPanel, &ProjectPanel::projectChanged, this, &SiVALWindow::projectChanged);
 
     m_pNavBarPanel->addPanel(QString(":/sival/enclosure_light.svg"), QString(":/sival/enclosure_dark.svg"), m_pProjectPanel);
 
-
     m_pNavBarPanel->appendPanel(QString(":/icon/cogwheel_light.svg"), QString(":/icon/cogwheel_dark.svg"), new QWidget());
-
     connect(m_pNavBarPanel, &NW::NavBarPanel::changeCenterView, this, &SiVALWindow::centerViewSelection);
 
 
@@ -211,13 +211,17 @@ void SiVALWindow::centerViewSelection(int id) {
 
 void SiVALWindow::createEnclosure() {
     SpeakerDocument *doc = m_pNewEnclosure->speaker();
-
     m_pProjectPanel->addEnclosure(doc);
 
     m_pNewEnclosure->close();
 }
 
-void SiVALWindow::enclosureSelection(int id) {
+void SiVALWindow::enclosureSelection(QAbstractButton *btn) {
+    if(btn == m_pProjectButton) {
+        m_pEnclosureView->setPage(SiVAL::MENU_Project);
+    } else if(btn == m_pEnclosureBtn) {
+        m_pEnclosureView->setPage(SiVAL::MENU_Speaker);
+    }
 }
 
 void SiVALWindow::mainMenu() {
@@ -237,7 +241,7 @@ void SiVALWindow::newProject() {
     connect(m_pProjectNewDialog, &ProjectNewDialog::newProject, this, &SiVALWindow::openProject);
 }
 
-void SiVALWindow::openProjectEnclosure() {
+void SiVALWindow::openProject() {
     SettingsDocument doc;
     std::cout << "Open Enclosure: " << doc.projectDir().toStdString() << std::endl;
     QString file = QFileDialog::getOpenFileName(this, tr("Open Enclosure"),
@@ -245,17 +249,16 @@ void SiVALWindow::openProjectEnclosure() {
                                                 tr("Enclosures (*.sivalprj)"));
 
     if(file != QString()) {
-        openProject(file);
+        m_pProjectPanel->open(file);
+        m_pNavBarPanel->select(1);
     }
-}
-
-void SiVALWindow::openProject(const QString &filepath) {
-    m_pProjectPanel->open(filepath);
-    m_pNavBarPanel->select(1);
 }
 
 void SiVALWindow::projectChanged(ProjectDocument *doc) {
     std::cout << "Project hat sich geändert" << std::endl;
+
+    m_pEnclosureView->setProject(doc);
+    m_pEnclosureView->setPage(SiVAL::MENU_Project);
 }
 
 void SiVALWindow::settingsSelection(int id) {

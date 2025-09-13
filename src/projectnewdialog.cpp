@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -128,8 +128,7 @@ void ProjectNewDialog::createNewProject() {
         obj["created_at"] = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
         obj["author"] = ui->m_pAuthor->text();
         obj["description"] = QString();
-        obj["total_volume_m3"] = ui->m_pVolume->text().toDouble();
-        obj["setups"] = QJsonArray();
+        obj["gross_volume"] = ui->m_pVolume->text().toDouble();
 
         filepath = path + QString("/") + projectname + QString(".sivalprj");
         QFile file(filepath);

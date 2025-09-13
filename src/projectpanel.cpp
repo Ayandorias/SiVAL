@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -66,10 +66,8 @@ void ProjectPanel::addEnclosure(SpeakerDocument *doc) {
  */
 void ProjectPanel::open(const QString &projectfile) {
     m_pProjectDocument = new ProjectDocument(projectfile);
-
     ui->m_pPojectTree->addProject(m_pProjectDocument);
 
-    ui->m_pNewEnclosure->setDisabled(false);
     checkButtons();
 }
 /**
@@ -93,8 +91,10 @@ void ProjectPanel::save() {
 void ProjectPanel::checkButtons() {
     if(m_pProjectDocument == nullptr) {
         ui->m_pNewEnclosure->setDisabled(true);
+        ui->m_pSave->setDisabled(true);
     } else {
         ui->m_pNewEnclosure->setDisabled(false);
+        ui->m_pSave->setDisabled(false);
     }
 
 }

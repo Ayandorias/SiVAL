@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -9,6 +9,7 @@
 //// begin includes
 #include <QJsonArray>
 #include <QUuid>
+#include <iostream>
 //// end includes
 
 //// begin specific includes
@@ -128,6 +129,9 @@ void ProjectDocument::setDescription(const QString &description) {
 QString ProjectDocument::description() {
     return m_Object["description"].toString();
 }
+QJsonArray ProjectDocument::enclosures() {
+    return m_Object["setups"].toArray();
+}
 void ProjectDocument::setName(const QString &prjname) {
     m_Object["project_name"] = prjname;
 }
@@ -135,6 +139,14 @@ QString ProjectDocument::name() {
     return m_Object["project_name"].toString();
 }
 bool ProjectDocument::save() {
+    QJsonArray arr;
+    std::cout << "Anzahl: " << m_Setups.count() << std::endl;
+    for(int i = 0; i < m_Setups.count(); ++i) {
+        EnclosureDocument *doc =  m_Setups.at(i);
+        QJsonObject obj = doc->toJson();
+        arr.append(obj);
+    }
+    m_Object["setups"] = arr;
     return IDocument::save();
 }
 bool ProjectDocument::saveAs(const QString &filename) {
@@ -145,6 +157,12 @@ QString ProjectDocument::projectId() {
 }
 QString ProjectDocument::version() {
     return m_Object["version"].toString();
+}
+void ProjectDocument::setVolume(const double &vol) {
+    m_Object["gross_volume"] = vol;
+}
+double ProjectDocument::volume() {
+    return m_Object["gross_volume"].toDouble();
 }
 //// end public member methods
 
@@ -170,10 +188,19 @@ void ProjectDocument::read() {
     QJsonDocument jsonDoc = QJsonDocument::fromJson(fileData, &parseError);
 
     m_Object = jsonDoc.object();
+    readSetups();
 }
 //// end protected member methods (internal use only)
 
 //// begin private member methods
+void ProjectDocument::readSetups() {
+    QJsonArray arr = m_Object["setups"].toArray();
+    for (int i = 0; i < arr.count(); ++i) {
+        std::cout << "hallo welt ist das " << std::endl;
+        QJsonObject setup = arr.at(i).toObject();
+        m_Setups.append(new EnclosureDocument(setup));
+    }
+}
 //// end private member methods
 
 //// begin public slots

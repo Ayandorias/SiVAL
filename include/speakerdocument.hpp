@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_SpeakerDocument_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -38,12 +38,15 @@ class SpeakerDocument : public IDocument
 {
     //// begin public member methods
 public:
+    SpeakerDocument();
+    SpeakerDocument(QJsonObject obj);
     SpeakerDocument(const SpeakerDocument &doc);
     /// Constructor
     explicit SpeakerDocument(const QString &filename);
     /// Destructor
     virtual ~SpeakerDocument();
     QString brand();
+    QString manufacturer();
     QString model();
     QString uuid();
     //// end public member methods

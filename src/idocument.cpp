@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -37,20 +37,9 @@ IDocument::IDocument() {
 /**
  *
  */
-IDocument::IDocument(const QString &filename)
-    : m_sFilename(filename){
+IDocument::IDocument(const QString &filename) {
 
-    QFile file(m_sFilename);
-    if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QByteArray json = file.readAll();
-        file.close();
-        QJsonDocument doc = QJsonDocument::fromJson(json);
-        // std::cout << doc.toJson().toStdString() << std::endl;
-
-        m_Object = doc.object();
-    } else {
-        // std::cout << "Kann die Datei: " << filename.toStdString() << " nicht öffnen" << std::endl;
-    }
+    open(filename);
 }
 
 /**************************************************************************************************/
@@ -65,6 +54,20 @@ void IDocument::change() {
 }
 bool IDocument::isChanged() {
     return m_bChanged;
+}
+void IDocument::open(const QString &filename) {
+    m_sFilename = filename;
+    QFile file(m_sFilename);
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QByteArray json = file.readAll();
+        file.close();
+        QJsonDocument doc = QJsonDocument::fromJson(json);
+        // std::cout << doc.toJson().toStdString() << std::endl;
+
+        m_Object = doc.object();
+    } else {
+        // std::cout << "Kann die Datei: " << filename.toStdString() << " nicht öffnen" << std::endl;
+    }
 }
 /**
  *

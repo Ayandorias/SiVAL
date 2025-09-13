@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -39,6 +39,11 @@ EnclosureWidget::EnclosureWidget(QWidget *parent)
     ui(new Ui::EnclosureWidget) {
 
     ui->setupUi(this);
+
+    connect(ui->m_pProjectMenu, &ProjectMenu::grossVolumeChanged, this, &EnclosureWidget::grossVolumeChanged);
+    connect(ui->m_pProjectMenu, &ProjectMenu::authorChanged, this, &EnclosureWidget::authorChanged);
+
+    ui->m_pProjectMenu->setDisabled(true);
 }
 
 /**************************************************************************************************/
@@ -49,9 +54,14 @@ EnclosureWidget::~EnclosureWidget() {
     delete ui;
 }
 
+void EnclosureWidget::setPage(SiVAL::PRJ_MENU page) {
+    ui->m_pMenu->setCurrentIndex(page);
+}
 void EnclosureWidget::setProject(ProjectDocument *doc) {
     m_pProjectDoc = doc;
     updateMenu();
+
+    ui->m_pProjectMenu->setDisabled(false);
 }
 //// end public member methods
 
@@ -66,7 +76,9 @@ void EnclosureWidget::setProject(ProjectDocument *doc) {
 
 //// begin private member methods
 void EnclosureWidget::updateMenu() {
-
+    ui->m_pProjectMenu->setAuthor(m_pProjectDoc->author());
+    ui->m_pProjectMenu->setName(m_pProjectDoc->name());
+    ui->m_pProjectMenu->setVolume(m_pProjectDoc->volume());
 }
 //// end private member methods
 
@@ -74,6 +86,16 @@ void EnclosureWidget::updateMenu() {
 //// end public slots
 
 //// begin protected slots
+void EnclosureWidget::authorChanged(const QString &name) {
+    if(m_pProjectDoc != nullptr) {
+        m_pProjectDoc->setAuthor(name);
+    }
+}
+void EnclosureWidget::grossVolumeChanged(const QString &volume) {
+    if(m_pProjectDoc != nullptr) {
+        m_pProjectDoc->setVolume(volume.toDouble());
+    }
+}
 //// end protected slots
 
 //// begin private slots

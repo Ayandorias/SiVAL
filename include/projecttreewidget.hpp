@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_ProjectTreeWidget_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -68,6 +68,7 @@ protected:
 
     //// begin private member methods
 private:
+    void addEnclosure(ProjectDocument *doc);
     TreeItem *getActiveProject();
     //// end private member methods
 

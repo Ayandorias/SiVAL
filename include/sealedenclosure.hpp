@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_SealedEnclosure_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -43,6 +43,8 @@ public:
     explicit SealedEnclosure(SpeakerDocument *doc);
     /// Destructor
     virtual ~SealedEnclosure();
+    ///
+    virtual void setProperties(QJsonObject obj) override;
     //// end public member methods
 
     //// begin public member methods (internal use only)

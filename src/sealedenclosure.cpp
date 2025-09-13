@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -36,6 +36,7 @@
 SealedEnclosure::SealedEnclosure(SpeakerDocument *doc)
     : IEnclosure(doc) {
     m_Type = SiVAL::ENC_SEALED;
+    m_EnclosureObject["type"] = "sealed";
 }
 
 /**************************************************************************************************/
@@ -43,6 +44,10 @@ SealedEnclosure::SealedEnclosure(SpeakerDocument *doc)
  *
  */
 SealedEnclosure::~SealedEnclosure() {
+}
+
+void SealedEnclosure::setProperties(QJsonObject obj) {
+
 }
 //// end public member methods
 

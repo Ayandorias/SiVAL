@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_EnclosureWidget_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -15,6 +15,7 @@
 
 //// begin specific includes
 #include "projectdocument.hpp"
+#include "sivalgui.hpp"
 //// end specific includes
 
 //// begin using namespaces
@@ -48,6 +49,7 @@ public:
     /// Destructor
     virtual ~EnclosureWidget();
     ///
+    void setPage(SiVAL::PRJ_MENU page);
     void setProject(ProjectDocument *doc);
     //// end public member methods
 
@@ -88,6 +90,8 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void authorChanged(const QString &name);
+    void grossVolumeChanged(const QString &volume);
     //// end protected slots
 
     //// begin private slots

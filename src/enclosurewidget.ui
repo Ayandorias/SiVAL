@@ -30,7 +30,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QStackedWidget" name="stackedWidget">
+    <widget class="QStackedWidget" name="m_pMenu">
      <property name="minimumSize">
       <size>
        <width>0</width>
@@ -43,8 +43,8 @@
        <height>140</height>
       </size>
      </property>
-     <widget class="QWidget" name="m_pProjectMenu"/>
-     <widget class="QWidget" name="m_pEnclosureMenu"/>
+     <widget class="ProjectMenu" name="m_pProjectMenu"/>
+     <widget class="EnclosureMenu" name="m_pEnclosureMenu"/>
     </widget>
    </item>
    <item>
@@ -56,6 +56,20 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EnclosureMenu</class>
+   <extends>QWidget</extends>
+   <header>enclosuremenu.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ProjectMenu</class>
+   <extends>QWidget</extends>
+   <header>projectmenu.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

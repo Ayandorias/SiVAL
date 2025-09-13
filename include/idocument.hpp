@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_IDocument_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -50,6 +50,7 @@ public:
 
     void change();
     bool isChanged();
+    void open(const QString &filename);
     ///
     virtual bool save();
     virtual bool saveAs(const QString &filename);

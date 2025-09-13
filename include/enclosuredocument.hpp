@@ -2,9 +2,9 @@
 #define HEADER_GUARD_SiVAL_EnclosureDocument_HPP
 
 /*
- * GhostWriter
+ * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  *
@@ -16,7 +16,7 @@
 
 //// begin specific includes
 #include "ienclosure.hpp"
-#include "sival.hpp"
+#include "sivalgui.hpp"
 #include "speakerdocument.hpp"
 //// end specific includes
 
@@ -42,7 +42,9 @@ class EnclosureDocument {
     //// begin public member methods
 public:
     /// Constructor
-    explicit EnclosureDocument(const SpeakerDocument &doc, SiVAL::ENCLOSURE_TYPE type = SiVAL::ENC_SEALED);
+    EnclosureDocument(const SpeakerDocument &doc, SiVAL::ENCLOSURE_TYPE type = SiVAL::ENC_SEALED);
+    EnclosureDocument(QJsonObject obj);
+
     /// Destructor
     virtual ~EnclosureDocument();
     ///
@@ -77,6 +79,7 @@ protected:
 
     //// begin private member
 private:
+    int m_iQuantity;
     SiVAL::ENCLOSURE_TYPE m_EncType;
     IEnclosure *m_pEnclosure;
     SpeakerDocument m_SpeakerDoc;

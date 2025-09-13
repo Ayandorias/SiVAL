@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -10,7 +10,6 @@
 #include <QDir>
 #include <QJsonArray>
 #include <QStandardPaths>
-#include <iostream>
 //// end includes
 
 //// begin specific includes
@@ -28,6 +27,7 @@
 //// end extern declaration
 
 //// begin static definitions
+SettingsDocument *m_pSettings = nullptr;
 //// end static definitions
 
 //// begin static functions
@@ -71,12 +71,24 @@ SettingsDocument::SettingsDocument()
 SettingsDocument::~SettingsDocument() {
 }
 
+SettingsDocument* SettingsDocument::instance() {
+    if(m_pSettings == nullptr) {
+        m_pSettings = new SettingsDocument();
+    }
+
+    return m_pSettings;
+}
+
 QString SettingsDocument::projectDir() {
     return m_Object["project_dir"].toString();
 }
 QString SettingsDocument::speakerDb() {
     QString comp = m_sSpeakerPath + QString(QDir::separator()) + "speakers.json";
     return comp;
+}
+
+QString SettingsDocument::speakerPath() {
+    return m_sSpeakerPath;
 }
 //// end public member methods
 

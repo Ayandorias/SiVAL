@@ -1,7 +1,7 @@
 /*
  * SiVAL
  *
- * Copyright (C) 2021 Bruno Pierucki
+ * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
@@ -40,24 +40,24 @@ HomePanel::HomePanel(QWidget *parent)
 
     ui->setupUi(this);
 
-    ui->m_pNewWorkspace->setTitle(tr("Create new Sound System ..."));
+    ui->m_pNewWorkspace->setTitle(tr("Create new Workspace ..."));
     ui->m_pNewWorkspace->setIcon(":/sival/sound_system_dark.svg");
     ui->m_pNewWorkspace->hide();
 
-    ui->m_pOpenWorkspace->setTitle(tr("Open Sound System ..."));
+    ui->m_pOpenWorkspace->setTitle(tr("Open Workspace ..."));
     ui->m_pOpenWorkspace->setIcon(":/sival/open_dark.svg");
     ui->m_pOpenWorkspace->hide();
 
-    ui->m_pNewEnclosure->setTitle(tr("New Enclosure ..."));
+    ui->m_pNewEnclosure->setTitle(tr("New Project ..."));
     ui->m_pNewEnclosure->setIcon(":/icon/new_dark.svg");
     connect(ui->m_pNewEnclosure, &NW::Card::clicked, this, &HomePanel::newProject);
 
-    ui->m_pOpenEnclosure->setTitle(tr("Open Enclosure ..."));
+    ui->m_pOpenEnclosure->setTitle(tr("Open Project ..."));
     ui->m_pOpenEnclosure->setIcon(":/sival/open_dark.svg");
     connect(ui->m_pOpenEnclosure, &NW::Card::clicked, this, &HomePanel::openProject);
 
 
-    ui->m_pImportToWorkspace->setTitle(tr("Import Project to Sound System ..."));
+    ui->m_pImportToWorkspace->setTitle(tr("Import Project to Workspace ..."));
     ui->m_pImportToWorkspace->setIcon(":/icon/import_dark.svg");
     ui->m_pImportToWorkspace->hide();
 }

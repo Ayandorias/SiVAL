@@ -122,7 +122,7 @@ qt_add_executable(SiVAL
     include/ienclosure.hpp src/ienclosure.cpp
     include/ventedenclosure.hpp src/ventedenclosure.cpp
     include/sealedenclosure.hpp src/sealedenclosure.cpp
-    include/sival.hpp
+    include/sivalgui.hpp
     include/enclosuredocument.hpp src/enclosuredocument.cpp
     include/homewidget.hpp src/homewidget.cpp src/homewidget.ui
     include/projectnewdialog.hpp src/projectnewdialog.cpp src/projectnewdialog.ui
@@ -131,11 +131,32 @@ qt_add_executable(SiVAL
     include/treeitem.hpp src/treeitem.cpp
     include/nw/pushbutton.hpp src/nw/pushbutton.cpp
     include/projectmenu.hpp src/projectmenu.cpp src/projectmenu.ui
+    include/enclosuremenu.hpp src/enclosuremenu.cpp src/enclosuremenu.ui
+    libsival/sival/speaker.hpp libsival/speaker.cpp
+    libsival/sival/impedance.hpp libsival/impedance.cpp
+    libsival/sival/impedancesealed.hpp libsival/impedancesealed.cpp
+    libsival/sival/impedancevented.hpp libsival/impedancevented.cpp
+    libsival/sival/sival.hpp
+    libsival/sival/frequencyresponse.hpp libsival/frequencyresponse.cpp
+    libsival/sival/frequencyresponsesealed.hpp libsival/frequencyresponsesealed.cpp
+    libsival/sival/frequencyresponsevented.hpp libsival/frequencyresponsevented.cpp
+    libsival/sival/groupdelay.hpp libsival/groupdelay.cpp
+    libsival/sival/groupdelaysealed.hpp libsival/groupdelaysealed.cpp
+    libsival/sival/groupdelayvented.hpp libsival/groupdelayvented.cpp
+    libsival/sival/coneexcursion.hpp libsival/coneexcursion.cpp
+    libsival/sival/coneexcursionsealed.hpp libsival/coneexcursionsealed.cpp
+    libsival/sival/coneexcursionvented.hpp libsival/coneexcursionvented.cpp
+    libsival/sival/portairvelocity.hpp libsival/portairvelocity.cpp
+    libsival/sival/portairvelocitysealed.hpp libsival/portairvelocitysealed.cpp
+    libsival/sival/portairvelocityvented.hpp libsival/portairvelocityvented.cpp
+    libsival/sival/impedancephase.hpp libsival/impedancephase.cpp
+    libsival/sival/impedancephasesealed.hpp libsival/impedancephasesealed.cpp
+    libsival/sival/impedancephasevented.hpp libsival/impedancephasevented.cpp
 
 
 )
 
-target_include_directories(SiVAL PRIVATE include)
+target_include_directories(SiVAL PRIVATE include libsival)
 
 target_link_libraries(SiVAL
     PRIVATE
