@@ -1,0 +1,207 @@
+/* ===================================================================
+ * Hauptfenster
+ * ================================================================ */
+QWidget {
+    background-color:#ffffff;
+    border-radius:5px;
+    border: none;
+}
+
+QWidget.CardList {
+    background-color: #e5e5e5;
+    border-radiuas: 5px;
+}
+
+/* Die Pfeile (oben/unten) und den Hintergrund (Page-Bereich) komplett ausblenden */
+QScrollBar::add-line, QScrollBar::sub-line,
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: #E5E5E5;
+    border: none;
+    width: 0px;
+    height: 0px;
+}
+
+/* Der Scrollbar-Hintergrund (die 'Rille') */
+QScrollBar:vertical {
+    border: none;
+    border-radius: 3px;
+    background: #B5B5B5;
+    width: 6px; /* Wichtig: Definiert die 'Hover-Zone' */
+    margin: 0;
+}
+QScrollBar:horizontal {
+    border: none;
+    background: #B5B5B5;
+    height: 6px; /* Wichtig: Definiert die 'Hover-Zone' */
+    margin: 0;
+    border-radius: 3px;
+}
+
+/* Der 'Handle' (der Knopf, den man zieht) */
+QScrollBar::handle:vertical {
+    background: transparent; /* Standardmäßig unsichtbar */
+    min-height: 20px;
+    border-radius: 3px;
+}
+QScrollBar::handle:horizontal {
+    background: transparent;
+    min-width: 20px;
+    border-radius: 3px;
+}
+
+/* *** DIE MAGIE: Sichtbar machen bei Hover *** */
+/* Wenn die Maus über der *gesamten ScrollArea* schwebt... */
+QScrollArea:hover QScrollBar::handle:vertical {
+    background: #A5A5A5; /* ...mache den Handle sichtbar */
+}
+QScrollArea:hover QScrollBar::handle:horizontal {
+    background: #A5A5A5;  /* ...mache den Handle sichtbar */
+}
+
+/* (Optional) Heller/dunkler machen, wenn man den Handle selbst greift */
+QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
+    background: #A5A5A5;
+}
+QScrollBar::handle:horizontal:hover, QScrollBar::handle:horizontal:pressed {
+    background: #A5A5A5;
+}
+
+/* ===================================================================
+ * Buttons in the Frame
+ * ================================================================ */
+QToolButton.SiVALFrameBarButton {
+    background-color: #ffffff;
+    padding: 7px;
+    border-radius: 3px;
+}
+
+QToolButton.SiVALFrameBarButton:hover {
+    background-color: #DADADA;
+}
+
+/* ======================= Max Button ============================= */
+#buttonMax {
+    image: url(":/sival/icon/max_dark.svg");
+}
+/* ======================= Max Button hover ======================= */
+#buttonMax:hover {
+    image: url(":/sival/icon/max_dark.svg");
+}
+
+#buttonMin {
+    image: url(":/sival/icon/iconize_dark.svg");
+}
+
+#buttonMin:hover {
+    image: url(":/sival/icon/iconize_dark.svg");
+}
+
+#buttonNormal {
+    image: url(":/sival/icon/min_dark.svg");
+}
+
+#buttonNormal:hover {
+    image: url(":/sival/icon/min_dark.svg");
+}
+
+/* ====================== Quit Button ============================= */
+#buttonQuit {
+    background-color: #FFF;
+    margin-right: 5px;
+    image: url(":/sival/icon/close_dark.svg");
+}
+/* ====================== Quit Button hover ======================= */
+#buttonQuit:hover {
+    background-color: #F00;
+    image: url(":/sival/icon/close_light.svg");
+    border-radius: 5px;
+}
+
+/* ===================================================================
+ * Left NavigationBar
+ * ================================================================ */
+QWidget.SiVALNavigationBar {
+    background-color: #E5E5E5;
+    border-radius: 0px;
+    border-right: 1px solid #C5C5C5;
+}
+
+QToolButton.SiVALNavigationButton {
+    qtproperty-toolButtonStyle: ToolButtonTextUnderIcon;
+    color: #6B6B6B;
+    background-color: #E5E5E5;
+    border: none;
+    border-radius: 0px;
+    margin-right: 2px;
+    font-size: 8pt;
+}
+
+QToolButton.SiVALNavigationButton:hover {
+    background-color: #DADADA;
+    border: none;
+    border-radius: 0px;
+    font-weight: bold;
+}
+
+#mainMenu {
+    qproperty-toolButtonStyle: ToolButtonTextUnderIcon;
+    text-align: left;
+    image: url(":/sival/icon/logo.svg");
+    padding: 3px;
+}
+#mainMenu {
+    background-color: #E5E5E5;
+    text-align: left;
+    image: url(":/sival/icon/logo.svg");
+    padding: 3px;
+}
+
+/* ===================================================================
+ * Left NavigationsWidget
+ * ================================================================ */
+QWidget.SiVALNavigationWidget {
+    background-color: #E5E5E5;
+    border-radius: 0px;
+    border: none;
+}
+
+QLabel.SiVALHeaderLabel{
+    background-color: #E5E5E5;
+    color: #6B6B6B;
+    font-size: 12pt;
+    font-weight: bold;
+    padding-left: 8px;
+}
+
+SiVAL--Gui--Label {
+    background-color: #fff;
+    color: #6B6B6B;
+    font-size: 12pt;
+}
+
+SiVAL--Gui--Card {
+    background-color: #E5E5E5;
+    color: #6B6B6B;
+    qproperty-infoColor: #ABABAB;
+    margin: 4px;
+}
+
+SiVAL--Gui--Card:hover {
+    background-color: #DADADA;
+}
+
+#horizontalLine, #horizontalLine2 {
+    border: none;
+    background-color: #E5E5E5;
+}
+
+SiVAL--StartItem {
+    background-color: #FFFFFF;
+    color: #6B6B6B;
+    qproperty-infoColor: #ABABAB;
+}
+
+SiVAL--StartItem:hover {
+    background-color: #F3F3F3;
+    border: 2px solid #E5E5E5;
+}

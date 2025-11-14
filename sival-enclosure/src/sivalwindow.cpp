@@ -1,0 +1,293 @@
+/*
+ * SiVAL
+ *
+ * Copyright (C) since 2025 Bruno Pierucki
+ *
+ * Author: Bruno Pierucki <b.pierucki@gmx.de>
+ */
+
+//// begin system includes
+#include <QFileDialog>
+#include<QScrollArea>
+#include <sivalgui/navbarpanel.hpp>
+//// end system includes
+
+//// begin project specific includes
+// #include "settingsdocument.hpp"
+#include "sivalwindow.hpp"
+//// end project specific includes
+
+//// begin using namespaces
+//// end using namespaces
+
+//// begin global definition
+//// end global definition
+
+//// begin extern declaration
+//// end extern declaration
+
+//// begin static definitions
+//// end static definitions
+
+//// begin static functions
+//// end static functions
+
+//// begin public member methods
+/**************************************************************************************************/
+/**
+ *
+ */
+SiVALWindow::SiVALWindow(const QString &projectfile, QWidget *parent)
+    :SiVAL::MainWindow(parent) {
+
+
+#if 1
+    m_pGroup = new QButtonGroup(this);
+    m_pGroup->setExclusive(true);
+    connect(m_pGroup, &QButtonGroup::buttonClicked, this, &SiVALWindow::enclosureSelection);
+
+    /* Fensterleiste bearbeiten, damit die Button ausgeblendet werden können. */
+    m_pProjectButton = new SiVAL::SelectionButton("Project", m_pFrameBar);
+    m_pProjectButton->hide();
+    m_pProjectButton->setCheckable(true);
+    m_pProjectButton->setMinimumHeight(45);
+    m_pProjectButton->setMaximumHeight(45);
+    m_pProjectButton->setChecked(true);
+    m_pProjectButton->setId(BTN_Project);
+    m_pFrameBar->insertWidget(BTN_Project, m_pProjectButton);
+    m_pGroup->addButton(m_pProjectButton, 0);
+
+    /* Fensterleiste bearbeiten, damit die Button ausgeblendet werden können. */
+    m_pEnclosureBtn = new SiVAL::SelectionButton("Enclosure", m_pFrameBar);
+    m_pEnclosureBtn->hide();
+    m_pEnclosureBtn->setCheckable(true);
+    m_pEnclosureBtn->setMinimumHeight(45);
+    m_pEnclosureBtn->setMaximumHeight(45);
+    // m_pEnclosureBtn->setChecked(true);
+    m_pEnclosureBtn->setId(BTN_Enclosure);
+    m_pFrameBar->insertWidget(BTN_Enclosure, m_pEnclosureBtn);
+    m_pGroup->addButton(m_pEnclosureBtn, 0);
+
+
+    speakerSettings();
+
+
+    /* Hauptansicht des Programms */
+    m_pCenterStack = new CenterStack(this);
+    setCenterWidget(m_pCenterStack);
+
+    /* Unterfenster für die Hauptansicht des Fensters.
+     * Diese werden mit den Buttons in der Seitenleiste ausgewählt
+     */
+
+    /*
+     * Das Start-Ansicht. Von hier können Projekte erstellt werden und weitere Dinge.
+     * */
+    m_pHomeWidget = new HomeWidget(this);
+    connect(m_pHomeWidget, &HomeWidget::openProject, this, &SiVALWindow::loadProject);
+    m_pCenterStack->addWidget(m_pHomeWidget);
+
+    /*
+     * Die Ansicht, in der die Eigenschaften des Gehäuses überprüft werden können.
+     * */
+    m_pEnclosureView = new EnclosureWidget(this);
+    m_pCenterStack->addWidget(m_pEnclosureView);
+
+
+    m_pSettingsStack = new QStackedWidget(m_pCenterStack);
+    m_pCenterStack->addWidget(m_pSettingsStack);
+    /*
+     * Die Ansicht in dem die Eisntellungen des Programms eingestellt werden können.
+     * z.B. welche Lautsprecher Hersteller beim Starten geladen werden.
+     */
+    m_pSettingsWidget = new SpeakerSettingsWidget(this);
+    m_pSettingsStack->addWidget(m_pSettingsWidget);
+
+    m_pNavBarPanel = new SiVAL::NavBarPanel(this);
+    setSideBarWidget(m_pNavBarPanel);
+
+    m_pHomePanel = new HomePanel();
+    connect(m_pHomePanel, &HomePanel::newProject, this, &SiVALWindow::newProject);
+    connect(m_pHomePanel, &HomePanel::openProject, this, &SiVALWindow::openProject);
+    m_pNavBarPanel->addPanel(QString(":/icon/home_light.svg"), QString(":/icon/home_dark.svg"), m_pHomePanel);
+
+    m_pProjectPanel = new ProjectPanel();
+    connect(m_pProjectPanel, &ProjectPanel::newProject, this, &SiVALWindow::newProject);
+    connect(m_pProjectPanel, &ProjectPanel::openProject, this, &SiVALWindow::openProject);
+    connect(m_pProjectPanel, &ProjectPanel::newEnclosure, this, &SiVALWindow::newEnclosure);
+    // connect(m_pProjectPanel, &ProjectPanel::projectChanged, this, &SiVALWindow::projectChanged);
+    // connect(m_pProjectPanel, &ProjectPanel::enclosureChanged, this, &SiVALWindow::enclosureChanged);
+
+    m_pNavBarPanel->addPanel(QString(":/sival/enclosure_light.svg"), QString(":/sival/enclosure_dark.svg"), m_pProjectPanel);
+
+    m_pNavBarPanel->appendPanel(QString(":/icon/cogwheel_light.svg"), QString(":/icon/cogwheel_dark.svg"), new QWidget());
+    connect(m_pNavBarPanel, &SiVAL::NavBarPanel::changeCenterView, this, &SiVALWindow::centerViewSelection);
+
+
+    QList<int> s;
+    s << 450 << width() - 450;
+    m_pSplitter->setSizes(s);
+
+    recentProjects();
+
+#endif
+}
+
+/**************************************************************************************************/
+/**
+ *
+ */
+SiVALWindow::~SiVALWindow() {
+    // m_pSpeakerDoc->save();
+    // delete m_pSpeakerDoc;
+}
+//// end public member methods
+
+//// begin public member methods (internal use only)
+//// end public member methods (internal use only)
+
+//// begin protected member methods
+//// end protected member methods
+
+//// begin protected member methods (internal use only)
+//// end protected member methods (internal use only)
+
+//// begin private member methods
+void SiVALWindow::recentProjects() {
+    // SettingsDocument doc;
+    // QJsonArray array = doc.recentProjects();
+    // for(int i = 0; i < array.count(); i++) {
+    //     QJsonObject obj = array.at(i).toObject();
+    //     QJsonDocument doc(obj);
+    //     m_pHomeWidget->createRecent(obj);
+    // }
+}
+/**
+ * @brief speakerSettings
+ */
+void SiVALWindow::speakerSettings() {
+    m_pSettingsGroup = new QButtonGroup(this);
+    m_pSettingsGroup->setExclusive(true);
+    connect(m_pSettingsGroup, &QButtonGroup::idClicked, this, &SiVALWindow::settingsSelection);
+
+    /* Fensterleiste bearbeiten, damit die Button ausgeblendet werden können. */
+    m_pSpeakerBtn = new SiVAL::SelectionButton("Speaker", m_pFrameBar);
+    m_pSpeakerBtn->hide();
+    m_pSpeakerBtn->setCheckable(true);
+    m_pSpeakerBtn->setMinimumHeight(45);
+    m_pSpeakerBtn->setMaximumHeight(45);
+    m_pSpeakerBtn->setChecked(true);
+    m_pFrameBar->insertWidget(BTN_Speaker, m_pSpeakerBtn);
+    m_pSettingsGroup->addButton(m_pSpeakerBtn, 0);
+
+    m_pSpeakerSearchBtn = new SiVAL::SelectionButton("Search", m_pFrameBar);
+    m_pSpeakerSearchBtn->hide();
+    m_pSpeakerSearchBtn->setCheckable(true);
+    m_pSpeakerSearchBtn->setMinimumHeight(45);
+    m_pSpeakerSearchBtn->setMaximumHeight(45);
+    m_pFrameBar->insertWidget(BTN_Search, m_pSpeakerSearchBtn);
+    m_pSettingsGroup->addButton(m_pSpeakerSearchBtn, 1);
+}
+/**
+ * @brief SpeakerSettingsMenu
+ * @param visible
+ */
+void SiVALWindow::menu(bool visible, QButtonGroup *group) {
+    QList<QAbstractButton*> list = group->buttons();
+    for(int i = 0; i < list.count(); ++i) {
+        QAbstractButton *btn = list.at(i);
+        if(visible) {
+            btn->show();
+        } else {
+            btn->hide();
+        }
+    }
+}
+//// end private member methods
+
+//// begin public slots
+//// end public slots
+
+//// begin protected slots
+void SiVALWindow::centerViewSelection(int id) {
+    if(id == 1) {
+        menu(true, m_pGroup);
+    } else {
+        menu(false, m_pGroup);
+    }
+
+    if(id == 2) {
+        menu(true, m_pSettingsGroup);
+    } else {
+        menu(false, m_pSettingsGroup);
+    }
+
+    m_pCenterStack->setCurrentIndex(id);
+}
+
+void SiVALWindow::createEnclosure() {
+    // SpeakerDocument *doc = m_pNewEnclosure->speaker();
+    // m_pProjectPanel->addEnclosure(doc);
+
+    // m_pNewEnclosure->close();
+}
+
+// void SiVALWindow::enclosureChanged(EnclosureDocument *enc) {
+//     m_pEnclosureView->setPage(SiVAL::MENU_Speaker);
+//     m_pEnclosureBtn->setChecked(true);
+//     // m_pEnclosureView->setEnclosure(enc);
+// }
+
+void SiVALWindow::enclosureSelection(QAbstractButton *btn) {
+    if(btn == m_pProjectButton) {
+        m_pEnclosureView->setPage(SiVAL::MENU_Project);
+    } else if(btn == m_pEnclosureBtn) {
+        m_pEnclosureView->setPage(SiVAL::MENU_Speaker);
+    }
+}
+
+void SiVALWindow::loadProject(const QString &filename) {
+    if(filename != QString()) {
+        m_pProjectPanel->open(filename);
+        m_pNavBarPanel->select(1);
+    }
+}
+
+void SiVALWindow::mainMenu() {
+}
+
+void SiVALWindow::newEnclosure() {
+    m_pNewEnclosure = new EnclosureNewDialog(/*m_pSpeakerDoc,*/ this);
+    m_pNewEnclosure->showNormal();
+    m_pNewEnclosure->raise();
+    connect(m_pNewEnclosure, &EnclosureNewDialog::newEnclosure, this, &SiVALWindow::createEnclosure);
+}
+
+void SiVALWindow::newProject() {
+    m_pProjectNewDialog = new ProjectNewDialog(this);
+    m_pProjectNewDialog->showNormal();
+    m_pProjectNewDialog->raise();
+    connect(m_pProjectNewDialog, &ProjectNewDialog::newProject, this, &SiVALWindow::loadProject);
+}
+
+void SiVALWindow::openProject() {
+    // SettingsDocument doc;
+    // QString file = QFileDialog::getOpenFileName(this, tr("Open Enclosure Project"),
+    //                                             doc.projectDir(),
+    //                                             tr("Enclosure Projects (*.sivalprj)"));
+    // loadProject(file);
+}
+
+// void SiVALWindow::projectChanged(ProjectDocument *doc) {
+//     m_pEnclosureView->setProject(doc);
+//     m_pEnclosureView->setPage(SiVAL::MENU_Project);
+//     m_pProjectButton->setChecked(true);
+// }
+
+void SiVALWindow::settingsSelection(int id) {
+
+}
+//// end protected slots
+
+//// begin private slots
+//// end private slots

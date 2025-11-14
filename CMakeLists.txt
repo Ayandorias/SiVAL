@@ -17,13 +17,15 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 # --- Sub-Projekte ---
-# Reihenfolge ist wichtig: 
+# Reihenfolge ist wichtig:
 # Bibliotheken müssen ZUERST geladen werden.
 
 # 1. Die neue GUI-Bibliothek
 add_subdirectory(sival-core)
 add_subdirectory(sival-gui)
-#add_subdirectory(sival-ressource)
+add_subdirectory(sival-ressource)
+
 
 # 2. Die Anwendung, die die Bibliothek nutzt
-add_subdirectory(sival-enclosure)
+# add_subdirectory(sival-enclosure)
+add_subdirectory(sival)

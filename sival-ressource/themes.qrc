@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/sival">
+        <file alias="light">light_theme.qss</file>
+    </qresource>
+</RCC>

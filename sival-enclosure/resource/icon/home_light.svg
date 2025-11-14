@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="glyphicons-basic"
+   viewBox="0 0 32 32"
+   version="1.1"
+   sodipodi:docname="home_light.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="36.25"
+     inkscape:cx="16.013793"
+     inkscape:cy="16"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="glyphicons-basic" />
+  <path
+     id="home"
+     d="M27.10482,17H24V27.5a.5.5,0,0,1-.5.5h-4a.5.5,0,0,1-.5-.5v-5a.5.5,0,0,0-.5-.5h-5a.5.5,0,0,0-.5.5v5a.5.5,0,0,1-.5.5h-4a.5.5,0,0,1-.5-.5V17H4.89518a.785.785,0,0,1-.55508-1.34008L15.46967,4.53023a.75.75,0,0,1,1.06066,0L27.6599,15.65992A.785.785,0,0,1,27.10482,17Z"
+     style="fill:#ebebed;fill-opacity:1" />
+</svg>

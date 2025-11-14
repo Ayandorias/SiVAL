@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OverlayDialog</class>
+ <widget class="QWidget" name="OverlayDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1433</width>
+    <height>1107</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgba(0, 0, 0, 0.3);</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="styleSheet">
+      <string notr="true">background-color: rgba(0, 0, 0, 0.3);
+border-radius: 5px;</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="1">
+       <spacer name="verticalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>227</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0">
+       <spacer name="horizontalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>290</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="1">
+       <widget class="QWidget" name="m_pDialog" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #e0e0e0;
+border-radius: 5px
+</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,0">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <property name="topMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>3</number>
+         </property>
+         <property name="bottomMargin">
+          <number>3</number>
+         </property>
+         <item>
+          <widget class="QWidget" name="m_pTitleBar" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>45</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>45</height>
+            </size>
+           </property>
+           <property name="sizeIncrement">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border-radius:0px; 
+background-color: #fff</string>
+           </property>
+           <layout class="QHBoxLayout" name="m_pTitleBarLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Policy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>45</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="m_pLabel">
+              <property name="font">
+               <font>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(60, 60, 60);</string>
+              </property>
+              <property name="text">
+               <string>Text</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QToolButton" name="m_pClose">
+              <property name="minimumSize">
+               <size>
+                <width>45</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>45</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton {
+	background-color: #FFF; 
+	border: none; 
+	margin-right: 5px;
+	image: url(&quot;:/icon/close_dark.svg&quot;);
+	padding: 7px;
+}
+QToolButton:hover {
+	background-color: #F00;
+	image: url(&quot;:/icon/close_light.svg&quot;);
+	padding: 7px;
+	border-radius: 3px;
+}</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="autoRaise">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="m_pCenterWidget" native="true"/>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="m_pButtonBar" stretch="1,0,0,0,1">
+           <item>
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="m_pPrevButton">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton { 
+	background-color: #FFFFFF;
+	color: rgb(160, 160, 160);
+	border: none; 
+	padding: 10px 20px; 
+	border: 1px solid #A0A0A0;
+	border-radius: 5px;
+}
+QPushButton:hover { 
+	background-color: rgb(235, 100, 254); 
+	color: #FFF; 
+}
+</string>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../../resource/nw.qrc">
+               <normaloff>:/icon/chevron-left_dark.svg</normaloff>:/icon/chevron-left_dark.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="m_pNextButton">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton { 
+	background-color: #FFFFFF;
+	color: rgb(160, 160, 160);
+	border: none; 
+	padding: 10px 20px; 
+	border: 1px solid #A0A0A0;
+	border-radius: 5px;
+}
+QPushButton:hover { 
+	background-color: rgb(235, 100, 254); 
+	color: #FFF; 
+}</string>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../../resource/nw.qrc">
+               <normaloff>:/icon/chevron-right_dark.svg</normaloff>:/icon/chevron-right_dark.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="m_pAccept">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>35</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton { 
+	background-color: #FFFFFF;
+	color: rgb(160, 160, 160);
+	border: none; 
+	padding: 10px 20px; 
+	border: 1px solid #A0A0A0;
+	border-radius: 5px;
+}
+QPushButton:hover { 
+	background-color: rgb(235, 100, 254); 
+	color: #FFF; 
+}
+</string>
+             </property>
+             <property name="text">
+              <string>PushButton</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>289</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1">
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>226</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../resource/nw.qrc"/>
+ </resources>
+ <connections/>
+</ui>
