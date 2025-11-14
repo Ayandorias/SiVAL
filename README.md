@@ -1,4 +1,4 @@
-<img src="sival-resource/icon/logo_big.svg" alt="SiVAL Logo" width="auto" height="150">
+<img src="sival-ressource/icon/logo_big.svg" alt="SiVAL Logo" width="auto" height="150">
 
 # SiVAL
 Simulation, Visualisation and Analysis Software for Loudspeaker
