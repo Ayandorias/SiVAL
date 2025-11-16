@@ -90,7 +90,7 @@ public:
 
     //// begin protected member
 protected:
-    QString infoText;
+    QString m_infoText;
     QString m_sTitle;
     bool m_bChecvron;
     bool m_bHovered;
@@ -119,6 +119,7 @@ private slots:
 
     //// begin signals
 signals:
+    void infoText(const QString &text);
     void clicked();
     //// end signals
 };

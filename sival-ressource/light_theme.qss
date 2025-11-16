@@ -66,6 +66,9 @@ QScrollBar::handle:horizontal:hover, QScrollBar::handle:horizontal:pressed {
     background: #A5A5A5;
 }
 
+SiVAL--Gui--FrameBar {
+    background-color: #0f0;
+}
 /* ===================================================================
  * Buttons in the Frame
  * ================================================================ */
@@ -81,46 +84,46 @@ QToolButton.SiVALFrameBarButton:hover {
 
 /* ======================= Max Button ============================= */
 #buttonMax {
-    image: url(":/sival/icon/max_dark.svg");
+    image: url(":/sival/light/max.svg");
 }
 /* ======================= Max Button hover ======================= */
 #buttonMax:hover {
-    image: url(":/sival/icon/max_dark.svg");
+    image: url(":/sival/light/max.svg");
 }
 
 #buttonMin {
-    image: url(":/sival/icon/iconize_dark.svg");
+    image: url(":/sival/light/iconize.svg");
 }
 
 #buttonMin:hover {
-    image: url(":/sival/icon/iconize_dark.svg");
+    image: url(":/sival/light/iconize.svg");
 }
 
 #buttonNormal {
-    image: url(":/sival/icon/min_dark.svg");
+    image: url(":/sival/light/min.svg");
 }
 
 #buttonNormal:hover {
-    image: url(":/sival/icon/min_dark.svg");
+    image: url(":/sival/light/min.svg");
 }
 
 /* ====================== Quit Button ============================= */
 #buttonQuit {
     background-color: #FFF;
     margin-right: 5px;
-    image: url(":/sival/icon/close_dark.svg");
+    image: url(":/sival/light/close.svg");
 }
 /* ====================== Quit Button hover ======================= */
 #buttonQuit:hover {
     background-color: #F00;
-    image: url(":/sival/icon/close_light.svg");
+    image: url(":/sival/light/close.svg");
     border-radius: 5px;
 }
 
 /* ===================================================================
  * Left NavigationBar
  * ================================================================ */
-QWidget.SiVALNavigationBar {
+SiVAL--NavigationBar {
     background-color: #E5E5E5;
     border-radius: 0px;
     border-right: 1px solid #C5C5C5;
@@ -143,17 +146,24 @@ QToolButton.SiVALNavigationButton:hover {
     font-weight: bold;
 }
 
-#mainMenu {
-    qproperty-toolButtonStyle: ToolButtonTextUnderIcon;
-    text-align: left;
-    image: url(":/sival/icon/logo.svg");
-    padding: 3px;
+QToolButton.SiVALNavigationButton:checked {
+    background-color: #E5E5E5;
+    border-left: 4px solid #C5C5C5;
+    border-radius: 0px;
+    font-weight: bold;
 }
+
 #mainMenu {
     background-color: #E5E5E5;
     text-align: left;
-    image: url(":/sival/icon/logo.svg");
+    image: url(":/sival/light/logo.svg");
     padding: 3px;
+}
+#separator {
+    margin-left: 3px;
+    margin-right: 3px;
+    border: none;
+    background-color: #C5C5C5;
 }
 
 /* ===================================================================
@@ -190,6 +200,17 @@ SiVAL--Gui--Card:hover {
     background-color: #DADADA;
 }
 
+SiVAL--Gui--StartItemBig {
+    background-color: #FFFFFF;
+    border-radius: 0px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+SiVAL--Gui--StartItemBig:hover {
+    background-color: #FCFCFC;
+    border-radius: 0px;
+}
+
 #horizontalLine, #horizontalLine2 {
     border: none;
     background-color: #E5E5E5;
@@ -202,6 +223,6 @@ SiVAL--StartItem {
 }
 
 SiVAL--StartItem:hover {
-    background-color: #F3F3F3;
-    border: 2px solid #E5E5E5;
+    background-color: #FCFCFC;
+    border: 2px solid #F0F0F0;
 }

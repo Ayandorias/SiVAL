@@ -9,16 +9,11 @@
  *
  */
 //// begin system includes
-#include <QStackedWidget>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <QLabel>
+#include <sivalgui/view.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include <sivalgui/global.hpp>
-#include <sivalgui/cardlist.hpp>
-#include <sivalgui/headerlabel.hpp>
+
 //// end project specific includes
 
 //// begin using namespaces
@@ -34,26 +29,23 @@
 //// end extern declaration
 
 namespace SiVAL {
-namespace Gui {
 /**
- * class NavigationWidget
+ * class HelpView
  *
  * @brief
  *
  */
-class SIVAL_GUI_EXPORT NavigationWidget : public QWidget
+class HelpView : public Gui::View
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit NavigationWidget(QWidget *parent = nullptr);
+    explicit HelpView();
     /// Destructor
-    virtual ~NavigationWidget();
-    void addWidget(QWidget *widget);
-    int currentIndex();
-    void setCurrentIndex(int index);
-    void setHeader(const QString &title);
+    virtual ~HelpView();
+    virtual Gui::NavigationPanel* navigationPanel() override;
+    virtual QWidget* centerPanel() override;
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -82,8 +74,6 @@ protected:
 
     //// begin private member
 private:
-    HeaderLabel *m_header;
-    QStackedWidget *m_navStack;
     //// end private member
 
     //// begin public slots
@@ -102,5 +92,4 @@ private slots:
 signals:
     //// end signals
 };
-}
 }

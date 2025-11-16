@@ -14,6 +14,7 @@
 
 //// begin project specific includes
 #include "startpanel.hpp"
+#include <iostream>
 //// end project specific includes
 
 //// begin using namespaces
@@ -38,7 +39,7 @@ namespace SiVAL {
  *
  */
 SiVAL::StartPanel::StartPanel(QWidget *parent)
-    :QWidget(parent) {
+    :QWidget(parent), m_recentPos(0) {
 
     verticalLayout = new QVBoxLayout(this);
     verticalLayout->setObjectName("verticalLayout");
@@ -51,7 +52,7 @@ SiVAL::StartPanel::StartPanel(QWidget *parent)
     label_3->setObjectName("label_3");
     label_3->setMinimumSize(QSize(120, 40));
     label_3->setMaximumSize(QSize(120, 40));
-    label_3->setPixmap(QPixmap(QString::fromUtf8(":/sival/icon/logo_big.svg")));
+    label_3->setPixmap(QPixmap(QString::fromUtf8(":/sival/light/logo_big.svg")));
     label_3->setScaledContents(true);
     verticalLayout->addWidget(label_3);
 
@@ -89,7 +90,7 @@ SiVAL::StartPanel::StartPanel(QWidget *parent)
     m_newBlank = new StartItem("", scrollAreaWidgetContents);
     m_newBlank->setMinimumSize(200, 200);
     m_newBlank->setMaximumSize(200, 200);
-    m_newBlank->setIcon(":/sival/icon/enclosure.svg");
+    m_newBlank->setIcon(":/sival/light/enclosure.svg");
     hl->addWidget(m_newBlank);
 
 
@@ -107,6 +108,14 @@ SiVAL::StartPanel::StartPanel(QWidget *parent)
     line->setMaximumSize(QSize(16777215, 1));
     verticalLayout->addWidget(line);
 
+
+    m_recentProjects = new Gui::Label(this);
+    m_recentProjects->setMinimumHeight(30);
+    m_recentProjects->setMaximumHeight(30);
+    verticalLayout->addWidget(m_recentProjects);
+
+
+
     scrollArea_2 = new QScrollArea(this);
     scrollArea_2->setObjectName("scrollArea_2");
     scrollArea_2->setWidgetResizable(true);
@@ -115,8 +124,25 @@ SiVAL::StartPanel::StartPanel(QWidget *parent)
     scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 1137, 661));
     scrollArea_2->setWidget(scrollAreaWidgetContents_2);
 
-    verticalLayout->addWidget(scrollArea_2);
+    m_recentLayout = new QVBoxLayout(scrollAreaWidgetContents_2);
+    m_recentLayout->setContentsMargins(0, 0, 0, 0);
+    m_recentLayout->setSpacing(0);
+    spacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+    m_recentLayout->addItem(spacer);
 
+    SiVAL::Gui::StartItemBig *card = new SiVAL::Gui::StartItemBig("Neu...", tr("Hallo Welt"), nullptr);
+    card->setIcon(":/sival/light/projects.svg");
+    card->setMinimumHeight(60);
+    card->setMaximumHeight(60);
+    m_recentLayout->insertWidget(m_recentPos++, card);
+
+    card = new SiVAL::Gui::StartItemBig("Neu...", tr("Hallo Welt"), nullptr);
+    card->setIcon(":/sival/light/projects.svg");
+    card->setMinimumHeight(60);
+    card->setMaximumHeight(60);
+    m_recentLayout->insertWidget(m_recentPos++, card);
+
+    verticalLayout->addWidget(scrollArea_2);
     retranslateUI();
 }
 
@@ -138,6 +164,8 @@ SiVAL::StartPanel::~StartPanel() {
 void StartPanel::retranslateUI() {
     m_newLabel->setText(tr("New"));
     m_newBlank->setTitle(tr("Empty Project"));
+
+    m_recentProjects->setText(tr("Recent Projects"));
 }
 //// end protected member methods (internal use only)
 

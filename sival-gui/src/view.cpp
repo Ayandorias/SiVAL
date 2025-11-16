@@ -62,7 +62,6 @@ SiVAL::NavigationButton* View::navigationButton(QWidget *parent) {
         m_navBarButton->setObjectName(name);
         m_navBarButton->setMinimumSize(80, 60);
         m_navBarButton->setMaximumSize(80, 60);
-        m_navBarButton->setIcon(QIcon(":/sival/icon/home_dark.svg"));//m_icon));
         m_navBarButton->setIconSize(QSize(32, 32));
         m_navBarButton->setText(m_name);
     }

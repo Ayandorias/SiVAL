@@ -29,12 +29,13 @@
 //// begin static functions
 //// end static functions
 
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-SiVAL::FrameBar::FrameBar(QWidget *parent)
+FrameBar::FrameBar(QWidget *parent)
     :QWidget(parent) {
 
     setMinimumHeight(45);
@@ -59,36 +60,36 @@ SiVAL::FrameBar::FrameBar(QWidget *parent)
     m_buttonMin = new SiVAL::FrameBarButton(this);
     m_buttonMin->setObjectName("buttonMin");
     m_pLayout->addWidget(m_buttonMin);
-    connect(m_buttonMin, &SiVAL::FrameBarButton::clicked, this, &SiVAL::FrameBar::iconize);
+    connect(m_buttonMin, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::iconize);
 
     m_buttonNormal = new SiVAL::FrameBarButton(this);
     m_buttonNormal->setObjectName("buttonNormal");
     m_pLayout->addWidget(m_buttonNormal);
-    connect(m_buttonNormal, &SiVAL::FrameBarButton::clicked, this, &SiVAL::FrameBar::normal);
+    connect(m_buttonNormal, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::normal);
 
     m_buttonMax = new SiVAL::FrameBarButton(this);
     m_buttonMax->setObjectName("buttonMax");
     m_pLayout->addWidget(m_buttonMax);
-    connect(m_buttonMax, &SiVAL::FrameBarButton::clicked, this, &SiVAL::FrameBar::maximize);
+    connect(m_buttonMax, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::maximize);
 
     m_buttonQuit = new SiVAL::FrameBarButton(this);
     m_buttonQuit->setObjectName("buttonQuit");
     m_pLayout->addWidget(m_buttonQuit);
-    connect(m_buttonQuit, &SiVAL::FrameBarButton::clicked, this, &SiVAL::FrameBar::quit);
+    connect(m_buttonQuit, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::quit);
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SiVAL::FrameBar::~FrameBar() {
+FrameBar::~FrameBar() {
 }
 /**************************************************************************************************/
 /**
  * @brief checkMaximized
  * @param max
  */
-void SiVAL::FrameBar::checkMaximized(bool max) {
+void FrameBar::checkMaximized(bool max) {
 
     if(max) {
         m_buttonNormal->show();
@@ -98,7 +99,7 @@ void SiVAL::FrameBar::checkMaximized(bool max) {
         m_buttonMax->show();
     }
 }
-void SiVAL::FrameBar::insertWidget(int pos, QWidget *widget) {
+void FrameBar::insertWidget(int pos, QWidget *widget) {
     m_pLayout->insertWidget(pos, widget);
 }
 //// end public member methods
@@ -123,3 +124,4 @@ void SiVAL::FrameBar::insertWidget(int pos, QWidget *widget) {
 
 //// begin private slots
 //// end private slots
+}

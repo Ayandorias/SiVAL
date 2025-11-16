@@ -18,6 +18,7 @@
 //// begin project specific includes
 #include <startitem.hpp>
 #include <sivalgui/label.hpp>
+#include <sivalgui/startitembig.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -85,6 +86,9 @@ private:
 
     StartItem *m_newBlank;
     Gui::Label *m_newLabel;
+    Gui::Label *m_recentProjects;
+    QVBoxLayout *m_recentLayout;
+    int m_recentPos;
     //// end private member
 
     //// begin public slots

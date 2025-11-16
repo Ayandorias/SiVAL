@@ -46,43 +46,43 @@ Gui::NavigationPanel* StartView::navigationPanel() {
         Gui::CardList *l = new Gui::CardList();
 
         SiVAL::Gui::Card *card = new SiVAL::Gui::Card("Neu...", QString(), nullptr);
-        card->setIcon(":/sival/icon/new_dark.svg");
+        card->setIcon(":/sival/light/new.svg");
         card->setMinimumHeight(40);
         card->setMaximumHeight(40);
         l->addCard(card);
 
         card = new SiVAL::Gui::Card(tr("Öffnen..."), QString(), nullptr);
-        card->setIcon(":/sival/icon/open.svg");
+        card->setIcon(":/sival/light/open.svg");
         card->setMinimumHeight(40);
         card->setMaximumHeight(40);
         l->addCard(card);
 
         card = new SiVAL::Gui::Card(tr("Speichern"), QString(), nullptr);
-        card->setIcon(":/sival/icon/save_dark.svg");
+        card->setIcon(":/sival/light/save.svg");
         card->setMinimumHeight(40);
         card->setMaximumHeight(40);
         l->addCard(card);
 
         card = new SiVAL::Gui::Card(tr("Speichern unter..."), QString(), nullptr);
-        card->setIcon(":/sival/icon/save_as.svg");
+        card->setIcon(":/sival/light/save_as.svg");
         card->setMinimumHeight(40);
         card->setMaximumHeight(40);
         l->addCard(card);
 
         card = new SiVAL::Gui::Card(tr("Importieren..."), QString(), nullptr);
-        card->setIcon(":/sival/icon/import_dark.svg");
+        card->setIcon(":/sival/light/import.svg");
         card->setMinimumHeight(40);
         card->setMaximumHeight(40);
         l->addCard(card);
 
         card = new SiVAL::Gui::Card(tr("Exportieren..."), QString(), nullptr);
-        card->setIcon(":/sival/icon/export_dark.svg");
+        card->setIcon(":/sival/light/export.svg");
         card->setMinimumHeight(40);
         card->setMaximumHeight(40);
         l->addCard(card);
 
         card = new SiVAL::Gui::Card(tr("Drucken..."), QString(), nullptr);
-        card->setIcon(":/sival/icon/print_dark.svg");
+        card->setIcon(":/sival/light/print.svg");
         card->setMinimumHeight(40);
         card->setMaximumHeight(40);
         l->addCard(card);

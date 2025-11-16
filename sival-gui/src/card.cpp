@@ -36,7 +36,7 @@ namespace Gui {
 
 //// begin public member methods
 Card::Card(const QString &title, const QString &info, QWidget *parent)
-    : QWidget(parent), m_sTitle(title), infoText(info){
+    : QWidget(parent), m_sTitle(title), m_infoText(info){
 
     m_bHovered = false;
     m_bPressed = false;
@@ -56,7 +56,7 @@ Card::~Card() {
 }
 
 QString Card::info() {
-    return infoText;
+    return m_infoText;
 }
 void Card::setChevron(bool enable) {
     m_bChecvron = enable;
@@ -65,7 +65,7 @@ void Card::setIcon(const QString &icon) {
     m_pIconRenderer = new QSvgRenderer(icon, this);
 }
 void Card::setInfo(const QString &info) {
-    infoText = info;
+    m_infoText = info;
 }
 
 void Card::setTitle(const QString &title) {
@@ -106,6 +106,7 @@ void Card::mouseReleaseEvent(QMouseEvent *event) {
     if(this->rect().contains(event->pos())) {
         if(m_bPressed) {
             emit clicked();
+            emit infoText(m_infoText);
         }
     } else {
         m_bHovered = false;
@@ -127,7 +128,7 @@ void Card::paintEvent(QPaintEvent *event) {
 
     int y = 7;
     int div = 2;
-    if(infoText.isEmpty()) {
+    if(m_infoText.isEmpty()) {
         y = 0;
         div = 1;
     }
@@ -137,7 +138,7 @@ void Card::paintEvent(QPaintEvent *event) {
 
     // Drawing the second Text
     painter.setPen(m_infoColor);
-    painter.drawText(QRect(height(), height() / 2, width(), height() / 2 - 7), Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, infoText);
+    painter.drawText(QRect(height(), height() / 2, width(), height() / 2 - 7), Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, m_infoText);
 
     if(m_pIconRenderer) {
         m_pIconRenderer->render(&painter, QRectF(8, 8, height() - 16, height() - 16));

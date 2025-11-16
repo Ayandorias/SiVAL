@@ -12,6 +12,9 @@ qt_add_executable(sival
     include/startview.hpp src/startview.cpp
     include/startpanel.hpp src/startpanel.cpp
     include/startitem.hpp src/startitem.cpp
+    include/settingsview.hpp src/settingsview.cpp
+    include/helpview.hpp src/helpview.cpp
+    include/projectview.hpp src/projectview.cpp
 )
 
 target_include_directories(sival-gui

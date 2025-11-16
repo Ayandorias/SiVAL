@@ -14,6 +14,8 @@
 
 //// begin project specific includes
 #include "mainwindow.hpp"
+
+#include <iostream>
 //// end project specific includes
 
 //// begin using namespaces
@@ -40,14 +42,43 @@ namespace SiVAL {
 MainWindow::MainWindow(MainWindow *parent)
     :Gui::MainWindow(parent) {
 
+    m_group = new QButtonGroup(this);
+    m_group->setExclusive(true);
+
+
     m_startView = new StartView();
     NavigationButton *btn = m_startView->navigationButton(m_navBar);
-    btn->setIcon(QIcon(":/sival/icon/home_dark.svg"));
+    btn->setIcon(QIcon(":/sival/light/home.svg"));
     m_navBar->addButton(btn);
-
+    m_group->addButton(btn, 0);
     m_navWidget->addWidget(m_startView->navigationPanel());
-
     m_stackWidget->addWidget(m_startView->centerPanel());
+
+
+
+    m_projectView = new ProjectView();
+    btn = m_projectView->navigationButton(m_navBar);
+    btn->setIcon(QIcon(":/sival/light/projects.svg"));
+    m_navBar->addButton(btn);
+    m_group->addButton(btn, 1);
+
+
+
+    m_helpView = new HelpView();
+    btn = m_helpView->navigationButton(m_navBar);
+    btn->setIcon(QIcon(":/sival/light/help.svg"));
+    m_navBar->appendButton(btn);
+    m_group->addButton(btn, 2);
+
+
+
+    m_settingsView = new SettingsView();
+    btn = m_settingsView->navigationButton(m_navBar);
+    btn->setIcon(QIcon(":/sival/light/cogwheel.svg"));
+    m_navBar->appendButton(btn);
+    m_group->addButton(btn, 3);
+
+    connect(m_group, &QButtonGroup::buttonClicked, this, &MainWindow::selection);
 
     retranslateUI();
 }
@@ -73,6 +104,27 @@ MainWindow::~MainWindow() {
 //// end protected member methods (internal use only)
 
 //// begin private member methods
+void MainWindow::setNavigationHeader(int id) {
+    switch(id) {
+        case 0: {
+            m_navWidget->setHeader(tr("Welcome"));
+            break;
+        }
+        case 1: {
+            m_navWidget->setHeader(tr("Project"));
+            break;
+        }
+        case 2: {
+            m_navWidget->setHeader(tr("Help"));
+            break;
+        }
+        case 3: {
+            m_navWidget->setHeader(tr("Settings"));
+            break;
+        }
+        default: break;
+    }
+}
 //// end private member methods
 
 //// begin public slots
@@ -80,7 +132,23 @@ MainWindow::~MainWindow() {
 
 //// begin protected slots
 void MainWindow::retranslateUI() {
-    m_startView->navigationButton(m_navBar)->setText(tr("Willkommen"));
+    m_startView->navigationButton(m_navBar)->setText(tr("Welcome"));
+    m_projectView->navigationButton(m_navBar)->setText(tr("Project"));
+    m_helpView->navigationButton(m_navBar)->setText(tr("Help"));
+    m_settingsView->navigationButton(m_navBar)->setText(tr("Settings"));
+}
+
+void MainWindow::selection(QAbstractButton *btn) {
+    std::cout << "Ein Button aus der Gruppe " << std::endl;
+    for(QAbstractButton *button : m_group->buttons()) {
+        if(button->isChecked()) {
+            m_navWidget->setCurrentIndex(m_group->id(button));
+            m_stackWidget->setCurrentIndex(m_group->id(button));
+            std::cout << m_group->id(button) << std::endl;
+            setNavigationHeader(m_group->id(button));
+            break;
+        }
+    }
 }
 //// end protected slots
 

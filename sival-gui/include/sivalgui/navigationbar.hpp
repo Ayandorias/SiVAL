@@ -10,6 +10,7 @@
  */
 //// begin system includes
 #include <QWidget>
+#include <QFrame>
 #include <QVBoxLayout>
 //// end system includes
 
@@ -47,6 +48,7 @@ public:
     /// Destructor
     virtual ~NavigationBar();
     void addButton(NavigationButton *btn);
+    void appendButton(NavigationButton *btn);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -72,6 +74,8 @@ public:
     //// begin protected member
 protected:
     QVBoxLayout *m_vl;
+    QFrame *m_line;
+    int m_pos;
     //// end protected member
 
     //// begin private member

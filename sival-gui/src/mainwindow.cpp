@@ -94,14 +94,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     sizes << 250 << 100;
     m_pSplitter->setSizes(sizes);
 
-    m_pFrameBar = new SiVAL::FrameBar(right);
+    m_pFrameBar = new SiVAL::Gui::FrameBar(right);
     m_pRightLayout->addWidget(m_pFrameBar);
 
-    connect(m_pFrameBar, &SiVAL::FrameBar::iconize, this, &SiVAL::Gui::MainWindow::iconize);
-    connect(m_pFrameBar, &SiVAL::FrameBar::maximize, this, &SiVAL::Gui::MainWindow::maximze);
-    connect(m_pFrameBar, &SiVAL::FrameBar::normal, this, &SiVAL::Gui::MainWindow::normal);
-    connect(m_pFrameBar, &SiVAL::FrameBar::quit, this, &SiVAL::Gui::MainWindow::quit);
-    connect(m_pFrameBar, &SiVAL::FrameBar::toggled, this, &SiVAL::Gui::MainWindow::toggleSidebar);
+    connect(m_pFrameBar, &SiVAL::Gui::FrameBar::iconize, this, &SiVAL::Gui::MainWindow::iconize);
+    connect(m_pFrameBar, &SiVAL::Gui::FrameBar::maximize, this, &SiVAL::Gui::MainWindow::maximze);
+    connect(m_pFrameBar, &SiVAL::Gui::FrameBar::normal, this, &SiVAL::Gui::MainWindow::normal);
+    connect(m_pFrameBar, &SiVAL::Gui::FrameBar::quit, this, &SiVAL::Gui::MainWindow::quit);
+    connect(m_pFrameBar, &SiVAL::Gui::FrameBar::toggled, this, &SiVAL::Gui::MainWindow::toggleSidebar);
 
     m_stackWidget = new QStackedWidget(this);
     m_pRightLayout->addWidget(m_stackWidget);

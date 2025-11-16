@@ -54,29 +54,6 @@ CardList::CardList(QWidget *parent)
     m_contentLayout->setContentsMargins(0,0,0,0);
     m_contentLayout->setSpacing(1);
 
-    // SiVAL::Gui::Card *card = new SiVAL::Gui::Card("hello", "hello2", m_scrollContentWidget);
-    // card->setIcon(":/sival/icon/new_dark.svg");
-    // m_contentLayout->addWidget(card);
-
-    // QLabel *label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-    // label = new QLabel("hallo", m_scrollContentWidget);
-    // m_contentLayout->addWidget(label);
-
     QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
     m_contentLayout->addItem(spacer);
 

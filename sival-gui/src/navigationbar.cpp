@@ -37,8 +37,8 @@
  *
  */
 SiVAL::NavigationBar::NavigationBar(QWidget *parent)
-    :QWidget(parent) {
-    setProperty("class", "SiVALNavigationBar");
+    :QWidget(parent), m_pos(1) {
+    // setProperty("class", "SiVALNavigationBar");
     setAttribute(Qt::WA_StyledBackground, true);
 
     setMinimumWidth(80);
@@ -54,20 +54,16 @@ SiVAL::NavigationBar::NavigationBar(QWidget *parent)
     btn->setMaximumSize(80, 40);
     m_vl->addWidget(btn);
 
-    // btn = new SiVAL::NavigationButton(this);
-    // btn->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
-    // btn->setObjectName("startView");
-    // btn->setMinimumSize(80, 60);
-    // btn->setMaximumSize(80, 60);
-    // btn->setIcon(QIcon(":/sival/icon/home_dark.svg"));
-    // btn->setIconSize(QSize(32, 32));
-    // btn->setText("Startview");
-    // vl->addWidget(btn);
-
 
     QSpacerItem *verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
     m_vl->addItem(verticalSpacer_2);
+
+    m_line = new QFrame(this);
+    m_line->setObjectName("separator");
+    m_line->setMinimumSize(QSize(0, 1));
+    m_line->setMaximumSize(QSize(16777215, 1));
+    m_vl->addWidget(m_line);
 }
 
 /**************************************************************************************************/
@@ -77,7 +73,10 @@ SiVAL::NavigationBar::NavigationBar(QWidget *parent)
 SiVAL::NavigationBar::~NavigationBar() {
 }
 void SiVAL::NavigationBar::addButton(SiVAL::NavigationButton *btn) {
-    m_vl->insertWidget(1, btn);
+    m_vl->insertWidget(m_pos++, btn);
+}
+void SiVAL::NavigationBar::appendButton(SiVAL::NavigationButton *btn) {
+    m_vl->addWidget(btn);
 }
 //// end public member methods
 

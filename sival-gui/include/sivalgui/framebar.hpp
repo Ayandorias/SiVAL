@@ -1,6 +1,4 @@
-#ifndef HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
-#define HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
-
+#pragma once
 /*
  * SiVAL
  *
@@ -32,6 +30,7 @@
 //// end extern declaration
 
 namespace SiVAL {
+namespace Gui {
 /**
  * class FrameBar
  *
@@ -113,4 +112,4 @@ signals:
     //// end signals
 };
 }
-#endif // HEADER_GUARD_AetheriumArchivar_FrameBar_HPP
+}

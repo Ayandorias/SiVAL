@@ -81,4 +81,5 @@ CMakeLists.txt.user*
 .uic/
 /build*/
 /doc/
+/html/
 /old*/

@@ -4,21 +4,17 @@
 #include <QApplication>
 #include <QFile>
 
-#include <iostream>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     // UND die Anwendung kann das Theme laden:
-    QFile file(":/sival/light");
+    QFile file(":/sival/light_theme.qss");
     if (file.open(QFile::ReadOnly | QFile::Text))
     {
-        std::cout << "Datei wurde geöffnet: " << std::endl;
         a.setStyleSheet(QLatin1String(file.readAll()));
         file.close();
-    } else {
-        std::cout << "Datei wurde nicht geöffnet: " << std::endl;
     }
 
 

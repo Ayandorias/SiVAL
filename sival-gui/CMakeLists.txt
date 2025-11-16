@@ -50,6 +50,7 @@ add_library(sival-gui SHARED
   include/sivalgui/cardlist.hpp src/cardlist.cpp
   include/sivalgui/navigationpanel.hpp src/navigationpanel.cpp
   include/sivalgui/diagramm.hpp src/diagramm.cpp
+  include/sivalgui/startitembig.hpp src/startitembig.cpp
 )
 
 # target_include_directories(sival-gui PRIVATE include)

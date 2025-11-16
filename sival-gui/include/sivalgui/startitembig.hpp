@@ -1,7 +1,7 @@
 #pragma once
 
 /*
- * SiVAL
+ * SiVAL GUI
  *
  * Copyright (C) since 2025 Bruno Pierucki
  *
@@ -9,16 +9,11 @@
  *
  */
 //// begin system includes
-#include <QStackedWidget>
-#include <QVBoxLayout>
-#include <QWidget>
-#include <QLabel>
+#include <sivalgui/card.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include <sivalgui/global.hpp>
-#include <sivalgui/cardlist.hpp>
-#include <sivalgui/headerlabel.hpp>
+
 //// end project specific includes
 
 //// begin using namespaces
@@ -36,24 +31,20 @@
 namespace SiVAL {
 namespace Gui {
 /**
- * class NavigationWidget
+ * class StartItemBig
  *
  * @brief
  *
  */
-class SIVAL_GUI_EXPORT NavigationWidget : public QWidget
+class StartItemBig : public Card
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit NavigationWidget(QWidget *parent = nullptr);
+    explicit StartItemBig(const QString &title, const QString &info, QWidget *parent);
     /// Destructor
-    virtual ~NavigationWidget();
-    void addWidget(QWidget *widget);
-    int currentIndex();
-    void setCurrentIndex(int index);
-    void setHeader(const QString &title);
+    virtual ~StartItemBig();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -82,8 +73,6 @@ protected:
 
     //// begin private member
 private:
-    HeaderLabel *m_header;
-    QStackedWidget *m_navStack;
     //// end private member
 
     //// begin public slots

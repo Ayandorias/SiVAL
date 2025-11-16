@@ -9,12 +9,16 @@
  *
  */
 //// begin system includes
+#include <QButtonGroup>
 #include <QVector>
 #include <sivalgui/mainwindow.hpp>
 //// end system includes
 
 //// begin project specific includes
+#include <helpview.hpp>
+#include <projectview.hpp>
 #include <startview.hpp>
+#include <settingsview.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -61,6 +65,7 @@ protected:
 
     //// begin private member methods
 private:
+    void setNavigationHeader(int id);
     //// end private member methods
 
     //// begin public member
@@ -73,7 +78,11 @@ protected:
 
     //// begin private member
 private:
+    QButtonGroup *m_group;
+    HelpView *m_helpView;
+    ProjectView *m_projectView;
     StartView *m_startView;
+    SettingsView *m_settingsView;
     //// end private member
 
     //// begin public slots
@@ -83,6 +92,7 @@ public slots:
     //// begin protected slots
 protected slots:
     void retranslateUI();
+    void selection(QAbstractButton *btn);
     //// end protected slots
 
     //// begin private slots

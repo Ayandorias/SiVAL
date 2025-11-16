@@ -1,16 +1,19 @@
 /*
- * AetheriumArchivar
+ * SiVAL
  *
  * Copyright (C) since 2025 Bruno Pierucki
  *
  * Author: Bruno Pierucki <b.pierucki@gmx.de>
  */
 
+//// begin includes
+//// end includes
+
 //// begin system includes
-#include <sivalgui/navigationbutton.hpp>
 //// end system includes
 
 //// begin project specific includes
+#include "projectview.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -28,13 +31,27 @@
 //// begin static functions
 //// end static functions
 
+namespace SiVAL {
 //// begin public member methods
-SiVAL::NavigationButton::NavigationButton(QWidget *parent)
-    :QToolButton(parent) {
-    setProperty("class", "SiVALNavigationButton");
-    setCheckable(true);
+/**************************************************************************************************/
+/**
+ *
+ */
+ProjectView::ProjectView()
+    :Gui::View() {
 }
-SiVAL::NavigationButton::~NavigationButton() {
+
+/**************************************************************************************************/
+/**
+ *
+ */
+ProjectView::~ProjectView() {
+}
+Gui::NavigationPanel* ProjectView::navigationPanel() {
+    return nullptr;
+}
+QWidget* ProjectView::centerPanel() {
+    return nullptr;
 }
 //// end public member methods
 
@@ -58,3 +75,4 @@ SiVAL::NavigationButton::~NavigationButton() {
 
 //// begin private slots
 //// end private slots
+}

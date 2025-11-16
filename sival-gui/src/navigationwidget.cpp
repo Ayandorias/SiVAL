@@ -53,7 +53,6 @@ NavigationWidget::NavigationWidget(QWidget *parent)
     m_header->setMinimumSize(QSize(0, 40));
     m_header->setMaximumSize(QSize(16777215, 40));
     verticalLayout->addWidget(m_header);
-    m_header->setText("Das ist ein platzhalter");
 
     m_navStack = new QStackedWidget(this);
     m_navStack->setObjectName("stackedWidget");
@@ -72,6 +71,10 @@ int NavigationWidget::currentIndex() {
 
 void NavigationWidget::setCurrentIndex(int index) {
     m_navStack->setCurrentIndex(index);
+}
+
+void NavigationWidget::setHeader(const QString &header) {
+    m_header->setText(header);
 }
 //// end public member methods
 
