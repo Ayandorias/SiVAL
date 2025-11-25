@@ -57,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     // Pseudofenster für abgerundete Ecken
     QWidget *w = new QWidget(this);
+    w->setObjectName("mainWindow");
     setCentralWidget(w);
 
     QHBoxLayout *hl = new QHBoxLayout(w);
@@ -64,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     hl->setSpacing(0);
 
 
-    m_navBar = new SiVAL::NavigationBar(w);
+    m_navBar = new NavigationBar(w);
     hl->addWidget(m_navBar);
 
 
@@ -150,7 +151,6 @@ void MainWindow::setCenterWidget(QWidget *widget) {
         m_pCenterWidget->close();
     }
     m_pCenterWidget = widget;
-    // m_pCenterWidget->setStyleSheet("border-radius: 0px;");
     m_pRightLayout->addWidget(m_pCenterWidget);
 }
 /**************************************************************************************************/
@@ -164,7 +164,6 @@ void MainWindow::setSideBarWidget(QWidget *widget) {
     }
 
     m_pSideBarWidget = widget;
-    // m_pSideBarWidget->setStyleSheet("background-color: #ebebed;");
     m_pLeftLayout->addWidget(m_pSideBarWidget);
 }
 //// end public member methods (internal use only)

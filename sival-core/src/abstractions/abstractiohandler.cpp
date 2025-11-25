@@ -30,12 +30,13 @@
 
 //// begin static functions
 //// end static functions
-
+namespace SiVAL::Core {
 //// begin public member methods
-SiVAL::AbstractIOHandler::AbstractIOHandler() {
+AbstractIOHandler::AbstractIOHandler(const QString &filename)
+    :m_filename(filename) {
 }
 
-SiVAL::AbstractIOHandler::~AbstractIOHandler() {
+AbstractIOHandler::~AbstractIOHandler() {
 }
 //// end public member methods
 
@@ -50,3 +51,4 @@ SiVAL::AbstractIOHandler::~AbstractIOHandler() {
 
 //// begin private member methods
 //// end private member methods
+}

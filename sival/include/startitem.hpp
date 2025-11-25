@@ -41,7 +41,7 @@ class StartItem : public Gui::Card
     //// begin public member methods
 public:
     /// Constructor
-    explicit StartItem(const QString &title, QWidget *parent);
+    explicit StartItem(QWidget *parent);
     /// Destructor
     virtual ~StartItem();
     //// end public member methods

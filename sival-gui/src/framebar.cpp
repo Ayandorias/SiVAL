@@ -57,25 +57,25 @@ FrameBar::FrameBar(QWidget *parent)
     // m_pButtonSidebar->setCheckable(true);
     // connect(m_pButtonSidebar, &SiVAL::FrameBarButton::toggled, this, &SiVAL::FrameBar::toggled);
 
-    m_buttonMin = new SiVAL::FrameBarButton(this);
+    m_buttonMin = new FrameBarButton(this);
     m_buttonMin->setObjectName("buttonMin");
     m_pLayout->addWidget(m_buttonMin);
-    connect(m_buttonMin, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::iconize);
+    connect(m_buttonMin, &FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::iconize);
 
-    m_buttonNormal = new SiVAL::FrameBarButton(this);
+    m_buttonNormal = new FrameBarButton(this);
     m_buttonNormal->setObjectName("buttonNormal");
     m_pLayout->addWidget(m_buttonNormal);
-    connect(m_buttonNormal, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::normal);
+    connect(m_buttonNormal, &FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::normal);
 
-    m_buttonMax = new SiVAL::FrameBarButton(this);
+    m_buttonMax = new FrameBarButton(this);
     m_buttonMax->setObjectName("buttonMax");
     m_pLayout->addWidget(m_buttonMax);
-    connect(m_buttonMax, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::maximize);
+    connect(m_buttonMax, &FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::maximize);
 
-    m_buttonQuit = new SiVAL::FrameBarButton(this);
+    m_buttonQuit = new FrameBarButton(this);
     m_buttonQuit->setObjectName("buttonQuit");
     m_pLayout->addWidget(m_buttonQuit);
-    connect(m_buttonQuit, &SiVAL::FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::quit);
+    connect(m_buttonQuit, &FrameBarButton::clicked, this, &SiVAL::Gui::FrameBar::quit);
 }
 
 /**************************************************************************************************/

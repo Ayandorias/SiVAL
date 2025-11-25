@@ -13,7 +13,6 @@
 //// end system includes
 
 //// begin project specific includes
-
 //// end project specific includes
 
 //// begin using namespaces
@@ -22,13 +21,15 @@
 //// begin global definition
 //// end global definition
 
+namespace SiVAL::Core {
+
 //// begin forward declarations
+class AbstractDocument;
 //// end forward declarations
 
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
 /**
  * class AbstractIOHandler
  *
@@ -40,10 +41,11 @@ class AbstractIOHandler {
     //// begin public member methods
 public:
     /// Constructor
-    explicit AbstractIOHandler();
+    explicit AbstractIOHandler(const QString &filename);
     /// Destructor
     virtual ~AbstractIOHandler();
-    virtual void load(const QString &filename);
+    virtual bool load(AbstractDocument *doc) = 0;
+    virtual bool save(AbstractDocument *doc) = 0;
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -68,6 +70,7 @@ public:
 
     //// begin protected member
 protected:
+    QString m_filename;
     //// end protected member
 
     //// begin private member

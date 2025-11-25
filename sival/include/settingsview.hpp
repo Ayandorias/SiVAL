@@ -13,7 +13,7 @@
 //// end system includes
 
 //// begin project specific includes
-
+#include <settingspanel.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -54,6 +54,7 @@ public:
 
     //// begin protected member methods
 protected:
+    void retranslate();
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -74,6 +75,9 @@ protected:
 
     //// begin private member
 private:
+    SiVAL::Gui::Card *m_cardGeneral;
+    SiVAL::Gui::Card *m_cardEnclosure;
+    SiVAL::Gui::Card *m_cardAbout;
     //// end private member
 
     //// begin public slots

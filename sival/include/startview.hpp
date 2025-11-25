@@ -11,6 +11,7 @@
 //// begin system includes
 #include <sivalgui/view.hpp>
 #include <sivalgui/navigationpanel.hpp>
+#include <sivalgui/card.hpp>
 //// end system includes
 
 //// begin project specific includes
@@ -55,6 +56,7 @@ public:
 
     //// begin protected member methods
 protected:
+    void retranslate();
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -75,6 +77,10 @@ protected:
 
     //// begin private member
 private:
+    Gui::Card *m_cardNew;
+    Gui::Card *m_cardOpen;
+    Gui::Card *m_cardSave;
+    Gui::Card *m_cardSaveAs;
     //// end private member
 };
 }

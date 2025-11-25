@@ -13,7 +13,6 @@
 //// end system includes
 
 //// begin project specific includes
-#include <iostream>
 //// end project specific includes
 
 //// begin using namespaces
@@ -35,8 +34,8 @@ namespace SiVAL {
 namespace Gui {
 
 //// begin public member methods
-Card::Card(const QString &title, const QString &info, QWidget *parent)
-    : QWidget(parent), m_sTitle(title), m_infoText(info){
+Card::Card(QWidget *parent)
+    : QWidget(parent) {
 
     m_bHovered = false;
     m_bPressed = false;
@@ -133,15 +132,16 @@ void Card::paintEvent(QPaintEvent *event) {
         div = 1;
     }
     // Drawing the first Text
+    int x  = m_margin;
     painter.setPen(palette().color(QPalette::WindowText));
-    painter.drawText(QRect(height(), y, width() - height(), height() / div - y), Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, m_sTitle);
+    painter.drawText(QRect(x + height(), y, width() - height(), height() / div - y), Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, m_sTitle);
 
     // Drawing the second Text
     painter.setPen(m_infoColor);
-    painter.drawText(QRect(height(), height() / 2, width(), height() / 2 - 7), Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, m_infoText);
+    painter.drawText(QRect(x + height(), height() / 2, width(), height() / 2 - 7), Qt::AlignLeft | Qt::AlignVCenter | Qt::TextSingleLine, m_infoText);
 
     if(m_pIconRenderer) {
-        m_pIconRenderer->render(&painter, QRectF(8, 8, height() - 16, height() - 16));
+        m_pIconRenderer->render(&painter, QRectF(x + 8, 8, height() - 16, height() - 16));
     }
 }
 //// end protected member methods

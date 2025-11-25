@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/config">
+        <file>settings/default_settings.sival</file>
+    </qresource>
+</RCC>

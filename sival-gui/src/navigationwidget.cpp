@@ -35,13 +35,11 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
-namespace Gui {
+namespace SiVAL::Gui {
 
 //// begin public member methods
 NavigationWidget::NavigationWidget(QWidget *parent)
     :QWidget(parent) {
-    setProperty("class", "SiVALNavigationWidget");
     setAttribute(Qt::WA_StyledBackground, true);
 
     QVBoxLayout *verticalLayout = new QVBoxLayout(this);
@@ -98,5 +96,4 @@ void NavigationWidget::setHeader(const QString &header) {
 
 //// begin private slots
 //// end private slots
-}
 }

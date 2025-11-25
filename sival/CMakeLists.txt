@@ -15,6 +15,9 @@ qt_add_executable(sival
     include/settingsview.hpp src/settingsview.cpp
     include/helpview.hpp src/helpview.cpp
     include/projectview.hpp src/projectview.cpp
+    include/sival.hpp
+    include/settingspanel.hpp src/settingspanel.cpp
+    include/settingsgeneral.hpp src/settingsgeneral.cpp
 )
 
 target_include_directories(sival-gui
@@ -26,6 +29,7 @@ target_include_directories(sival-gui
 target_link_libraries(sival
     PRIVATE
     sival-gui
+    sival-core
         Qt::Core
         Qt::Widgets
         Qt::Svg

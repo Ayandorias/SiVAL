@@ -67,7 +67,7 @@ CardList::CardList(QWidget *parent)
 CardList::~CardList() {
 }
 
-void CardList::addCard(Card *card) {
+void CardList::addCard(QWidget *card) {
     card->setParent(m_scrollContentWidget);
     m_contentLayout->insertWidget(m_index++, card);
 }

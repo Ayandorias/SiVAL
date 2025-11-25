@@ -11,7 +11,6 @@
 //// end system includes
 
 //// begin project specific includes
-// #include "ui_overlaydialog.h"
 //// end project specific includes
 
 //// begin using namespaces
@@ -35,13 +34,11 @@
  *
  */
 SiVAL::OverlayDialog::OverlayDialog(QWidget *parent)
-:QWidget(parent)/*, m_pUi(new Ui::OverlayDialog())*/ {
-    // m_pUi->
+:QWidget(parent) {
     setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
     setGeometry(0, 0, parent->width(), parent->height());
 
-    // connect(m_pUi->m_pClose, &QToolButton::clicked, this, &SiVAL::OverlayDialog::cancel);
     connect(m_pClose, &QToolButton::clicked, this, &SiVAL::OverlayDialog::cancel);
 
 }
@@ -89,6 +86,21 @@ bool SiVAL::OverlayDialog::eventFilter(QObject *obj, QEvent *event) {
  */
 void SiVAL::OverlayDialog::setupUi(QWidget *OverlayDialog)
 {
+    QHBoxLayout *horizontalLayout;
+    QWidget *widget;
+    QGridLayout *gridLayout;
+    QSpacerItem *verticalSpacer_4;
+    QSpacerItem *horizontalSpacer_8;
+    QWidget *m_pDialog;
+    QVBoxLayout *verticalLayout;
+    QWidget *m_pTitleBar;
+    QSpacerItem *horizontalSpacer_3;
+    QSpacerItem *horizontalSpacer_5;
+    QSpacerItem *horizontalSpacer_6;
+    QSpacerItem *horizontalSpacer_7;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *verticalSpacer_2;
+
     if (OverlayDialog->objectName().isEmpty())
         OverlayDialog->setObjectName("OverlayDialog");
     OverlayDialog->resize(1433, 1107);
@@ -183,50 +195,50 @@ void SiVAL::OverlayDialog::setupUi(QWidget *OverlayDialog)
 
     m_pButtonBar->addItem(horizontalSpacer_6);
 
-    m_pPrevButton = new QPushButton(m_pDialog);
-    m_pPrevButton->setObjectName("m_pPrevButton");
-    m_pPrevButton->setMinimumSize(QSize(0, 35));
-    m_pPrevButton->setMaximumSize(QSize(16777215, 35));
-    m_pPrevButton->setStyleSheet(QString::fromUtf8("QPushButton { \n"
-                                                   "	background-color: #FFFFFF;\n"
-                                                   "	color: rgb(160, 160, 160);\n"
-                                                   "	border: none; \n"
-                                                   "	padding: 10px 20px; \n"
-                                                   "	border: 1px solid #A0A0A0;\n"
-                                                   "	border-radius: 5px;\n"
-                                                   "}\n"
-                                                   "QPushButton:hover { \n"
-                                                   "	background-color: rgb(235, 100, 254); \n"
-                                                   "	color: #FFF; \n"
-                                                   "}\n"
-                                                   ""));
-    QIcon icon;
-    icon.addFile(QString::fromUtf8(":/icon/chevron-left_dark.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-    m_pPrevButton->setIcon(icon);
+    // m_pPrevButton = new QPushButton(m_pDialog);
+    // m_pPrevButton->setObjectName("m_pPrevButton");
+    // m_pPrevButton->setMinimumSize(QSize(0, 35));
+    // m_pPrevButton->setMaximumSize(QSize(16777215, 35));
+    // m_pPrevButton->setStyleSheet(QString::fromUtf8("QPushButton { \n"
+    //                                                "	background-color: #FFFFFF;\n"
+    //                                                "	color: rgb(160, 160, 160);\n"
+    //                                                "	border: none; \n"
+    //                                                "	padding: 10px 20px; \n"
+    //                                                "	border: 1px solid #A0A0A0;\n"
+    //                                                "	border-radius: 5px;\n"
+    //                                                "}\n"
+    //                                                "QPushButton:hover { \n"
+    //                                                "	background-color: rgb(235, 100, 254); \n"
+    //                                                "	color: #FFF; \n"
+    //                                                "}\n"
+    //                                                ""));
+    // QIcon icon;
+    // icon.addFile(QString::fromUtf8(":/icon/chevron-left_dark.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+    // m_pPrevButton->setIcon(icon);
 
-    m_pButtonBar->addWidget(m_pPrevButton);
+    // m_pButtonBar->addWidget(m_pPrevButton);
 
-    m_pNextButton = new QPushButton(m_pDialog);
-    m_pNextButton->setObjectName("m_pNextButton");
-    m_pNextButton->setMinimumSize(QSize(0, 35));
-    m_pNextButton->setMaximumSize(QSize(16777215, 35));
-    m_pNextButton->setStyleSheet(QString::fromUtf8("QPushButton { \n"
-                                                   "	background-color: #FFFFFF;\n"
-                                                   "	color: rgb(160, 160, 160);\n"
-                                                   "	border: none; \n"
-                                                   "	padding: 10px 20px; \n"
-                                                   "	border: 1px solid #A0A0A0;\n"
-                                                   "	border-radius: 5px;\n"
-                                                   "}\n"
-                                                   "QPushButton:hover { \n"
-                                                   "	background-color: rgb(235, 100, 254); \n"
-                                                   "	color: #FFF; \n"
-                                                   "}"));
-    QIcon icon1;
-    icon1.addFile(QString::fromUtf8(":/icon/chevron-right_dark.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-    m_pNextButton->setIcon(icon1);
+    // m_pNextButton = new QPushButton(m_pDialog);
+    // m_pNextButton->setObjectName("m_pNextButton");
+    // m_pNextButton->setMinimumSize(QSize(0, 35));
+    // m_pNextButton->setMaximumSize(QSize(16777215, 35));
+    // m_pNextButton->setStyleSheet(QString::fromUtf8("QPushButton { \n"
+    //                                                "	background-color: #FFFFFF;\n"
+    //                                                "	color: rgb(160, 160, 160);\n"
+    //                                                "	border: none; \n"
+    //                                                "	padding: 10px 20px; \n"
+    //                                                "	border: 1px solid #A0A0A0;\n"
+    //                                                "	border-radius: 5px;\n"
+    //                                                "}\n"
+    //                                                "QPushButton:hover { \n"
+    //                                                "	background-color: rgb(235, 100, 254); \n"
+    //                                                "	color: #FFF; \n"
+    //                                                "}"));
+    // QIcon icon1;
+    // icon1.addFile(QString::fromUtf8(":/icon/chevron-right_dark.svg"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+    // m_pNextButton->setIcon(icon1);
 
-    m_pButtonBar->addWidget(m_pNextButton);
+    // m_pButtonBar->addWidget(m_pNextButton);
 
     m_pAccept = new QPushButton(m_pDialog);
     m_pAccept->setObjectName("m_pAccept");
@@ -288,8 +300,6 @@ void SiVAL::OverlayDialog::retranslateUi(QWidget *OverlayDialog)
 {
     m_pLabel->setText(QCoreApplication::translate("OverlayDialog", "Text", nullptr));
     m_pClose->setText(QString());
-    m_pPrevButton->setText(QCoreApplication::translate("OverlayDialog", "PushButton 1", nullptr));
-    m_pNextButton->setText(QCoreApplication::translate("OverlayDialog", "PushButton 2", nullptr));
     m_pAccept->setText(QCoreApplication::translate("OverlayDialog", "PushButton 3", nullptr));
 } // retranslateUi
 

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "last_modified": "2023-10-27T10:00:00",
+  "general": {
+    "language": "de_DE",
+    "themes_available": [
+      "Light",
+      "Dark",
+      "HighContrast"
+    ],
+    "use_system_theme": false,
+    "theme_current": "Dark",
+    "recent_projects": [],
+    "max_recent_items": 10,
+
+
+    "unit_system": "Metric",
+    "decimal_precision": 2,
+    "show_splash_screen": true
+  },
+  "project": {
+    "default_author": "",
+    "company": "",
+    "license": "",
+    "license_url": "",
+    "auto_save_enabled": true,
+    "auto_save_interval": 5,
+    "default_project_path": ""
+  },
+  "system": {
+    "pos_x": 100,
+    "pos_y": 100,
+    "width": 1280,
+    "height": 800,
+    "is_maximized": false,
+    "is_full_screen": false,
+    "nav_panel_width": 60,
+    "splitter_state": "",
+    "log_level": 2,
+    "csv_export_delimiter": ";",
+    "invert_mouse_wheel_zoom": false,
+    "driver_database_paths": [],
+    "check_for_updates": true,
+    "open_last_project_on_startup": false,
+    "create_new_project_on_startup": false,
+    "keyboard_shortcuts": {
+      "new_project": "Ctrl+N",
+      "save_project": "Ctrl+S"
+    }
+  },
+  "enclosure": {
+    "show_grid": true,
+    "default_line_width": 2,
+    "graph_colors": [
+      "#FF5252",
+      "#448AFF",
+      "#69F0AE",
+      "#E040FB",
+      "#FFD740",
+      "#00E5FF"
+    ]
+  }
+}

@@ -46,7 +46,7 @@ public:
     explicit CardList(QWidget *parent = nullptr);
     /// Destructor
     virtual ~CardList();
-    void addCard(Card *card);
+    void addCard(QWidget *card);
     //// end public member methods
 
     //// begin public member methods (internal use only)

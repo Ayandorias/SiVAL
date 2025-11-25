@@ -35,7 +35,7 @@ add_library(sival-gui SHARED
     include/sivalgui/headerlabel.hpp src/headerlabel.cpp
     include/sivalgui/label.hpp src/label.cpp
     include/sivalgui/navigationwidget.hpp src/navigationwidget.cpp
-    include/sivalgui/overlaydialog.hpp src/overlaydialog.cpp src/overlaydialog.ui
+    include/sivalgui/overlaydialog.hpp src/overlaydialog.cpp
 
 
 
@@ -51,6 +51,9 @@ add_library(sival-gui SHARED
   include/sivalgui/navigationpanel.hpp src/navigationpanel.cpp
   include/sivalgui/diagramm.hpp src/diagramm.cpp
   include/sivalgui/startitembig.hpp src/startitembig.cpp
+  include/sivalgui/section.hpp src/section.cpp
+  include/sivalgui/sectioncard.hpp src/sectioncard.cpp
+  include/sivalgui/spinwidget.hpp src/spinwidget.cpp
 )
 
 # target_include_directories(sival-gui PRIVATE include)

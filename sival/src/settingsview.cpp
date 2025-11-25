@@ -13,6 +13,7 @@
 //// end system includes
 
 //// begin project specific includes
+#include <sivalgui/cardlist.hpp>
 #include "settingsview.hpp"
 //// end project specific includes
 
@@ -48,10 +49,38 @@ SettingsView::SettingsView()
 SettingsView::~SettingsView() {
 }
 Gui::NavigationPanel* SettingsView::navigationPanel() {
-    return nullptr;
+    if(m_navBarPanel == nullptr) {
+        Gui::CardList *l = new Gui::CardList();
+
+        m_cardGeneral = new SiVAL::Gui::Card(nullptr);
+        m_cardGeneral->setIcon(":/sival/light/general.svg");
+        m_cardGeneral->setMinimumHeight(40);
+        m_cardGeneral->setMaximumHeight(40);
+        l->addCard(m_cardGeneral);
+
+        m_cardEnclosure= new SiVAL::Gui::Card(nullptr);
+        m_cardEnclosure->setIcon(":/sival/light/enclosure-fill.svg");
+        m_cardEnclosure->setMinimumHeight(40);
+        m_cardEnclosure->setMaximumHeight(40);
+        l->addCard(m_cardEnclosure);
+
+        m_cardAbout = new SiVAL::Gui::Card(nullptr);
+        m_cardAbout->setIcon(":/sival/light/info.svg");
+        m_cardAbout->setMinimumHeight(40);
+        m_cardAbout->setMaximumHeight(40);
+        l->addCard(m_cardAbout);
+
+        m_navBarPanel = l;
+
+        retranslate();
+    }
+    return m_navBarPanel;
 }
 QWidget* SettingsView::centerPanel() {
-    return nullptr;
+    if(m_centerPanel == nullptr) {
+        m_centerPanel = new SiVAL::SettingsPanel();
+    }
+    return m_centerPanel;
 }
 //// end public member methods
 
@@ -59,6 +88,13 @@ QWidget* SettingsView::centerPanel() {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
+void SettingsView::retranslate() {
+    if(m_navBarPanel != nullptr) {
+        m_cardGeneral->setTitle(tr("General"));
+        m_cardEnclosure->setTitle(tr("Enclosure"));
+        m_cardAbout->setTitle(tr("About"));
+    }
+}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

@@ -37,11 +37,9 @@ namespace Gui {
  */
 Label::Label(const QString &label, QWidget *parent)
     :QLabel(label, parent) {
-    // setStyleSheet();
 }
 Label::Label(QWidget *parent)
     :QLabel(parent) {
-    // setStyleSheet();
 }
 /**************************************************************************************************/
 /**
@@ -58,9 +56,6 @@ Label::~Label() {
 //// end protected member methods
 
 //// begin protected member methods (internal use only)
-// void SiVAL::Label::setStyleSheet() {
-//     // QLabel::setStyleSheet("border: none; background-color: transparent; color: #606060;");
-// }
 //// end protected member methods (internal use only)
 
 //// begin private member methods

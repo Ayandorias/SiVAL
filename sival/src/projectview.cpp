@@ -14,6 +14,9 @@
 
 //// begin project specific includes
 #include "projectview.hpp"
+#include <sivalgui/cardlist.hpp>
+#include <sivalgui/section.hpp>
+#include <sivalgui/sectioncard.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -48,10 +51,30 @@ ProjectView::ProjectView()
 ProjectView::~ProjectView() {
 }
 Gui::NavigationPanel* ProjectView::navigationPanel() {
-    return nullptr;
+    if(m_navBarPanel == nullptr) {
+        Gui::CardList *l = new Gui::CardList();
+
+        sec = new SiVAL::Gui::Section(nullptr);
+        sec->setIcon(":/sival/light/enclosure-fill.svg");
+        sec->setMinimumHeight(40);
+        sec->setMaximumHeight(40);
+        l->addCard(sec);
+
+        QWidget *w = new QWidget();
+        QVBoxLayout *layout = new QVBoxLayout(w);
+        layout->setContentsMargins(0,0,0,0);
+        layout->setSpacing(0);
+        l->addCard(w);
+
+        m_navBarPanel = l;
+    }
+    return m_navBarPanel;
 }
 QWidget* ProjectView::centerPanel() {
-    return nullptr;
+    if(m_centerPanel == nullptr) {
+        m_centerPanel = new QWidget();
+    }
+    return m_centerPanel;
 }
 //// end public member methods
 
@@ -59,6 +82,11 @@ QWidget* ProjectView::centerPanel() {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
+void ProjectView::retranslate() {
+    if(m_navBarPanel != nullptr) {
+        sec->setTitle(tr("Enclosure"));
+    }
+}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

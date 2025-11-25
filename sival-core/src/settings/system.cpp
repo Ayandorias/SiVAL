@@ -13,7 +13,7 @@
 //// end system includes
 
 //// begin project specific includes
-#include "sivalcore/io/settingsjsonhandler.hpp"
+#include "sivalcore/settings/system.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -31,12 +31,21 @@
 //// begin static functions
 //// end static functions
 
+namespace SiVAL::Core {
 //// begin public member methods
-SiVAL::SettingsJsonHandler::SettingsJsonHandler()
-    :SettingsIOHandler() {
+/**************************************************************************************************/
+/**
+ *
+ */
+System::System()
+    :QObject() {
 }
 
-SiVAL::SettingsJsonHandler::~SettingsJsonHandler() {
+/**************************************************************************************************/
+/**
+ *
+ */
+System::~System() {
 }
 //// end public member methods
 
@@ -51,3 +60,13 @@ SiVAL::SettingsJsonHandler::~SettingsJsonHandler() {
 
 //// begin private member methods
 //// end private member methods
+
+//// begin public slots
+//// end public slots
+
+//// begin protected slots
+//// end protected slots
+
+//// begin private slots
+//// end private slots
+}

@@ -38,7 +38,6 @@ namespace Gui {
 HeaderLabel::HeaderLabel(QWidget *parent)
 :Label(parent) {
     setProperty("class", "SiVALHeaderLabel");
-    // setStyleSheet();
 }
 
 /**************************************************************************************************/
@@ -56,9 +55,6 @@ HeaderLabel::~HeaderLabel() {
 //// end protected member methods
 
 //// begin protected member methods (internal use only)
-// void SiVAL::HeaderLabel::setStyleSheet() {
-//     // QLabel::setStyleSheet(QString::fromUtf8("color: #606060; font-size: 12pt; font-weight: bold;"));
-// }
 //// end protected member methods (internal use only)
 
 //// begin private member methods

@@ -56,7 +56,6 @@ namespace Gui {
 
         //// begin protected member methods (internal use only)
     protected:
-        // void setStyleSheet() override;
         //// end protected member methods (internal use only)
 
         //// begin private member methods

@@ -31,7 +31,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::Gui {
 /**
  * class NavigationBar
  *

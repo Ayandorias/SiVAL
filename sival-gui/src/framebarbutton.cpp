@@ -27,13 +27,13 @@
 
 //// begin static functions
 //// end static functions
-
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-SiVAL::FrameBarButton::FrameBarButton(QWidget *parent)
+FrameBarButton::FrameBarButton(QWidget *parent)
     : QToolButton(parent) {
     setMinimumSize(QSize(45, 35));
     setMaximumSize(QSize(45, 35));
@@ -45,7 +45,7 @@ SiVAL::FrameBarButton::FrameBarButton(QWidget *parent)
 /**
  *
  */
-SiVAL::FrameBarButton::~FrameBarButton() {
+FrameBarButton::~FrameBarButton() {
 }
 //// end public member methods
 
@@ -69,3 +69,4 @@ SiVAL::FrameBarButton::~FrameBarButton() {
 
 //// begin private slots
 //// end private slots
+}

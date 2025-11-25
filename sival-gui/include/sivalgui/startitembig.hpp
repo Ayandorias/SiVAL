@@ -42,7 +42,7 @@ class StartItemBig : public Card
     //// begin public member methods
 public:
     /// Constructor
-    explicit StartItemBig(const QString &title, const QString &info, QWidget *parent);
+    explicit StartItemBig(QWidget *parent);
     /// Destructor
     virtual ~StartItemBig();
     //// end public member methods

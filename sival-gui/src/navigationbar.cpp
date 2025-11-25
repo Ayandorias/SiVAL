@@ -30,13 +30,13 @@
 
 //// begin static functions
 //// end static functions
-
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-SiVAL::NavigationBar::NavigationBar(QWidget *parent)
+NavigationBar::NavigationBar(QWidget *parent)
     :QWidget(parent), m_pos(1) {
     // setProperty("class", "SiVALNavigationBar");
     setAttribute(Qt::WA_StyledBackground, true);
@@ -47,11 +47,13 @@ SiVAL::NavigationBar::NavigationBar(QWidget *parent)
 
     m_vl = new QVBoxLayout(this);
     m_vl->setContentsMargins(0, 0, 0, 0);
+    // m_vl->setSpacing(0);
 
-    SiVAL::NavigationButton *btn = new SiVAL::NavigationButton(this);
+    NavigationButton *btn = new NavigationButton(this);
     btn->setObjectName("mainMenu");
     btn->setMinimumSize(80, 40);
     btn->setMaximumSize(80, 40);
+    btn->setCheckable(false);
     m_vl->addWidget(btn);
 
 
@@ -70,12 +72,12 @@ SiVAL::NavigationBar::NavigationBar(QWidget *parent)
 /**
  *
  */
-SiVAL::NavigationBar::~NavigationBar() {
+NavigationBar::~NavigationBar() {
 }
-void SiVAL::NavigationBar::addButton(SiVAL::NavigationButton *btn) {
+void NavigationBar::addButton(NavigationButton *btn) {
     m_vl->insertWidget(m_pos++, btn);
 }
-void SiVAL::NavigationBar::appendButton(SiVAL::NavigationButton *btn) {
+void NavigationBar::appendButton(NavigationButton *btn) {
     m_vl->addWidget(btn);
 }
 //// end public member methods
@@ -100,3 +102,4 @@ void SiVAL::NavigationBar::appendButton(SiVAL::NavigationButton *btn) {
 
 //// begin private slots
 //// end private slots
+}

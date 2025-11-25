@@ -45,58 +45,32 @@ Gui::NavigationPanel* StartView::navigationPanel() {
     if(m_navBarPanel == nullptr) {
         Gui::CardList *l = new Gui::CardList();
 
-        SiVAL::Gui::Card *card = new SiVAL::Gui::Card("Neu...", QString(), nullptr);
-        card->setIcon(":/sival/light/new.svg");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        l->addCard(card);
+        m_cardNew = new Gui::Card();
+        m_cardNew->setIcon(":/sival/light/new.svg");
+        m_cardNew->setMinimumHeight(40);
+        m_cardNew->setMaximumHeight(40);
+        l->addCard(m_cardNew);
 
-        card = new SiVAL::Gui::Card(tr("Öffnen..."), QString(), nullptr);
-        card->setIcon(":/sival/light/open.svg");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        l->addCard(card);
+        m_cardOpen = new Gui::Card();
+        m_cardOpen->setIcon(":/sival/light/open.svg");
+        m_cardOpen->setMinimumHeight(40);
+        m_cardOpen->setMaximumHeight(40);
+        l->addCard(m_cardOpen);
 
-        card = new SiVAL::Gui::Card(tr("Speichern"), QString(), nullptr);
-        card->setIcon(":/sival/light/save.svg");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        l->addCard(card);
+        m_cardSave = new Gui::Card();
+        m_cardSave->setIcon(":/sival/light/save.svg");
+        m_cardSave->setMinimumHeight(40);
+        m_cardSave->setMaximumHeight(40);
+        l->addCard(m_cardSave);
 
-        card = new SiVAL::Gui::Card(tr("Speichern unter..."), QString(), nullptr);
-        card->setIcon(":/sival/light/save_as.svg");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        l->addCard(card);
-
-        card = new SiVAL::Gui::Card(tr("Importieren..."), QString(), nullptr);
-        card->setIcon(":/sival/light/import.svg");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        l->addCard(card);
-
-        card = new SiVAL::Gui::Card(tr("Exportieren..."), QString(), nullptr);
-        card->setIcon(":/sival/light/export.svg");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        l->addCard(card);
-
-        card = new SiVAL::Gui::Card(tr("Drucken..."), QString(), nullptr);
-        card->setIcon(":/sival/light/print.svg");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        l->addCard(card);
-
-
-            // "Importieren..." (standardmäßig deaktiviert)
-
-            // "Exportieren..." (standardmäßig deaktiviert)
-
-            // "Drucken..." (standardmäßig deaktiviert)
-
-
+        m_cardSaveAs = new Gui::Card();
+        m_cardSaveAs->setIcon(":/sival/light/save_as.svg");
+        m_cardSaveAs->setMinimumHeight(40);
+        m_cardSaveAs->setMaximumHeight(40);
+        l->addCard(m_cardSaveAs);
 
         m_navBarPanel = l;
+        retranslate();
     }
     return m_navBarPanel;
 }
@@ -113,6 +87,14 @@ QWidget* StartView::centerPanel() {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
+void StartView::retranslate() {
+    if(m_navBarPanel != nullptr) {
+        m_cardNew->setTitle(tr("New..."));
+        m_cardOpen->setTitle(tr("Open..."));
+        m_cardSave->setTitle(tr("Save"));
+        m_cardSaveAs->setTitle(tr("Save as"));
+    }
+}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

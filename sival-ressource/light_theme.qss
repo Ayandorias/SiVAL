@@ -7,6 +7,10 @@ QWidget {
     border: none;
 }
 
+#mainWindow {
+    border: 1px solid #E5E5E5;
+}
+
 QWidget.CardList {
     background-color: #e5e5e5;
     border-radiuas: 5px;
@@ -66,19 +70,145 @@ QScrollBar::handle:horizontal:hover, QScrollBar::handle:horizontal:pressed {
     background: #A5A5A5;
 }
 
+
+/* ==================================================================
+ *                  Check Box
+ * =============================================================== */
+QCheckBox {
+    spacing: 8px; /* Abstand zwischen Box und Text */
+    color: #6B6B6B; /* Textfarbe (oder deine Theme-Farbe) */
+    font-size: 10pt;
+}
+
+QCheckBox:disabled {
+    color: #888888;
+}
+
+QCheckBox::indicator {
+    width: 12px;
+    height: 12px;
+
+    /* Standard-Rahmen (unchecked) */
+    border: 1px solid #6B6B6B;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+
+/* Hover-Effekt (wenn die Maus über der Box ist) */
+QCheckBox::indicator:unchecked:hover {
+    background-color: #F0F0F0;
+}
+
+QCheckBox::indicator:checked {
+    /* Hintergrund und Rahmen in Akzentfarbe (z.B. Blau) */
+    image: url(:/sival/light/check.svg);
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #F0F0F0;
+}
+
+/* Deaktiviert aber angehakt *   /
+QCheckBox::indicator:checked:disabled {
+    background-color: #c0c0c0;
+    border-color: #c0c0c0;
+    image: url(:/sival/light/check.svg); /  * Optional: Ausgegrautes Icon *  /
+}*/
+
+/* ===================================================================
+ *          Combo Box
+ * ================================================================ */
+
+QComboBox {
+    background-color: #FFFFFF;
+    color: #6B6B6B;
+    border: 1px solid #C5C5C5;
+    border-radius: 5px;
+
+    padding: 5px 10px 5px 10px; /* Oben, Rechts, Unten, Links */
+    min-width: 6em;
+}
+
+/* Wenn die Maus darüber fährt */
+QComboBox:hover {
+    background-color: #F0F0F0;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 25px; /* Breite des Klick-Bereichs für den Pfeil */
+
+    /* Stil des Buttons */
+    border-left-width: 0px; /* Keine Trennlinie für modernen Look */
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(:/sival/light/arrow-down.svg);
+    width: 12px;
+    height: 12px;
+}
+
+QComboBox QAbstractItemView {
+    border: 1px solid #C5C5C5;
+    border-radius: 0px;
+
+    /* Hintergrund der Liste */
+    background-color: #FFFFFF;
+    color: #6B6B6B;
+
+    /* Farben für ausgewählte Einträge */
+    selection-background-color: #F5F5F5; /* Blau */
+    selection-color: #6B6B6B;            /* Weiß */
+
+    outline: 0px; /* Entfernt die gepunktete Fokus-Linie */
+}
+
+QComboBox QAbstractItemView::item {
+    min-height: 24px;
+    padding-left: 5px;
+    color: #6B6B6B;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background-color: #F0F0F0; /* Hellgrau (oder Ihre Wunschfarbe) */
+    color: #6B6B6B;            /* Textfarbe sicherstellen */
+    border: none;
+}
+
+/* Optional: Styling der Scrollbar im Popup */
+QComboBox QAbstractItemView QScrollBar:vertical {
+    width: 8px;
+    background: #F5F5F5;
+}
+
+
+
+/* ===================================================================
+ *          Line Edit
+ * ================================================================ */
+QLineEdit {
+    border: 1px solid #C5C5C5;
+    color: #6B6B6B;
+}
+
+
 SiVAL--Gui--FrameBar {
     background-color: #0f0;
 }
+
 /* ===================================================================
  * Buttons in the Frame
  * ================================================================ */
-QToolButton.SiVALFrameBarButton {
+SiVAL--Gui--FrameBarButton {
     background-color: #ffffff;
     padding: 7px;
     border-radius: 3px;
 }
 
-QToolButton.SiVALFrameBarButton:hover {
+SiVAL--Gui--FrameBarButton:hover {
     background-color: #DADADA;
 }
 
@@ -107,6 +237,48 @@ QToolButton.SiVALFrameBarButton:hover {
     image: url(":/sival/light/min.svg");
 }
 
+/* ===================================================================
+ * Spin Widget
+ * ================================================================ */
+ SiVAL--Gui--SpinWidget QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #C5C5C5;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinMinus {
+    background-color: #FFFFFF;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 1px solid #C5C5C5;
+    border-bottom: 1px solid #C5C5C5;
+    border-radius: 0px;
+    image: url(":/sival/light/minus.svg");
+    padding: 6px;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinMinus:hover {
+    background-color: #F0F0F0;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinPlus {
+    background-color: #FFFFFF;
+    border: 1px solid #C5C5C5;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    image: url(":/sival/light/plus.svg");
+    padding: 6px;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinPlus:hover {
+    background-color: #F0F0F0;
+}
+
 /* ====================== Quit Button ============================= */
 #buttonQuit {
     background-color: #FFF;
@@ -116,14 +288,14 @@ QToolButton.SiVALFrameBarButton:hover {
 /* ====================== Quit Button hover ======================= */
 #buttonQuit:hover {
     background-color: #F00;
-    image: url(":/sival/light/close.svg");
+    image: url(":/sival/light/close_hover.svg");
     border-radius: 5px;
 }
 
 /* ===================================================================
  * Left NavigationBar
  * ================================================================ */
-SiVAL--NavigationBar {
+SiVAL--Gui--NavigationBar {
     background-color: #E5E5E5;
     border-radius: 0px;
     border-right: 1px solid #C5C5C5;
@@ -137,6 +309,7 @@ QToolButton.SiVALNavigationButton {
     border-radius: 0px;
     margin-right: 2px;
     font-size: 8pt;
+    padding-left: 4px;
 }
 
 QToolButton.SiVALNavigationButton:hover {
@@ -144,6 +317,7 @@ QToolButton.SiVALNavigationButton:hover {
     border: none;
     border-radius: 0px;
     font-weight: bold;
+    padding-left: 4px;
 }
 
 QToolButton.SiVALNavigationButton:checked {
@@ -151,12 +325,13 @@ QToolButton.SiVALNavigationButton:checked {
     border-left: 4px solid #C5C5C5;
     border-radius: 0px;
     font-weight: bold;
+    padding-left: 0px;
 }
 
 #mainMenu {
     background-color: #E5E5E5;
     text-align: left;
-    image: url(":/sival/light/logo.svg");
+    image: url(":/sival/logo/speaker.svg");
     padding: 3px;
 }
 #separator {
@@ -169,7 +344,7 @@ QToolButton.SiVALNavigationButton:checked {
 /* ===================================================================
  * Left NavigationsWidget
  * ================================================================ */
-QWidget.SiVALNavigationWidget {
+SiVAL--Gui--NavigationWidget {
     background-color: #E5E5E5;
     border-radius: 0px;
     border: none;
@@ -183,20 +358,49 @@ QLabel.SiVALHeaderLabel{
     padding-left: 8px;
 }
 
+QLabel {
+    color: #F00;
+}
+
 SiVAL--Gui--Label {
     background-color: #fff;
     color: #6B6B6B;
-    font-size: 12pt;
+    font-size: 10pt;
 }
 
 SiVAL--Gui--Card {
     background-color: #E5E5E5;
     color: #6B6B6B;
     qproperty-infoColor: #ABABAB;
-    margin: 4px;
+    margin: 0px;
+    border-radius: 0px;
 }
 
 SiVAL--Gui--Card:hover {
+    background-color: #DADADA;
+}
+
+SiVAL--Gui--Section {
+    background-color: #E0E0E0;
+    color: #6B6B6B;
+    qproperty-infoColor: #ABABAB;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+SiVAL--Gui--Section:hover {
+    background-color: #D5D5D5;
+}
+
+SiVAL--Gui--SectionCard {
+    background-color: #E5E5E5;
+    color: #6B6B6B;
+    qproperty-infoColor: #ABABAB;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+SiVAL--Gui--SectionCard:hover {
     background-color: #DADADA;
 }
 
@@ -216,6 +420,11 @@ SiVAL--Gui--StartItemBig:hover {
     background-color: #E5E5E5;
 }
 
+QWidget#horizontalLine {
+    border: none;
+    background-color: #E5E5E5;
+}
+
 SiVAL--StartItem {
     background-color: #FFFFFF;
     color: #6B6B6B;
@@ -225,4 +434,17 @@ SiVAL--StartItem {
 SiVAL--StartItem:hover {
     background-color: #FCFCFC;
     border: 2px solid #F0F0F0;
+}
+
+SiVAL--SettingsPanel {
+    background-color: #FFFFFF;
+}
+
+#settingsHeader {
+    background-color: #FFFFFF;
+    margin-left: 20px;
+}
+
+SiVAL--SettingsGeneral {
+    background-color: #FFFFFF;
 }

@@ -16,11 +16,18 @@ add_library(sival-core SHARED
     include/sivalcore/core_global.hpp
     include/sivalcore/abstractions/abstractdocument.hpp src/abstractions/abstractdocument.cpp
     include/sivalcore/documents/projectdocument.hpp src/documents/projectdocument.cpp
+    include/sivalcore/documents/settingsdocument.hpp src/documents/settingsdocument.cpp
     include/sivalcore/documents/workspacedocument.hpp src/documents/workspacedocument.cpp
     include/sivalcore/abstractions/abstractiohandler.hpp src/abstractions/abstractiohandler.cpp
     include/sivalcore/io/settingsiohandler.hpp src/io/settingsiohandler.cpp
-    include/sivalcore/io/settingsjsonhandler.hpp src/io/settingsjsonhandler.cpp
+
+    include/sivalcore/sivalglobal.hpp
+    include/sivalcore/settings/general.hpp src/settings/general.cpp
+    include/sivalcore/settings/project.hpp src/settings/project.cpp
+    include/sivalcore/settings/system.hpp src/settings/system.cpp
 )
+
+target_precompile_headers(sival-core PUBLIC include/sivalcore/sivalglobal.hpp)
 
 # target_include_directories(sival-core PRIVATE include)
 # Hier wird deklariert, welche Verzeichnisse beim Linken

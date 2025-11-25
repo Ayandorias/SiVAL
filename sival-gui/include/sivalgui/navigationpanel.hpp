@@ -42,7 +42,7 @@ class NavigationPanel : public QScrollArea
     //// begin public member methods
 public:
     /// Constructor
-    explicit NavigationPanel(QWidget *parent);
+    explicit NavigationPanel(QWidget *parent = nullptr);
     /// Destructor
     virtual ~NavigationPanel();
     //// end public member methods

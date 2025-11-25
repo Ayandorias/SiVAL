@@ -82,28 +82,12 @@ private:
 
     //// begin public member
 public:
-    QHBoxLayout *horizontalLayout;
-    QWidget *widget;
-    QGridLayout *gridLayout;
-    QSpacerItem *verticalSpacer_4;
-    QSpacerItem *horizontalSpacer_8;
-    QWidget *m_pDialog;
-    QVBoxLayout *verticalLayout;
-    QWidget *m_pTitleBar;
-    QHBoxLayout *m_pTitleBarLayout;
-    QSpacerItem *horizontalSpacer_3;
     QLabel *m_pLabel;
-    QSpacerItem *horizontalSpacer_5;
+    QHBoxLayout *m_pButtonBar;
+    QHBoxLayout *m_pTitleBarLayout;
     QToolButton *m_pClose;
     QWidget *m_pCenterWidget;
-    QHBoxLayout *m_pButtonBar;
-    QSpacerItem *horizontalSpacer_6;
-    QPushButton *m_pPrevButton;
-    QPushButton *m_pNextButton;
     QPushButton *m_pAccept;
-    QSpacerItem *horizontalSpacer_7;
-    QSpacerItem *horizontalSpacer;
-    QSpacerItem *verticalSpacer_2;
     //// end public member
 
     //// begin protected member

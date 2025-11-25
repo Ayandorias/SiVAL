@@ -37,8 +37,8 @@ namespace SiVAL::Gui {
 /**
  *
  */
-StartItemBig::StartItemBig(const QString &title, const QString &info, QWidget *parent)
-    :Card(title, info, parent) {
+StartItemBig::StartItemBig(QWidget *parent)
+    :Card(parent) {
 }
 
 /**************************************************************************************************/

@@ -10,6 +10,7 @@
  */
 //// begin system includes
 #include <sivalgui/view.hpp>
+#include <sivalgui/section.hpp>
 //// end system includes
 
 //// begin project specific includes
@@ -54,6 +55,7 @@ public:
 
     //// begin protected member methods
 protected:
+    void retranslate();
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -74,6 +76,7 @@ protected:
 
     //// begin private member
 private:
+    SiVAL::Gui::Section *sec;
     //// end private member
 
     //// begin public slots

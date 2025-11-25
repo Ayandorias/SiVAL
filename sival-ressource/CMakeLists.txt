@@ -23,6 +23,8 @@
 
 
 # (AUTORCC muss im Hauptprojekt aktiviert sein)
+find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
+
 
 # Eine statische Bibliothek nur für die Ressourcen
 add_library(sival-ressource SHARED
@@ -30,9 +32,20 @@ add_library(sival-ressource SHARED
     light_theme.qss
     light_theme.qss
     themes.qrc
+    sival-settings.qrc
+    settings/default_settings.sival
+)
+
+qt_add_translations(sival-ressource
+    TS_FILES
+        i18n/sival_de_DE.ts
+        i18n/sival_en_EN.ts
+    RESOURCE_PREFIX "/i18n"  # Wichtig: Der Pfad im Ressourcen-System
 )
 
 # Ressourcen brauchen Qt::Core
 target_link_libraries(sival-ressource PUBLIC
     Qt::Core
 )
+
+

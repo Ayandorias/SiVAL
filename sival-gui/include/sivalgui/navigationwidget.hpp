@@ -78,12 +78,12 @@ public:
 
     //// begin protected member
 protected:
+    HeaderLabel *m_header;
+    QStackedWidget *m_navStack;
     //// end protected member
 
     //// begin private member
 private:
-    HeaderLabel *m_header;
-    QStackedWidget *m_navStack;
     //// end private member
 
     //// begin public slots

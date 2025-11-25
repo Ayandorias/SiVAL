@@ -9,7 +9,7 @@
  *
  */
 //// begin system includes
-#include <sivalcore/io/settingsiohandler.hpp>
+#include <QObject>
 //// end system includes
 
 //// begin project specific includes
@@ -28,22 +28,22 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::Core {
 /**
- * class SettingsJsonHandler
+ * class System
  *
  * @brief
  *
  */
-class SettingsJsonHandler : public SettingsIOHandler
+class System : public QObject
 {
-
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SettingsJsonHandler();
+    explicit System();
     /// Destructor
-    virtual ~SettingsJsonHandler();
+    virtual ~System();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -73,5 +73,21 @@ protected:
     //// begin private member
 private:
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    //// end signals
 };
 }

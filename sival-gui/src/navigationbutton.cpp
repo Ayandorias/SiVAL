@@ -27,14 +27,14 @@
 
 //// begin static functions
 //// end static functions
-
+namespace SiVAL::Gui {
 //// begin public member methods
-SiVAL::NavigationButton::NavigationButton(QWidget *parent)
+NavigationButton::NavigationButton(QWidget *parent)
     :QToolButton(parent) {
     setProperty("class", "SiVALNavigationButton");
     setCheckable(true);
 }
-SiVAL::NavigationButton::~NavigationButton() {
+NavigationButton::~NavigationButton() {
 }
 //// end public member methods
 
@@ -58,3 +58,4 @@ SiVAL::NavigationButton::~NavigationButton() {
 
 //// begin private slots
 //// end private slots
+}

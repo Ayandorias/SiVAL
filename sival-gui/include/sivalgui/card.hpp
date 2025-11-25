@@ -35,7 +35,7 @@ namespace Gui {
 /**
 * class Card
 *
-* @brief
+* @brief Card ist die Basisklasse der Anzeigeelement in der Anwendung.
 *
 */
 class SIVAL_GUI_EXPORT Card : public QWidget
@@ -46,8 +46,14 @@ class SIVAL_GUI_EXPORT Card : public QWidget
 
     //// begin public member methods
 public:
-    /// Constructor
-    explicit Card(const QString &title, const QString &info, QWidget *parent);
+    /**
+     * @brief Card Der Konstruktor.
+     *
+     * Er erstellt ein Element mit folgenden Eigenschaften.
+     * @param title Den Title der angezeigt werden soll
+     * @param parent Das Elternfenster in dem das Element angezeigt werden kann.
+     */
+    explicit Card(QWidget *parent = nullptr);
     /// Destructor
     virtual ~Card();
     QString info();
@@ -95,6 +101,7 @@ protected:
     bool m_bChecvron;
     bool m_bHovered;
     bool m_bPressed;
+    int m_margin = 0;
 
     QColor m_infoColor = QColor("black"); // Standardwert!
     QSvgRenderer *m_pIconRenderer;

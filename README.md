@@ -15,3 +15,5 @@ Wenn du einen andern Lautsprecher auswählst, werden die Kennlinien für diesen 
 Dadurch kannst du verschiedenste Lautsprecher simulieren, um den für dich besten für dein Projekt zu finden.
 
 
+
+Thanks to [neoguiri](https://openclipart.org/artist/neoguiri) for his [Speaker Icon](https://openclipart.org/detail/213333).

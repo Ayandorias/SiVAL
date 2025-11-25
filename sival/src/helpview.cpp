@@ -48,10 +48,16 @@ HelpView::HelpView()
 HelpView::~HelpView() {
 }
 Gui::NavigationPanel* HelpView::navigationPanel() {
-    return nullptr;
+    if(m_navBarPanel == nullptr) {
+        m_navBarPanel = new Gui::NavigationPanel();
+    }
+    return m_navBarPanel;
 }
 QWidget* HelpView::centerPanel() {
-    return nullptr;
+    if(m_centerPanel == nullptr) {
+        m_centerPanel = new QWidget();
+    }
+    return m_centerPanel;
 }
 //// end public member methods
 

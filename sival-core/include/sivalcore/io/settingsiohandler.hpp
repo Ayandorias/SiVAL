@@ -28,7 +28,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::Core {
 /**
  * class JsonIOHandler
  *
@@ -40,10 +40,10 @@ class SettingsIOHandler : public AbstractIOHandler
 
     //// begin public member methods
 public:
-    /// Constructor
-    explicit SettingsIOHandler();
-    /// Destructor
+    static SettingsIOHandler* createInstance(const QString& filename);
     virtual ~SettingsIOHandler();
+    virtual bool load(AbstractDocument *doc) override;
+    virtual bool save(AbstractDocument *doc) override;
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -60,6 +60,10 @@ protected:
 
     //// begin private member methods
 private:
+    /// Constructor
+    explicit SettingsIOHandler(const QString &filename);
+    QString getUserFilePath() const;
+    void parseData();
     //// end private member methods
 
     //// begin public member

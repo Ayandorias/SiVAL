@@ -57,7 +57,6 @@ protected:
 
     //// begin protected member methods (internal use only)
 protected:
-    // virtual void setStyleSheet();
     //// end protected member methods (internal use only)
 
     //// begin private member methods

@@ -8,8 +8,6 @@
         <file>light/help.svg</file>
         <file>light/iconize.svg</file>
         <file>light/import.svg</file>
-        <file>light/logo.svg</file>
-        <file>light/logo_big.svg</file>
         <file>light/max.svg</file>
         <file>light/min.svg</file>
         <file>light/new.svg</file>
@@ -18,5 +16,15 @@
         <file>light/projects.svg</file>
         <file>light/save.svg</file>
         <file>light/save_as.svg</file>
+        <file>light/close_hover.svg</file>
+        <file>light/enclosure-fill.svg</file>
+        <file>light/general.svg</file>
+        <file>logo/sival_logo.svg</file>
+        <file>logo/speaker.svg</file>
+        <file>light/info.svg</file>
+        <file>light/check.svg</file>
+        <file>light/minus.svg</file>
+        <file>light/plus.svg</file>
+        <file>light/arrow-down.svg</file>
     </qresource>
 </RCC>

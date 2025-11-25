@@ -31,12 +31,13 @@
 //// begin static functions
 //// end static functions
 
+namespace SiVAL::Core {
 //// begin public member methods
-SiVAL::AbstractDocument::AbstractDocument(AbstractIOHandler *handler)
+AbstractDocument::AbstractDocument(AbstractIOHandler *handler)
     :m_handler(handler), QObject() {
 }
 
-SiVAL::AbstractDocument::~AbstractDocument() {
+AbstractDocument::~AbstractDocument() {
 }
 //// end public member methods
 
@@ -52,3 +53,4 @@ SiVAL::AbstractDocument::~AbstractDocument() {
 //// begin private member methods
 //// end private member methods
 
+}

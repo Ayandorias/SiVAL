@@ -28,7 +28,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::Core {
 /**
  * class AbstractDocument
  *

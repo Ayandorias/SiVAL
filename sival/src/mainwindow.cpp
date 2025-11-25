@@ -47,7 +47,7 @@ MainWindow::MainWindow(MainWindow *parent)
 
 
     m_startView = new StartView();
-    NavigationButton *btn = m_startView->navigationButton(m_navBar);
+    SiVAL::Gui::NavigationButton *btn = m_startView->navigationButton(m_navBar);
     btn->setIcon(QIcon(":/sival/light/home.svg"));
     m_navBar->addButton(btn);
     m_group->addButton(btn, 0);
@@ -61,6 +61,8 @@ MainWindow::MainWindow(MainWindow *parent)
     btn->setIcon(QIcon(":/sival/light/projects.svg"));
     m_navBar->addButton(btn);
     m_group->addButton(btn, 1);
+    m_navWidget->addWidget(m_projectView->navigationPanel());
+    m_stackWidget->addWidget(m_projectView->centerPanel());
 
 
 
@@ -69,6 +71,8 @@ MainWindow::MainWindow(MainWindow *parent)
     btn->setIcon(QIcon(":/sival/light/help.svg"));
     m_navBar->appendButton(btn);
     m_group->addButton(btn, 2);
+    m_navWidget->addWidget(m_helpView->navigationPanel());
+    m_stackWidget->addWidget(m_helpView->centerPanel());
 
 
 
@@ -77,10 +81,14 @@ MainWindow::MainWindow(MainWindow *parent)
     btn->setIcon(QIcon(":/sival/light/cogwheel.svg"));
     m_navBar->appendButton(btn);
     m_group->addButton(btn, 3);
+    m_navWidget->addWidget(m_settingsView->navigationPanel());
+    m_stackWidget->addWidget(m_settingsView->centerPanel());
 
     connect(m_group, &QButtonGroup::buttonClicked, this, &MainWindow::selection);
 
     retranslateUI();
+
+    m_startView->navigationButton(m_navBar)->animateClick();
 }
 
 /**************************************************************************************************/

@@ -1,12 +1,14 @@
 #if 1
 #include "mainwindow.hpp"
 
+#include <QStandardPaths>
+#include <sivalcore/io/settingsiohandler.hpp>
 #include <QApplication>
 #include <QFile>
 
-
 int main(int argc, char *argv[])
 {
+    SiVAL::Core::SettingsDocument doc(SiVAL::Core::SettingsIOHandler::createInstance("settings.sival"));
     QApplication a(argc, argv);
 
     // UND die Anwendung kann das Theme laden:
