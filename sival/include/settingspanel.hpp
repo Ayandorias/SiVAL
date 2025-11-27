@@ -14,7 +14,7 @@
 //// end system includes
 
 //// begin project specific includes
-
+#include <sival.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -45,6 +45,7 @@ public:
     explicit SettingsPanel(QWidget *parent = nullptr);
     /// Destructor
     virtual ~SettingsPanel();
+    void changePage(SiVAL::Settings settings);
     //// end public member methods
 
     //// begin public member methods (internal use only)

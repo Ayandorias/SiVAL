@@ -1,0 +1,83 @@
+#pragma once
+
+#include <QString>
+#include <QSysInfo>
+
+// Namespace für saubere Kapselung
+namespace SiVAL::Version {
+
+    // --- 1. Basis-Versionierung ---
+    
+    // Die semantische Version (Major.Minor.Patch)
+    static inline QString getNumber() {
+        return QStringLiteral("@PROJECT_VERSION@"); 
+    }
+
+    static inline int getMajor() { return @PROJECT_VERSION_MAJOR@; }
+    static inline int getMinor() { return @PROJECT_VERSION_MINOR@; }
+    static inline int getPatch() { return @PROJECT_VERSION_PATCH@; }
+
+    // --- 2. Build-Metadaten (Code::Blocks Style) ---
+
+    // Der Status (Alpha, Beta, Release) - via CMake gesteuert
+    static inline QString getStatus() {
+        return QStringLiteral("@SIVAL_BUILD_STATUS@");
+    }
+
+    // Die Build-Nummer (Inkrementell oder Commit-Count)
+    static inline QString getBuildNumber() {
+        return QStringLiteral("@SIVAL_BUILD_COUNT@");
+    }
+
+    // Der genaue Git-Hash (Revision)
+    static inline QString getRevision() {
+        return QStringLiteral("@SIVAL_GIT_HASH@");
+    }
+
+    // --- 3. Zeitstempel ---
+
+    // Datum des Kompiliervorgangs (ISO Format empfohlen)
+    static inline QString getBuildDate() {
+        return QStringLiteral("@SIVAL_BUILD_DATE@");
+    }
+
+    // Uhrzeit des Kompiliervorgangs
+    static inline QString getBuildTime() {
+        return QStringLiteral("@SIVAL_BUILD_TIME@");
+    }
+
+    // --- 4. Technische Umgebung ---
+
+    // Der Compiler (wird zur Compile-Zeit ermittelt, nicht via CMake)
+    static inline QString getCompiler() {
+        #if defined(__clang__)
+            return QString("Clang %1.%2.%3").arg(__clang_major__).arg(__clang_minor__).arg(__clang_patchlevel__);
+        #elif defined(__GNUC__)
+            return QString("GCC %1.%2.%3").arg(__GNUC__).arg(__GNUC_MINOR__).arg(__GNUC_PATCHLEVEL__);
+        #elif defined(_MSC_VER)
+            return QString("MSVC %1").arg(_MSC_VER);
+        #else
+            return QStringLiteral("Unknown Compiler");
+        #endif
+    }
+
+    // Die Architektur (32/64 Bit, x86/ARM)
+    static inline QString getArchitecture() {
+        return QSysInfo::currentCpuArchitecture();
+    }
+
+    // --- 5. Zusammenfassungen ---
+
+    // Gibt "SiVAL v1.0.2 Alpha (Build 452)" zurück
+    static inline QString getFullString() {
+        return QString("v%1 %2 (Build %3)")
+                .arg(getNumber())
+                .arg(getStatus())
+                .arg(getBuildNumber());
+    }
+    
+    // Gibt "27.11.2025 - 14:30:00" zurück (oder was __DATE__ liefert)
+    static inline QString getTimestamp() {
+        return QString("%1 %2").arg(getBuildDate()).arg(getBuildTime());
+    }
+}

@@ -65,6 +65,10 @@ SettingsDocument* SettingsDocument::instance()
 void SettingsDocument::parse(const QString &doc) {
 
 }
+
+QString SettingsDocument::theme() {
+    return "dark";
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)

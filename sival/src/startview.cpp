@@ -10,6 +10,7 @@
 //// end includes
 
 //// begin system includes
+// #include <sivalcore/sivalglobal.hpp>
 //// end system includes
 
 //// begin project specific includes
@@ -46,25 +47,21 @@ Gui::NavigationPanel* StartView::navigationPanel() {
         Gui::CardList *l = new Gui::CardList();
 
         m_cardNew = new Gui::Card();
-        m_cardNew->setIcon(":/sival/light/new.svg");
         m_cardNew->setMinimumHeight(40);
         m_cardNew->setMaximumHeight(40);
         l->addCard(m_cardNew);
 
         m_cardOpen = new Gui::Card();
-        m_cardOpen->setIcon(":/sival/light/open.svg");
         m_cardOpen->setMinimumHeight(40);
         m_cardOpen->setMaximumHeight(40);
         l->addCard(m_cardOpen);
 
         m_cardSave = new Gui::Card();
-        m_cardSave->setIcon(":/sival/light/save.svg");
         m_cardSave->setMinimumHeight(40);
         m_cardSave->setMaximumHeight(40);
         l->addCard(m_cardSave);
 
         m_cardSaveAs = new Gui::Card();
-        m_cardSaveAs->setIcon(":/sival/light/save_as.svg");
         m_cardSaveAs->setMinimumHeight(40);
         m_cardSaveAs->setMaximumHeight(40);
         l->addCard(m_cardSaveAs);
@@ -93,6 +90,11 @@ void StartView::retranslate() {
         m_cardOpen->setTitle(tr("Open..."));
         m_cardSave->setTitle(tr("Save"));
         m_cardSaveAs->setTitle(tr("Save as"));
+
+        m_cardNew->setIcon(":/sival/" + sSettings()->theme() + "/new.svg");
+        m_cardOpen->setIcon(":/sival/" + sSettings()->theme() + "/open.svg");
+        m_cardSave->setIcon(":/sival/" + sSettings()->theme() + "/save.svg");
+        m_cardSaveAs->setIcon(":/sival/" + sSettings()->theme() + "/save_as.svg");
     }
 }
 //// end protected member methods

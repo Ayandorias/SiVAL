@@ -36,5 +36,5 @@
   <path
      d="m 16,4 a 1.5,1.5 0 0 1 1.5,1.5 v 9 h 9 a 1.5,1.5 0 0 1 0,3 h -9 v 9 a 1.5,1.5 0 0 1 -3,0 v -9 h -9 a 1.5,1.5 0 0 1 0,-3 h 9 v -9 A 1.5,1.5 0 0 1 16,4"
      id="path1"
-     style="stroke-width:3;fill:#6b6b6b;fill-opacity:1" />
+     style="stroke-width:3;fill:#6B6B6E;fill-opacity:1" />
 </svg>

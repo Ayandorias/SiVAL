@@ -22,3 +22,10 @@
  * for each module.)
  *
  */
+
+namespace SiVAL {
+enum class Settings {
+    General = 0,
+    About
+};
+}

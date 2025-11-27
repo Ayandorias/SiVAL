@@ -82,7 +82,7 @@ StartPanel::StartPanel(QWidget *parent)
     m_newBlank = new StartItem(scrollAreaWidgetContents);
     m_newBlank->setMinimumSize(200, 200);
     m_newBlank->setMaximumSize(200, 200);
-    m_newBlank->setIcon(":/sival/light/enclosure.svg");
+    m_newBlank->setIcon(":/sival/" + sSettings()->theme() + "/enclosure.svg");
     hl->addWidget(m_newBlank);
 
 

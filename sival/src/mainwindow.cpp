@@ -48,7 +48,7 @@ MainWindow::MainWindow(MainWindow *parent)
 
     m_startView = new StartView();
     SiVAL::Gui::NavigationButton *btn = m_startView->navigationButton(m_navBar);
-    btn->setIcon(QIcon(":/sival/light/home.svg"));
+    btn->setIcon(QIcon(":/sival/" + sSettings()->theme() + "/home.svg"));
     m_navBar->addButton(btn);
     m_group->addButton(btn, 0);
     m_navWidget->addWidget(m_startView->navigationPanel());
@@ -58,7 +58,7 @@ MainWindow::MainWindow(MainWindow *parent)
 
     m_projectView = new ProjectView();
     btn = m_projectView->navigationButton(m_navBar);
-    btn->setIcon(QIcon(":/sival/light/projects.svg"));
+    btn->setIcon(QIcon(":/sival/" + sSettings()->theme() + "/projects.svg"));
     m_navBar->addButton(btn);
     m_group->addButton(btn, 1);
     m_navWidget->addWidget(m_projectView->navigationPanel());
@@ -68,7 +68,7 @@ MainWindow::MainWindow(MainWindow *parent)
 
     m_helpView = new HelpView();
     btn = m_helpView->navigationButton(m_navBar);
-    btn->setIcon(QIcon(":/sival/light/help.svg"));
+    btn->setIcon(QIcon(":/sival/" + sSettings()->theme() + "/help.svg"));
     m_navBar->appendButton(btn);
     m_group->addButton(btn, 2);
     m_navWidget->addWidget(m_helpView->navigationPanel());
@@ -78,7 +78,7 @@ MainWindow::MainWindow(MainWindow *parent)
 
     m_settingsView = new SettingsView();
     btn = m_settingsView->navigationButton(m_navBar);
-    btn->setIcon(QIcon(":/sival/light/cogwheel.svg"));
+    btn->setIcon(QIcon(":/sival/" + sSettings()->theme() + "/cogwheel.svg"));
     m_navBar->appendButton(btn);
     m_group->addButton(btn, 3);
     m_navWidget->addWidget(m_settingsView->navigationPanel());

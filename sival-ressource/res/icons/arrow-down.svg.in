@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   fill="currentColor"
+   class="bi bi-caret-down"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="caret-down.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="54.8125"
+     inkscape:cx="8"
+     inkscape:cy="8"
+     inkscape:window-width="2048"
+     inkscape:window-height="1086"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <path
+     d="M 6.0715952,10.327678 H 25.925313 L 15.998454,21.672365 Z M 4.5130203,11.69169 14.439879,23.034307 a 2.0698205,2.0698205 0 0 0 3.11715,0 L 27.483888,11.69169 C 28.655407,10.352516 27.703289,8.2578579 25.925313,8.2578579 H 6.0715952 A 2.0698205,2.0698205 0 0 0 4.5130203,11.69169"
+     id="path1"
+     style="stroke-width:2.06982;fill:@TEXT_PRIMARY@;fill-opacity:1" />
+</svg>

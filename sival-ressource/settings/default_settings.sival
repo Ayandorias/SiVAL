@@ -37,12 +37,10 @@
     "nav_panel_width": 60,
     "splitter_state": "",
     "log_level": 2,
-    "csv_export_delimiter": ";",
     "invert_mouse_wheel_zoom": false,
     "driver_database_paths": [],
     "check_for_updates": true,
     "open_last_project_on_startup": false,
-    "create_new_project_on_startup": false,
     "keyboard_shortcuts": {
       "new_project": "Ctrl+N",
       "save_project": "Ctrl+S"

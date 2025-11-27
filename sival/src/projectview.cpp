@@ -55,7 +55,7 @@ Gui::NavigationPanel* ProjectView::navigationPanel() {
         Gui::CardList *l = new Gui::CardList();
 
         sec = new SiVAL::Gui::Section(nullptr);
-        sec->setIcon(":/sival/light/enclosure-fill.svg");
+        sec->setIcon(":/sival/" + sSettings()->theme() + "/enclosure-fill.svg");
         sec->setMinimumHeight(40);
         sec->setMaximumHeight(40);
         l->addCard(sec);

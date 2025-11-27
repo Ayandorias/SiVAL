@@ -50,6 +50,7 @@ public:
     virtual ~SettingsDocument();
     static SettingsDocument* instance();
     virtual void parse(const QString &doc) override;
+    QString theme();
     //// end public member methods
 
     //// begin public member methods (internal use only)

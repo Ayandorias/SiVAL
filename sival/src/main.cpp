@@ -6,13 +6,15 @@
 #include <QApplication>
 #include <QFile>
 
+#include "version.hpp"
+
 int main(int argc, char *argv[])
 {
     SiVAL::Core::SettingsDocument doc(SiVAL::Core::SettingsIOHandler::createInstance("settings.sival"));
     QApplication a(argc, argv);
 
     // UND die Anwendung kann das Theme laden:
-    QFile file(":/sival/light_theme.qss");
+    QFile file(":/sival/" + doc.theme() + "/" + doc.theme() + ".qss");
     if (file.open(QFile::ReadOnly | QFile::Text))
     {
         a.setStyleSheet(QLatin1String(file.readAll()));

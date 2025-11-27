@@ -1,0 +1,410 @@
+/* ===================================================================
+ * Hauptfenster
+ * ================================================================ */
+QWidget {
+    background-color: #2D2D30;
+    border-radius: 5px;
+    border: none;
+    color: #CCCCCC;
+}
+
+#mainWindow {
+    border: 1px solid #1E1E1E;
+}
+
+QWidget.CardList {
+    background-color: #1E1E1E;
+    border-radius: 5px;
+}
+
+/* Die Pfeile (oben/unten) und den Hintergrund (Page-Bereich) komplett ausblenden */
+QScrollBar::add-line, QScrollBar::sub-line,
+QScrollBar::add-page, QScrollBar::sub-page {
+    background: #1E1E1E;
+    border: none;
+    width: 0px;
+    height: 0px;
+}
+
+/* Der Scrollbar-Hintergrund (die 'Rille') */
+QScrollBar:vertical {
+    border: none;
+    border-radius: 3px;
+    background: #252526;
+    width: 6px;
+    margin: 0;
+}
+QScrollBar:horizontal {
+    border: none;
+    background: #252526;
+    height: 6px;
+    margin: 0;
+    border-radius: 3px;
+}
+
+/* Der 'Handle' (der Knopf, den man zieht) */
+QScrollBar::handle:vertical {
+    background: transparent;
+    min-height: 20px;
+    border-radius: 3px;
+}
+QScrollBar::handle:horizontal {
+    background: transparent;
+    min-width: 20px;
+    border-radius: 3px;
+}
+
+/* *** DIE MAGIE: Sichtbar machen bei Hover *** */
+QScrollArea:hover QScrollBar::handle:vertical {
+    background: #424242;
+}
+QScrollArea:hover QScrollBar::handle:horizontal {
+    background: #424242;
+}
+
+/* Heller/dunkler machen, wenn man den Handle selbst greift */
+QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
+    background: #424242;
+}
+QScrollBar::handle:horizontal:hover, QScrollBar::handle:horizontal:pressed {
+    background: #424242;
+}
+
+
+/* ==================================================================
+ * Check Box
+ * =============================================================== */
+QCheckBox {
+    spacing: 8px;
+    color: #CCCCCC;
+    font-size: 10pt;
+}
+
+QCheckBox:disabled {
+    color: #555555;
+}
+
+QCheckBox::indicator {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    background-color: #2D2D30;
+}
+
+/* Hover-Effekt */
+QCheckBox::indicator:unchecked:hover {
+    background-color: #3E3E42;
+}
+
+QCheckBox::indicator:checked {
+    image: url(:/sival/dark/check.svg);
+}
+
+QCheckBox::indicator:checked:hover {
+    background-color: #3E3E42;
+}
+
+/* ===================================================================
+ * Combo Box
+ * ================================================================ */
+
+QComboBox {
+    background-color: #2D2D30;
+    color: #CCCCCC;
+    border: 1px solid #3E3E3E;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+    min-width: 6em;
+}
+
+QComboBox:hover {
+    background-color: #3E3E42;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 25px;
+    border-left-width: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(:/sival/dark/arrow-down.svg);
+    width: 12px;
+    height: 12px;
+}
+
+QComboBox QAbstractItemView {
+    border: 1px solid #3E3E3E;
+    border-radius: 0px;
+    background-color: #2D2D30;
+    color: #CCCCCC;
+    selection-background-color: #094771;
+    selection-color: #CCCCCC;
+    outline: 0px;
+}
+
+QComboBox QAbstractItemView::item {
+    min-height: 24px;
+    padding-left: 5px;
+    color: #CCCCCC;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background-color: #3E3E42;
+    color: #CCCCCC;
+    border: none;
+}
+
+QComboBox QAbstractItemView QScrollBar:vertical {
+    width: 8px;
+    background: #094771;
+}
+
+/* ===================================================================
+ * Line Edit
+ * ================================================================ */
+QLineEdit {
+    border: 1px solid #3E3E3E;
+    color: #CCCCCC;
+    background-color: #2D2D30;
+}
+
+/* Korrektur: Hier war zuvor #0f0, jetzt korrekt WINDOW_BG oder CONTENT_BG */
+SiVAL--Gui--FrameBar {
+    background-color: #1E1E1E;
+}
+
+/* ===================================================================
+ * Buttons in the Frame
+ * ================================================================ */
+SiVAL--Gui--FrameBarButton {
+    background-color: #2D2D30;
+    padding: 7px;
+    border-radius: 3px;
+}
+
+SiVAL--Gui--FrameBarButton:hover {
+    background-color: #252526;
+}
+
+/* ======================= Window Controls ======================= */
+#buttonMax { image: url(":/sival/dark/max.svg"); }
+#buttonMax:hover { image: url(":/sival/dark/max.svg"); }
+
+#buttonMin { image: url(":/sival/dark/iconize.svg"); }
+#buttonMin:hover { image: url(":/sival/dark/iconize.svg"); }
+
+#buttonNormal { image: url(":/sival/dark/min.svg"); }
+#buttonNormal:hover { image: url(":/sival/dark/min.svg"); }
+
+/* ===================================================================
+ * Spin Widget
+ * ================================================================ */
+SiVAL--Gui--SpinWidget QLineEdit {
+    background-color: #2D2D30;
+    border: 1px solid #3E3E3E;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinMinus {
+    background-color: #2D2D30;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 1px solid #3E3E3E;
+    border-bottom: 1px solid #3E3E3E;
+    border-radius: 0px;
+    image: url(":/sival/dark/minus.svg");
+    padding: 6px;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinMinus:hover {
+    background-color: #3E3E42;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinPlus {
+    background-color: #2D2D30;
+    border: 1px solid #3E3E3E;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    image: url(":/sival/dark/plus.svg");
+    padding: 6px;
+}
+
+SiVAL--Gui--SpinWidget QToolButton#spinPlus:hover {
+    background-color: #3E3E42;
+}
+
+/* ====================== Quit Button ============================= */
+#buttonQuit {
+    background-color: #2D2D30;
+    margin-right: 5px;
+    image: url(":/sival/dark/close.svg");
+}
+
+#buttonQuit:hover {
+    background-color: #FF5555;
+    image: url(":/sival/dark/close_hover.svg");
+    border-radius: 5px;
+}
+
+/* ===================================================================
+ * Left NavigationBar
+ * ================================================================ */
+SiVAL--Gui--NavigationBar {
+    background-color: #1E1E1E;
+    border-radius: 0px;
+    border-right: 1px solid #3E3E3E;
+}
+
+QToolButton.SiVALNavigationButton {
+    qtproperty-toolButtonStyle: ToolButtonTextUnderIcon;
+    color: #CCCCCC;
+    background-color: #1E1E1E;
+    border: none;
+    border-radius: 0px;
+    margin-right: 2px;
+    font-size: 8pt;
+    padding-left: 4px;
+}
+
+QToolButton.SiVALNavigationButton:hover {
+    background-color: #252526;
+    border: none;
+    border-radius: 0px;
+    font-weight: bold;
+    padding-left: 4px;
+}
+
+QToolButton.SiVALNavigationButton:checked {
+    background-color: #1E1E1E;
+    border-left: 4px solid #3E3E3E;
+    border-radius: 0px;
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+#mainMenu {
+    background-color: #1E1E1E;
+    text-align: left;
+    image: url(":/sival/logo/speaker.svg"); /* Logo bleibt meist gleich */
+    padding: 3px;
+}
+#separator {
+    margin-left: 3px;
+    margin-right: 3px;
+    border: none;
+    background-color: #3E3E3E;
+}
+
+/* ===================================================================
+ * Left NavigationsWidget
+ * ================================================================ */
+SiVAL--Gui--NavigationWidget {
+    background-color: #1E1E1E;
+    border-radius: 0px;
+    border: none;
+}
+
+QLabel.SiVALHeaderLabel{
+    background-color: #1E1E1E;
+    color: #CCCCCC;
+    font-size: 12pt;
+    font-weight: bold;
+    padding-left: 8px;
+}
+
+SiVAL--Gui--Label {
+    background-color: #2D2D30;
+    color: #CCCCCC;
+    font-size: 10pt;
+}
+
+SiVAL--Gui--Card {
+    background-color: #1E1E1E;
+    color: #CCCCCC;
+    qproperty-infoColor: #969696;
+    margin: 0px;
+    border-radius: 0px;
+}
+
+SiVAL--Gui--Card:hover {
+    background-color: #252526;
+}
+
+SiVAL--Gui--Section {
+    background-color: #252526;
+    color: #CCCCCC;
+    qproperty-infoColor: #969696;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+SiVAL--Gui--Section:hover {
+    background-color: #2D2D30;
+}
+
+SiVAL--Gui--SectionCard {
+    background-color: #1E1E1E;
+    color: #CCCCCC;
+    qproperty-infoColor: #969696;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+SiVAL--Gui--SectionCard:hover {
+    background-color: #252526;
+}
+
+SiVAL--Gui--StartItemBig {
+    background-color: #2D2D30;
+    border-radius: 0px;
+    border-bottom: 1px solid #1E1E1E;
+}
+
+SiVAL--Gui--StartItemBig:hover {
+    background-color: #333333;
+    border-radius: 0px;
+}
+
+#horizontalLine, #horizontalLine2 {
+    border: none;
+    background-color: #0078D7;
+}
+
+QWidget#horizontalLine {
+    border: none;
+    background-color: #0078D7;
+}
+
+SiVAL--StartItem {
+    background-color: #2D2D30;
+    color: #CCCCCC;
+    qproperty-infoColor: #969696;
+}
+
+SiVAL--StartItem:hover {
+    background-color: #333333;
+    border: 2px solid #3E3E42;
+}
+
+SiVAL--SettingsPanel {
+    background-color: #2D2D30;
+}
+
+#settingsHeader {
+    background-color: #2D2D30;
+    margin-left: 20px;
+}
+
+SiVAL--SettingsGeneral {
+    background-color: #2D2D30;
+}

@@ -54,6 +54,10 @@ SettingsPanel::SettingsPanel(QWidget *parent)
  */
 SettingsPanel::~SettingsPanel() {
 }
+
+void SettingsPanel::changePage(SiVAL::Settings settings) {
+    m_navStack->setCurrentIndex(static_cast<int>(settings));
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)

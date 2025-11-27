@@ -26,5 +26,9 @@
         <file>light/minus.svg</file>
         <file>light/plus.svg</file>
         <file>light/arrow-down.svg</file>
+        <file>light/keyboard_mouse.svg</file>
+        <file>light/keyboard.svg</file>
+        <file>light/mouse.svg</file>
+        <file>light/light.qss</file>
     </qresource>
 </RCC>

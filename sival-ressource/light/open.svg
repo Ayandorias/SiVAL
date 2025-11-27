@@ -36,14 +36,14 @@
   <g
      id="g2"
      transform="matrix(1.5,0,0,1.5,4,4.0756703)"
-     style="fill:#6b6b6b;fill-opacity:1">
+     style="fill:#6B6B6E;fill-opacity:1">
     <path
        d="M 0.5,9.9 A 0.5,0.5 0 0 1 1,10.4 v 2.5 a 1,1 0 0 0 1,1 h 12 a 1,1 0 0 0 1,-1 v -2.5 a 0.5,0.5 0 0 1 1,0 v 2.5 a 2,2 0 0 1 -2,2 H 2 a 2,2 0 0 1 -2,-2 V 10.4 A 0.5,0.5 0 0 1 0.5,9.9"
        id="path1"
-       style="fill:#6b6b6b;fill-opacity:1" />
+       style="fill:#6B6B6E;fill-opacity:1" />
     <path
        d="m 7.646,1.146 a 0.5,0.5 0 0 1 0.708,0 l 3,3 A 0.5006316,0.5006316 0 0 1 10.646,4.854 L 8.5,2.707 V 11.5 a 0.5,0.5 0 0 1 -1,0 V 2.707 L 5.354,4.854 A 0.5006316,0.5006316 0 1 1 4.646,4.146 Z"
        id="path2"
-       style="fill:#6b6b6b;fill-opacity:1" />
+       style="fill:#6B6B6E;fill-opacity:1" />
   </g>
 </svg>

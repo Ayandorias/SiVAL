@@ -5,6 +5,53 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Svg)
 
 qt_standard_project_setup()
 
+
+# --- 1. Versions-Definition ---
+set(PROJECT_VERSION_MAJOR 0)
+set(PROJECT_VERSION_MINOR 1)
+set(PROJECT_VERSION_PATCH 0)
+set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
+set(SIVAL_BUILD_STATUS "Alpha") # Alpha, Beta, Release
+
+# --- 2. Git Informationen holen (für Revision & Build Count) ---
+find_package(Git)
+if(GIT_FOUND)
+    # Hash holen (kurz)
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        OUTPUT_VARIABLE SIVAL_GIT_HASH
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    # Anzahl der Commits als "Build Number" nutzen
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-list --count HEAD
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+        OUTPUT_VARIABLE SIVAL_BUILD_COUNT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+else()
+    set(SIVAL_GIT_HASH "unknown")
+    set(SIVAL_BUILD_COUNT "0")
+endif()
+
+# --- 3. Zeitstempel holen ---
+string(TIMESTAMP SIVAL_BUILD_DATE "%d.%m.%Y")
+string(TIMESTAMP SIVAL_BUILD_TIME "%H:%M:%S")
+
+# --- 4. Datei generieren ---
+# Nimmt "version.hpp.in", ersetzt die Variablen und speichert "version.hpp"
+# im Build-Ordner (nicht im Quell-Ordner, um diesen sauber zu halten).
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/version.hpp.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/include/version.hpp"
+    @ONLY
+)
+
+# WICHTIG: Den Ordner mit der generierten Datei dem Include-Path hinzufügen
+include_directories("${CMAKE_CURRENT_BINARY_DIR}/include")
+
+
 qt_add_executable(sival
     WIN32 MACOSX_BUNDLE
     src/main.cpp
