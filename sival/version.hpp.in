@@ -80,4 +80,25 @@ namespace SiVAL::Version {
     static inline QString getTimestamp() {
         return QString("%1 %2").arg(getBuildDate()).arg(getBuildTime());
     }
+
+
+    // Funktion zur Ermittlung der detaillierten Systembeschreibung
+    static inline QString getFullSystemString() {
+        // 1. Der "schöne" Produktname (Das was gesucht wurde)
+        // Liefert z.B. "Arch Linux", "Windows 10 Version 2009", "macOS 14.0"
+        QString osName = QSysInfo::prettyProductName();
+
+        // 2. Die Architektur (Das was bereits bekannt war)
+        // Liefert z.B. "x86_64", "arm64"
+        QString arch = QSysInfo::currentCpuArchitecture();
+
+        // 3. (Optional) Der Kernel Typ und Version für tiefergehende Details
+        // Liefert z.B. "linux 6.6.1", "winnt 10.0.19045"
+        QString kernelType = QSysInfo::kernelType();
+        QString kernelVersion = QSysInfo::kernelVersion();
+
+        // Zusammenbau für den Dialog:
+        // Ergebnis: "Arch Linux (x86_64)"
+        return QString("%1 (%2)").arg(osName).arg(arch);
+    }
 }

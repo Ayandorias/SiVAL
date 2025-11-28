@@ -33,6 +33,8 @@ set(SIVAL_ICONS
     projects.svg.in
     save.svg.in
     save_as.svg.in
+    speaker.svg.in
+    copy.svg.in
 )
 
 # ==============================================================================
@@ -119,6 +121,7 @@ add_library(sival-ressource SHARED
     dark_theme.qrc
     sival-settings.qrc
     settings/default_settings.sival
+    res/template_theme.qss.in
 )
 
 qt_add_translations(sival-ressource

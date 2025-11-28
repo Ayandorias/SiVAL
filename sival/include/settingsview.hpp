@@ -79,6 +79,7 @@ private:
     SiVAL::Gui::Card *m_cardMouse;
     SiVAL::Gui::Card *m_cardKeyboard;
     SiVAL::Gui::Card *m_cardEnclosure;
+    SiVAL::Gui::Card *m_cardSpeaker;
     SiVAL::Gui::Card *m_cardAbout;
     //// end private member
 
@@ -88,8 +89,9 @@ public slots:
 
     //// begin protected slots
 protected slots:
-    void general();
     void about();
+    void general();
+    void speaker();
     //// end protected slots
 
     //// begin private slots

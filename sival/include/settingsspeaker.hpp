@@ -9,14 +9,11 @@
  *
  */
 //// begin system includes
-#include <sivalgui/navigationwidget.hpp>
-#include "settingsabout.hpp"
-#include "settingsgeneral.hpp"
-#include "settingsspeaker.hpp"
+#include <sivalgui/navigationpanel.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include <sival.hpp>
+
 //// end project specific includes
 
 //// begin using namespaces
@@ -33,21 +30,20 @@
 
 namespace SiVAL {
 /**
- * class SettingsPanel
+ * class SettingsSpeaker
  *
  * @brief
  *
  */
-class SettingsPanel : public Gui::NavigationWidget
+class SettingsSpeaker : public SiVAL::Gui::NavigationPanel
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SettingsPanel(QWidget *parent = nullptr);
+    explicit SettingsSpeaker(QWidget *parent = nullptr);
     /// Destructor
-    virtual ~SettingsPanel();
-    void changePage(SiVAL::Settings settings);
+    virtual ~SettingsSpeaker();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -56,7 +52,6 @@ public:
 
     //// begin protected member methods
 protected:
-    void retranslate();
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -77,9 +72,6 @@ protected:
 
     //// begin private member
 private:
-    SettingsAbout *m_about;
-    SettingsGeneral *m_general;
-    SettingsSpeaker *m_speaker;
     //// end private member
 
     //// begin public slots

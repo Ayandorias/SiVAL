@@ -17,6 +17,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
+#include <QPushButton>
 #include "sivalgui/headerlabel.hpp"
 #include "sivalgui/label.hpp"
 #include "sivalgui/spinwidget.hpp"
@@ -119,6 +120,10 @@ private:
     SiVAL::Gui::Label *m_license;
     QWidget *m_themeLight;
     SiVAL::Gui::Label *m_language;
+    QPushButton *m_selectHelp;
+    QCheckBox *m_onlineHelp;
+    SiVAL::Gui::Label *m_localHelp;
+    QLineEdit *m_helpPath;
     //// end private member
 
     //// begin public slots

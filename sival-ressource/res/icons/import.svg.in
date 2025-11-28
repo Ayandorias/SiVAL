@@ -35,7 +35,7 @@
      inkscape:current-layer="svg2" />
   <g
      id="g2"
-     style="fill:#6b6b6b;fill-opacity:1"
+     style="fill:@TEXT_PRIMARY@;fill-opacity:1"
      transform="matrix(1.6,0,0,1.6,3.2,2.4)">
     <path
        fill-rule="evenodd"

@@ -26,6 +26,7 @@
 namespace SiVAL {
 enum class Settings {
     General = 0,
+    Speaker,
     About
 };
 }

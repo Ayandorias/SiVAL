@@ -13,7 +13,7 @@
 //// end system includes
 
 //// begin project specific includes
-#include "settingspanel.hpp"
+#include "settingsspeaker.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -37,31 +37,15 @@ namespace SiVAL {
 /**
  *
  */
-SettingsPanel::SettingsPanel(QWidget *parent)
-    :Gui::NavigationWidget(parent) {
-
-    m_header->setObjectName("settingsHeader");
-
-    m_general = new SettingsGeneral(this);
-    m_navStack->addWidget(m_general);
-
-    m_speaker = new SettingsSpeaker(this);
-    m_navStack->addWidget(m_speaker);
-
-    m_about = new SettingsAbout(this);
-    m_navStack->addWidget(m_about);
-    retranslate();
+SettingsSpeaker::SettingsSpeaker(QWidget *parent)
+    :SiVAL::Gui::NavigationPanel(parent) {
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SettingsPanel::~SettingsPanel() {
-}
-
-void SettingsPanel::changePage(SiVAL::Settings settings) {
-    m_navStack->setCurrentIndex(static_cast<int>(settings));
+SettingsSpeaker::~SettingsSpeaker() {
 }
 //// end public member methods
 
@@ -69,9 +53,6 @@ void SettingsPanel::changePage(SiVAL::Settings settings) {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
-void SettingsPanel::retranslate() {
-    m_header->setText(tr("General"));
-}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

@@ -286,7 +286,7 @@ QToolButton.SiVALNavigationButton:hover {
 
 QToolButton.SiVALNavigationButton:checked {
     background-color: #1E1E1E;
-    border-left: 4px solid #3E3E3E;
+    border-left: 4px solid #0078D7;
     border-radius: 0px;
     font-weight: bold;
     padding-left: 0px;
@@ -407,4 +407,136 @@ SiVAL--SettingsPanel {
 
 SiVAL--SettingsGeneral {
     background-color: #2D2D30;
+}
+
+QPushButton {
+    border: 1px solid #3E3E3E;
+    color: #CCCCCC;
+    background-color: #2D2D30;
+}
+QPushButton:hover {
+background-color: #3E3E42;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+QLabel#titleAbout {
+    font-weight: bold;
+    font-size: 16pt;
+    color: #CCCCCC;
+}
+
+#additional_info {
+    background-color: #3E3E42;
+    border: 1px solid #3E3E3E;
+}
+
+#libQt, #libSival, #libLohmann {
+    background-color: #3E3E42;
+    color: #969696;
+    qproperty-linkColor: #FF0000;
+}
+
+#libraryAbout, #assetsAbout{
+    background-color: #3E3E42;
+    color: #CCCCCC;
+    font-weight: bold;
+    font-seize: 12pt;
+}
+
+
+/* ===================================================================
+ * QGroupBox - Basis-Container
+ * ================================================================ */
+QGroupBox {
+    /* Der Rahmen: Solide, dünn, abgerundet */
+    border: 1px solid #3E3E3E;
+    border-radius: 5px;
+
+    /* WICHTIG: Platz schaffen für den Titel!
+       Ohne margin-top zeichnet Qt den Rahmen DURCH den Text.
+       Der Wert sollte etwas größer sein als die halbe Höhe der Schrift. */
+    margin-top: 20px;
+
+    /* Innenabstand für den Inhalt */
+    padding-top: 10px;
+
+    /* Schriftart für die gesamte Gruppe */
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+/* ===================================================================
+ * QGroupBox::title - Der Titeltext
+ * ================================================================ */
+QGroupBox::title {
+    /* Positionierung des Titels */
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* Oder: top left */
+
+    /* Feine Justierung (Offset), falls nötig */
+    padding: 0 10px;
+
+    /* Damit der Rahmen hinter dem Text nicht sichtbar ist,
+       muss der Hintergrund des Titels der Fensterfarbe entsprechen */
+    background-color: transparent;
+    color: #CCCCCC;
+}
+
+/* ===================================================================
+ * QGroupBox::indicator - Die Checkbox (falls setCheckable(true))
+ * ================================================================ */
+QGroupBox::indicator {
+    width: 14px;
+    height: 14px;
+
+    /* Position relativ zum Titel */
+    subcontrol-position: top left;
+    left: 10px; /* Einrücken */
+}
+
+QGroupBox::indicator:unchecked {
+    image: url(:/icons/checkbox_unchecked.svg);
+}
+
+QGroupBox::indicator:checked {
+    image: url(:/icons/checkbox_checked.svg);
+}
+
+/* ===================================================================
+ * Variante: "Flat Style" (Nur Linie oben mit Text)
+ * ================================================================ */
+QGroupBox.Flat {
+    border: none;
+    border-top: 1px solid #C5C5C5; /* Nur oben eine Linie */
+    border-radius: 0px;
+    margin-top: 10px;
+}
+
+QGroupBox.Flat::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px;
+    background-color: transparent;
+    color: #0078D7; /* Akzentfarbe für den Titel */
 }

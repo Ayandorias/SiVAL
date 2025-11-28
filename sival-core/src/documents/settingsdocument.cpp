@@ -67,7 +67,7 @@ void SettingsDocument::parse(const QString &doc) {
 }
 
 QString SettingsDocument::theme() {
-    return "dark";
+    return "light";
 }
 //// end public member methods
 

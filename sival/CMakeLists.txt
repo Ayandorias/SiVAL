@@ -65,6 +65,8 @@ qt_add_executable(sival
     include/sival.hpp
     include/settingspanel.hpp src/settingspanel.cpp
     include/settingsgeneral.hpp src/settingsgeneral.cpp
+    include/settingsabout.hpp src/settingsabout.cpp
+    include/settingsspeaker.hpp src/settingsspeaker.cpp
 )
 
 target_include_directories(sival-gui

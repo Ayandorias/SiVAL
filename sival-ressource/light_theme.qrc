@@ -30,5 +30,7 @@
         <file>light/keyboard.svg</file>
         <file>light/mouse.svg</file>
         <file>light/light.qss</file>
+        <file>light/speaker.svg</file>
+        <file>light/copy.svg</file>
     </qresource>
 </RCC>

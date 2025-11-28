@@ -9,14 +9,20 @@
  *
  */
 //// begin system includes
-#include <sivalgui/navigationwidget.hpp>
-#include "settingsabout.hpp"
-#include "settingsgeneral.hpp"
-#include "settingsspeaker.hpp"
+#include <QtCore/QVariant>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
+#include <sivalgui/navigationpanel.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include <sival.hpp>
+
 //// end project specific includes
 
 //// begin using namespaces
@@ -33,21 +39,20 @@
 
 namespace SiVAL {
 /**
- * class SettingsPanel
+ * class SettingsAbout
  *
  * @brief
  *
  */
-class SettingsPanel : public Gui::NavigationWidget
+class SettingsAbout : public SiVAL::Gui::NavigationPanel
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SettingsPanel(QWidget *parent = nullptr);
+    explicit SettingsAbout(QWidget *parent = nullptr);
     /// Destructor
-    virtual ~SettingsPanel();
-    void changePage(SiVAL::Settings settings);
+    virtual ~SettingsAbout();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -56,7 +61,7 @@ public:
 
     //// begin protected member methods
 protected:
-    void retranslate();
+    void retranslate(QWidget *w);
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -73,13 +78,44 @@ public:
 
     //// begin protected member
 protected:
+    QGridLayout *gridLayout;
+    QSpacerItem *m_bottomSpacer;
+    QLabel *m_version;
+    QSpacerItem *m_topSpacer;
+    QSpacerItem *verticalSpacer_2;
+    QLabel *m_logo;
+    QSpacerItem *verticalSpacer;
+    QLabel *m_license;
+    QSpacerItem *m_leftSpacer;
+    QLabel *m_copyright;
+    QGroupBox *m_systemInfoBox;
+    QGridLayout *gridLayout_2;
+    QLabel *m_revisionInfo;
+    QLabel *m_qtVersion;
+    QLabel *m_revision;
+    QLabel *m_buildDate;
+    QLabel *m_compiler;
+    QLabel *m_system;
+    QLabel *m_buildDateInfo;
+    QLabel *m_compilerInfo;
+    QLabel *m_qtVersionInfo;
+    QLabel *m_SystemInfo;
+    QSpacerItem *verticalSpacer_3;
+    QLabel *m_title;
+    QFrame *line;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout;
+    QLabel *m_library;
+    QLabel *m_libQt;
+    QLabel *m_libSival;
+    QLabel *m_libLohmann;
+    QSpacerItem *verticalSpacer_4;
+    QLabel *m_assets;
+    QSpacerItem *m_rightSpacer;
     //// end protected member
 
     //// begin private member
 private:
-    SettingsAbout *m_about;
-    SettingsGeneral *m_general;
-    SettingsSpeaker *m_speaker;
     //// end private member
 
     //// begin public slots

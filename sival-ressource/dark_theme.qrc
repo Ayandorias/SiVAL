@@ -27,5 +27,7 @@
         <file>dark/projects.svg</file>
         <file>dark/save.svg</file>
         <file>dark/save_as.svg</file>
+        <file>dark/speaker.svg</file>
+        <file>dark/copy.svg</file>
     </qresource>
 </RCC>

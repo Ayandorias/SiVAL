@@ -77,6 +77,13 @@ Gui::NavigationPanel* SettingsView::navigationPanel() {
         m_cardEnclosure->setMaximumHeight(40);
         l->addCard(m_cardEnclosure);
 
+        m_cardSpeaker = new SiVAL::Gui::Card(nullptr);
+        m_cardSpeaker->setIcon(":/sival/" + sSettings()->theme() + "/speaker.svg");
+        m_cardSpeaker->setMinimumHeight(40);
+        m_cardSpeaker->setMaximumHeight(40);
+        connect(m_cardSpeaker, &SiVAL::Gui::Card::clicked, this, &SettingsView::speaker);
+        l->addCard(m_cardSpeaker);
+
         m_cardAbout = new SiVAL::Gui::Card(nullptr);
         m_cardAbout->setIcon(":/sival/" + sSettings()->theme() + "/info.svg");
         m_cardAbout->setMinimumHeight(40);
@@ -108,6 +115,7 @@ void SettingsView::retranslate() {
         m_cardMouse->setTitle(tr("Mouse"));
         m_cardKeyboard->setTitle(tr("Keyboard"));
         m_cardEnclosure->setTitle(tr("Enclosure"));
+        m_cardSpeaker->setTitle(tr("Speaker"));
         m_cardAbout->setTitle(tr("About"));
     }
 }
@@ -124,10 +132,19 @@ void SettingsView::retranslate() {
 
 //// begin protected slots
 void SettingsView::about() {
-    qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel)->changePage(SiVAL::Settings::About);
+    SettingsPanel *p = qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel);
+    p->changePage(SiVAL::Settings::About);
+    p->setHeader(tr("About"));
 }
 void SettingsView::general() {
-    qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel)->changePage(SiVAL::Settings::General);
+    SettingsPanel *p = qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel);
+    p->changePage(SiVAL::Settings::General);
+    p->setHeader(tr("General"));
+}
+void SettingsView::speaker() {
+    SettingsPanel *p = qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel);
+    p->changePage(SiVAL::Settings::Speaker);
+    p->setHeader(tr("Speaker"));
 }
 //// end protected slots
 
