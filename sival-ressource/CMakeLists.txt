@@ -35,6 +35,11 @@ set(SIVAL_ICONS
     save_as.svg.in
     speaker.svg.in
     copy.svg.in
+    indeterminate.svg.in
+    edit.svg.in
+    trash.svg.in
+    sealed.svg.in
+    vented.svg.in
 )
 
 # ==============================================================================
@@ -45,9 +50,9 @@ set(SIVAL_ICONS
 create_theme(
     NAME "light"
 
-    # Palette (Extrahiert aus Ihrer Vorlage)
     WINDOW_BG         "#E5E5E8"
     CONTENT_BG        "#FFFFFF"
+    ALTERNATE_BG      "#FCFCFF"
 
     TEXT_PRIMARY      "#6B6B6E"
     TEXT_SECONDARY    "#ABABAE"
@@ -60,7 +65,8 @@ create_theme(
     HOVER_BG_NAV      "#DADADD"
     HOVER_BG_ITEM     "#FCFCFF"
 
-    SELECTION_BG      "#F5F5F8"
+    SELECTION_BG      "#0078D7"
+    TEXT_SELECTION    "#FCFCFF"
 
     SCROLL_TRACK      "#B5B5B8"
     SCROLL_HANDLE     "#A5A5A8"
@@ -83,6 +89,7 @@ create_theme(
     # Palette (Angepasst an SiVAL Dark Logik: #1E1E1E / #2D2D30)
     WINDOW_BG         "#1E1E1E"  # Navigationsbereich (Dunkler)
     CONTENT_BG        "#2D2D30"  # Inhaltsbereich (Kühles Grau)
+    ALTERNATE_BG      "#333333"
 
     TEXT_PRIMARY      "#CCCCCC"  # Helles Grau (nicht hartes Weiß)
     TEXT_SECONDARY    "#969696"
@@ -95,7 +102,8 @@ create_theme(
     HOVER_BG_NAV      "#252526"  # Hover in der Navigation
     HOVER_BG_ITEM     "#333333"
 
-    SELECTION_BG      "#094771"  # Dunkles Blau für Selektionen
+    SELECTION_BG      "#0078D7"  # Dunkles Blau für Selektionen
+    TEXT_SELECTION    "#FCFCFF"
 
     SCROLL_TRACK      "#252526"
     SCROLL_HANDLE     "#424242"

@@ -93,6 +93,10 @@ void Card::leaveEvent(QEvent *event) {
     QWidget::leaveEvent(event);
 }
 
+void Card::mouseDoubleClickEvent(QMouseEvent *event) {
+    emit doubleClicked(this);
+}
+
 void Card::mouseMoveEvent(QMouseEvent *event) {
     QWidget::mouseMoveEvent(event);
 

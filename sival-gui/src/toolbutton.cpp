@@ -10,13 +10,10 @@
 //// end includes
 
 //// begin system includes
-#include <QVBoxLayout>
-#include <QLabel>
 //// end system includes
 
 //// begin project specific includes
-#include <sivalgui/card.hpp>
-#include <sivalgui/cardlist.hpp>
+#include "sivalgui/toolbutton.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -34,42 +31,23 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
-namespace Gui {
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-CardList::CardList(QWidget *parent)
-    :NavigationPanel(parent) {
-
-    setWidgetResizable(true);
-    m_index = 0;
-
-    m_scrollContentWidget = new QWidget;
-    m_scrollContentWidget->setProperty("class", "CardList");
-
-    m_contentLayout = new QVBoxLayout(m_scrollContentWidget);
-    m_contentLayout->setContentsMargins(0,0,0,0);
-    m_contentLayout->setSpacing(1);
-
-    QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
-    m_contentLayout->addItem(spacer);
-
-    setWidget(m_scrollContentWidget);
+ToolButton::ToolButton(QWidget *parent)
+    :QToolButton(parent) {
+    setMinimumSize(QSize(32, 32));
+    setMaximumSize(QSize(32, 32));
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-CardList::~CardList() {
-}
-
-void CardList:: addCard(QWidget *card) {
-    card->setParent(m_scrollContentWidget);
-    m_contentLayout->insertWidget(m_index++, card);
+ToolButton::~ToolButton() {
 }
 //// end public member methods
 
@@ -93,5 +71,4 @@ void CardList:: addCard(QWidget *card) {
 
 //// begin private slots
 //// end private slots
-}
 }

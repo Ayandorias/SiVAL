@@ -13,7 +13,7 @@
 //// end system includes
 
 //// begin project specific includes
-#include "settingsspeaker.hpp"
+#include "sivalgui/enclosurecard.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -31,25 +31,28 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-SettingsSpeaker::SettingsSpeaker(QWidget *parent)
-    :SiVAL::Gui::NavigationPanel(parent) {
+EnclosureCard::EnclosureCard(QWidget *parent)
+    :Card(parent) {
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SettingsSpeaker::~SettingsSpeaker() {
+EnclosureCard::~EnclosureCard() {
 }
 //// end public member methods
 
 //// begin public member methods (internal use only)
+void EnclosureCard::mouseDoubleClickEvent(QMouseEvent *event) {
+    emit openEnclosure();
+}
 //// end public member methods (internal use only)
 
 //// begin protected member methods

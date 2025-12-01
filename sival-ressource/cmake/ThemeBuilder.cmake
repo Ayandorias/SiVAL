@@ -33,6 +33,7 @@ function(create_theme)
         # Strukturfarben
         WINDOW_BG
         CONTENT_BG
+        ALTERNATE_BG
 
         # Typografie
         TEXT_PRIMARY
@@ -48,6 +49,7 @@ function(create_theme)
         HOVER_BG_NAV
         HOVER_BG_ITEM
         SELECTION_BG
+        TEXT_SELECTION
 
         # Scrollbars
         SCROLL_TRACK
@@ -88,6 +90,7 @@ function(create_theme)
 
     set(WINDOW_BG         ${THEME_WINDOW_BG})
     set(CONTENT_BG        ${THEME_CONTENT_BG})
+    set(ALTERNATE_BG      ${THEME_ALTERNATE_BG})
     set(TEXT_PRIMARY      ${THEME_TEXT_PRIMARY})
     set(TEXT_SECONDARY    ${THEME_TEXT_SECONDARY})
     set(TEXT_DISABLED     ${THEME_TEXT_DISABLED})
@@ -100,6 +103,7 @@ function(create_theme)
     set(SCROLL_TRACK      ${THEME_SCROLL_TRACK})
     set(SCROLL_HANDLE     ${THEME_SCROLL_HANDLE})
     set(SECTION_BG        ${THEME_SECTION_BG})
+    set(TEXT_SELECTION    ${THEME_TEXT_SELECTION})
     set(SECTION_HOVER     ${THEME_SECTION_HOVER})
     set(DESTRUCTIVE_COLOR ${THEME_DESTRUCTIVE_COLOR})
     set(ACCENT_COLOR      ${THEME_ACCENT_COLOR})

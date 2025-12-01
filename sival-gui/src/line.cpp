@@ -1,5 +1,5 @@
 /*
- * SiVAL
+ * SiVAL GUI
  *
  * Copyright (C) since 2025 Bruno Pierucki
  *
@@ -13,10 +13,7 @@
 //// end system includes
 
 //// begin project specific includes
-#include "projectview.hpp"
-#include <sivalgui/cardlist.hpp>
-#include <sivalgui/section.hpp>
-#include <sivalgui/sectioncard.hpp>
+#include "sivalgui/line.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -34,47 +31,24 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-ProjectView::ProjectView()
-    :Gui::View() {
+Line::Line(QWidget *parent)
+    :QFrame(parent) {
+
+    setMinimumSize(QSize(0, 1));
+    setMaximumSize(QSize(16777215, 1));
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-ProjectView::~ProjectView() {
-}
-Gui::NavigationPanel* ProjectView::navigationPanel() {
-    if(m_navBarPanel == nullptr) {
-        Gui::CardList *l = new Gui::CardList();
-
-        sec = new SiVAL::Gui::Section(nullptr);
-        sec->setIcon(":/sival/" + sSettings()->theme() + "/enclosure-fill.svg");
-        sec->setMinimumHeight(40);
-        sec->setMaximumHeight(40);
-        l->addCard(sec);
-
-        QWidget *w = new QWidget();
-        QVBoxLayout *layout = new QVBoxLayout(w);
-        layout->setContentsMargins(0,0,0,0);
-        layout->setSpacing(0);
-        l->addCard(w);
-
-        m_navBarPanel = l;
-    }
-    return m_navBarPanel;
-}
-QWidget* ProjectView::centerPanel() {
-    if(m_centerPanel == nullptr) {
-        m_centerPanel = new QWidget();
-    }
-    return m_centerPanel;
+Line::~Line() {
 }
 //// end public member methods
 
@@ -82,11 +56,6 @@ QWidget* ProjectView::centerPanel() {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
-void ProjectView::retranslate() {
-    if(m_navBarPanel != nullptr) {
-        sec->setTitle(tr("Enclosure"));
-    }
-}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

@@ -54,6 +54,10 @@ add_library(sival-gui SHARED
   include/sivalgui/section.hpp src/section.cpp
   include/sivalgui/sectioncard.hpp src/sectioncard.cpp
   include/sivalgui/spinwidget.hpp src/spinwidget.cpp
+  include/sivalgui/line.hpp src/line.cpp
+  include/sivalgui/selectiontree.hpp src/selectiontree.cpp
+  include/sivalgui/toolbutton.hpp src/toolbutton.cpp
+  include/sivalgui/enclosurecard.hpp src/enclosurecard.cpp
 )
 
 # target_include_directories(sival-gui PRIVATE include)

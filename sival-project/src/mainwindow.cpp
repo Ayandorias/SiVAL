@@ -147,12 +147,10 @@ void MainWindow::retranslateUI() {
 }
 
 void MainWindow::selection(QAbstractButton *btn) {
-    std::cout << "Ein Button aus der Gruppe " << std::endl;
     for(QAbstractButton *button : m_group->buttons()) {
         if(button->isChecked()) {
             m_navWidget->setCurrentIndex(m_group->id(button));
             m_stackWidget->setCurrentIndex(m_group->id(button));
-            std::cout << m_group->id(button) << std::endl;
             setNavigationHeader(m_group->id(button));
             break;
         }

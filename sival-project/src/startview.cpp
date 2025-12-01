@@ -10,7 +10,6 @@
 //// end includes
 
 //// begin system includes
-// #include <sivalcore/sivalglobal.hpp>
 //// end system includes
 
 //// begin project specific includes

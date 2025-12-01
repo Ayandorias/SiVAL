@@ -1,7 +1,7 @@
 #pragma once
 
 /*
- * SiVAL
+ * SiVAL GUI
  *
  * Copyright (C) since 2025 Bruno Pierucki
  *
@@ -9,7 +9,7 @@
  *
  */
 //// begin system includes
-#include <sivalgui/navigationpanel.hpp>
+#include <QToolButton>
 //// end system includes
 
 //// begin project specific includes
@@ -28,22 +28,22 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::Gui {
 /**
- * class SettingsSpeaker
+ * class ToolButton
  *
  * @brief
  *
  */
-class SettingsSpeaker : public SiVAL::Gui::NavigationPanel
+class ToolButton : public QToolButton
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SettingsSpeaker(QWidget *parent = nullptr);
+    explicit ToolButton(QWidget *parent);
     /// Destructor
-    virtual ~SettingsSpeaker();
+    virtual ~ToolButton();
     //// end public member methods
 
     //// begin public member methods (internal use only)

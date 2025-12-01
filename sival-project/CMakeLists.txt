@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.19)
-project(sival LANGUAGES CXX)
+project(sival-project LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Svg)
 

@@ -32,5 +32,10 @@
         <file>light/light.qss</file>
         <file>light/speaker.svg</file>
         <file>light/copy.svg</file>
+        <file>light/indeterminate.svg</file>
+        <file>light/trash.svg</file>
+        <file>light/edit.svg</file>
+        <file>light/sealed.svg</file>
+        <file>light/vented.svg</file>
     </qresource>
 </RCC>

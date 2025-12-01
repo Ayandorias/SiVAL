@@ -29,5 +29,10 @@
         <file>dark/save_as.svg</file>
         <file>dark/speaker.svg</file>
         <file>dark/copy.svg</file>
+        <file>dark/indeterminate.svg</file>
+        <file>dark/trash.svg</file>
+        <file>dark/edit.svg</file>
+        <file>dark/sealed.svg</file>
+        <file>dark/vented.svg</file>
     </qresource>
 </RCC>

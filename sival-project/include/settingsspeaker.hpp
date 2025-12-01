@@ -9,18 +9,16 @@
  *
  */
 //// begin system includes
-#include <QCoreApplication>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QComboBox>
-#include <QtWidgets/QFrame>
-#include <QtWidgets/QGridLayout>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QSpacerItem>
+#include <QtCore/QVariant>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QListWidget>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <QPushButton>
 #include "sivalgui/headerlabel.hpp"
-#include "sivalgui/label.hpp"
-#include "sivalgui/spinwidget.hpp"
+#include "sivalgui/selectiontree.hpp"
+#include "sivalgui/toolbutton.hpp"
 
 #include <sivalgui/navigationpanel.hpp>
 //// end system includes
@@ -43,20 +41,20 @@
 
 namespace SiVAL {
 /**
- * class SettingsGeneral
+ * class SettingsSpeaker
  *
  * @brief
  *
  */
-class SettingsGeneral : public SiVAL::Gui::NavigationPanel
+class SettingsSpeaker : public SiVAL::Gui::NavigationPanel
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SettingsGeneral(QWidget *parent = nullptr);
+    explicit SettingsSpeaker(QWidget *parent = nullptr);
     /// Destructor
-    virtual ~SettingsGeneral();
+    virtual ~SettingsSpeaker();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -82,48 +80,21 @@ public:
 
     //// begin protected member
 protected:
+    QVBoxLayout *verticalLayout;
+    SiVAL::Gui::HeaderLabel *label;
+    QStackedWidget *m_stack;
+    SiVAL::Gui::SelectionTree *m_globalChassis;
+    SiVAL::Gui::HeaderLabel *m_path;
+    QListWidget *m_pathList;
+    QHBoxLayout *horizontalLayout;
+    SiVAL::Gui::ToolButton *m_new;
+    SiVAL::Gui::ToolButton *m_edit;
+    SiVAL::Gui::ToolButton *m_delete;
+
     //// end protected member
 
     //// begin private member
 private:
-    QGridLayout *gridLayout;
-    QCheckBox *m_settingsLang;
-    QComboBox *comboBox;
-    QCheckBox *m_splashScreen;
-    QLineEdit *m_licenseUrlEdit;
-    SiVAL::Gui::Label *m_company;
-    SiVAL::Gui::Label *m_author;
-    QComboBox *m_licenseBox;
-    SiVAL::Gui::HeaderLabel *m_appearance;
-    SiVAL::Gui::Label *m_licenseUrl;
-    SiVAL::Gui::Label *m_minute;
-    QCheckBox *m_autoSave;
-    QSpacerItem *verticalSpacer;
-    QFrame *line;
-    SiVAL::Gui::Label *m_themeSel;
-    QFrame *line_3;
-    QLineEdit *m_authorEdit;
-    SiVAL::Gui::HeaderLabel *m_project;
-    QWidget *m_themeDark;
-    SiVAL::Gui::SpinWidget *m_SaveTime;
-    SiVAL::Gui::HeaderLabel *m_startup;
-    QFrame *line_2;
-    QWidget *m_themeAuto;
-    SiVAL::Gui::HeaderLabel *m_lang_app;
-    SiVAL::Gui::Label *m_recProCount;
-    QLineEdit *m_companyEdit;
-    QCheckBox *m_openLast;
-    SiVAL::Gui::SpinWidget *m_projectCount;
-    SiVAL::Gui::Label *m_selLang;
-    QFrame *horizontalLine;
-    QFrame *line_4;
-    SiVAL::Gui::Label *m_license;
-    QWidget *m_themeLight;
-    SiVAL::Gui::Label *m_language;
-    QPushButton *m_selectHelp;
-    QCheckBox *m_onlineHelp;
-    SiVAL::Gui::Label *m_localHelp;
-    QLineEdit *m_helpPath;
     //// end private member
 
     //// begin public slots

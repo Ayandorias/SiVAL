@@ -76,6 +76,7 @@ public:
 protected:
     void enterEvent(QEnterEvent * event) override;
     void leaveEvent(QEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent * event) override;
     void mousePressEvent(QMouseEvent * event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
@@ -128,6 +129,7 @@ private slots:
 signals:
     void infoText(const QString &text);
     void clicked();
+    void doubleClicked(SiVAL::Gui::Card *card);
     //// end signals
 };
 }

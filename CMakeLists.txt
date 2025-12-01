@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(SiVAL_Suite)
 
 # C++ Standard setzen (optional, aber gute Praxis)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Qt 6 (oder 5) finden.
@@ -28,6 +28,6 @@ add_subdirectory(sival-ressource)
 
 # 2. Die Anwendung, die die Bibliothek nutzt
 # add_subdirectory(sival-enclosure)
-add_subdirectory(sival)
+add_subdirectory(sival-project)
 
 

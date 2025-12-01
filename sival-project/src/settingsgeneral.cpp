@@ -65,13 +65,8 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
 
     gridLayout->addWidget(m_language, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    horizontalLine = new QFrame(w);
-    horizontalLine->setObjectName("horizontalLine");
-    horizontalLine->setMinimumSize(QSize(0, 0));
-    horizontalLine->setFrameShape(QFrame::Shape::HLine);
-    horizontalLine->setFrameShadow(QFrame::Shadow::Sunken);
-
-    gridLayout->addWidget(horizontalLine, row++, 0, 1, 4);
+    SiVAL::Gui::Line *line = new SiVAL::Gui::Line(w);
+    gridLayout->addWidget(line, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     m_settingsLang = new QCheckBox(w);
     m_settingsLang->setObjectName("m_settingsLang");
@@ -104,10 +99,7 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
 
     gridLayout->addWidget(m_appearance, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    line = new QFrame(w);
-    line->setObjectName("line");
-    line->setFrameShape(QFrame::Shape::HLine);
-    line->setFrameShadow(QFrame::Shadow::Sunken);
+    line = new SiVAL::Gui::Line(w);
 
     gridLayout->addWidget(line, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,24 +134,18 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
 
     gridLayout->addWidget(m_startup, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    line_2 = new QFrame(w);
-    line_2->setObjectName("line_2");
-    line_2->setFrameShape(QFrame::Shape::HLine);
-    line_2->setFrameShadow(QFrame::Shadow::Sunken);
+    line = new SiVAL::Gui::Line(w);
 
-    gridLayout->addWidget(line_2, row++, 0, 1, 4);
+    gridLayout->addWidget(line, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     m_splashScreen = new QCheckBox(w);
     m_splashScreen->setObjectName("m_splashScreen");
 
     gridLayout->addWidget(m_splashScreen, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    line_3 = new QFrame(w);
-    line_3->setObjectName("line_3");
-    line_3->setFrameShape(QFrame::Shape::HLine);
-    line_3->setFrameShadow(QFrame::Shadow::Sunken);
+    line = new SiVAL::Gui::Line(w);
 
-    gridLayout->addWidget(line_3, row++, 0, 1, 4);
+    gridLayout->addWidget(line, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     m_openLast = new QCheckBox(w);
     m_openLast->setObjectName("m_openLast");
@@ -181,12 +167,9 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
 
     gridLayout->addWidget(m_project, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    line_4 = new QFrame(w);
-    line_4->setObjectName("line_4");
-    line_4->setFrameShape(QFrame::Shape::HLine);
-    line_4->setFrameShadow(QFrame::Shadow::Sunken);
+    line = new SiVAL::Gui::Line(w);
 
-    gridLayout->addWidget(line_4, row++, 0, 1, 4);
+    gridLayout->addWidget(line, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     m_autoSave = new QCheckBox(w);
     m_autoSave->setObjectName("m_autoSave");

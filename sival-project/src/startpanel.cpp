@@ -10,6 +10,7 @@
 //// end includes
 
 //// begin system includes
+#include <sivalgui/line.hpp>
 //// end system includes
 
 //// begin project specific includes
@@ -51,10 +52,7 @@ StartPanel::StartPanel(QWidget *parent)
     label_3->setScaledContents(true);
     verticalLayout->addWidget(label_3);
 
-    QFrame *line = new QFrame(this);
-    line->setObjectName("horizontalLine");
-    line->setMinimumSize(QSize(0, 1));
-    line->setMaximumSize(QSize(16777215, 1));
+    SiVAL::Gui::Line *line = new SiVAL::Gui::Line(this);
     verticalLayout->addWidget(line);
 
     m_newLabel = new Gui::Label(this);
@@ -90,10 +88,7 @@ StartPanel::StartPanel(QWidget *parent)
     QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     hl->addItem(spacer);
 
-    line = new QFrame(this);
-    line->setObjectName("horizontalLine2");
-    line->setMinimumSize(QSize(0, 1));
-    line->setMaximumSize(QSize(16777215, 1));
+    line = new SiVAL::Gui::Line(this);
     verticalLayout->addWidget(line);
 
 

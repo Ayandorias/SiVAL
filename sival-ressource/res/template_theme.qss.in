@@ -345,11 +345,12 @@ SiVAL--Gui--Section {
     color: @TEXT_PRIMARY@;
     qproperty-infoColor: @TEXT_SECONDARY@;
     border-radius: 0px;
+    border-bottom: 1px solid @TEXT_SECONDARY@;
     margin: 0px;
 }
 
 SiVAL--Gui--Section:hover {
-    background-color: @SECTION_HOVER@;
+    background-color: @SECTION_BG@;
 }
 
 SiVAL--Gui--SectionCard {
@@ -375,12 +376,7 @@ SiVAL--Gui--StartItemBig:hover {
     border-radius: 0px;
 }
 
-#horizontalLine, #horizontalLine2 {
-    border: none;
-    background-color: @ACCENT_COLOR@;
-}
-
-QWidget#horizontalLine {
+SiVAL--Gui--Line {
     border: none;
     background-color: @ACCENT_COLOR@;
 }
@@ -402,7 +398,6 @@ SiVAL--SettingsPanel {
 
 #settingsHeader {
     background-color: @CONTENT_BG@;
-    margin-left: 20px;
 }
 
 SiVAL--SettingsGeneral {
@@ -540,3 +535,217 @@ QGroupBox.Flat::title {
     background-color: transparent;
     color: #0078D7; /* Akzentfarbe für den Titel */
 }
+
+
+/* ===================================================================
+ * Tree Widget
+ * ================================================================ */
+SiVAL--Gui--SelectionTree {
+    qproperty-alternatingRowColors: 1;
+    background-color: @CONTENT_BG@;
+    border: 1px solid @BORDER_COLOR@;
+}
+
+/* Die normalen Zeilen (Ungerade) */
+SiVAL--Gui--SelectionTree::item {
+    background-color: @CONTENT_BG@;
+    color: @TEXT_PRIMARY@;
+    border-bottom: 1px solid @WINDOW_BG@;
+    padding-top:5px;
+    padding-bottom: 5px;
+}
+
+/* Die alternierenden Zeilen (Gerade) */
+SiVAL--Gui--SelectionTree::item:alternate {
+    background-color: @ALTERNATE_BG@;
+}
+
+SiVAL--Gui--SelectionTree::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid @TEXT_PRIMARY@;
+    border-radius: 4px;
+    background-color: @CONTENT_BG@;
+}
+
+/* Hover-Effekt */
+SiVAL--Gui--SelectionTree::indicator:unchecked:hover {
+    background-color: @HOVER_BG_CONTENT@;
+}
+
+SiVAL--Gui--SelectionTree::indicator:checked {
+    image: url(:/sival/@THEME_ID@/check.svg);
+}
+
+SiVAL--Gui--SelectionTree::indicator:checked:hover {
+    background-color: @HOVER_BG_CONTENT@;
+}
+
+#checkHeader {
+    background-color: transparent;
+    margin-left: 2px;
+}
+
+#checkHeader:indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid @TEXT_PRIMARY@;
+    border-radius: 4px;
+    background-color: @CONTENT_BG@;
+}
+
+/* Hover-Effekt */
+#checkHeader:indicator:unchecked:hover {
+    background-color: @HOVER_BG_CONTENT@;
+}
+
+#checkHeader:indicator:checked {
+    image: url(:/sival/@THEME_ID@/check.svg);
+}
+
+#checkHeader:indicator:checked:hover {
+    background-color: @HOVER_BG_CONTENT@;
+}
+
+QCheckBox::indicator:indeterminate {
+    image: url(:/sival/@THEME_ID@/indeterminate.svg);
+}
+
+QCheckBox::indicator:indeterminate:hover {
+    background-color: @HOVER_BG_CONTENT@;
+}
+/* ===================================================================
+ * Header View from Tree Widget
+ * ================================================================ */
+QHeaderView {
+    background-color: @WINDOW_BG@;
+    border: none;
+    border-radius: 0px;
+    /* Harte Trennlinie unten bleibt zur Strukturierung */
+    border-bottom: 1px solid @BORDER_COLOR@;
+
+    /* KORREKTUR: Erzwingen der Ausrichtung über die C++ Eigenschaft */
+    /* Dies überschreibt den Standard (Center) hart. */
+    qproperty-defaultAlignment: AlignLeft;
+}
+
+QHeaderView::section {
+    background-color: @WINDOW_BG@;
+    color: @TEXT_PRIMARY@;
+    padding-left: 3px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    border-right: 1px solid @DIVIDER_COLOR@;
+    text-align: left;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+QHeaderView::section:last {
+    border-right: none;
+    text-align: left;
+}
+
+/* KEINE Hover-Effekte (Da Sortierung inaktiv ist) */
+QHeaderView::section:hover {
+    background-color: @WINDOW_BG@; /* Bleibt gleich */
+}
+
+/* KEINE Pressed-Effekte */
+QHeaderView::section:pressed {
+    background-color: @WINDOW_BG@;
+}
+
+/* KEINE Sortierpfeile */
+QHeaderView::up-arrow, QHeaderView::down-arrow {
+    image: none;
+    width: 0px;
+    height: 0px;
+}
+
+/* ===================================================================
+ * List Widget
+ * ================================================================ */
+
+QListWidget {
+    background-color: @CONTENT_BG@;
+    border: 1px solid @BORDER_COLOR@;
+    border-radius: 5px;
+    color: @TEXT_PRIMARY@;
+
+    /* Entfernt die gepunktete Linie um das fokussierte Item */
+    outline: 0px;
+
+    /* Innenabstand zum Rahmen des gesamten Widgets */
+
+    /* KORREKTUR: Echter Abstand zwischen den Items über die C++ Eigenschaft.
+       Dies verhindert Überlappungsfehler beim Hover und garantiert
+       konsistentes Padding für alle Einträge. */
+    qproperty-spacing: 0;
+
+    /* NEU: Aktivierung der alternierenden Zeilenfarben */
+    qproperty-alternatingRowColors: 1;
+}
+
+/* Basis-Stil für jedes Item in der Liste */
+QListWidget::item {
+    padding: 8px 10px;
+    border-bottom: 1px solid @WINDOW_BG@;
+    color: @TEXT_PRIMARY@;
+}
+
+/* NEU: Stil für die alternierenden (geraden) Zeilen */
+QListWidget::item:alternate {
+    background-color: @ALTERNATE_BG@;
+}
+
+/* Zustand: Maus schwebt über einem Item */
+QListWidget::item:hover {
+    background-color: @HOVER_BG_CONTENT@;
+    /* Optional: Rand sichtbar machen für besseres Feedback */
+    /* border-color: @BORDER_COLOR@; */
+}
+
+/* Zustand: Item ist ausgewählt (Fokus auf der Liste) */
+QListWidget::item:selected {
+    background-color: @SELECTION_BG@;
+    color: @TEXT_SELECTION@;
+
+    /* Ein feiner Rand hilft bei hellen Selektionsfarben */
+    border-color: transparent;
+}
+
+/* Zustand: Item ist ausgewählt, aber Liste hat KEINEN Fokus */
+QListWidget::item:selected:!active {
+    background-color: @SELECTION_BG@;
+    color: @TEXT_SELECTION@;
+    border-color: transparent;
+}
+
+/* Zustand: Drag & Drop Indikator */
+QListWidget::indicator {
+    background-color: @ACCENT_COLOR@;
+}
+
+/* ===================================================================
+ * Tool Button
+ * ================================================================ */
+
+SiVAL--Gui--ToolButton {
+    background-color: @CONTENT_BG@;
+    border-radius: 5px;
+    border-bottom: 1px solid @WINDOW_BG@;
+    padding: 5px;
+}
+
+SiVAL--Gui--ToolButton:hover {
+    background-color: @HOVER_BG_CONTENT@;
+    border-radius: 5px;
+}
+
+SiVAL--Gui--ToolButton#m_new { image: url(":/sival/@THEME_ID@/plus.svg"); }
+
+SiVAL--Gui--ToolButton#m_edit { image: url(":/sival/@THEME_ID@/edit.svg"); }
+
+SiVAL--Gui--ToolButton#m_delete { image: url(":/sival/@THEME_ID@/trash.svg"); }
