@@ -10,6 +10,7 @@
  */
 //// begin system includes
 #include <QObject>
+#include <QJsonObject>
 //// end system includes
 
 //// begin project specific includes
@@ -41,9 +42,12 @@ class General : public QObject
     //// begin public member methods
 public:
     /// Constructor
-    explicit General();
+    explicit General(QJsonObject obj);
     /// Destructor
     virtual ~General();
+    QString currentTheme();
+    void setCurrentTheme(const QString &theme);
+    QJsonObject object();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -64,6 +68,19 @@ private:
 
     //// begin public member
 public:
+    QJsonObject m_object;
+
+
+    // QString m_theme_current;
+
+
+    QString m_language;
+    QString m_unit_system;
+    int m_decimal_precision;
+
+    QStringList m_recent_projects;
+    int m_max_recent_items;
+    bool m_show_splash_screen;
     //// end public member
 
     //// begin protected member
@@ -72,15 +89,6 @@ protected:
 
     //// begin private member
 private:
-    QString m_language;
-    QString m_unit_system;
-    int m_decimal_precision;
-    QString m_theme_current;
-    QStringList m_themes_available;
-    bool m_use_system_theme;
-    QStringList m_recent_projects;
-    int m_max_recent_items;
-    bool m_show_splash_screen;
     //// end private member
 
     //// begin public slots

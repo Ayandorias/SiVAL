@@ -58,6 +58,7 @@ NavigationButton* View::navigationButton(QWidget *parent) {
     QString name = objectName() + QString("Button");
     if(m_navBarButton == nullptr) {
         m_navBarButton = new NavigationButton(parent);
+        m_navBarButton->setObjectName("projectNavigationButton");
         m_navBarButton->setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
         m_navBarButton->setObjectName(name);
         m_navBarButton->setMinimumSize(80, 60);

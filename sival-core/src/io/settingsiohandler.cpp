@@ -48,7 +48,7 @@ SettingsIOHandler* SettingsIOHandler::createInstance(const QString& filename)
 SettingsIOHandler::~SettingsIOHandler() {
 }
 
-bool SettingsIOHandler::load(AbstractDocument *doc) {
+QByteArray SettingsIOHandler::load() {
     QString userFilePath = getUserFilePath();
     std::cout << userFilePath.toStdString() << std::endl;
 
@@ -65,48 +65,23 @@ bool SettingsIOHandler::load(AbstractDocument *doc) {
             // HIER SPÄTER: Daten an SettingsDocument übergeben
             // parseData(data);
 
-            return true;
+            return data;
         }
     }
 
-    // SCHRITT 2: Fallback auf Default (Ressourcen)
-    std::cout << "User-Datei nicht gefunden. Lade Defaults." << std::endl;
-
-    // Wir bauen den Pfad zur Ressource.
-    // Annahme: Die Datei heißt in der qrc "default_" + dein Dateiname
-    // Oder fest: ":/config/default_settings.sival"
-    QString resourcePath = ":/config/settings/default_" + m_filename;
-
-    QFile defaultFile(resourcePath);
-    if (defaultFile.open(QIODevice::ReadOnly)) {
-        QByteArray defaultData = defaultFile.readAll();
-        defaultFile.close();
-
-        // HIER SPÄTER: Daten an SettingsDocument übergeben
-        // parseData(defaultData);
-
-        // SCHRITT 3: Sofortiges Speichern (Datei anlegen)
-        std::cout << "Erstelle initiale User-Datei..." << std::endl;
-        save(doc);
-
-        return true;
-    } else {
-        std::cout << "FEHLER: Weder User-Datei noch Default-Ressource gefunden:" << resourcePath.toStdString() << std::endl;
-        return false;
-    }
+    return QByteArray();
 }
 
-bool SettingsIOHandler::save(AbstractDocument *doc) {
+bool SettingsIOHandler::save(QByteArray content) {
+
+    std::cout << content.toStdString() << std::endl;
+
     QString userFilePath = getUserFilePath();
+    std::cout << userFilePath.toStdString() << std::endl;
     QFile file(userFilePath + QDir::separator() + m_filename);
 
     if (file.open(QIODevice::WriteOnly)) {
-        file.write("Hallo Welt");
-        // HIER SPÄTER: Daten aus SettingsDocument holen
-        // QByteArray data = serializeData();
-
-        // DUMMY: Wir schreiben erst mal das, was wir (theoretisch) im Speicher haben
-        // file.write(data);
+        file.write(content);
 
         std::cout << "Settings gespeichert unter:" << std::endl;
         file.close();
@@ -129,7 +104,7 @@ bool SettingsIOHandler::save(AbstractDocument *doc) {
 //// begin private member methods
 SettingsIOHandler::SettingsIOHandler(const QString & filename)
     :AbstractIOHandler(filename) {
-    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
 
     std::cout << configPath.toStdString() << ": " << m_filename.toStdString() << std::endl;
 }
@@ -137,7 +112,8 @@ SettingsIOHandler::SettingsIOHandler(const QString & filename)
 QString SettingsIOHandler::getUserFilePath() const
 {
     // Speicherort: AppConfigLocation (z.B. AppData/Local/SiVAL/)
-    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + QDir::separator() + QString("SiVAL");
+    std::cout << __FUNCTION__ << ": " << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation).toStdString() << std::endl;
+    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);// + QDir::separator() + QString("SiVAL");
     QDir dir(configPath);
 
     // Ordner erstellen, falls nicht existent

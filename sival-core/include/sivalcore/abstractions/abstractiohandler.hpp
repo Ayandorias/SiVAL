@@ -9,6 +9,7 @@
  *
  */
 //// begin system includes
+#include <QByteArray>
 #include <QString>
 //// end system includes
 
@@ -44,8 +45,8 @@ public:
     explicit AbstractIOHandler(const QString &filename);
     /// Destructor
     virtual ~AbstractIOHandler();
-    virtual bool load(AbstractDocument *doc) = 0;
-    virtual bool save(AbstractDocument *doc) = 0;
+    virtual QByteArray load() = 0;
+    virtual bool save(QByteArray content) = 0;
     //// end public member methods
 
     //// begin public member methods (internal use only)

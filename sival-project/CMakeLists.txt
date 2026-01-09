@@ -55,7 +55,7 @@ include_directories("${CMAKE_CURRENT_BINARY_DIR}/include")
 qt_add_executable(sival
     WIN32 MACOSX_BUNDLE
     src/main.cpp
-    include/mainwindow.hpp  src/mainwindow.cpp
+    include/projectmanager.hpp  src/projectmanager.cpp
     include/startview.hpp src/startview.cpp
     include/startpanel.hpp src/startpanel.cpp
     include/startitem.hpp src/startitem.cpp
@@ -67,6 +67,12 @@ qt_add_executable(sival
     include/settingsgeneral.hpp src/settingsgeneral.cpp
     include/settingsabout.hpp src/settingsabout.cpp
     include/settingsspeaker.hpp src/settingsspeaker.cpp
+    include/projectpanel.hpp src/projectpanel.cpp
+    include/projectenclosurepanel.hpp src/projectenclosurepanel.cpp
+    include/projectnewdialog.hpp src/projectnewdialog.cpp
+
+    include/projectpropertypanel.hpp src/projectpropertypanel.cpp src/projectpropertypanel.ui
+    include/enclosurenewdialog.hpp src/enclosurenewdialog.cpp src/enclosurenewdialog.ui
 )
 
 target_include_directories(sival-gui
@@ -79,6 +85,7 @@ target_link_libraries(sival
     PRIVATE
     sival-gui
     sival-core
+    SiVAL
         Qt::Core
         Qt::Widgets
         Qt::Svg

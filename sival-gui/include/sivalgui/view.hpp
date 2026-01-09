@@ -40,7 +40,7 @@ namespace Gui {
  */
 class SIVAL_GUI_EXPORT View : public QObject
 {
-
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
@@ -105,7 +105,6 @@ private slots:
 
     //// begin signals
 signals:
-
     //// end signals
 };
 }

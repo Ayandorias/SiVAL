@@ -14,6 +14,7 @@
 
 //// begin project specific includes
 #include "projectview.hpp"
+#include <sival.hpp>
 #include <sivalgui/cardlist.hpp>
 #include <sivalgui/enclosurecard.hpp>
 #include <sivalgui/section.hpp>
@@ -35,7 +36,7 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::PM {
 //// begin public member methods
 /**************************************************************************************************/
 /**
@@ -55,31 +56,47 @@ Gui::NavigationPanel* ProjectView::navigationPanel() {
     if(m_navBarPanel == nullptr) {
         Gui::CardList *l = new Gui::CardList();
 
-        sec = new SiVAL::Gui::Section(nullptr);
-        sec->setIcon(":/sival/" + sSettings()->theme() + "/enclosure-fill.svg");
-        sec->setMinimumHeight(40);
-        sec->setMaximumHeight(40);
-        l->addCard(sec);
+        m_enclosure = new SiVAL::Gui::Card(nullptr);
+        m_enclosure->setIcon(":/sival/" + sSettings()->theme() + "/enclosure-fill.svg");
+        m_enclosure->setMinimumHeight(40);
+        m_enclosure->setMaximumHeight(40);
+        connect(m_enclosure, &SiVAL::Gui::Card::clicked, this, &ProjectView::enclosure);
+        l->addCard(m_enclosure);
 
-        QWidget *w = new QWidget();
-        QVBoxLayout *layout = new QVBoxLayout(w);
-        layout->setContentsMargins(0,0,0,0);
-        layout->setSpacing(0);
-        l->addCard(w);
+        m_properties = new SiVAL::Gui::Card(nullptr);
+        m_properties->setIcon(":/sival/" + sSettings()->theme() + "/project_properties.svg");
+        m_properties->setMinimumHeight(40);
+        m_properties->setMaximumHeight(40);
+        connect(m_properties, &SiVAL::Gui::Card::clicked, this, &ProjectView::properties);
+        l->addCard(m_properties);
 
-        SiVAL::Gui::EnclosureCard *card = new SiVAL::Gui::EnclosureCard(w);
-        card->setIcon(":/sival/" + sSettings()->theme() + "/sealed.svg");
-        card->setTitle("TestDingen");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        layout->addWidget(card);
 
-        card = new SiVAL::Gui::EnclosureCard(w);
-        card->setIcon(":/sival/" + sSettings()->theme() + "/vented.svg");
-        card->setTitle("TestDingen");
-        card->setMinimumHeight(40);
-        card->setMaximumHeight(40);
-        layout->addWidget(card);
+        // m_information = new SiVAL::Gui::Card(nullptr);
+        // m_information->setIcon(":/sival/" + sSettings()->theme() + "/info.svg");
+        // m_information->setMinimumHeight(40);
+        // m_information->setMaximumHeight(40);
+        // connect(m_enclosure, &SiVAL::Gui::Card::clicked, this, &ProjectView::information);
+        // l->addCard(m_information);
+
+        // QWidget *w = new QWidget();
+        // QVBoxLayout *layout = new QVBoxLayout(w);
+        // layout->setContentsMargins(0,0,0,0);
+        // layout->setSpacing(0);
+        // l->addCard(w);
+
+        // SiVAL::Gui::EnclosureCard *card = new SiVAL::Gui::EnclosureCard(w);
+        // card->setIcon(":/sival/" + sSettings()->theme() + "/sealed.svg");
+        // card->setTitle("TestDingen");
+        // card->setMinimumHeight(40);
+        // card->setMaximumHeight(40);
+        // layout->addWidget(card);
+
+        // card = new SiVAL::Gui::EnclosureCard(w);
+        // card->setIcon(":/sival/" + sSettings()->theme() + "/vented.svg");
+        // card->setTitle("TestDingen");
+        // card->setMinimumHeight(40);
+        // card->setMaximumHeight(40);
+        // layout->addWidget(card);
 
         m_navBarPanel = l;
 
@@ -89,9 +106,18 @@ Gui::NavigationPanel* ProjectView::navigationPanel() {
 }
 QWidget* ProjectView::centerPanel() {
     if(m_centerPanel == nullptr) {
-        m_centerPanel = new QWidget();
+        ProjectPanel *panel = new ProjectPanel();
+        connect(panel, &ProjectPanel::sealedEnclosure, this, &ProjectView::sealedEnclosure);
+        connect(panel, &ProjectPanel::ventedEnclosure, this, &ProjectView::ventedEnclosure);
+        m_centerPanel = panel;
     }
     return m_centerPanel;
+}
+void ProjectView::setProjectDocument(SiVAL::Core::ProjectDocument *doc) {
+    m_projectDoc = doc;
+    ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
+    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Enclosure));
+    p->update(doc);
 }
 //// end public member methods
 
@@ -101,7 +127,9 @@ QWidget* ProjectView::centerPanel() {
 //// begin protected member methods
 void ProjectView::retranslate() {
     if(m_navBarPanel != nullptr) {
-        sec->setTitle(tr("Enclosure"));
+        m_enclosure->setTitle(tr("Enclosure"));
+        m_properties->setTitle(tr("Properties"));
+        // m_information->setTitle(tr("Information"));
     }
 }
 //// end protected member methods
@@ -116,6 +144,19 @@ void ProjectView::retranslate() {
 //// end public slots
 
 //// begin protected slots
+void ProjectView::enclosure() {
+    ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
+    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Enclosure));
+}
+void ProjectView::information() {
+    ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
+    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Enclosure));
+
+}
+void ProjectView::properties() {
+    ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
+    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Properties));
+}
 //// end protected slots
 
 //// begin private slots

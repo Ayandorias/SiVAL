@@ -32,6 +32,7 @@ function(create_theme)
 
         # Strukturfarben
         WINDOW_BG
+        DISABLED_BG
         CONTENT_BG
         ALTERNATE_BG
 
@@ -63,6 +64,10 @@ function(create_theme)
         DESTRUCTIVE_COLOR
         ACCENT_COLOR
 
+        BORDER_ACCEPT
+        BG_ACCEPT
+        BG_ACCEPT_HOVER
+
         # Icon Optionen
         ICON_COLOR
     )
@@ -89,6 +94,7 @@ function(create_theme)
     set(THEME_ID          ${THEME_THEME_ID})
 
     set(WINDOW_BG         ${THEME_WINDOW_BG})
+    set(DISABLED_BG       ${THEME_DISABLED_BG})
     set(CONTENT_BG        ${THEME_CONTENT_BG})
     set(ALTERNATE_BG      ${THEME_ALTERNATE_BG})
     set(TEXT_PRIMARY      ${THEME_TEXT_PRIMARY})
@@ -107,6 +113,9 @@ function(create_theme)
     set(SECTION_HOVER     ${THEME_SECTION_HOVER})
     set(DESTRUCTIVE_COLOR ${THEME_DESTRUCTIVE_COLOR})
     set(ACCENT_COLOR      ${THEME_ACCENT_COLOR})
+    set(BORDER_ACCEPT     ${THEME_BORDER_ACCEPT})
+    set(BG_ACCEPT         ${THEME_BG_ACCEPT})
+    set(BG_ACCEPT_HOVER   ${THEME_BG_ACCEPT_HOVER})
 
     # 5. QSS Generierung
 

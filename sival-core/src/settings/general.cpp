@@ -10,6 +10,7 @@
 //// end includes
 
 //// begin system includes
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
@@ -37,17 +38,21 @@ namespace SiVAL::Core {
 /**
  *
  */
-General::General()
+General::General(QJsonObject obj)
     :QObject() {
 
+    if(obj["theme"].isString()) {
+        m_object["theme"] = obj["theme"].toString();
+    } else {
+        m_object["theme"] = "auto";
+    }
+    m_object["openLastPrj"] = false;
 
 
 m_language = "en_EN";
 m_unit_system = tr("Metric");
 m_decimal_precision =  2;
-m_theme_current = tr("Dark");
-m_themes_available << tr("Light") << tr("Dark") << tr("HighContrast");
-m_use_system_theme = false;
+
 m_recent_projects = QStringList();
 m_max_recent_items = 10;
 m_show_splash_screen = true;
@@ -61,6 +66,18 @@ m_show_splash_screen = true;
  *
  */
 General::~General() {
+}
+
+QJsonObject General::object() {
+    return m_object;
+}
+
+QString General::currentTheme() {
+    return m_object["theme"].toString();
+}
+void General::setCurrentTheme(const QString &theme) {
+    std::cout << "theme wird neu gesetzt: " << theme.toStdString() << std::endl;
+    m_object["theme"] = theme;
 }
 //// end public member methods
 

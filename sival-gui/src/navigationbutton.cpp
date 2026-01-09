@@ -31,7 +31,7 @@ namespace SiVAL::Gui {
 //// begin public member methods
 NavigationButton::NavigationButton(QWidget *parent)
     :QToolButton(parent) {
-    setProperty("class", "SiVALNavigationButton");
+    // setProperty("class", "SiVALNavigationButton");
     setCheckable(true);
 }
 NavigationButton::~NavigationButton() {

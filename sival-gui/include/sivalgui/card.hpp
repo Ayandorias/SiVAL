@@ -43,6 +43,7 @@ class SIVAL_GUI_EXPORT Card : public QWidget
     Q_OBJECT
 
     Q_PROPERTY(QColor infoColor READ getInfoColor WRITE setInfoColor)
+    Q_PROPERTY(QColor checkedColor READ getCheckColor WRITE setCheckColor)
 
     //// begin public member methods
 public:
@@ -61,11 +62,14 @@ public:
     void setIcon(const QString &icon);
     void setInfo(const QString &info);
     void setTitle(const QString &title);
+    void setChecked(bool check);
 
 
     // Getter/Setter für die Eigenschaft
     void setInfoColor(const QColor &color);
     QColor getInfoColor() const;
+    void setCheckColor(const QColor &color);
+    QColor getCheckColor() const;
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -103,8 +107,10 @@ protected:
     bool m_bHovered;
     bool m_bPressed;
     int m_margin = 0;
+    bool m_check;
 
     QColor m_infoColor = QColor("black"); // Standardwert!
+    QColor m_checkedColor = QColor("black"); // Standardwert!
     QSvgRenderer *m_pIconRenderer;
     QSvgRenderer *m_pChevronRenderer;
     //// end protected member

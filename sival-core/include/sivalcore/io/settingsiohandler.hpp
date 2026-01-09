@@ -42,8 +42,8 @@ class SettingsIOHandler : public AbstractIOHandler
 public:
     static SettingsIOHandler* createInstance(const QString& filename);
     virtual ~SettingsIOHandler();
-    virtual bool load(AbstractDocument *doc) override;
-    virtual bool save(AbstractDocument *doc) override;
+    virtual QByteArray load() override;
+    virtual bool save(QByteArray content) override;
     //// end public member methods
 
     //// begin public member methods (internal use only)

@@ -32,7 +32,7 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::PM {
 //// begin public member methods
 /**************************************************************************************************/
 /**
@@ -81,9 +81,8 @@ StartPanel::StartPanel(QWidget *parent)
     m_newBlank->setMinimumSize(200, 200);
     m_newBlank->setMaximumSize(200, 200);
     m_newBlank->setIcon(":/sival/" + sSettings()->theme() + "/enclosure.svg");
+    connect(m_newBlank, &StartItem::clicked, this, &StartPanel::newEmptyProject);
     hl->addWidget(m_newBlank);
-
-
 
     QSpacerItem *spacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     hl->addItem(spacer);

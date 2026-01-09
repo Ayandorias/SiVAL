@@ -13,8 +13,6 @@ find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets Svg Charts LinguistTo
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets Svg Charts LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
-# set(TS_FILES sival-gui_en_150.ts)
-
 add_library(sival-gui SHARED
     include/sivalgui/global.hpp
 
@@ -37,14 +35,6 @@ add_library(sival-gui SHARED
     include/sivalgui/navigationwidget.hpp src/navigationwidget.cpp
     include/sivalgui/overlaydialog.hpp src/overlaydialog.cpp
 
-
-
-
-
-
-
-
-  ${TS_FILES}
   include/sivalgui/view.hpp src/view.cpp
   include/sivalgui/navigationbar.hpp src/navigationbar.cpp
   include/sivalgui/cardlist.hpp src/cardlist.cpp
@@ -79,13 +69,8 @@ target_link_libraries(sival-gui
     Qt6::Svg
     Qt6::Charts
     sival-ressource
+    sival-core
 )
 target_link_libraries(sival-gui PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 
 target_compile_definitions(sival-gui PRIVATE SIVAL_GUI_LIBRARY)
-
-if(COMMAND qt_create_translation)
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-else()
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-endif()

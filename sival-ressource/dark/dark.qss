@@ -5,22 +5,22 @@ QWidget {
     background-color: #2D2D30;
     border-radius: 5px;
     border: none;
-    color: #CCCCCC;
+    color: #CCCCCF;
 }
 
 #mainWindow {
-    border: 1px solid #1E1E1E;
+    border: 1px solid #1E1E21;
 }
 
 QWidget.CardList {
-    background-color: #1E1E1E;
+    background-color: #1E1E21;
     border-radius: 5px;
 }
 
 /* Die Pfeile (oben/unten) und den Hintergrund (Page-Bereich) komplett ausblenden */
 QScrollBar::add-line, QScrollBar::sub-line,
 QScrollBar::add-page, QScrollBar::sub-page {
-    background: #1E1E1E;
+    background: #1E1E21;
     border: none;
     width: 0px;
     height: 0px;
@@ -30,13 +30,13 @@ QScrollBar::add-page, QScrollBar::sub-page {
 QScrollBar:vertical {
     border: none;
     border-radius: 3px;
-    background: #252526;
+    background: #252529;
     width: 6px;
     margin: 0;
 }
 QScrollBar:horizontal {
     border: none;
-    background: #252526;
+    background: #252529;
     height: 6px;
     margin: 0;
     border-radius: 3px;
@@ -56,18 +56,18 @@ QScrollBar::handle:horizontal {
 
 /* *** DIE MAGIE: Sichtbar machen bei Hover *** */
 QScrollArea:hover QScrollBar::handle:vertical {
-    background: #424242;
+    background: #424245;
 }
 QScrollArea:hover QScrollBar::handle:horizontal {
-    background: #424242;
+    background: #424245;
 }
 
 /* Heller/dunkler machen, wenn man den Handle selbst greift */
 QScrollBar::handle:vertical:hover, QScrollBar::handle:vertical:pressed {
-    background: #424242;
+    background: #424245;
 }
 QScrollBar::handle:horizontal:hover, QScrollBar::handle:horizontal:pressed {
-    background: #424242;
+    background: #424245;
 }
 
 
@@ -76,25 +76,25 @@ QScrollBar::handle:horizontal:hover, QScrollBar::handle:horizontal:pressed {
  * =============================================================== */
 QCheckBox {
     spacing: 8px;
-    color: #CCCCCC;
+    color: #CCCCCF;
     font-size: 10pt;
 }
 
 QCheckBox:disabled {
-    color: #555555;
+    color: #555558;
 }
 
 QCheckBox::indicator {
     width: 12px;
     height: 12px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #CCCCCF;
     border-radius: 4px;
     background-color: #2D2D30;
 }
 
 /* Hover-Effekt */
 QCheckBox::indicator:unchecked:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 QCheckBox::indicator:checked {
@@ -102,7 +102,7 @@ QCheckBox::indicator:checked {
 }
 
 QCheckBox::indicator:checked:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 /* ===================================================================
@@ -111,15 +111,15 @@ QCheckBox::indicator:checked:hover {
 
 QComboBox {
     background-color: #2D2D30;
-    color: #CCCCCC;
-    border: 1px solid #3E3E3E;
+    color: #CCCCCF;
+    border: 1px solid #3E3E42;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
     min-width: 6em;
 }
 
 QComboBox:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 QComboBox::drop-down {
@@ -138,44 +138,44 @@ QComboBox::down-arrow {
 }
 
 QComboBox QAbstractItemView {
-    border: 1px solid #3E3E3E;
+    border: 1px solid #3E3E42;
     border-radius: 0px;
     background-color: #2D2D30;
-    color: #CCCCCC;
-    selection-background-color: #0078D7;
-    selection-color: #CCCCCC;
+    color: #CCCCCF;
+    selection-background-color: #0078DA;
+    selection-color: #CCCCCF;
     outline: 0px;
 }
 
 QComboBox QAbstractItemView::item {
     min-height: 24px;
     padding-left: 5px;
-    color: #CCCCCC;
+    color: #CCCCCF;
 }
 
 QComboBox QAbstractItemView::item:hover {
-    background-color: #3E3E42;
-    color: #CCCCCC;
+    background-color: #3E3E45;
+    color: #CCCCCF;
     border: none;
 }
 
 QComboBox QAbstractItemView QScrollBar:vertical {
     width: 8px;
-    background: #0078D7;
+    background: #0078DA;
 }
 
 /* ===================================================================
  * Line Edit
  * ================================================================ */
 QLineEdit {
-    border: 1px solid #3E3E3E;
-    color: #CCCCCC;
+    border: 1px solid #3E3E42;
+    color: #CCCCCF;
     background-color: #2D2D30;
 }
 
 /* Korrektur: Hier war zuvor #0f0, jetzt korrekt WINDOW_BG oder CONTENT_BG */
 SiVAL--Gui--FrameBar {
-    background-color: #1E1E1E;
+    background-color: #1E1E21;
 }
 
 /* ===================================================================
@@ -188,7 +188,7 @@ SiVAL--Gui--FrameBarButton {
 }
 
 SiVAL--Gui--FrameBarButton:hover {
-    background-color: #252526;
+    background-color: #252529;
 }
 
 /* ======================= Window Controls ======================= */
@@ -201,12 +201,32 @@ SiVAL--Gui--FrameBarButton:hover {
 #buttonNormal { image: url(":/sival/dark/min.svg"); }
 #buttonNormal:hover { image: url(":/sival/dark/min.svg"); }
 
+/* ====================== Quit Button ============================= */
+#buttonQuit {
+    background-color: #2D2D30;
+    margin-right: 5px;
+    image: url(":/sival/dark/close.svg");
+}
+
+#buttonQuit:hover {
+    background-color: #FF5558;
+    image: url(":/sival/dark/close_hover.svg");
+    border-radius: 5px;
+}
+
+/* ===================================================================
+ * Overlay Dialog Widget
+ * ================================================================ */
+#overlayDialog {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
 /* ===================================================================
  * Spin Widget
  * ================================================================ */
 SiVAL--Gui--SpinWidget QLineEdit {
     background-color: #2D2D30;
-    border: 1px solid #3E3E3E;
+    border: 1px solid #3E3E42;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     border-top-right-radius: 0px;
@@ -217,20 +237,20 @@ SiVAL--Gui--SpinWidget QToolButton#spinMinus {
     background-color: #2D2D30;
     border-left: 0px;
     border-right: 0px;
-    border-top: 1px solid #3E3E3E;
-    border-bottom: 1px solid #3E3E3E;
+    border-top: 1px solid #3E3E42;
+    border-bottom: 1px solid #3E3E42;
     border-radius: 0px;
     image: url(":/sival/dark/minus.svg");
     padding: 6px;
 }
 
 SiVAL--Gui--SpinWidget QToolButton#spinMinus:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 SiVAL--Gui--SpinWidget QToolButton#spinPlus {
     background-color: #2D2D30;
-    border: 1px solid #3E3E3E;
+    border: 1px solid #3E3E42;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     border-top-right-radius: 5px;
@@ -240,35 +260,22 @@ SiVAL--Gui--SpinWidget QToolButton#spinPlus {
 }
 
 SiVAL--Gui--SpinWidget QToolButton#spinPlus:hover {
-    background-color: #3E3E42;
-}
-
-/* ====================== Quit Button ============================= */
-#buttonQuit {
-    background-color: #2D2D30;
-    margin-right: 5px;
-    image: url(":/sival/dark/close.svg");
-}
-
-#buttonQuit:hover {
-    background-color: #FF5555;
-    image: url(":/sival/dark/close_hover.svg");
-    border-radius: 5px;
+    background-color: #3E3E45;
 }
 
 /* ===================================================================
  * Left NavigationBar
  * ================================================================ */
 SiVAL--Gui--NavigationBar {
-    background-color: #1E1E1E;
+    background-color: #1E1E21;
     border-radius: 0px;
-    border-right: 1px solid #3E3E3E;
+    border-right: 1px solid #3E3E42;
 }
 
-QToolButton.SiVALNavigationButton {
+SiVAL--Gui--NavigationButton {
     qtproperty-toolButtonStyle: ToolButtonTextUnderIcon;
-    color: #CCCCCC;
-    background-color: #1E1E1E;
+    color: #CCCCCF;
+    background-color: #1E1E21;
     border: none;
     border-radius: 0px;
     margin-right: 2px;
@@ -276,103 +283,112 @@ QToolButton.SiVALNavigationButton {
     padding-left: 4px;
 }
 
-QToolButton.SiVALNavigationButton:hover {
-    background-color: #252526;
+SiVAL--Gui--NavigationButton:hover {
+    background-color: #252529;
     border: none;
     border-radius: 0px;
     font-weight: bold;
     padding-left: 4px;
 }
 
-QToolButton.SiVALNavigationButton:checked {
-    background-color: #1E1E1E;
+SiVAL--Gui--NavigationButton:checked {
+    background-color: #1E1E21;
     border-left: 4px solid #0078D7;
     border-radius: 0px;
     font-weight: bold;
     padding-left: 0px;
 }
+SiVAL--Gui--NavigationButton:disabled {
+    background-color: #2E2E31;
+}
 
 #mainMenu {
-    background-color: #1E1E1E;
+    background-color: #1E1E21;
     text-align: left;
     image: url(":/sival/logo/speaker.svg"); /* Logo bleibt meist gleich */
     padding: 3px;
+    border-bottom: 1px solid #3E3E42;
 }
 #separator {
     margin-left: 3px;
     margin-right: 3px;
     border: none;
-    background-color: #3E3E3E;
+    background-color: #3E3E42;
 }
 
 /* ===================================================================
  * Left NavigationsWidget
  * ================================================================ */
 SiVAL--Gui--NavigationWidget {
-    background-color: #1E1E1E;
+    background-color: #1E1E21;
     border-radius: 0px;
     border: none;
 }
 
 QLabel.SiVALHeaderLabel{
-    background-color: #1E1E1E;
-    color: #CCCCCC;
+    background-color: #1E1E21;
+    color: #CCCCCF;
     font-size: 12pt;
     font-weight: bold;
     padding-left: 8px;
 }
 
+#navigationPanel {
+    border-bottom: 1px solid #3E3E42;
+}
+
 SiVAL--Gui--Label {
     background-color: #2D2D30;
-    color: #CCCCCC;
+    color: #CCCCCF;
     font-size: 10pt;
 }
 
 SiVAL--Gui--Card {
-    background-color: #1E1E1E;
-    color: #CCCCCC;
-    qproperty-infoColor: #969696;
+    background-color: #1E1E21;
+    color: #CCCCCF;
+    qproperty-infoColor: #969699;
+    qproperty-checkedColor: #0078D7;
     margin: 0px;
     border-radius: 0px;
 }
 
 SiVAL--Gui--Card:hover {
-    background-color: #252526;
+    background-color: #252529;
 }
 
 SiVAL--Gui--Section {
-    background-color: #252526;
-    color: #CCCCCC;
-    qproperty-infoColor: #969696;
+    background-color: #252529;
+    color: #CCCCCF;
+    qproperty-infoColor: #969699;
     border-radius: 0px;
-    border-bottom: 1px solid #969696;
+    border-bottom: 1px solid #969699;
     margin: 0px;
 }
 
 SiVAL--Gui--Section:hover {
-    background-color: #252526;
+    background-color: #252529;
 }
 
 SiVAL--Gui--SectionCard {
-    background-color: #1E1E1E;
-    color: #CCCCCC;
-    qproperty-infoColor: #969696;
+    background-color: #1E1E21;
+    color: #CCCCCF;
+    qproperty-infoColor: #969699;
     border-radius: 0px;
     margin: 0px;
 }
 
 SiVAL--Gui--SectionCard:hover {
-    background-color: #252526;
+    background-color: #252529;
 }
 
 SiVAL--Gui--StartItemBig {
     background-color: #2D2D30;
     border-radius: 0px;
-    border-bottom: 1px solid #1E1E1E;
+    border-bottom: 1px solid #1E1E21;
 }
 
 SiVAL--Gui--StartItemBig:hover {
-    background-color: #333333;
+    background-color: #333336;
     border-radius: 0px;
 }
 
@@ -383,20 +399,20 @@ SiVAL--Gui--Line {
 
 SiVAL--StartItem {
     background-color: #2D2D30;
-    color: #CCCCCC;
-    qproperty-infoColor: #969696;
+    color: #CCCCCF;
+    qproperty-infoColor: #969699;
 }
 
 SiVAL--StartItem:hover {
-    background-color: #333333;
-    border: 2px solid #3E3E42;
+    background-color: #333336;
+    border: 2px solid #3E3E45;
 }
 
 SiVAL--SettingsPanel {
     background-color: #2D2D30;
 }
 
-#settingsHeader {
+#settingsHeader, #projectHeader {
     background-color: #2D2D30;
 }
 
@@ -405,12 +421,42 @@ SiVAL--SettingsGeneral {
 }
 
 QPushButton {
-    border: 1px solid #3E3E3E;
-    color: #CCCCCC;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+QPushButton {
+    border: 1px solid #3E3E42;
+    color: #CCCCCF;
     background-color: #2D2D30;
 }
+
 QPushButton:hover {
-background-color: #3E3E42;
+background-color: #3E3E45;
+}
+
+QPushButton#buttonAccept {
+    margin-top: 5px;
+    border: 1px solid #22744a;
+    background-color: #385344;
+    color: #CCCCCF;
+}
+
+QPushButton#buttonAccept:disabled {
+    background-color: #1E1E21;
+}
+
+QPushButton#buttonAccept:hover {
+    background-color: #5d7a6a;
+}
+
+#dialogHeaderInfo {
+   margin-top: 5px;
+}
+
+#dialogCenterWidget {
+    border-radius: 0px;
+    border-top: 1px solid #0078D7;
+    border-bottom: 1px solid #0078D7;
 }
 
 
@@ -438,23 +484,23 @@ background-color: #3E3E42;
 QLabel#titleAbout {
     font-weight: bold;
     font-size: 16pt;
-    color: #CCCCCC;
+    color: #CCCCCF;
 }
 
 #additional_info {
-    background-color: #3E3E42;
-    border: 1px solid #3E3E3E;
+    background-color: #3E3E45;
+    border: 1px solid #3E3E42;
 }
 
 #libQt, #libSival, #libLohmann {
-    background-color: #3E3E42;
-    color: #969696;
+    background-color: #3E3E45;
+    color: #969699;
     qproperty-linkColor: #FF0000;
 }
 
 #libraryAbout, #assetsAbout{
-    background-color: #3E3E42;
-    color: #CCCCCC;
+    background-color: #3E3E45;
+    color: #CCCCCF;
     font-weight: bold;
     font-seize: 12pt;
 }
@@ -465,7 +511,7 @@ QLabel#titleAbout {
  * ================================================================ */
 QGroupBox {
     /* Der Rahmen: Solide, dünn, abgerundet */
-    border: 1px solid #3E3E3E;
+    border: 1px solid #3E3E42;
     border-radius: 5px;
 
     /* WICHTIG: Platz schaffen für den Titel!
@@ -495,7 +541,7 @@ QGroupBox::title {
     /* Damit der Rahmen hinter dem Text nicht sichtbar ist,
        muss der Hintergrund des Titels der Fensterfarbe entsprechen */
     background-color: transparent;
-    color: #CCCCCC;
+    color: #CCCCCF;
 }
 
 /* ===================================================================
@@ -543,34 +589,34 @@ QGroupBox.Flat::title {
 SiVAL--Gui--SelectionTree {
     qproperty-alternatingRowColors: 1;
     background-color: #2D2D30;
-    border: 1px solid #3E3E3E;
+    border: 1px solid #3E3E42;
 }
 
 /* Die normalen Zeilen (Ungerade) */
 SiVAL--Gui--SelectionTree::item {
     background-color: #2D2D30;
-    color: #CCCCCC;
-    border-bottom: 1px solid #1E1E1E;
+    color: #CCCCCF;
+    border-bottom: 1px solid #1E1E21;
     padding-top:5px;
     padding-bottom: 5px;
 }
 
 /* Die alternierenden Zeilen (Gerade) */
 SiVAL--Gui--SelectionTree::item:alternate {
-    background-color: #333333;
+    background-color: #333336;
 }
 
 SiVAL--Gui--SelectionTree::indicator {
     width: 16px;
     height: 16px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #CCCCCF;
     border-radius: 4px;
     background-color: #2D2D30;
 }
 
 /* Hover-Effekt */
 SiVAL--Gui--SelectionTree::indicator:unchecked:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 SiVAL--Gui--SelectionTree::indicator:checked {
@@ -578,7 +624,7 @@ SiVAL--Gui--SelectionTree::indicator:checked {
 }
 
 SiVAL--Gui--SelectionTree::indicator:checked:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 #checkHeader {
@@ -589,14 +635,14 @@ SiVAL--Gui--SelectionTree::indicator:checked:hover {
 #checkHeader:indicator {
     width: 16px;
     height: 16px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #CCCCCF;
     border-radius: 4px;
     background-color: #2D2D30;
 }
 
 /* Hover-Effekt */
 #checkHeader:indicator:unchecked:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 #checkHeader:indicator:checked {
@@ -604,7 +650,7 @@ SiVAL--Gui--SelectionTree::indicator:checked:hover {
 }
 
 #checkHeader:indicator:checked:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 
 QCheckBox::indicator:indeterminate {
@@ -612,17 +658,17 @@ QCheckBox::indicator:indeterminate {
 }
 
 QCheckBox::indicator:indeterminate:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
 }
 /* ===================================================================
  * Header View from Tree Widget
  * ================================================================ */
 QHeaderView {
-    background-color: #1E1E1E;
+    background-color: #1E1E21;
     border: none;
     border-radius: 0px;
     /* Harte Trennlinie unten bleibt zur Strukturierung */
-    border-bottom: 1px solid #3E3E3E;
+    border-bottom: 1px solid #3E3E42;
 
     /* KORREKTUR: Erzwingen der Ausrichtung über die C++ Eigenschaft */
     /* Dies überschreibt den Standard (Center) hart. */
@@ -630,13 +676,13 @@ QHeaderView {
 }
 
 QHeaderView::section {
-    background-color: #1E1E1E;
-    color: #CCCCCC;
+    background-color: #1E1E21;
+    color: #CCCCCF;
     padding-left: 3px;
     padding-top: 5px;
     padding-bottom: 5px;
     border: none;
-    border-right: 1px solid #1E1E1E;
+    border-right: 1px solid #1E1E22;
     text-align: left;
     font-weight: bold;
     font-size: 12pt;
@@ -649,12 +695,12 @@ QHeaderView::section:last {
 
 /* KEINE Hover-Effekte (Da Sortierung inaktiv ist) */
 QHeaderView::section:hover {
-    background-color: #1E1E1E; /* Bleibt gleich */
+    background-color: #1E1E21; /* Bleibt gleich */
 }
 
 /* KEINE Pressed-Effekte */
 QHeaderView::section:pressed {
-    background-color: #1E1E1E;
+    background-color: #1E1E21;
 }
 
 /* KEINE Sortierpfeile */
@@ -670,9 +716,9 @@ QHeaderView::up-arrow, QHeaderView::down-arrow {
 
 QListWidget {
     background-color: #2D2D30;
-    border: 1px solid #3E3E3E;
+    border: 1px solid #3E3E42;
     border-radius: 5px;
-    color: #CCCCCC;
+    color: #CCCCCF;
 
     /* Entfernt die gepunktete Linie um das fokussierte Item */
     outline: 0px;
@@ -691,25 +737,25 @@ QListWidget {
 /* Basis-Stil für jedes Item in der Liste */
 QListWidget::item {
     padding: 8px 10px;
-    border-bottom: 1px solid #1E1E1E;
-    color: #CCCCCC;
+    border-bottom: 1px solid #1E1E21;
+    color: #CCCCCF;
 }
 
 /* NEU: Stil für die alternierenden (geraden) Zeilen */
 QListWidget::item:alternate {
-    background-color: #333333;
+    background-color: #333336;
 }
 
 /* Zustand: Maus schwebt über einem Item */
 QListWidget::item:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
     /* Optional: Rand sichtbar machen für besseres Feedback */
-    /* border-color: #3E3E3E; */
+    /* border-color: #3E3E42; */
 }
 
 /* Zustand: Item ist ausgewählt (Fokus auf der Liste) */
 QListWidget::item:selected {
-    background-color: #0078D7;
+    background-color: #0078DA;
     color: #FCFCFF;
 
     /* Ein feiner Rand hilft bei hellen Selektionsfarben */
@@ -718,7 +764,7 @@ QListWidget::item:selected {
 
 /* Zustand: Item ist ausgewählt, aber Liste hat KEINEN Fokus */
 QListWidget::item:selected:!active {
-    background-color: #0078D7;
+    background-color: #0078DA;
     color: #FCFCFF;
     border-color: transparent;
 }
@@ -735,12 +781,12 @@ QListWidget::indicator {
 SiVAL--Gui--ToolButton {
     background-color: #2D2D30;
     border-radius: 5px;
-    border-bottom: 1px solid #1E1E1E;
+    border-bottom: 1px solid #1E1E21;
     padding: 5px;
 }
 
 SiVAL--Gui--ToolButton:hover {
-    background-color: #3E3E42;
+    background-color: #3E3E45;
     border-radius: 5px;
 }
 

@@ -27,6 +27,7 @@
 
 //// begin project specific includes
 #include <sivalgui/line.hpp>
+#include <startitem.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -41,7 +42,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
  * class SettingsGeneral
  *
@@ -57,6 +58,7 @@ public:
     explicit SettingsGeneral(QWidget *parent = nullptr);
     /// Destructor
     virtual ~SettingsGeneral();
+    void updateSettings();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -102,10 +104,11 @@ private:
     SiVAL::Gui::Label *m_themeSel;
     QLineEdit *m_authorEdit;
     SiVAL::Gui::HeaderLabel *m_project;
-    QWidget *m_themeDark;
     SiVAL::Gui::SpinWidget *m_SaveTime;
     SiVAL::Gui::HeaderLabel *m_startup;
-    QWidget *m_themeAuto;
+    StartItem *m_themeAuto;
+    StartItem *m_themeDark;
+    StartItem *m_themeLight;
     SiVAL::Gui::HeaderLabel *m_lang_app;
     SiVAL::Gui::Label *m_recProCount;
     QLineEdit *m_companyEdit;
@@ -113,7 +116,6 @@ private:
     SiVAL::Gui::SpinWidget *m_projectCount;
     SiVAL::Gui::Label *m_selLang;
     SiVAL::Gui::Label *m_license;
-    QWidget *m_themeLight;
     SiVAL::Gui::Label *m_language;
     QPushButton *m_selectHelp;
     QCheckBox *m_onlineHelp;
@@ -129,6 +131,7 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void themeSelector();
     //// end protected slots
 
     //// begin private slots

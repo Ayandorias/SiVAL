@@ -37,7 +37,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
  * class SettingsAbout
  *
@@ -111,6 +111,7 @@ protected:
     QLabel *m_libLohmann;
     QSpacerItem *verticalSpacer_4;
     QLabel *m_assets;
+    QLabel *m_icons;
     QSpacerItem *m_rightSpacer;
     //// end protected member
 

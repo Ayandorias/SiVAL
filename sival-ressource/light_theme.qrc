@@ -37,5 +37,9 @@
         <file>light/edit.svg</file>
         <file>light/sealed.svg</file>
         <file>light/vented.svg</file>
+        <file>light/project_properties.svg</file>
+        <file>light/warning.svg</file>
+        <file>light/theme_dark.svg</file>
+        <file>light/theme_light.svg</file>
     </qresource>
 </RCC>

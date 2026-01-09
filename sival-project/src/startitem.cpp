@@ -66,6 +66,11 @@ void StartItem::paintEvent(QPaintEvent *event) {
     style()->drawPrimitive(QStyle::PE_Widget, &opt, &painter, this);
 
     // Drawing the first Text
+    if(m_check) {
+        painter.setPen(m_checkedColor);
+        painter.drawRect(1, 1, width()-2, height()-2);
+    }
+
     painter.setPen(palette().color(QPalette::WindowText));
     painter.drawText(QRect(0, height() - 90, width(), 90), Qt::AlignCenter | Qt::AlignVCenter | Qt::TextSingleLine, m_sTitle);
 

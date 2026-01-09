@@ -201,6 +201,26 @@ SiVAL--Gui--FrameBarButton:hover {
 #buttonNormal { image: url(":/sival/@THEME_ID@/min.svg"); }
 #buttonNormal:hover { image: url(":/sival/@THEME_ID@/min.svg"); }
 
+/* ====================== Quit Button ============================= */
+#buttonQuit {
+    background-color: @CONTENT_BG@;
+    margin-right: 5px;
+    image: url(":/sival/@THEME_ID@/close.svg");
+}
+
+#buttonQuit:hover {
+    background-color: @DESTRUCTIVE_COLOR@;
+    image: url(":/sival/@THEME_ID@/close_hover.svg");
+    border-radius: 5px;
+}
+
+/* ===================================================================
+ * Overlay Dialog Widget
+ * ================================================================ */
+#overlayDialog {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
 /* ===================================================================
  * Spin Widget
  * ================================================================ */
@@ -243,19 +263,6 @@ SiVAL--Gui--SpinWidget QToolButton#spinPlus:hover {
     background-color: @HOVER_BG_CONTENT@;
 }
 
-/* ====================== Quit Button ============================= */
-#buttonQuit {
-    background-color: @CONTENT_BG@;
-    margin-right: 5px;
-    image: url(":/sival/@THEME_ID@/close.svg");
-}
-
-#buttonQuit:hover {
-    background-color: @DESTRUCTIVE_COLOR@;
-    image: url(":/sival/@THEME_ID@/close_hover.svg");
-    border-radius: 5px;
-}
-
 /* ===================================================================
  * Left NavigationBar
  * ================================================================ */
@@ -265,7 +272,7 @@ SiVAL--Gui--NavigationBar {
     border-right: 1px solid @BORDER_COLOR@;
 }
 
-QToolButton.SiVALNavigationButton {
+SiVAL--Gui--NavigationButton {
     qtproperty-toolButtonStyle: ToolButtonTextUnderIcon;
     color: @TEXT_PRIMARY@;
     background-color: @WINDOW_BG@;
@@ -276,7 +283,7 @@ QToolButton.SiVALNavigationButton {
     padding-left: 4px;
 }
 
-QToolButton.SiVALNavigationButton:hover {
+SiVAL--Gui--NavigationButton:hover {
     background-color: @HOVER_BG_NAV@;
     border: none;
     border-radius: 0px;
@@ -284,12 +291,15 @@ QToolButton.SiVALNavigationButton:hover {
     padding-left: 4px;
 }
 
-QToolButton.SiVALNavigationButton:checked {
+SiVAL--Gui--NavigationButton:checked {
     background-color: @WINDOW_BG@;
     border-left: 4px solid @ACCENT_COLOR@;
     border-radius: 0px;
     font-weight: bold;
     padding-left: 0px;
+}
+SiVAL--Gui--NavigationButton:disabled {
+    background-color: @DISABLED_BG@;
 }
 
 #mainMenu {
@@ -297,6 +307,7 @@ QToolButton.SiVALNavigationButton:checked {
     text-align: left;
     image: url(":/sival/logo/speaker.svg"); /* Logo bleibt meist gleich */
     padding: 3px;
+    border-bottom: 1px solid @BORDER_COLOR@;
 }
 #separator {
     margin-left: 3px;
@@ -322,6 +333,10 @@ QLabel.SiVALHeaderLabel{
     padding-left: 8px;
 }
 
+#navigationPanel {
+    border-bottom: 1px solid @BORDER_COLOR@;
+}
+
 SiVAL--Gui--Label {
     background-color: @CONTENT_BG@;
     color: @TEXT_PRIMARY@;
@@ -332,6 +347,7 @@ SiVAL--Gui--Card {
     background-color: @WINDOW_BG@;
     color: @TEXT_PRIMARY@;
     qproperty-infoColor: @TEXT_SECONDARY@;
+    qproperty-checkedColor: @ACCENT_COLOR@;
     margin: 0px;
     border-radius: 0px;
 }
@@ -396,7 +412,7 @@ SiVAL--SettingsPanel {
     background-color: @CONTENT_BG@;
 }
 
-#settingsHeader {
+#settingsHeader, #projectHeader {
     background-color: @CONTENT_BG@;
 }
 
@@ -405,12 +421,42 @@ SiVAL--SettingsGeneral {
 }
 
 QPushButton {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+QPushButton {
     border: 1px solid @BORDER_COLOR@;
     color: @TEXT_PRIMARY@;
     background-color: @CONTENT_BG@;
 }
+
 QPushButton:hover {
 background-color: @HOVER_BG_CONTENT@;
+}
+
+QPushButton#buttonAccept {
+    margin-top: 5px;
+    border: 1px solid @BORDER_ACCEPT@;
+    background-color: @BG_ACCEPT@;
+    color: @TEXT_PRIMARY@;
+}
+
+QPushButton#buttonAccept:disabled {
+    background-color: @WINDOW_BG@;
+}
+
+QPushButton#buttonAccept:hover {
+    background-color: @BG_ACCEPT_HOVER@;
+}
+
+#dialogHeaderInfo {
+   margin-top: 5px;
+}
+
+#dialogCenterWidget {
+    border-radius: 0px;
+    border-top: 1px solid @ACCENT_COLOR@;
+    border-bottom: 1px solid @ACCENT_COLOR@;
 }
 
 

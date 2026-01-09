@@ -39,7 +39,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
  * class SettingsSpeaker
  *

@@ -11,6 +11,11 @@
 
 //// begin system includes
 #include <QStyledItemDelegate>
+#include <QHBoxLayout>
+#include <QFile>
+#include <QApplication>
+
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
@@ -32,7 +37,7 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::PM {
 //// begin public member methods
 /**************************************************************************************************/
 /**
@@ -108,26 +113,36 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
 
     gridLayout->addWidget(m_themeSel, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    m_themeAuto = new QWidget(w);
+
+    QHBoxLayout *h = new QHBoxLayout();
+    m_themeAuto = new StartItem(w);
+    m_themeAuto->setIcon(":/sival/" + sSettings()->theme() + "/theme_light.svg");
     m_themeAuto->setObjectName("m_themeAuto");
-    m_themeAuto->setMinimumSize(QSize(0, 40));
-    m_themeAuto->setMaximumSize(QSize(16777215, 40));
+    m_themeAuto->setMinimumSize(QSize(200, 200));
+    m_themeAuto->setMaximumSize(QSize(200, 200));
+    connect(m_themeAuto, &SiVAL::Gui::Card::clicked, this, &SettingsGeneral::themeSelector);
 
-    gridLayout->addWidget(m_themeAuto, row, 0, 1, 1);
+    h->addWidget(m_themeAuto);
 
-    m_themeLight = new QWidget(w);
+    m_themeLight = new StartItem(w);
+    m_themeLight->setIcon(":/sival/" + sSettings()->theme() + "/theme_light.svg");
     m_themeLight->setObjectName("m_themeLight");
-    m_themeLight->setMinimumSize(QSize(0, 40));
-    m_themeLight->setMaximumSize(QSize(16777215, 40));
+    m_themeLight->setMinimumSize(QSize(200, 200));
+    m_themeLight->setMaximumSize(QSize(200, 200));
+    connect(m_themeLight, &SiVAL::Gui::Card::clicked, this, &SettingsGeneral::themeSelector);
 
-    gridLayout->addWidget(m_themeLight, row, 1, 1, 1);
+    h->addWidget(m_themeLight);
 
-    m_themeDark = new QWidget(w);
+    m_themeDark = new StartItem(w);
+    m_themeDark->setIcon(":/sival/" + sSettings()->theme() + "/theme_dark.svg");
     m_themeDark->setObjectName("m_themeDark");
-    m_themeDark->setMinimumSize(QSize(0, 40));
-    m_themeDark->setMaximumSize(QSize(16777215, 40));
+    m_themeDark->setMinimumSize(QSize(200, 200));
+    m_themeDark->setMaximumSize(QSize(200, 200));
+    connect(m_themeDark, &SiVAL::Gui::Card::clicked, this, &SettingsGeneral::themeSelector);
 
-    gridLayout->addWidget(m_themeDark, row++, 2, 1, 1);
+    h->addWidget(m_themeDark);
+
+    gridLayout->addLayout(h, row++, 0, 1, 4);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     m_startup = new SiVAL::Gui::HeaderLabel(w);
     m_startup->setObjectName("m_startup");
@@ -259,6 +274,8 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
     gridLayout->setColumnStretch(2, 1);
 
     retranslate(w);
+
+    updateSettings();
 }
 
 /**************************************************************************************************/
@@ -266,6 +283,17 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
  *
  */
 SettingsGeneral::~SettingsGeneral() {
+}
+
+void SettingsGeneral::updateSettings() {
+    QString theme = sSettings()->themeSelect();
+    if(theme == "light") {
+        m_themeLight->setChecked(true);
+    } else if(theme == "dark") {
+        m_themeDark->setChecked(true);
+    } else if(theme == "auto") {
+        m_themeAuto->setChecked(true);
+    }
 }
 //// end public member methods
 
@@ -283,7 +311,7 @@ void SettingsGeneral::retranslate(QWidget *w) {
     m_licenseUrl->setText(QCoreApplication::translate("w", "License Url", nullptr));
     m_minute->setText(QCoreApplication::translate("w", "minutes", nullptr));
     m_autoSave->setText(QCoreApplication::translate("w", "Auto Save (every)", nullptr));
-    m_themeSel->setText(QCoreApplication::translate("w", "Choose the colour for SiVAL", nullptr));
+    m_themeSel->setText(QCoreApplication::translate("w", "User Interface", nullptr));
     m_project->setText(QCoreApplication::translate("w", "Project", nullptr));
     m_startup->setText(QCoreApplication::translate("w", "Startup", nullptr));
     m_lang_app->setText(QCoreApplication::translate("w", "Language and Appearance", nullptr));
@@ -294,6 +322,10 @@ void SettingsGeneral::retranslate(QWidget *w) {
     m_language->setText(QCoreApplication::translate("w", "Language", nullptr));
     m_onlineHelp->setText(QCoreApplication::translate("w", "Use online help", nullptr));
     m_localHelp->setText(QCoreApplication::translate("w", "Local help path", nullptr));
+
+    m_themeAuto->setTitle(tr("Automatic"));
+    m_themeDark->setTitle(tr("Dark"));
+    m_themeLight->setTitle(tr("Light"));
 }
 //// end protected member methods
 
@@ -307,6 +339,32 @@ void SettingsGeneral::retranslate(QWidget *w) {
 //// end public slots
 
 //// begin protected slots
+void SettingsGeneral::themeSelector() {
+    QObject *obj = sender();
+    m_themeAuto->setChecked(false);
+    m_themeDark->setChecked(false);
+    m_themeLight->setChecked(false);
+    if(obj == m_themeAuto) {
+        m_themeAuto->setChecked(true);
+        sSettings()->setThemeSelect("auto");
+    } else if(obj == m_themeDark) {
+        m_themeDark->setChecked(true);
+        sSettings()->setThemeSelect("dark");
+    } else if(obj == m_themeLight) {
+        m_themeLight->setChecked(true);
+        sSettings()->setThemeSelect("light");
+    }
+
+    // UND die Anwendung kann das Theme laden:
+    QFile file(":/sival/" + sSettings()->theme() + "/" + sSettings()->theme() + ".qss");
+    if (file.open(QFile::ReadOnly | QFile::Text))
+    {
+        qApp->setStyleSheet(QLatin1String(file.readAll()));
+        file.close();
+    }
+
+    sSettings()->save();
+}
 //// end protected slots
 
 //// begin private slots

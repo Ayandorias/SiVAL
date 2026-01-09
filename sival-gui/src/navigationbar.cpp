@@ -47,7 +47,7 @@ NavigationBar::NavigationBar(QWidget *parent)
 
     m_vl = new QVBoxLayout(this);
     m_vl->setContentsMargins(0, 0, 0, 0);
-    // m_vl->setSpacing(0);
+    m_vl->setSpacing(0);
 
     NavigationButton *btn = new NavigationButton(this);
     btn->setObjectName("mainMenu");

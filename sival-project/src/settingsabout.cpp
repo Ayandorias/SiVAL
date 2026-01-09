@@ -32,7 +32,7 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::PM {
 //// begin public member methods
 /**************************************************************************************************/
 /**
@@ -239,6 +239,13 @@ SettingsAbout::SettingsAbout(QWidget *parent)
 
     verticalLayout->addWidget(m_assets);
 
+    m_icons = new QLabel(frame);
+    m_icons->setObjectName("libLohmann");
+    m_icons->setOpenExternalLinks(true);
+    m_icons->setTextFormat(Qt::RichText);
+
+    verticalLayout->addWidget(m_icons);
+
 
     gridLayout->addWidget(frame, 10, 1, 1, 2);
 
@@ -295,6 +302,7 @@ void SettingsAbout::retranslate(QWidget *w) {
     m_compiler->setText(QCoreApplication::translate("w", "Compiler:", nullptr));
     m_system->setText(QCoreApplication::translate("w", "System:", nullptr));
     m_assets->setText(QCoreApplication::translate("w", "Assets", nullptr));
+    m_icons->setText(tr("<a href='https://icons.getbootstrap.com/'>Bootstrap Icons</a>"));
 }
 //// end protected member methods
 

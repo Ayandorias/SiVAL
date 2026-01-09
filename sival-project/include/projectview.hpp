@@ -10,7 +10,10 @@
  */
 //// begin system includes
 #include <sivalgui/view.hpp>
-#include <sivalgui/section.hpp>
+#include <sivalgui/card.hpp>
+#include <projectpanel.hpp>
+#include <sival/abstractions/enclosure.hpp>
+#include <sivalcore/documents/projectdocument.hpp>
 //// end system includes
 
 //// begin project specific includes
@@ -29,7 +32,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
  * class ProjectView
  *
@@ -47,6 +50,7 @@ public:
     virtual ~ProjectView();
     virtual Gui::NavigationPanel* navigationPanel() override;
     virtual QWidget* centerPanel() override;
+    void setProjectDocument(SiVAL::Core::ProjectDocument *doc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -76,7 +80,10 @@ protected:
 
     //// begin private member
 private:
-    SiVAL::Gui::Section *sec;
+    SiVAL::Core::ProjectDocument *m_projectDoc;
+    SiVAL::Gui::Card *m_enclosure;
+    SiVAL::Gui::Card *m_information;
+    SiVAL::Gui::Card *m_properties;
     //// end private member
 
     //// begin public slots
@@ -85,6 +92,9 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void enclosure();
+    void information();
+    void properties();
     //// end protected slots
 
     //// begin private slots
@@ -93,6 +103,8 @@ private slots:
 
     //// begin signals
 signals:
+    void sealedEnclosure();
+    void ventedEnclosure();
     //// end signals
 };
 }

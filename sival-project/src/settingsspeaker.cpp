@@ -31,7 +31,7 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::PM {
 //// begin public member methods
 /**************************************************************************************************/
 /**

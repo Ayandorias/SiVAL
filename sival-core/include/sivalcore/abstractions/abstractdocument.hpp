@@ -44,7 +44,8 @@ public:
     explicit AbstractDocument(AbstractIOHandler *handler);
     /// Destructor
     virtual ~AbstractDocument();
-    virtual void parse(const QString &doc) = 0;
+    virtual void parse() = 0;
+    virtual bool save() = 0;
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -75,5 +76,22 @@ protected:
     //// begin private member
 private:
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    void changed();
+    //// end signals
 };
 }

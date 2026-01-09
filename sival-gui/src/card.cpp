@@ -10,6 +10,8 @@
 #include <sivalgui/card.hpp>
 #include <QPainter>
 #include <QStyleOption>
+
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
@@ -39,6 +41,7 @@ Card::Card(QWidget *parent)
 
     m_bHovered = false;
     m_bPressed = false;
+    m_check = false;
     setMouseTracking(true);
     setMinimumHeight(64);
     setMaximumHeight(64);
@@ -71,11 +74,24 @@ void Card::setTitle(const QString &title) {
     m_sTitle = title;
 }
 
+void Card::setChecked(bool check) {
+    m_check = check;
+}
 void Card::setInfoColor(const QColor &color) {
     m_infoColor = color;
     update(); // Wichtig: Neuzeichnen anfordern
 }
-QColor Card::getInfoColor() const { return m_infoColor; }
+QColor Card::getInfoColor() const {
+    return m_infoColor;
+}
+
+void Card::setCheckColor(const QColor &color) {
+    m_checkedColor = color;
+    update(); // Wichtig: Neuzeichnen anfordern
+}
+QColor Card::getCheckColor() const {
+    return m_checkedColor;
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)

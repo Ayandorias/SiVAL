@@ -32,7 +32,7 @@
 
 //// begin static functions
 //// end static functions
-namespace SiVAL {
+namespace SiVAL::PM {
 //// begin public member methods
 StartView::StartView()
     :Gui::View() {
@@ -48,21 +48,25 @@ Gui::NavigationPanel* StartView::navigationPanel() {
         m_cardNew = new Gui::Card();
         m_cardNew->setMinimumHeight(40);
         m_cardNew->setMaximumHeight(40);
+        connect(m_cardNew, &SiVAL::Gui::Card::clicked, this, &StartView::newProject);
         l->addCard(m_cardNew);
 
         m_cardOpen = new Gui::Card();
         m_cardOpen->setMinimumHeight(40);
         m_cardOpen->setMaximumHeight(40);
+        connect(m_cardOpen, &SiVAL::Gui::Card::clicked, this, &StartView::openProject);
         l->addCard(m_cardOpen);
 
         m_cardSave = new Gui::Card();
         m_cardSave->setMinimumHeight(40);
         m_cardSave->setMaximumHeight(40);
+        connect(m_cardSave, &SiVAL::Gui::Card::clicked, this, &StartView::saveProject);
         l->addCard(m_cardSave);
 
         m_cardSaveAs = new Gui::Card();
         m_cardSaveAs->setMinimumHeight(40);
         m_cardSaveAs->setMaximumHeight(40);
+        connect(m_cardSaveAs, &SiVAL::Gui::Card::clicked, this, &StartView::saveAsProject);
         l->addCard(m_cardSaveAs);
 
         m_navBarPanel = l;
@@ -73,7 +77,9 @@ Gui::NavigationPanel* StartView::navigationPanel() {
 
 QWidget* StartView::centerPanel() {
     if(m_centerPanel == nullptr) {
-        m_centerPanel = new SiVAL::StartPanel();
+        SiVAL::PM::StartPanel *p = new SiVAL::PM::StartPanel();
+        connect(p, &StartPanel::newEmptyProject, this, &StartView::newProject);
+        m_centerPanel = p;
     }
     return m_centerPanel;
 }
@@ -86,13 +92,15 @@ QWidget* StartView::centerPanel() {
 void StartView::retranslate() {
     if(m_navBarPanel != nullptr) {
         m_cardNew->setTitle(tr("New..."));
-        m_cardOpen->setTitle(tr("Open..."));
-        m_cardSave->setTitle(tr("Save"));
-        m_cardSaveAs->setTitle(tr("Save as"));
-
         m_cardNew->setIcon(":/sival/" + sSettings()->theme() + "/new.svg");
+
+        m_cardOpen->setTitle(tr("Open..."));
         m_cardOpen->setIcon(":/sival/" + sSettings()->theme() + "/open.svg");
+
+        m_cardSave->setTitle(tr("Save"));
         m_cardSave->setIcon(":/sival/" + sSettings()->theme() + "/save.svg");
+
+        m_cardSaveAs->setTitle(tr("Save as..."));
         m_cardSaveAs->setIcon(":/sival/" + sSettings()->theme() + "/save_as.svg");
     }
 }

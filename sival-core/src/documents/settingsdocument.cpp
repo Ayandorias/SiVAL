@@ -10,6 +10,13 @@
 //// end includes
 
 //// begin system includes
+#include <QGuiApplication>
+#include <QStandardPaths>
+#include <QStyleHints>
+#include <QJsonDocument>
+#include <QJsonObject>
+
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
@@ -34,17 +41,24 @@ SiVAL::Core::SettingsDocument* SiVAL::Core::SettingsDocument::m_instance = nullp
 
 namespace SiVAL::Core {
 //// begin public member methods
-SettingsDocument::SettingsDocument(SettingsIOHandler *handler)
+SettingsDocument::SettingsDocument(AbstractIOHandler *handler)
     :AbstractDocument(handler) {
     if (m_instance == nullptr) {
         m_instance = this;
     }
 
-    m_general = new General();
     m_project = new Project();
     m_system = new System();
 
-    m_handler->load(this);
+    QByteArray data = m_handler->load();
+
+    QJsonParseError err;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &err);
+
+    std::cout << "Error: " << err.errorString().toStdString() << std::endl;
+    std::cout << doc.toJson().toStdString() << std::endl;
+    std::cout << data.toStdString() << std::endl;
+    m_general = new General(doc["general"].toObject());
 }
 
 SettingsDocument::~SettingsDocument() {
@@ -62,12 +76,52 @@ SettingsDocument* SettingsDocument::instance()
     return m_instance;
 }
 
-void SettingsDocument::parse(const QString &doc) {
+void SettingsDocument::parse() {
 
 }
 
+bool SettingsDocument::save() {
+    QJsonObject obj;
+    obj["general"] = m_general->object();
+
+    QJsonDocument doc;
+    doc.setObject(obj);
+    m_handler->save(doc.toJson());
+
+
+    return true;
+}
+
+QString SettingsDocument::author() {
+    return QString("Bruno Pierucki");
+}
+QString SettingsDocument::projectPath() {
+    return QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+}
+
 QString SettingsDocument::theme() {
-    return "light";
+    QString theme = themeSelect();
+
+    if(theme == "light") { return "light"; }
+    else if(theme == "dark") { return "dark"; }
+    else {
+        Qt::ColorScheme scheme = QGuiApplication::styleHints()->colorScheme();
+        if (scheme == Qt::ColorScheme::Dark) {
+            return "dark";
+        } else {
+            return "light";
+        }
+    }
+
+    return theme;
+}
+
+QString SettingsDocument::themeSelect() {
+    return m_general->currentTheme();
+}
+
+void SettingsDocument::setThemeSelect(const QString &theme) {
+    m_general->setCurrentTheme(theme);
 }
 //// end public member methods
 

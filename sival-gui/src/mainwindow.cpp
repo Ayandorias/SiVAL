@@ -106,6 +106,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     m_stackWidget = new QStackedWidget(this);
     m_pRightLayout->addWidget(m_stackWidget);
+
+    checkMaximized();
 }
 /**************************************************************************************************/
 /**

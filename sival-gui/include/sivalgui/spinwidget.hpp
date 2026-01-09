@@ -47,6 +47,8 @@ public:
     explicit SpinWidget(QWidget *parent = nullptr);
     /// Destructor
     virtual ~SpinWidget();
+    double value();
+    void setValue(double value);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -76,7 +78,7 @@ protected:
     //// begin private member
 private:
     QHBoxLayout *horizontalLayout;
-    QLineEdit *lineEdit;
+    QLineEdit *m_lineEdit;
     QToolButton *m_minus;
     QToolButton *m_plus;
     //// end private member

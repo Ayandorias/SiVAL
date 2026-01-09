@@ -48,6 +48,7 @@ NavigationWidget::NavigationWidget(QWidget *parent)
     verticalLayout->setContentsMargins(0, 0, 0, 0);
 
     m_header = new HeaderLabel(this);
+    m_header->setObjectName("navigationPanel");
     m_header->setMinimumSize(QSize(0, 40));
     m_header->setMaximumSize(QSize(16777215, 40));
     verticalLayout->addWidget(m_header);

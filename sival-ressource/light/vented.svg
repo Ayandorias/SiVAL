@@ -2,14 +2,11 @@
 <svg
    width="32"
    height="32"
+   fill="currentColor"
+   class="bi bi-box-arrow-in-left"
    viewBox="0 0 32 32"
-   stroke="currentColor"
-   fill="none"
-   stroke-width="4"
-   stroke-linecap="round"
-   stroke-linejoin="round"
    version="1.1"
-   id="svg4"
+   id="svg2"
    sodipodi:docname="vented.svg"
    inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -17,9 +14,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs4" />
+     id="defs2" />
   <sodipodi:namedview
-     id="namedview4"
+     id="namedview2"
      pagecolor="#ffffff"
      bordercolor="#999999"
      borderopacity="1"
@@ -27,46 +24,17 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:zoom="8.77"
-     inkscape:cx="50"
-     inkscape:cy="50"
+     inkscape:zoom="32.401887"
+     inkscape:cx="20.353753"
+     inkscape:cy="13.996098"
      inkscape:window-width="2048"
      inkscape:window-height="1086"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
-  <g
-     id="g4"
-     transform="matrix(0.28571429,0,0,0.28571429,1.7142855,1.7142855)"
-     style="stroke:#6B6B6E;stroke-opacity:1">
-    <rect
-       x="25"
-       y="10"
-       width="50"
-       height="80"
-       rx="4"
-       id="rect1"
-       style="stroke:#6B6B6E;stroke-opacity:1" />
-    <circle
-       cx="50"
-       cy="40"
-       r="18"
-       id="circle1"
-       style="stroke:#6B6B6E;stroke-opacity:1" />
-    <circle
-       cx="50"
-       cy="40"
-       r="6"
-       fill="currentColor"
-       stroke="none"
-       id="circle2"
-       style="stroke:#6B6B6E;stroke-opacity:1" />
-    <circle
-       cx="50"
-       cy="75"
-       r="8"
-       id="circle3"
-       style="stroke:#6B6B6E;stroke-opacity:1" />
-  </g>
+     inkscape:current-layer="svg2" />
+  <path
+     id="path1"
+     style="fill-opacity:1;stroke-width:1.14286;fill:#6B6B6E"
+     d="M 11.314453 4 C 10.367679 4 9.5996094 4.76807 9.5996094 5.7148438 L 9.5996094 16 L 9.5996094 26.285156 C 9.5996094 27.23193 10.367679 28 11.314453 28 L 20.457031 28 C 21.403804 28 22.171875 27.23193 22.171875 26.285156 L 22.171875 24 C 22.171875 23.975712 22.170217 23.952427 22.167969 23.929688 L 22.167969 23.855469 C 22.167969 22.908695 21.399877 22.146825 20.453125 22.140625 L 16.283203 22.113281 L 16.283203 23.236328 C 16.697265 23.236328 20.453125 23.283203 20.453125 23.283203 C 20.768716 23.283203 21.025391 23.539878 21.025391 23.855469 L 21.025391 26.140625 C 21.025391 26.164913 21.027048 26.188198 21.029297 26.210938 L 21.029297 26.285156 C 21.029297 26.600747 20.772622 26.857422 20.457031 26.857422 L 11.314453 26.857422 C 10.998862 26.857422 10.742188 26.600747 10.742188 26.285156 L 10.742188 16 L 10.742188 5.7148438 C 10.742188 5.3992524 10.998862 5.1425781 11.314453 5.1425781 L 20.457031 5.1425781 C 20.772622 5.1425781 21.029297 5.3992525 21.029297 5.7148438 L 21.029297 7.609375 L 18.771484 9.4140625 L 16.115234 9.4140625 A 0.57142853 0.57144528 0 0 0 15.542969 9.9863281 L 15.542969 14.556641 A 0.57142853 0.57144528 0 0 0 16.115234 15.128906 L 18.771484 15.128906 L 21.025391 16.931641 L 21.025391 18.373047 C 21.025391 18.688638 20.768716 18.943359 20.453125 18.943359 C 20.453125 18.943359 16.697265 18.990234 16.283203 18.990234 L 16.283203 20.115234 L 20.453125 20.087891 C 21.399877 20.081691 22.167969 19.319821 22.167969 18.373047 L 22.167969 17.302734 A 0.57142853 0.57144528 0 0 0 22.400391 16.84375 L 22.400391 7.6992188 A 0.57142853 0.57144528 0 0 0 22.171875 7.2421875 L 22.171875 5.7148438 C 22.171875 4.76807 21.403804 4 20.457031 4 L 11.314453 4 z M 21.257812 8.8886719 L 21.257812 15.617188 C 21.249386 15.622921 21.240527 15.628543 21.232422 15.634766 L 19.328125 14.111328 A 0.57142853 0.57144528 0 0 0 18.970703 13.986328 L 16.685547 13.986328 L 16.685547 10.556641 L 18.970703 10.556641 A 0.57142853 0.57144528 0 0 0 19.328125 10.431641 L 21.257812 8.8886719 z " />
 </svg>

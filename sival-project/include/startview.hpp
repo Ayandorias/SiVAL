@@ -30,7 +30,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
  * class StartView
  *
@@ -39,7 +39,7 @@ namespace SiVAL {
  */
 class StartView : public Gui::View
 {
-
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
@@ -82,5 +82,25 @@ private:
     Gui::Card *m_cardSave;
     Gui::Card *m_cardSaveAs;
     //// end private member
+
+    //// begin public slots
+public slots:
+    //// end public slots
+
+    //// begin protected slots
+protected slots:
+    //// end protected slots
+
+    //// begin private slots
+private slots:
+    //// end private slots
+
+    //// begin signals
+signals:
+    void newProject();
+    void openProject();
+    void saveProject();
+    void saveAsProject();
+    //// end signals
 };
 }

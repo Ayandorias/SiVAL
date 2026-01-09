@@ -29,4 +29,9 @@ enum class Settings {
     Speaker,
     About
 };
+
+enum class Project {
+    Enclosure = 0,
+    Properties,
+};
 }

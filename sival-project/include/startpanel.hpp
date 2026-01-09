@@ -33,7 +33,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
  * class StartPanel
  *
@@ -105,6 +105,7 @@ private slots:
 
     //// begin signals
 signals:
+    void newEmptyProject();
     //// end signals
 };
 }

@@ -18,13 +18,13 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QSpacerItem>
-#include <QToolButton>
 #include <QVBoxLayout>
 #include <QWidget>
 //// end system includes
 
 //// begin project specific includes
 #include <sivalgui/global.hpp>
+#include <sivalgui/framebarbutton.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -43,7 +43,7 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::Gui {
 /**
     * class OverlayDialog
     *
@@ -67,7 +67,6 @@ public:
 
     //// begin protected member methods
 protected:
-    bool eventFilter(QObject *obj, QEvent *event) override;
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -85,8 +84,8 @@ public:
     QLabel *m_pLabel;
     QHBoxLayout *m_pButtonBar;
     QHBoxLayout *m_pTitleBarLayout;
-    QToolButton *m_pClose;
-    QWidget *m_pCenterWidget;
+    SiVAL::Gui::FrameBarButton *m_close;
+    QWidget *m_centerWidget;
     QPushButton *m_pAccept;
     //// end public member
 

@@ -12,6 +12,8 @@
 #include <QButtonGroup>
 #include <QVector>
 #include <sivalgui/mainwindow.hpp>
+#include <sivalcore/documents/projectdocument.hpp>
+#include <projectnewdialog.hpp>
 //// end system includes
 
 //// begin project specific includes
@@ -33,22 +35,22 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
  * class MainWindow
  *
  * @brief
  *
  */
-class MainWindow : public Gui::MainWindow
+class ProjectManager : public Gui::MainWindow
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit MainWindow(MainWindow *parent = nullptr);
+    explicit ProjectManager(MainWindow *parent = nullptr);
     /// Destructor
-    virtual ~MainWindow();
+    virtual ~ProjectManager();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -57,6 +59,7 @@ public:
 
     //// begin protected member methods
 protected:
+    void resizeEvent(QResizeEvent *event) override;
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -79,10 +82,12 @@ protected:
     //// begin private member
 private:
     QButtonGroup *m_group;
-    HelpView *m_helpView;
-    ProjectView *m_projectView;
-    StartView *m_startView;
-    SettingsView *m_settingsView;
+    SiVAL::PM::HelpView *m_helpView;
+    SiVAL::PM::ProjectView *m_projectView;
+    SiVAL::PM::StartView *m_startView;
+    SiVAL::PM::SettingsView *m_settingsView;
+    SiVAL::PM::ProjectNewDialog *m_projectNewDialog;
+    SiVAL::Core::ProjectDocument *m_projectDoc;
     //// end private member
 
     //// begin public slots
@@ -91,8 +96,15 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void newProject();
+    void open(const QString &filepath);
+    void openProject();
+    void saveProject();
+    void saveAsProject();
     void retranslateUI();
+    void sealedEnclosure();
     void selection(QAbstractButton *btn);
+    void ventedEnclosure();
     //// end protected slots
 
     //// begin private slots

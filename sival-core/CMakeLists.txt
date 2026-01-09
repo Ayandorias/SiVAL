@@ -19,12 +19,14 @@ add_library(sival-core SHARED
     include/sivalcore/documents/settingsdocument.hpp src/documents/settingsdocument.cpp
     include/sivalcore/documents/workspacedocument.hpp src/documents/workspacedocument.cpp
     include/sivalcore/abstractions/abstractiohandler.hpp src/abstractions/abstractiohandler.cpp
-    include/sivalcore/io/settingsiohandler.hpp src/io/settingsiohandler.cpp
 
     include/sivalcore/sivalglobal.hpp
     include/sivalcore/settings/general.hpp src/settings/general.cpp
     include/sivalcore/settings/project.hpp src/settings/project.cpp
     include/sivalcore/settings/system.hpp src/settings/system.cpp
+    include/sivalcore/io/fileiohandler.hpp src/io/fileiohandler.cpp
+    include/sivalcore/io/settingsiohandler.hpp src/io/settingsiohandler.cpp
+
 )
 
 target_precompile_headers(sival-core PUBLIC include/sivalcore/sivalglobal.hpp)
@@ -51,8 +53,3 @@ target_link_libraries(sival-core
 
 target_compile_definitions(sival-core PRIVATE SIVAL_GUI_LIBRARY)
 
-if(COMMAND qt_create_translation)
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-else()
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-endif()

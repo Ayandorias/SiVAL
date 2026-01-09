@@ -10,7 +10,6 @@
  */
 //// begin system includes
 #include <sivalcore/abstractions/abstractdocument.hpp>
-#include <sivalcore/io/settingsiohandler.hpp>
 #include <sivalcore/core_global.hpp>
 //// end system includes
 
@@ -45,12 +44,18 @@ class SIVAL_CORE_EXPORT SettingsDocument : public AbstractDocument
     //// begin public member methods
 public:
     /// Constructor
-    explicit SettingsDocument(SettingsIOHandler *handler);
+    explicit SettingsDocument(AbstractIOHandler *handler);
     /// Destructor
     virtual ~SettingsDocument();
     static SettingsDocument* instance();
-    virtual void parse(const QString &doc) override;
+    virtual void parse() override;
+    virtual bool save() override;
+
+    QString author();
+    QString projectPath();
     QString theme();
+    QString themeSelect();
+    void setThemeSelect(const QString &theme);
     //// end public member methods
 
     //// begin public member methods (internal use only)

@@ -49,14 +49,14 @@ SpinWidget::SpinWidget(QWidget *parent)
     horizontalLayout->setSpacing(0);
     horizontalLayout->setObjectName("horizontalLayout");
     horizontalLayout->setContentsMargins(0, 0, 0, 0);
-    lineEdit = new QLineEdit(this);
-    lineEdit->setObjectName("lineEdit");
-    lineEdit->setMinimumHeight(32);
-    lineEdit->setMaximumHeight(32);
+    m_lineEdit = new QLineEdit(this);
+    m_lineEdit->setObjectName("lineEdit");
+    m_lineEdit->setMinimumHeight(32);
+    m_lineEdit->setMaximumHeight(32);
     QIntValidator *validator = new QIntValidator(0, 1000, this);
-    lineEdit->setValidator(validator);
+    m_lineEdit->setValidator(validator);
 
-    horizontalLayout->addWidget(lineEdit);
+    horizontalLayout->addWidget(m_lineEdit);
 
     m_minus = new QToolButton(this);
     m_minus->setMinimumSize(32, 32);
@@ -80,6 +80,14 @@ SpinWidget::SpinWidget(QWidget *parent)
  */
 SpinWidget::~SpinWidget() {
 }
+
+double SpinWidget::value() {
+    return m_lineEdit->text().toDouble();
+}
+
+void SpinWidget::setValue(double value) {
+    m_lineEdit->setText(QString::number(value));
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)
@@ -88,17 +96,17 @@ SpinWidget::~SpinWidget() {
 //// begin protected member methods
 void SpinWidget::decrement() {
     int val = 0;
-    const QValidator *valid = lineEdit->validator();
+    const QValidator *valid = m_lineEdit->validator();
     const QIntValidator *intVal = qobject_cast<const QIntValidator*>(valid);
 
     if (intVal) {
         // 3. Nun sind die Werte lesbar
         int min = intVal->bottom();
-        int val = lineEdit->text().toInt();
+        int val = m_lineEdit->text().toInt();
         if(--val < min) {
             val = min;
         }
-        lineEdit->setText(QString::number(val));
+        m_lineEdit->setText(QString::number(val));
     }
 
     emit valueChanged(val);
@@ -106,17 +114,17 @@ void SpinWidget::decrement() {
 
 void SpinWidget::increment() {
     int val = 0;
-    const QValidator *valid = lineEdit->validator();
+    const QValidator *valid = m_lineEdit->validator();
     const QIntValidator *intVal = qobject_cast<const QIntValidator*>(valid);
 
     if (intVal) {
         // 3. Nun sind die Werte lesbar
         int max = intVal->top();
-        int val = lineEdit->text().toInt();
+        int val = m_lineEdit->text().toInt();
         if(++val > max) {
             val = max;
         }
-        lineEdit->setText(QString::number(val));
+        m_lineEdit->setText(QString::number(val));
     }
 
     emit valueChanged(val);

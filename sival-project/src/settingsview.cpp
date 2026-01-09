@@ -32,7 +32,7 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::PM {
 //// begin public member methods
 /**************************************************************************************************/
 /**
@@ -99,7 +99,7 @@ Gui::NavigationPanel* SettingsView::navigationPanel() {
 }
 QWidget* SettingsView::centerPanel() {
     if(m_centerPanel == nullptr) {
-        m_centerPanel = new SiVAL::SettingsPanel();
+        m_centerPanel = new SettingsPanel();
     }
     return m_centerPanel;
 }
@@ -132,17 +132,17 @@ void SettingsView::retranslate() {
 
 //// begin protected slots
 void SettingsView::about() {
-    SettingsPanel *p = qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel);
+    SettingsPanel *p = qobject_cast<SettingsPanel*>(m_centerPanel);
     p->changePage(SiVAL::Settings::About);
     p->setHeader(tr("About"));
 }
 void SettingsView::general() {
-    SettingsPanel *p = qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel);
+    SettingsPanel *p = qobject_cast<SettingsPanel*>(m_centerPanel);
     p->changePage(SiVAL::Settings::General);
     p->setHeader(tr("General"));
 }
 void SettingsView::speaker() {
-    SettingsPanel *p = qobject_cast<SiVAL::SettingsPanel*>(m_centerPanel);
+    SettingsPanel *p = qobject_cast<SettingsPanel*>(m_centerPanel);
     p->changePage(SiVAL::Settings::Speaker);
     p->setHeader(tr("Speaker"));
 }
