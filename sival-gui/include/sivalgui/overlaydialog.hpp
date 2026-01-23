@@ -67,6 +67,7 @@ public:
 
     //// begin protected member methods
 protected:
+    virtual void closeEvent(QCloseEvent *event) override;
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -113,6 +114,7 @@ private slots:
     //// begin signals
 signals:
     void accepted();
+    void closeOverlay();
     //// end signals
 };
 } // namespace SiVAL

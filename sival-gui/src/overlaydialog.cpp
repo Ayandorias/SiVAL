@@ -59,6 +59,9 @@ OverlayDialog::~OverlayDialog() {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
+void OverlayDialog::closeEvent(QCloseEvent *event) {
+    emit closeOverlay();
+}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

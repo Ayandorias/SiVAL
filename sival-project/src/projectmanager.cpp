@@ -110,7 +110,6 @@ ProjectManager::~ProjectManager() {
 
 //// begin protected member methods
 void ProjectManager::resizeEvent(QResizeEvent *event) {
-    std::cout << "Mainwindows reisze" << std::endl;
     if(m_projectNewDialog && m_projectNewDialog->isVisible()) {
         m_projectNewDialog->setGeometry(0,0, width(), height());
     }
@@ -151,11 +150,13 @@ void ProjectManager::setNavigationHeader(int id) {
 void ProjectManager::newProject() {
     m_projectNewDialog = new ProjectNewDialog(this);
     connect(m_projectNewDialog, &ProjectNewDialog::newProject, this, &ProjectManager::open);
+    connect(m_projectNewDialog, &ProjectNewDialog::closeOverlay, this, [this] {
+        m_projectNewDialog = nullptr;
+    });
     m_projectNewDialog->showNormal();
     m_projectNewDialog->raise();
 }
 void ProjectManager::open(const QString &filepath) {
-    std::cout << "Open: " << filepath.toStdString() << std::endl;
     // TODO: Es müssen noch alle Hauptfenster bis auf das ProjectManager geschlossen werden.
     // TODO: Es muss dann auf das ProjectView gewechselt werden.
     if(m_projectDoc) {
@@ -163,7 +164,6 @@ void ProjectManager::open(const QString &filepath) {
     } else {
         if(QFile::exists(filepath)) {
             m_projectDoc = SiVAL::Core::ProjectDocument::open(filepath);
-            std::cout << "Name: " << m_projectDoc->projectName().toStdString() << std::endl;
             m_projectView->navigationButton(nullptr)->setDisabled(false);
             m_projectView->setProjectDocument(m_projectDoc);
         }
@@ -192,7 +192,6 @@ void ProjectManager::retranslateUI() {
 }
 
 void ProjectManager::sealedEnclosure() {
-    std::cout << "das hier ist gut" << std::endl;
     EnclosureNewDialog *dlg = new EnclosureNewDialog(this);
     dlg->showNormal();
     dlg->raise();
@@ -210,7 +209,6 @@ void ProjectManager::selection(QAbstractButton *btn) {
 }
 
 void ProjectManager::ventedEnclosure() {
-    std::cout << "das hier ist gut: vented" << std::endl;
 }
 //// end protected slots
 

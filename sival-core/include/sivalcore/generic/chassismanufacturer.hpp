@@ -1,7 +1,7 @@
 #pragma once
 
 /*
- * SiVAL Core
+ * SiVAL
  *
  * Copyright (C) since 2025 Bruno Pierucki
  *
@@ -9,12 +9,13 @@
  *
  */
 //// begin system includes
-#include <QObject>
+#include <QJsonArray>
 #include <QJsonObject>
+#include <QVector>
 //// end system includes
 
 //// begin project specific includes
-
+#include <sival/abstractions/driver.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -23,57 +24,31 @@
 //// begin global definition
 //// end global definition
 
+namespace SiVAL::Core {
 //// begin forward declarations
+class SpeakerDocument;
 //// end forward declarations
 
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL::Core {
 /**
- * class General
+ * class ChassisManufacturer
  *
  * @brief
  *
  */
-class General : public QObject
+class ChassisManufacturer
 {
-    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit General(QJsonObject obj);
+    explicit ChassisManufacturer(QJsonObject man, SiVAL::Core::SpeakerDocument *doc);
     /// Destructor
-    virtual ~General();
-
-    QString author();
-    void setAuthor(const QString &author);
-
-    bool autoSave();
-    void setAutoSave(bool autosave);
-
-    int autoSaveTime();
-    void setAutoSaveTime(int min);
-
-    QString company();
-    void setCompany(const QString &company);
-
-    QString currentTheme();
-    void setCurrentTheme(const QString &theme);
-
-    int lastProjectCount();
-    void setLastProjectCount(int count);
-
-    bool openLastProject();
-    void setOpenLastProject(bool open);
-
-    bool showSplashScreen();
-    void setShowSplashScreen(bool enable);
-
-
-
-
-    QJsonObject object();
+    virtual ~ChassisManufacturer();
+    QString name();
+    void parse();
+    void setChassisList(QJsonArray arr);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -94,18 +69,6 @@ private:
 
     //// begin public member
 public:
-    QJsonObject m_object;
-
-
-    // QString m_theme_current;
-
-
-    QString m_language;
-    QString m_unit_system;
-    int m_decimal_precision;
-
-    QStringList m_recent_projects;
-    int m_max_recent_items;
     //// end public member
 
     //// begin protected member
@@ -114,6 +77,10 @@ protected:
 
     //// begin private member
 private:
+    QString m_filename;
+    QJsonObject m_manufacturer;
+    SpeakerDocument *m_doc;
+    QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>> m_chassisList;
     //// end private member
 
     //// begin public slots

@@ -10,10 +10,11 @@
 //// end includes
 
 //// begin system includes
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
-#include "settingspanel.hpp"
+#include "sivalcore/settings/lastprojectlist.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -31,48 +32,32 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL::PM{
+namespace SiVAL {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-SettingsPanel::SettingsPanel(QWidget *parent)
-    :Gui::NavigationWidget(parent) {
-
-    m_header->setObjectName("settingsHeader");
-
-    m_general = new SettingsGeneral(this);
-    m_navStack->addWidget(m_general);
-
-    m_speaker = new SettingsSpeaker(this);
-    m_navStack->addWidget(m_speaker);
-
-    m_about = new SettingsAbout(this);
-    m_navStack->addWidget(m_about);
-
-    m_accept = new QPushButton(this);
-    m_accept->setObjectName("buttonAccept");
-    m_accept->setMinimumSize(120, 35);
-    m_accept->setMaximumSize(120, 35);
-    m_accept->setIcon(QIcon(":/sival/" + sSettings()->theme() + "/check.svg"));
-    connect(m_accept, &QPushButton::clicked, this, [this]() {
-        sSettings()->save();
-    });
-
-    m_verticalLayout->addWidget(m_accept);
-    retranslate();
+LastProjectList::LastProjectList(QJsonArray arr)
+    :QObject() {
+    if(arr.isEmpty()) {
+        std::cout << "Das Geht nicht so gut." << std::endl;
+    }
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SettingsPanel::~SettingsPanel() {
+LastProjectList::~LastProjectList() {
 }
 
-void SettingsPanel::changePage(SiVAL::Settings settings) {
-    m_navStack->setCurrentIndex(static_cast<int>(settings));
+void LastProjectList::add(const QString &project) {
+    m_array.prepend(project);
+}
+
+QJsonArray LastProjectList::array() {
+    return m_array;
 }
 //// end public member methods
 
@@ -80,10 +65,6 @@ void SettingsPanel::changePage(SiVAL::Settings settings) {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
-void SettingsPanel::retranslate() {
-    m_header->setText(tr("General"));
-    m_accept->setText(tr("Apply"));
-}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

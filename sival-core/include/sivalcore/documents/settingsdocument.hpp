@@ -15,6 +15,7 @@
 
 //// begin project specific includes
 #include <sivalcore/settings/general.hpp>
+#include <sivalcore/settings/lastprojectlist.hpp>
 #include <sivalcore/settings/project.hpp>
 #include <sivalcore/settings/system.hpp>
 //// end project specific includes
@@ -50,12 +51,37 @@ public:
     static SettingsDocument* instance();
     virtual void parse() override;
     virtual bool save() override;
+    bool saveLastProject();
 
-    QString author();
     QString projectPath();
     QString theme();
+
+    QString author();
+    void setAuthor(const QString &author);
+
+    bool autoSave();
+    void setAutoSave(bool autosave);
+
+    int autoSaveTime();
+    void setAutoSaveTime(int min);
+
+    QString company();
+    void setCompany(const QString &company);
+
     QString themeSelect();
     void setThemeSelect(const QString &theme);
+
+    int lastProjectCount();
+    void setLastProjectCount(int count);
+
+    bool openLastProject();
+    void setOpenLastProject(bool open);
+
+    bool showSplashScreen();
+    void setShowSplashScreen(bool show);
+
+    QStringList lastProjects();
+    void addProject(const QString &project);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -76,7 +102,9 @@ private:
 
     //// begin public member
 public:
+    QJsonObject m_doc;
     General *m_general;
+    LastProjectList *m_lastProjectList;
     Project *m_project;
     System *m_system;
     //// end public member

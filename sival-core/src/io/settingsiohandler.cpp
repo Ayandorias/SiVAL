@@ -50,15 +50,12 @@ SettingsIOHandler::~SettingsIOHandler() {
 
 QByteArray SettingsIOHandler::load() {
     QString userFilePath = getUserFilePath();
-    std::cout << userFilePath.toStdString() << std::endl;
 
     QFile userFile(userFilePath + QDir::separator() + m_filename);
 
     // SCHRITT 1: Prüfen, ob User-Datei existiert
     if (userFile.exists()) {
         if (userFile.open(QIODevice::ReadOnly)) {
-            std::cout << "Lade User-Settings von:" << userFilePath.toStdString() << std::endl;
-
             QByteArray data = userFile.readAll();
             userFile.close();
 
@@ -74,16 +71,12 @@ QByteArray SettingsIOHandler::load() {
 
 bool SettingsIOHandler::save(QByteArray content) {
 
-    std::cout << content.toStdString() << std::endl;
-
     QString userFilePath = getUserFilePath();
-    std::cout << userFilePath.toStdString() << std::endl;
     QFile file(userFilePath + QDir::separator() + m_filename);
 
     if (file.open(QIODevice::WriteOnly)) {
         file.write(content);
 
-        std::cout << "Settings gespeichert unter:" << std::endl;
         file.close();
         return true;
     }
@@ -105,14 +98,11 @@ bool SettingsIOHandler::save(QByteArray content) {
 SettingsIOHandler::SettingsIOHandler(const QString & filename)
     :AbstractIOHandler(filename) {
     QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-
-    std::cout << configPath.toStdString() << ": " << m_filename.toStdString() << std::endl;
 }
 
 QString SettingsIOHandler::getUserFilePath() const
 {
     // Speicherort: AppConfigLocation (z.B. AppData/Local/SiVAL/)
-    std::cout << __FUNCTION__ << ": " << QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation).toStdString() << std::endl;
     QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);// + QDir::separator() + QString("SiVAL");
     QDir dir(configPath);
 

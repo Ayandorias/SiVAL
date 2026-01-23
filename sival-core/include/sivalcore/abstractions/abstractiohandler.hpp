@@ -45,6 +45,7 @@ public:
     explicit AbstractIOHandler(const QString &filename);
     /// Destructor
     virtual ~AbstractIOHandler();
+    QString filename();
     virtual QByteArray load() = 0;
     virtual bool save(QByteArray content) = 0;
     //// end public member methods

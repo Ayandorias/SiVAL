@@ -80,7 +80,6 @@ QString ProjectDocument::description() {
     return m_object["description"].toString();
 }
 QString ProjectDocument::filename() {
-    std::cout << "Filename: " << m_filename.toStdString() << std::endl;
     return m_filename;
 }
 void ProjectDocument::setGrossVolume(const double &volume, const QString &unit) {

@@ -10,10 +10,18 @@
 //// end includes
 
 //// begin system includes
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
+
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
-#include "settingspanel.hpp"
+#include <sival/libsival.hpp>
+#include <sival/components/driver/factory.hpp>
+#include "sivalcore/documents/speakerdocument.hpp"
+#include "sivalcore/generic/chassismanufacturer.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -31,48 +39,45 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL::PM{
+namespace SiVAL::Core {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-SettingsPanel::SettingsPanel(QWidget *parent)
-    :Gui::NavigationWidget(parent) {
-
-    m_header->setObjectName("settingsHeader");
-
-    m_general = new SettingsGeneral(this);
-    m_navStack->addWidget(m_general);
-
-    m_speaker = new SettingsSpeaker(this);
-    m_navStack->addWidget(m_speaker);
-
-    m_about = new SettingsAbout(this);
-    m_navStack->addWidget(m_about);
-
-    m_accept = new QPushButton(this);
-    m_accept->setObjectName("buttonAccept");
-    m_accept->setMinimumSize(120, 35);
-    m_accept->setMaximumSize(120, 35);
-    m_accept->setIcon(QIcon(":/sival/" + sSettings()->theme() + "/check.svg"));
-    connect(m_accept, &QPushButton::clicked, this, [this]() {
-        sSettings()->save();
-    });
-
-    m_verticalLayout->addWidget(m_accept);
-    retranslate();
+ChassisManufacturer::ChassisManufacturer(QJsonObject man, SpeakerDocument *doc) {
+    m_manufacturer = man;
+    m_doc = doc;
+    parse();
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-SettingsPanel::~SettingsPanel() {
+ChassisManufacturer::~ChassisManufacturer() {
 }
+QString ChassisManufacturer::name() {
+    return m_manufacturer["manufacturer"].toString();
+}
+void ChassisManufacturer::parse() {
+    QFileInfo info(m_doc->filename());
+    QString path = info.absolutePath();
 
-void SettingsPanel::changePage(SiVAL::Settings settings) {
-    m_navStack->setCurrentIndex(static_cast<int>(settings));
+    path += QDir::separator() + name().toLower() + QDir::separator();
+    QJsonArray arr = m_manufacturer["uuids"].toArray();
+    for (const QJsonValue &value : arr) {
+        QString p = path + value.toString();
+
+        if(QFile::exists(p)) {
+            SiVAL::Engine::Driver::Factory::create(SiVAL::Engine::DriverRole::WOOFER, p.toStdString());
+            // Chassis *ch = new Chassis(p);
+            // m_chassisList.append(ch);
+        }
+    }
+}
+void ChassisManufacturer::setChassisList(QJsonArray arr) {
+
 }
 //// end public member methods
 
@@ -80,10 +85,6 @@ void SettingsPanel::changePage(SiVAL::Settings settings) {
 //// end public member methods (internal use only)
 
 //// begin protected member methods
-void SettingsPanel::retranslate() {
-    m_header->setText(tr("General"));
-    m_accept->setText(tr("Apply"));
-}
 //// end protected member methods
 
 //// begin protected member methods (internal use only)

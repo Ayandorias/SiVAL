@@ -1,5 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
-
+cmake_minimum_required(VERSION 3.19)
 project(sival-core LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
@@ -8,10 +7,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Svg Charts)
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Widgets Svg Charts LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets Svg Charts LinguistTools)
+# 1. KONSISTENZ: Nutze genau wie in den anderen Projekten direkt Qt6
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg Charts LinguistTools)
 
+include_directories("${CMAKE_CURRENT_BINARY_DIR}/include")
+
+# 2. BIBLIOTHEK DEFINIEREN
 add_library(sival-core SHARED
     include/sivalcore/core_global.hpp
     include/sivalcore/abstractions/abstractdocument.hpp src/abstractions/abstractdocument.cpp
@@ -27,23 +28,16 @@ add_library(sival-core SHARED
     include/sivalcore/io/fileiohandler.hpp src/io/fileiohandler.cpp
     include/sivalcore/io/settingsiohandler.hpp src/io/settingsiohandler.cpp
 
+    include/sivalcore/documents/speakerdocument.hpp src/documents/speakerdocument.cpp
+    include/sivalcore/generic/chassismanufacturer.hpp src/generic/chassismanufacturer.cpp
+    include/sivalcore/settings/lastprojectlist.hpp src/settings/lastprojectlist.cpp
 )
 
-target_precompile_headers(sival-core PUBLIC include/sivalcore/sivalglobal.hpp)
-
-# target_include_directories(sival-core PRIVATE include)
-# Hier wird deklariert, welche Verzeichnisse beim Linken
-# automatisch als Include-Pfade hinzugefügt werden sollen.
-target_include_directories(sival-core
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include> # Für eine spätere Installation
-)
-
-# target_link_libraries(sival-core PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-# Linken gegen die benötigten Qt-Module
+# 3. VERBINDUNGEN (MUSS VOR PCH PASSIEREN!)
+# Damit erbt sival-core die Include-Pfade von libSiVAL
 target_link_libraries(sival-core
     PUBLIC
+    libSiVAL          # Hierarchisch wichtigste Abhängigkeit
     Qt6::Widgets
     Qt6::Gui
     Qt6::Core
@@ -51,5 +45,15 @@ target_link_libraries(sival-core
     Qt6::Charts
 )
 
-target_compile_definitions(sival-core PRIVATE SIVAL_GUI_LIBRARY)
+# 4. INCLUDES SETZEN
+target_include_directories(sival-core
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+)
 
+# 5. PCH (JETZT SICHER)
+# Jetzt sind die Include-Pfade von libSiVAL bekannt, falls sivalglobal.hpp sie braucht.
+target_precompile_headers(sival-core PUBLIC include/sivalcore/sivalglobal.hpp)
+
+target_compile_definitions(sival-core PRIVATE SIVAL_GUI_LIBRARY)

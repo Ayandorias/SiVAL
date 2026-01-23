@@ -1,7 +1,7 @@
 #pragma once
 
 /*
- * SiVAL Core
+ * SiVAL
  *
  * Copyright (C) since 2025 Bruno Pierucki
  *
@@ -10,7 +10,7 @@
  */
 //// begin system includes
 #include <QObject>
-#include <QJsonObject>
+#include <QJsonArray>
 //// end system includes
 
 //// begin project specific includes
@@ -29,51 +29,24 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL::Core {
+namespace SiVAL {
 /**
- * class General
+ * class LastProjectList
  *
  * @brief
  *
  */
-class General : public QObject
+class LastProjectList : public QObject
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit General(QJsonObject obj);
+    explicit LastProjectList(QJsonArray arr);
     /// Destructor
-    virtual ~General();
-
-    QString author();
-    void setAuthor(const QString &author);
-
-    bool autoSave();
-    void setAutoSave(bool autosave);
-
-    int autoSaveTime();
-    void setAutoSaveTime(int min);
-
-    QString company();
-    void setCompany(const QString &company);
-
-    QString currentTheme();
-    void setCurrentTheme(const QString &theme);
-
-    int lastProjectCount();
-    void setLastProjectCount(int count);
-
-    bool openLastProject();
-    void setOpenLastProject(bool open);
-
-    bool showSplashScreen();
-    void setShowSplashScreen(bool enable);
-
-
-
-
-    QJsonObject object();
+    virtual ~LastProjectList();
+    void add(const QString &project);
+    QJsonArray array();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -94,18 +67,6 @@ private:
 
     //// begin public member
 public:
-    QJsonObject m_object;
-
-
-    // QString m_theme_current;
-
-
-    QString m_language;
-    QString m_unit_system;
-    int m_decimal_precision;
-
-    QStringList m_recent_projects;
-    int m_max_recent_items;
     //// end public member
 
     //// begin protected member
@@ -114,6 +75,7 @@ protected:
 
     //// begin private member
 private:
+    QJsonArray m_array;
     //// end private member
 
     //// begin public slots

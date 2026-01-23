@@ -54,11 +54,9 @@ SettingsDocument::SettingsDocument(AbstractIOHandler *handler)
 
     QJsonParseError err;
     QJsonDocument doc = QJsonDocument::fromJson(data, &err);
-
-    std::cout << "Error: " << err.errorString().toStdString() << std::endl;
-    std::cout << doc.toJson().toStdString() << std::endl;
-    std::cout << data.toStdString() << std::endl;
-    m_general = new General(doc["general"].toObject());
+    m_doc = doc.object();
+    m_general = new General(m_doc["general"].toObject());
+    m_lastProjectList = new LastProjectList(m_doc["projectlist"].toArray());
 }
 
 SettingsDocument::~SettingsDocument() {
@@ -81,20 +79,27 @@ void SettingsDocument::parse() {
 }
 
 bool SettingsDocument::save() {
-    QJsonObject obj;
-    obj["general"] = m_general->object();
+    m_doc["general"] = m_general->object();
 
     QJsonDocument doc;
-    doc.setObject(obj);
+    doc.setObject(m_doc);
     m_handler->save(doc.toJson());
 
+    std::cout << "Hier wird gespeichert" << std::endl;
 
     return true;
 }
 
-QString SettingsDocument::author() {
-    return QString("Bruno Pierucki");
+bool SettingsDocument::saveLastProject() {
+
+    QJsonDocument doc;
+    m_doc["projectlist"] = m_lastProjectList->array();
+    doc.setObject(m_doc);
+    m_handler->save(doc.toJson());
+
+    return true;
 }
+
 QString SettingsDocument::projectPath() {
     return QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
 }
@@ -116,12 +121,78 @@ QString SettingsDocument::theme() {
     return theme;
 }
 
+QString SettingsDocument::author(){
+    return m_general->author();
+}
+void SettingsDocument::setAuthor(const QString &author) {
+    m_general->setAuthor(author);
+}
+
+bool SettingsDocument::autoSave() {
+    return m_general->autoSave();
+}
+void SettingsDocument::setAutoSave(bool autosave) {
+    m_general->setAutoSave(autosave);
+}
+
+int SettingsDocument::autoSaveTime() {
+    return m_general->autoSaveTime();
+}
+void SettingsDocument::setAutoSaveTime(int min) {
+    m_general->setAutoSaveTime(min);
+}
+
+QString SettingsDocument::company() {
+    return m_general->company();
+}
+void SettingsDocument::setCompany(const QString &company) {
+    m_general->setCompany(company);
+}
+
 QString SettingsDocument::themeSelect() {
     return m_general->currentTheme();
 }
 
 void SettingsDocument::setThemeSelect(const QString &theme) {
     m_general->setCurrentTheme(theme);
+}
+
+int SettingsDocument::lastProjectCount() {
+    return m_general->lastProjectCount();
+}
+void SettingsDocument::setLastProjectCount(int count) {
+    m_general->setLastProjectCount(count);
+}
+
+bool SettingsDocument::openLastProject() {
+    return m_general->openLastProject();
+}
+void SettingsDocument::setOpenLastProject(bool open) {
+    m_general->setOpenLastProject(open);
+}
+
+bool SettingsDocument::showSplashScreen() {
+    return m_general->showSplashScreen();
+}
+void SettingsDocument::setShowSplashScreen(bool show) {
+    m_general->setShowSplashScreen(show);
+}
+
+QStringList SettingsDocument::lastProjects() {
+    QStringList stringList;
+    QJsonArray jsonArray = m_lastProjectList->array();
+    stringList.reserve(jsonArray.size());
+
+    for (const QJsonValue &value : jsonArray) {
+        stringList.append(value.toString());
+    }
+
+    return stringList;
+}
+
+void SettingsDocument::addProject(const QString &project) {
+    m_lastProjectList->add(project);
+    saveLastProject();
 }
 //// end public member methods
 

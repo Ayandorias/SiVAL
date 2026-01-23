@@ -80,6 +80,7 @@ public:
 protected:
     HeaderLabel *m_header;
     QStackedWidget *m_navStack;
+    QVBoxLayout *m_verticalLayout;
     //// end protected member
 
     //// begin private member

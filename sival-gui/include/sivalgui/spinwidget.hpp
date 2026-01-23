@@ -10,6 +10,7 @@
  */
 //// begin system includes
 #include <QHBoxLayout>
+#include <QIntValidator>
 #include <QLineEdit>
 #include <QToolButton>
 #include <QWidget>
@@ -47,6 +48,9 @@ public:
     explicit SpinWidget(QWidget *parent = nullptr);
     /// Destructor
     virtual ~SpinWidget();
+    void setMaximum(int max);
+    void setMinimum(int min);
+
     double value();
     void setValue(double value);
     //// end public member methods
@@ -77,8 +81,11 @@ protected:
 
     //// begin private member
 private:
+    QIntValidator *m_validator;
     QHBoxLayout *horizontalLayout;
     QLineEdit *m_lineEdit;
+    int m_maximum;
+    int m_minimum;
     QToolButton *m_minus;
     QToolButton *m_plus;
     //// end private member

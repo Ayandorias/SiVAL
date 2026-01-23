@@ -9,13 +9,14 @@
  *
  */
 //// begin system includes
+#include <QPushButton>
+//// end system includes
+
+//// begin project specific includes
 #include <sivalgui/navigationwidget.hpp>
 #include "settingsabout.hpp"
 #include "settingsgeneral.hpp"
 #include "settingsspeaker.hpp"
-//// end system includes
-
-//// begin project specific includes
 #include <sival.hpp>
 //// end project specific includes
 
@@ -80,6 +81,7 @@ private:
     SettingsAbout *m_about;
     SettingsGeneral *m_general;
     SettingsSpeaker *m_speaker;
+    QPushButton *m_accept;
     //// end private member
 
     //// begin public slots

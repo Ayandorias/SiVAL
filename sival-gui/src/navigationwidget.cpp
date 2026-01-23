@@ -42,20 +42,20 @@ NavigationWidget::NavigationWidget(QWidget *parent)
     :QWidget(parent) {
     setAttribute(Qt::WA_StyledBackground, true);
 
-    QVBoxLayout *verticalLayout = new QVBoxLayout(this);
-    verticalLayout->setSpacing(0);
-    verticalLayout->setObjectName("verticalLayout");
-    verticalLayout->setContentsMargins(0, 0, 0, 0);
+    m_verticalLayout = new QVBoxLayout(this);
+    m_verticalLayout->setSpacing(0);
+    m_verticalLayout->setObjectName("verticalLayout");
+    m_verticalLayout->setContentsMargins(0, 0, 0, 0);
 
     m_header = new HeaderLabel(this);
     m_header->setObjectName("navigationPanel");
     m_header->setMinimumSize(QSize(0, 40));
     m_header->setMaximumSize(QSize(16777215, 40));
-    verticalLayout->addWidget(m_header);
+    m_verticalLayout->addWidget(m_header);
 
     m_navStack = new QStackedWidget(this);
     m_navStack->setObjectName("stackedWidget");
-    verticalLayout->addWidget(m_navStack);
+    m_verticalLayout->addWidget(m_navStack);
 }
 NavigationWidget::~NavigationWidget() {
 }

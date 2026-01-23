@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
 project(sival-project LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Svg)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg)
 
 qt_standard_project_setup()
 
@@ -75,17 +75,17 @@ qt_add_executable(sival
     include/enclosurenewdialog.hpp src/enclosurenewdialog.cpp src/enclosurenewdialog.ui
 )
 
-target_include_directories(sival-gui
+target_include_directories(sival
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include> # Für eine spätere Installation
 )
 
 target_link_libraries(sival
-    PRIVATE
+    PUBLIC
     sival-gui
     sival-core
-    SiVAL
+    libSiVAL
         Qt::Core
         Qt::Widgets
         Qt::Svg

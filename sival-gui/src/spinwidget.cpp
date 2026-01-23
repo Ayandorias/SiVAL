@@ -10,12 +10,11 @@
 //// end includes
 
 //// begin system includes
-#include <QIntValidator>
 //// end system includes
 
 //// begin project specific includes
 #include "sivalgui/spinwidget.hpp"
-
+#include <limits>
 #include <iostream>
 //// end project specific includes
 
@@ -43,6 +42,9 @@ namespace SiVAL::Gui {
 SpinWidget::SpinWidget(QWidget *parent)
     :QWidget(parent) {
 
+    int m_maximum = std::numeric_limits<int>::max();
+    int m_minimum = std::numeric_limits<int>::min();
+
     setMinimumSize(QSize(0, 32));
     setMaximumSize(QSize(16777215, 32));
     horizontalLayout = new QHBoxLayout(this);
@@ -53,8 +55,8 @@ SpinWidget::SpinWidget(QWidget *parent)
     m_lineEdit->setObjectName("lineEdit");
     m_lineEdit->setMinimumHeight(32);
     m_lineEdit->setMaximumHeight(32);
-    QIntValidator *validator = new QIntValidator(0, 1000, this);
-    m_lineEdit->setValidator(validator);
+    m_validator = new QIntValidator(0, 1000, this);
+    m_lineEdit->setValidator(m_validator);
 
     horizontalLayout->addWidget(m_lineEdit);
 
@@ -79,6 +81,13 @@ SpinWidget::SpinWidget(QWidget *parent)
  *
  */
 SpinWidget::~SpinWidget() {
+}
+
+void SpinWidget::setMaximum(int max) {
+    m_validator->setTop(max);
+}
+void SpinWidget::setMinimum(int min) {
+    m_validator->setBottom(min);
 }
 
 double SpinWidget::value() {

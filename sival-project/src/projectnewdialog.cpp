@@ -47,6 +47,9 @@ ProjectNewDialog::ProjectNewDialog(QWidget *parent)
 
 
     setupUi(m_centerWidget);
+
+    m_authorEdit->setText(sSettings()->author());
+    m_volumeEdit->setValue(25);
     textChanged(QString());
 }
 

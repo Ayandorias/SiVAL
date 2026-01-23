@@ -38,6 +38,10 @@ AbstractIOHandler::AbstractIOHandler(const QString &filename)
 
 AbstractIOHandler::~AbstractIOHandler() {
 }
+
+QString AbstractIOHandler::filename() {
+    return m_filename;
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)
