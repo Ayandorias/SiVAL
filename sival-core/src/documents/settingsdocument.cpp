@@ -85,8 +85,6 @@ bool SettingsDocument::save() {
     doc.setObject(m_doc);
     m_handler->save(doc.toJson());
 
-    std::cout << "Hier wird gespeichert" << std::endl;
-
     return true;
 }
 
