@@ -192,6 +192,19 @@ void SettingsDocument::addProject(const QString &project) {
     m_lastProjectList->add(project);
     saveLastProject();
 }
+
+void SettingsDocument::addSpeaker(SiVAL::Core::SpeakerDocument *doc) {
+    m_speakerList.append(doc);
+}
+
+SiVAL::Core::SpeakerDocument* SettingsDocument::speaker(int pos) {
+    return m_speakerList.at(pos);
+}
+
+int SettingsDocument::speakerCount() {
+    return m_speakerList.size();
+}
+
 //// end public member methods
 
 //// begin public member methods (internal use only)

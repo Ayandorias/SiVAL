@@ -16,6 +16,7 @@
 
 //// begin project specific includes
 #include <sival/abstractions/driver.hpp>
+// #include <sival/components/driver/woofer.hpp>
 //// end project specific includes
 
 //// begin using namespaces

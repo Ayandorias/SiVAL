@@ -14,12 +14,16 @@
 //// end system includes
 
 //// begin project specific includes
+#include <sivalcore/sivalglobal.hpp>
+#include <sivalgui/card.hpp>
 #include "enclosurenewdialog.hpp"
 #include "ui_enclosurenewdialog.h"
 // #include "speakermanufacturer.hpp"
 // #include "speakermanufacturercard.hpp"
 
 // #include "settingsdocument.hpp"
+
+#include <sivalcore/documents/speakerdocument.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -125,6 +129,25 @@ EnclosureNewDialog::~EnclosureNewDialog() {
  * @brief Creates the view where you can select a Manufacturer from a list. The amount of manufacturers are set in the settings page.
  */
 void EnclosureNewDialog::buildManufacturerList() {
+
+    for(int i = 0; i < sSettings()->speakerCount(); i++) {
+        SiVAL::Core::SpeakerDocument *doc = sSettings()->speaker(i);
+        QVector<SiVAL::Core::ChassisManufacturer*> man = doc->manufacturerList();
+
+        std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << man.count() << "|" << man.size() << std::endl;
+        for(int j = 0; j < man.count(); j++) {
+            std::cout << man.at(j)->name().toStdString() << std::endl;
+
+            SiVAL::Gui::Card *card = new SiVAL::Gui::Card(ui->m_pManufacturer);
+            card->setMinimumHeight(40);
+            card->setMaximumHeight(40);
+            card->setTitle(man.at(j)->name());
+            card->setIcon(":/sival/" + sSettings()->theme() + "/check.svg");
+
+            m_pVerticalLayout->insertWidget(j++, card);
+        }
+    }
+
     // QVector<SpeakerManufacturer*> man = m_pSpeakerSettingsDoc->manufacturers();
     // bool start = true;
     // int j = 0;

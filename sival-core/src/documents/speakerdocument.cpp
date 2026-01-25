@@ -52,6 +52,8 @@ SpeakerDocument::SpeakerDocument(AbstractIOHandler *handler)
  *
  */
 SpeakerDocument::~SpeakerDocument() {
+    std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << m_manufacturer.count() << "|" << m_manufacturer.size() << std::endl;
+
     for(ChassisManufacturer *man : m_manufacturer) {
         delete man;
     }
@@ -70,12 +72,14 @@ void SpeakerDocument::parse() {
             // Hier erfolgt die weitere Extraktion der Daten
             ChassisManufacturer *man = new ChassisManufacturer(manufacturer, this);
             m_manufacturer.append(man);
+            std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << m_manufacturer.count() << "|" << m_manufacturer.size() << std::endl;
             // man->setChassisList(manufacturer["uuids"].toArray());
             emit status(tr("Manufacturer: %1").arg(man->name()));
             QCoreApplication::processEvents();
             QThread::msleep(50);
         }
     }
+    std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << m_manufacturer.count() << "|" << m_manufacturer.size() << std::endl;
 }
 void SpeakerDocument::processing() {
     // QThread::msleep(25);
@@ -112,6 +116,11 @@ void SpeakerDocument::processing() {
 
 bool SpeakerDocument::save() {
     return true;
+}
+
+QVector<ChassisManufacturer*> SpeakerDocument::manufacturerList() {
+    std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << m_manufacturer.count() << "|" << m_manufacturer.size() << std::endl;
+    return m_manufacturer;
 }
 //// end public member methods
 

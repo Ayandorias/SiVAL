@@ -55,6 +55,7 @@ public:
     virtual void parse() override;
     void processing();
     virtual bool save() override;
+    QVector<ChassisManufacturer*> manufacturerList();
     //// end public member methods
 
     //// begin public member methods (internal use only)

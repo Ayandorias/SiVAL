@@ -14,12 +14,11 @@
 #include <QFile>
 #include <QFileInfo>
 
-#include <iostream>
+#include <sival/libsival.hpp>
+#include <sival/components/driver/factory.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include <sival/libsival.hpp>
-#include <sival/components/driver/factory.hpp>
 #include "sivalcore/documents/speakerdocument.hpp"
 #include "sivalcore/generic/chassismanufacturer.hpp"
 //// end project specific includes
@@ -56,6 +55,7 @@ ChassisManufacturer::ChassisManufacturer(QJsonObject man, SpeakerDocument *doc) 
  *
  */
 ChassisManufacturer::~ChassisManufacturer() {
+    m_chassisList.clear();
 }
 QString ChassisManufacturer::name() {
     return m_manufacturer["manufacturer"].toString();
@@ -70,9 +70,8 @@ void ChassisManufacturer::parse() {
         QString p = path + value.toString();
 
         if(QFile::exists(p)) {
-            SiVAL::Engine::Driver::Factory::create(SiVAL::Engine::DriverRole::WOOFER, p.toStdString());
-            // Chassis *ch = new Chassis(p);
-            // m_chassisList.append(ch);
+            std::shared_ptr<SiVAL::Engine::AbstractDriver> woofer = SiVAL::Engine::Driver::Factory::create(SiVAL::Engine::DriverRole::WOOFER, p.toStdString());
+            m_chassisList.append(woofer);
         }
     }
 }
