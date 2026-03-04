@@ -49,6 +49,7 @@ public:
     virtual ~ChassisManufacturer();
     QString name();
     void parse();
+    const QVector<std::shared_ptr<Engine::AbstractDriver>>& chassisList();
     void setChassisList(QJsonArray arr);
     //// end public member methods
 

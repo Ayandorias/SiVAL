@@ -15,7 +15,6 @@
 
 //// begin project specific includes
 #include <sivalcore/sivalglobal.hpp>
-#include <sivalgui/card.hpp>
 #include "enclosurenewdialog.hpp"
 #include "ui_enclosurenewdialog.h"
 // #include "speakermanufacturer.hpp"
@@ -143,6 +142,7 @@ void EnclosureNewDialog::buildManufacturerList() {
             card->setMaximumHeight(40);
             card->setTitle(man.at(j)->name());
             card->setIcon(":/sival/" + sSettings()->theme() + "/check.svg");
+            connect(card, &SiVAL::Gui::Card::clicked, this, &EnclosureNewDialog::changeSpeakerList);
 
             m_pVerticalLayout->insertWidget(j++, card);
         }
@@ -177,7 +177,9 @@ void EnclosureNewDialog::clearSpeakerList() {
 //// end public slots
 
 //// begin protected slots
-// void EnclosureNewDialog::changeSpeakerList(SpeakerManufacturer *man) {
+void EnclosureNewDialog::changeSpeakerList(SiVAL::Gui::Card *card) {//SpeakerManufacturer *man) {
+
+    std::cout << card->title().toStdString() << std::endl;
 
 //     m_pAccept->setDisabled(true);
 //     /// Löshe alle Fenster aus der Ansicht
@@ -217,7 +219,7 @@ void EnclosureNewDialog::clearSpeakerList() {
 //         }
 
 //     }
-// }
+}
 
 // void EnclosureNewDialog::speakerSelected(SpeakerDocument *doc){
 

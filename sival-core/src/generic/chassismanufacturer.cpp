@@ -75,6 +75,11 @@ void ChassisManufacturer::parse() {
         }
     }
 }
+
+const QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>>& ChassisManufacturer::chassisList()  {
+    return m_chassisList;
+}
+
 void ChassisManufacturer::setChassisList(QJsonArray arr) {
 
 }

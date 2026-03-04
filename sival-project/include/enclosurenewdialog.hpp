@@ -15,6 +15,7 @@
 //// end system includes
 
 //// begin project specific includes
+#include <sivalgui/card.hpp>
 // #include "speakerbrandcard.hpp"
 // #include "speakermanufacturer.hpp"
 // #include "manufacturerdocument.hpp"
@@ -97,7 +98,7 @@ public slots:
 
     //// begin protected slots
 protected slots:
-    // void changeSpeakerList(SpeakerManufacturer *man);
+    void changeSpeakerList(SiVAL::Gui::Card *card);//SpeakerManufacturer *man);
     // void speakerSelected(SpeakerDocument *doc);
     //// end protected slots
 

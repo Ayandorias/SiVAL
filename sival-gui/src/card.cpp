@@ -70,6 +70,10 @@ void Card::setInfo(const QString &info) {
     m_infoText = info;
 }
 
+QString Card::title() {
+    return m_sTitle;
+}
+
 void Card::setTitle(const QString &title) {
     m_sTitle = title;
 }
@@ -124,7 +128,7 @@ void Card::mousePressEvent(QMouseEvent *event) {
 void Card::mouseReleaseEvent(QMouseEvent *event) {
     if(this->rect().contains(event->pos())) {
         if(m_bPressed) {
-            emit clicked();
+            emit clicked(this);
             emit infoText(m_infoText);
         }
     } else {
