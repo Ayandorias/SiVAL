@@ -16,6 +16,8 @@
 
 //// begin project specific includes
 #include <sivalgui/card.hpp>
+#include <manufacturercard.hpp>
+#include <speakercard.hpp>
 // #include "speakerbrandcard.hpp"
 // #include "speakermanufacturer.hpp"
 // #include "manufacturerdocument.hpp"
@@ -88,6 +90,7 @@ private:
     QVBoxLayout *m_pVerticalLayout;
     QVBoxLayout *m_pSpeakerLayout;
     QSpacerItem *m_pVerticalSpacer;
+    std::shared_ptr<SiVAL::Engine::AbstractDriver> m_driver;
     // SpeakerBrandCard *m_pLastSelected;
     // SpeakerDocument *m_pSpeakerDoc;
     //// end private member
@@ -99,7 +102,8 @@ public slots:
     //// begin protected slots
 protected slots:
     void changeSpeakerList(SiVAL::Gui::Card *card);//SpeakerManufacturer *man);
-    // void speakerSelected(SpeakerDocument *doc);
+    void createNewEnclosure();
+    void speakerSelected(SiVAL::Gui::Card *card);
     //// end protected slots
 
     //// begin private slots
@@ -108,7 +112,7 @@ private slots:
 
     //// begin signals
 signals:
-    void newEnclosure();
+    void newEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver);
     //// end signals
 };
 #endif // HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP

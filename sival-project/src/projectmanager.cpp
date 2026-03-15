@@ -40,7 +40,7 @@ namespace SiVAL::PM {
 /**
  *
  */
-ProjectManager::ProjectManager(MainWindow *parent)
+ProjectManager::ProjectManager(const QString filename, MainWindow *parent)
     :Gui::MainWindow(parent) {
 
     m_projectDoc = nullptr;
@@ -92,6 +92,9 @@ ProjectManager::ProjectManager(MainWindow *parent)
     retranslateUI();
 
     m_startView->navigationButton(m_navBar)->animateClick();
+    if(!filename.isEmpty()) {
+        open(filename);
+    }
 }
 
 /**************************************************************************************************/
@@ -156,6 +159,15 @@ void ProjectManager::newProject() {
     m_projectNewDialog->showNormal();
     m_projectNewDialog->raise();
 }
+
+void ProjectManager::newSealedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver) {
+    std::cout << "Add new to Projekt: " << driver->model()<< std::endl;
+}
+
+void ProjectManager::newVentedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver) {
+    std::cout << "Add new to Projekt: " << driver->model()<< std::endl;
+}
+
 void ProjectManager::open(const QString &filepath) {
     // TODO: Es müssen noch alle Hauptfenster bis auf das ProjectManager geschlossen werden.
     // TODO: Es muss dann auf das ProjectView gewechselt werden.
@@ -193,6 +205,7 @@ void ProjectManager::retranslateUI() {
 
 void ProjectManager::sealedEnclosure() {
     EnclosureNewDialog *dlg = new EnclosureNewDialog(this);
+    connect(dlg, &EnclosureNewDialog::newEnclosure, this, &ProjectManager::newSealedEnclosure);
     dlg->showNormal();
     dlg->raise();
 }
@@ -209,6 +222,10 @@ void ProjectManager::selection(QAbstractButton *btn) {
 }
 
 void ProjectManager::ventedEnclosure() {
+    EnclosureNewDialog *dlg = new EnclosureNewDialog(this);
+    connect(dlg, &EnclosureNewDialog::newEnclosure, this, &ProjectManager::newVentedEnclosure);
+    dlg->showNormal();
+    dlg->raise();
 }
 //// end protected slots
 

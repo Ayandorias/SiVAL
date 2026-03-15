@@ -12,9 +12,20 @@
 #include <QPainter>
 #include <QThread>
 
+#include <iostream>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    // Holt alle Parameter als Liste von Strings
+    QStringList args = QCoreApplication::arguments();
+
+    // args[0] ist immer der Pfad zum Programm selbst
+    // Ab args[1] kommen deine eigenen Parameter
+    for (int i = 1; i < args.size(); ++i) {
+        std::cout << "Parameter" << i << ":" << args.at(i).toStdString() << std::endl;
+    }
+
 
     SiVAL::Core::SettingsDocument doc(SiVAL::Core::SettingsIOHandler::createInstance("settings.sival"));
 
@@ -61,7 +72,11 @@ int main(int argc, char *argv[])
         file.close();
     }
 
-    SiVAL::PM::ProjectManager w;
+    QString project = QString();
+    if(args.count() > 1) {
+        project = args.at(1);
+    }
+    SiVAL::PM::ProjectManager w(project);
     if(splash) {
         splash->finish(&w);
     }

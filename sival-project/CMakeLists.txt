@@ -34,6 +34,8 @@ qt_add_executable(sival
     # Core Management
     include/projectmanager.hpp        src/projectmanager.cpp
     include/sival.hpp
+    include/manufacturercard.hpp src/manufacturercard.cpp
+    include/speakercard.hpp src/speakercard.cpp
 )
 
 # =========================================================
