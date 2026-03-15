@@ -14,12 +14,16 @@
 //// end system includes
 
 //// begin project specific includes
+#include <sivalcore/sivalglobal.hpp>
 #include "enclosurenewdialog.hpp"
 #include "ui_enclosurenewdialog.h"
 // #include "speakermanufacturer.hpp"
 // #include "speakermanufacturercard.hpp"
 
 // #include "settingsdocument.hpp"
+
+#include <sivalgui/card.hpp>
+#include <sivalcore/documents/speakerdocument.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -90,12 +94,38 @@ EnclosureNewDialog::EnclosureNewDialog(/*ManufacturerDocument *doc, */QWidget *p
 
     m_pAccept->setText(tr("Erstellen"));
     m_pAccept->setDisabled(true);
-    connect(m_pAccept, &QPushButton::clicked, this, &EnclosureNewDialog::newEnclosure);
+    connect(m_pAccept, &QPushButton::clicked, this, &EnclosureNewDialog::createNewEnclosure);
 
     // m_pPrevButton->hide();
     // m_pNextButton->hide();
 
     // SettingsDocument setdoc;
+    ui->comboBox->hide();
+    ui->comboBox_2->hide();
+    ui->label_7->hide();
+    ui->label_5->hide();
+    ui->label_17->hide();
+    ui->label_12->hide();
+    ui->label_3->hide();
+    ui->label_9->hide();
+    ui->label_10->hide();
+    ui->label_15->hide();
+    ui->label_6->hide();
+    ui->label_11->hide();
+    ui->label_20->hide();
+    ui->label_13->hide();
+    ui->label_4->hide();
+    ui->label_16->hide();
+    ui->label_19->hide();
+    ui->label_8->hide();
+    ui->m_pQtsMin->hide();
+    ui->m_pSPLMax->hide();
+    ui->m_pFsMax->hide();
+    ui->m_pSPLMin->hide();
+    ui->m_pRMSMax->hide();
+    ui->m_pFsMin->hide();
+    ui->m_pRMSMin->hide();
+    ui->m_pQtsMax->hide();
 }
 
 /**************************************************************************************************/
@@ -125,6 +155,37 @@ EnclosureNewDialog::~EnclosureNewDialog() {
  * @brief Creates the view where you can select a Manufacturer from a list. The amount of manufacturers are set in the settings page.
  */
 void EnclosureNewDialog::buildManufacturerList() {
+
+    bool start = true;
+
+    for(int i = 0; i < sSettings()->speakerCount(); i++) {
+        SiVAL::Core::SpeakerDocument *doc = sSettings()->speaker(i);
+        QVector<SiVAL::Core::ChassisManufacturer*> man = doc->manufacturerList();
+
+        std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << man.count() << "|" << man.size() << std::endl;
+        for(int j = 0; j < man.count(); j++) {
+
+            SiVAL::Core::ChassisManufacturer* m = man.at(j);
+            std::cout << man.at(j)->name().toStdString() << std::endl;
+
+            SiVAL::ManufacturerCard *card = new SiVAL::ManufacturerCard(ui->m_pManufacturer);
+            card->setMinimumHeight(40);
+            card->setMaximumHeight(40);
+            card->setTitle(m->name());
+            card->setManufacturer(m);
+            card->setIcon(":/sival/" + sSettings()->theme() + "/check.svg");
+            connect(card, &SiVAL::ManufacturerCard::clicked, this, &EnclosureNewDialog::changeSpeakerList);
+
+            m_pVerticalLayout->insertWidget(j, card);
+
+            if(start) {
+                changeSpeakerList(card);
+                start = false;
+            }
+        }
+    }
+
+
     // QVector<SpeakerManufacturer*> man = m_pSpeakerSettingsDoc->manufacturers();
     // bool start = true;
     // int j = 0;
@@ -154,50 +215,59 @@ void EnclosureNewDialog::clearSpeakerList() {
 //// end public slots
 
 //// begin protected slots
-// void EnclosureNewDialog::changeSpeakerList(SpeakerManufacturer *man) {
+void EnclosureNewDialog::changeSpeakerList(SiVAL::Gui::Card *card) {//SpeakerManufacturer *man) {
+
+    std::cout << card->title().toStdString() << std::endl;
+    SiVAL::ManufacturerCard* derivedCard = qobject_cast<SiVAL::ManufacturerCard*>(card);
 
 //     m_pAccept->setDisabled(true);
 //     /// Löshe alle Fenster aus der Ansicht
-//     while (m_pSpeakerLayout->count() > 0) {
-//         QLayoutItem *item = m_pSpeakerLayout->takeAt(0); // Nimm das erste Element
-//         if (item) {
-//             QWidget *widget = item->widget();
-//             if (widget) {
-//                 widget->close(); // Schließt das Widget, bevor es gelöscht wird
-//                 widget->deleteLater(); // Plant das Widget zur Löschung
-//             } else {
-//                 // Wenn es kein Widget ist (z.B. QSpacerItem),
-//                 // muss es auch gelöscht werden, falls es dynamisch alloziert wurde.
-//                 // Standard-Layouts wie QVBoxLayout erstellen QSpacerItem oft selbst,
-//                 // aber zur Sicherheit kann man es hier löschen.
-//                 // delete item;
-//             }
-//         }
-//     }
+    while (m_pSpeakerLayout->count() > 0) {
+        QLayoutItem *item = m_pSpeakerLayout->takeAt(0); // Nimm das erste Element
+        if (item) {
+            QWidget *widget = item->widget();
+            if (widget) {
+                widget->close(); // Schließt das Widget, bevor es gelöscht wird
+                widget->deleteLater(); // Plant das Widget zur Löschung
+            } else {
+                // Wenn es kein Widget ist (z.B. QSpacerItem),
+                // muss es auch gelöscht werden, falls es dynamisch alloziert wurde.
+                // Standard-Layouts wie QVBoxLayout erstellen QSpacerItem oft selbst,
+                // aber zur Sicherheit kann man es hier löschen.
+                // delete item;
+            }
+        }
+    }
 
-//     QVector<SpeakerManufacturer*> sm = m_pSpeakerSettingsDoc->manufacturers();
-//     bool start = true;
+    SiVAL::Core::ChassisManufacturer* m = derivedCard->manufacturer();
+    std::cout << m->name().toStdString() << std::endl;
 
-//     for(int i = 0; i < sm.size(); ++i) {
-//         SpeakerManufacturer *m = sm.at(i);
-//         if(m->name() == man->name()) {
+    if(m->name() == derivedCard->title()) {
+        QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>> driver = m->chassisList();
+        for(int k = 0; k < driver.count(); k++) {
+            std::shared_ptr<SiVAL::Engine::AbstractDriver> d = driver.at(k);
+            std::cout << d->model() << std::endl;
+            SiVAL::SpeakerCard *chassis = new SiVAL::SpeakerCard(ui->m_pSpeaker);
+            chassis->setTitle(QString::fromStdString(d->model()));
+            chassis->setInfo(QString::fromStdString(d->speakerType()));
+            chassis->setDriver(d);
+            connect(chassis, &SiVAL::Gui::Card::clicked, this, &EnclosureNewDialog::speakerSelected);
+            m_pSpeakerLayout->insertWidget(k, chassis);
+        }
+    }
+}
 
-//             QVector<SpeakerDocument*> docs = m->speakerList();
-//             for(int j = 0; j < docs.size(); ++j) {
-//                 SpeakerDocument *doc = docs.at(j);
-//                 SpeakerBrandCard *card = new SpeakerBrandCard(doc, ui->m_pSpeaker);
-//                 connect(card, &SpeakerBrandCard::selected, this, &EnclosureNewDialog::speakerSelected);
-//                 card->setTitle(doc->model());
-//                 card->setInfo(doc->uuid());
-//                 m_pSpeakerLayout->insertWidget(j, card);
-//             }
-//         }
+void EnclosureNewDialog::createNewEnclosure() {
+    emit newEnclosure(m_driver);
+    close();
+}
 
-//     }
-// }
+void EnclosureNewDialog::speakerSelected(SiVAL::Gui::Card *card){
+    SiVAL::SpeakerCard* derivedCard = qobject_cast<SiVAL::SpeakerCard*>(card);
+    m_driver = derivedCard->driver();
 
-// void EnclosureNewDialog::speakerSelected(SpeakerDocument *doc){
-
+    std::cout << m_driver->model() << std::endl;
+    m_pAccept->setDisabled(false);
 //     if(m_pLastSelected) {
 //         m_pLastSelected->setSelected(false);
 //     }
@@ -206,7 +276,7 @@ void EnclosureNewDialog::clearSpeakerList() {
 //     m_pSpeakerDoc = doc;
 
 //     m_pAccept->setDisabled(false);
-// }
+}
 //// end protected slots
 
 //// begin private slots

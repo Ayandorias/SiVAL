@@ -61,6 +61,7 @@ public:
     void setChevron(bool enable);
     void setIcon(const QString &icon);
     void setInfo(const QString &info);
+    QString title();
     void setTitle(const QString &title);
     void setChecked(bool check);
 
@@ -134,7 +135,7 @@ private slots:
     //// begin signals
 signals:
     void infoText(const QString &text);
-    void clicked();
+    void clicked(SiVAL::Gui::Card *card);
     void doubleClicked(SiVAL::Gui::Card *card);
     //// end signals
 };

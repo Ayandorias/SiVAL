@@ -14,8 +14,8 @@
 
 //// begin project specific includes
 #include "settingsabout.hpp"
-#include "version.hpp"
-//// end project specific includes
+#include <sival/sival_version.hpp>
+//// end sival/project specific includes
 
 //// begin using namespaces
 //// end using namespaces

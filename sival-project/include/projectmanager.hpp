@@ -14,6 +14,7 @@
 #include <sivalgui/mainwindow.hpp>
 #include <sivalcore/documents/projectdocument.hpp>
 #include <projectnewdialog.hpp>
+#include <sival/abstractions/driver.hpp>
 //// end system includes
 
 //// begin project specific includes
@@ -48,7 +49,7 @@ class ProjectManager : public Gui::MainWindow
     //// begin public member methods
 public:
     /// Constructor
-    explicit ProjectManager(MainWindow *parent = nullptr);
+    explicit ProjectManager(const QString filename = QString(), MainWindow *parent = nullptr);
     /// Destructor
     virtual ~ProjectManager();
     //// end public member methods
@@ -97,6 +98,8 @@ public slots:
     //// begin protected slots
 protected slots:
     void newProject();
+    void newSealedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver);
+    void newVentedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver);
     void open(const QString &filepath);
     void openProject();
     void saveProject();

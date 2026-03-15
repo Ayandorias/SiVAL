@@ -10,17 +10,10 @@
 //// end includes
 
 //// begin system includes
-#include <QDir>
-#include <QFile>
-#include <QFileInfo>
-
-#include <sival/libsival.hpp>
-#include <sival/components/driver/factory.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include "sivalcore/documents/speakerdocument.hpp"
-#include "sivalcore/generic/chassismanufacturer.hpp"
+#include "manufacturercard.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -38,50 +31,28 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL::Core {
+namespace SiVAL {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-ChassisManufacturer::ChassisManufacturer(QJsonObject man, SpeakerDocument *doc) {
-    m_manufacturer = man;
-    m_doc = doc;
-    parse();
+ManufacturerCard::ManufacturerCard(QWidget *parent)
+    :SiVAL::Gui::Card(parent) {
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-ChassisManufacturer::~ChassisManufacturer() {
-    m_chassisList.clear();
-}
-QString ChassisManufacturer::name() {
-    return m_manufacturer["manufacturer"].toString();
-}
-void ChassisManufacturer::parse() {
-    QFileInfo info(m_doc->filename());
-    QString path = info.absolutePath();
-
-    path += QDir::separator() + name().toLower() + QDir::separator();
-    QJsonArray arr = m_manufacturer["uuids"].toArray();
-    for (const QJsonValue &value : arr) {
-        QString p = path + value.toString();
-
-        if(QFile::exists(p)) {
-            std::shared_ptr<SiVAL::Engine::AbstractDriver> woofer = SiVAL::Engine::Driver::Factory::create(SiVAL::Engine::DriverRole::WOOFER, p.toStdString());
-            m_chassisList.append(woofer);
-        }
-    }
+ManufacturerCard::~ManufacturerCard() {
 }
 
-const QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>>& ChassisManufacturer::chassisList()  {
-    return m_chassisList;
+SiVAL::Core::ChassisManufacturer* ManufacturerCard::manufacturer() {
+    return m_manufacturer;
 }
-
-void ChassisManufacturer::setChassisList(QJsonArray arr) {
-
+void ManufacturerCard::setManufacturer(SiVAL::Core::ChassisManufacturer *m) {
+    m_manufacturer = m;
 }
 //// end public member methods
 
