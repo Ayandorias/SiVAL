@@ -9,20 +9,12 @@
  *
  */
 //// begin system includes
-#include <QButtonGroup>
-#include <QVector>
-#include <sivalgui/mainwindow.hpp>
-#include <sivalcore/documents/projectdocument.hpp>
-#include <projectnewdialog.hpp>
-#include <sival/abstractions/driver.hpp>
+#include <QVBoxLayout>
+#include <QWidget>
 //// end system includes
 
 //// begin project specific includes
-#include <sival.hpp>
-#include <helpview.hpp>
-#include <projectview.hpp>
-#include <startview.hpp>
-#include <settingsview.hpp>
+#include <sivalgui/headerlabel.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -37,22 +29,22 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL::PM {
+namespace SiVAL::Gui {
 /**
- * class MainWindow
+ * class FileSystemPanel
  *
  * @brief
  *
  */
-class ProjectManager : public Gui::MainWindow
+class FileSystemPanel : public QWidget
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit ProjectManager(const QString filename = QString(), MainWindow *parent = nullptr);
+    explicit FileSystemPanel(QWidget *parent = nullptr);
     /// Destructor
-    virtual ~ProjectManager();
+    virtual ~FileSystemPanel();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -61,7 +53,6 @@ public:
 
     //// begin protected member methods
 protected:
-    void resizeEvent(QResizeEvent *event) override;
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -70,7 +61,7 @@ protected:
 
     //// begin private member methods
 private:
-    void setNavigationHeader(int id);
+    void addDriveButton(const QString &label, const QString &icon, const QString &path);
     //// end private member methods
 
     //// begin public member
@@ -83,13 +74,10 @@ protected:
 
     //// begin private member
 private:
-    QButtonGroup *m_group;
-    SiVAL::PM::HelpView *m_helpView;
-    SiVAL::PM::ProjectView *m_projectView;
-    SiVAL::PM::StartView *m_startView;
-    SiVAL::PM::SettingsView *m_settingsView;
-    SiVAL::PM::ProjectNewDialog *m_projectNewDialog;
-    SiVAL::Core::ProjectDocument *m_projectDoc;
+    HeaderLabel *m_favorite;
+    HeaderLabel *m_storage;
+    HeaderLabel *m_user;
+    QVBoxLayout *layout;
     //// end private member
 
     //// begin public slots
@@ -98,18 +86,7 @@ public slots:
 
     //// begin protected slots
 protected slots:
-    void newProject(const QString &title, const QString &projectname, int volume);
-    void createNewProject(SiVAL::ProjectNew prj);
-    void newSealedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver);
-    void newVentedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver);
-    void openProject(const QString &filepath);
-    // void openProject();
-    // void saveProject();
-    // void saveAsProject();
-    void retranslateUI();
-    void sealedEnclosure();
-    void selection(QAbstractButton *btn);
-    void ventedEnclosure();
+    void handleButtonClick();
     //// end protected slots
 
     //// begin private slots
@@ -118,6 +95,7 @@ private slots:
 
     //// begin signals
 signals:
+    void driveSelected(const QString &path);
     //// end signals
 };
 }

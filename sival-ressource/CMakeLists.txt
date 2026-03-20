@@ -51,6 +51,12 @@ set(SIVAL_ICONS
     warning.svg.in
     theme_dark.svg.in
     theme_light.svg.in
+    download.svg.in
+    music.svg.in
+    camera.svg.in
+    device-hdd.svg.in
+    buildings.svg.in
+    folder.svg.in
 )
 
 # ==============================================================================
@@ -75,7 +81,7 @@ create_theme(
 
     HOVER_BG_CONTENT  "#F0F0F3"
     HOVER_BG_NAV      "#DADADD"
-    HOVER_BG_ITEM     "#FCFCFF"
+    HOVER_BG_ITEM     "#F7F7F9"
 
     SELECTION_BG      "#0078D7"
     TEXT_SELECTION    "#FCFCFF"

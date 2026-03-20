@@ -24,6 +24,13 @@
  */
 
 namespace SiVAL {
+enum class NavBar {
+    Welcome = 0,
+    Project,
+    Help,
+    Settings
+};
+
 enum class StartPanel {
     New = 0,
     Open,

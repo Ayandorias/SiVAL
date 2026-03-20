@@ -50,7 +50,7 @@ StartNewTemplate::StartNewTemplate(QWidget *parent)
     m_bookShelf->setMinimumSize(QSize(200, 200));
     m_bookShelf->setMaximumSize(QSize(200, 200));
     m_bookShelf->setIcon(":/sival/" + sSettings()->theme() + "/enclosure.svg");
-    connect(m_bookShelf, &SiVAL::Gui::Card::doubleClicked, this, &SiVAL::StartNewTemplate::newProject);
+    connect(m_bookShelf, &SiVAL::Gui::Card::clicked, this, &SiVAL::StartNewTemplate::newProject);
     m_layout->addWidget(m_bookShelf);
 
     m_floorStand = new SiVAL::StartItem(this);
@@ -58,7 +58,7 @@ StartNewTemplate::StartNewTemplate(QWidget *parent)
     m_floorStand->setMinimumSize(QSize(200, 200));
     m_floorStand->setMaximumSize(QSize(200, 200));
     m_floorStand->setIcon(":/sival/" + sSettings()->theme() + "/enclosure.svg");
-    connect(m_floorStand, &SiVAL::Gui::Card::doubleClicked, this, &SiVAL::StartNewTemplate::newProject);
+    connect(m_floorStand, &SiVAL::Gui::Card::clicked, this, &SiVAL::StartNewTemplate::newProject);
     m_layout->addWidget(m_floorStand);
 
     m_spacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);

@@ -57,7 +57,7 @@ ProjectManager::ProjectManager(const QString filename, MainWindow *parent)
     m_stackWidget->addWidget(m_startView->centerPanel());
     connect(m_startView, &SiVAL::PM::StartView::createNewProject, this, &ProjectManager::createNewProject);
     // connect(m_startView, &SiVAL::PM::StartView::newProject, this, &ProjectManager::newProject);
-    // connect(m_startView, &SiVAL::PM::StartView::openProject, this, &ProjectManager::openProject);
+    connect(m_startView, &SiVAL::PM::StartView::openProject, this, &ProjectManager::openProject);
     // connect(m_startView, &SiVAL::PM::StartView::saveProject, this, &ProjectManager::saveProject);
     // connect(m_startView, &SiVAL::PM::StartView::saveAsProject, this, &ProjectManager::saveAsProject);
 
@@ -94,7 +94,7 @@ ProjectManager::ProjectManager(const QString filename, MainWindow *parent)
 
     m_startView->navigationButton(m_navBar)->animateClick();
     if(!filename.isEmpty()) {
-        open(filename);
+        openProject(filename);
     }
 }
 
@@ -153,7 +153,7 @@ void ProjectManager::setNavigationHeader(int id) {
 //// begin protected slots
 void ProjectManager::newProject(const QString &title, const QString &projectname, int volume) {
     m_projectNewDialog = new ProjectNewDialog(title, projectname, volume, this);
-    connect(m_projectNewDialog, &ProjectNewDialog::newProject, this, &ProjectManager::open);
+    connect(m_projectNewDialog, &ProjectNewDialog::newProject, this, &ProjectManager::openProject);
     connect(m_projectNewDialog, &ProjectNewDialog::closeOverlay, this, [this] {
         m_projectNewDialog = nullptr;
     });
@@ -184,7 +184,7 @@ void ProjectManager::newVentedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractD
     std::cout << "Add new to Projekt: " << driver->model()<< std::endl;
 }
 
-void ProjectManager::open(const QString &filepath) {
+void ProjectManager::openProject(const QString &filepath) {
     // TODO: Es müssen noch alle Hauptfenster bis auf das ProjectManager geschlossen werden.
     // TODO: Es muss dann auf das ProjectView gewechselt werden.
     if(m_projectDoc) {
@@ -198,6 +198,13 @@ void ProjectManager::open(const QString &filepath) {
         m_projectView->setProjectDocument(m_projectDoc);
         sSettings()->setLastProject(filepath);
         sSettings()->save();
+
+        // Button mit der ID 2 aktivieren
+        if (auto *btn = m_group->button(static_cast<int>(SiVAL::NavBar::Project))) {
+            btn->setChecked(true);
+            // Falls du auch das Signal auslösen willst, das normalerweise beim Klicken kommt:
+            selection(nullptr);
+        }
     }
 }
 // void ProjectManager::openProject() {

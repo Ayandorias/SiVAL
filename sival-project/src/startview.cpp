@@ -54,7 +54,7 @@ Gui::NavigationPanel* StartView::navigationPanel() {
         m_cardOpen = new Gui::Card();
         m_cardOpen->setMinimumHeight(40);
         m_cardOpen->setMaximumHeight(40);
-        connect(m_cardOpen, &SiVAL::Gui::Card::clicked, this, &StartView::openProject);
+        connect(m_cardOpen, &SiVAL::Gui::Card::clicked, this, &StartView::projectOpen);
         l->addCard(m_cardOpen);
 
         // m_cardSave = new Gui::Card();
@@ -79,6 +79,7 @@ QWidget* StartView::centerPanel() {
     if(m_centerPanel == nullptr) {
         SiVAL::PM::StartPanel *p = new SiVAL::PM::StartPanel();
         connect(p, &SiVAL::PM::StartPanel::createNewProject, this, &StartView::createNewProject);
+        connect(p, &StartPanel::openProject, this, &StartView::openProject);
         connect(p, &StartPanel::newEmptyProject, this, &StartView::newProject);
         m_centerPanel = p;
         newProject();
@@ -123,7 +124,7 @@ void StartView::newProject() {
     p->changePage(SiVAL::StartPanel::New);
     p->setHeader(tr("New"));
 }
-void StartView::openProject() {
+void StartView::projectOpen() {
     StartPanel *p = qobject_cast<StartPanel*>(m_centerPanel);
     p->changePage(SiVAL::StartPanel::Open);
     p->setHeader(tr("Open"));

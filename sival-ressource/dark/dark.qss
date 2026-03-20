@@ -325,12 +325,14 @@ SiVAL--Gui--NavigationWidget {
     border: none;
 }
 
-QLabel.SiVALHeaderLabel{
+QLabel.SiVALHeaderLabel {
     background-color: #1E1E21;
     color: #CCCCCF;
     font-size: 12pt;
     font-weight: bold;
     padding-left: 8px;
+    border-radius: 0px;
+    border: none;
 }
 
 #navigationPanel {
@@ -343,6 +345,7 @@ SiVAL--Gui--Label {
     font-size: 10pt;
 }
 
+
 SiVAL--Gui--Card {
     background-color: #1E1E21;
     color: #CCCCCF;
@@ -350,10 +353,19 @@ SiVAL--Gui--Card {
     qproperty-checkedColor: #0078D7;
     margin: 0px;
     border-radius: 0px;
+    border: none;
 }
 
 SiVAL--Gui--Card:hover {
     background-color: #252529;
+}
+
+SiVAL--Gui--FileSystemCard {
+    background-color: #2D2D30;
+}
+
+SiVAL--Gui--FileSystemCard:hover {
+    background-color: #333336;
 }
 
 SiVAL--Gui--Section {
@@ -460,7 +472,9 @@ QPushButton#buttonAccept:hover {
 }
 
 
-
+#m_devidingLine {
+    background-color: #1E1E21;
+}
 
 
 

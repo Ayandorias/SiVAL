@@ -52,6 +52,13 @@ StartPanel::StartPanel(QWidget *parent)
     connect(m_new, &SiVAL::StartNew::createNewProject, this, &StartPanel::createNewProject);
     m_navStack->addWidget(m_new);
 
+    // m_panel = new SiVAL::Gui::FileSystemPanel(this);
+    // m_navStack->addWidget(m_panel);
+
+    m_open = new SiVAL::StartOpen(this);
+    connect(m_open, &SiVAL::StartOpen::openProject, this, &StartPanel::openProject);
+    m_navStack->addWidget(m_open);
+
     // verticalLayout = new QVBoxLayout(this);
     // verticalLayout->setObjectName("verticalLayout");
 

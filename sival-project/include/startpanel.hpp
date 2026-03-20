@@ -20,6 +20,8 @@
 #include <projectcard.hpp>
 #include <startitem.hpp>
 #include <startnew.hpp>
+#include <startopen.hpp>
+#include <sivalgui/filesystempanel.hpp>
 #include <sivalgui/label.hpp>
 #include <sivalgui/startitembig.hpp>
 #include <sivalgui/navigationwidget.hpp>
@@ -94,7 +96,9 @@ private:
     Gui::Label *m_recentProjects;
     QVBoxLayout *m_recentLayout;
 
+    SiVAL::Gui::FileSystemPanel *m_panel;
     SiVAL::StartNew *m_new;
+    SiVAL::StartOpen *m_open;
     //// end private member
 
     //// begin public slots
@@ -113,6 +117,7 @@ private slots:
 signals:
     void newEmptyProject();
     void createNewProject(SiVAL::ProjectNew prj);
+    void openProject(const QString &filename);
     //// end signals
 };
 }

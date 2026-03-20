@@ -50,6 +50,9 @@ add_library(sival-gui SHARED
     include/sivalgui/line.hpp src/line.cpp
     include/sivalgui/selectiontree.hpp src/selectiontree.cpp
     include/sivalgui/toolbutton.hpp src/toolbutton.cpp
+    include/sivalgui/filesystempanel.hpp src/filesystempanel.cpp
+    include/sivalgui/filelistview.hpp src/filelistview.cpp
+    include/sivalgui/filesystemcard.hpp src/filesystemcard.cpp
 )
 
 # Alias für saubere Referenzierung

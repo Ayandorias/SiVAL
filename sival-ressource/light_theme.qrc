@@ -41,5 +41,11 @@
         <file>light/warning.svg</file>
         <file>light/theme_dark.svg</file>
         <file>light/theme_light.svg</file>
+        <file>light/download.svg</file>
+        <file>light/camera.svg</file>
+        <file>light/music.svg</file>
+        <file>light/device-hdd.svg</file>
+        <file>light/buildings.svg</file>
+        <file>light/folder.svg</file>
     </qresource>
 </RCC>

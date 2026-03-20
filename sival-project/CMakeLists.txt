@@ -25,6 +25,7 @@ qt_add_executable(sival
     include/projectpropertypanel.hpp  src/projectpropertypanel.cpp src/projectpropertypanel.ui
     include/enclosurenewdialog.hpp    src/enclosurenewdialog.cpp   src/enclosurenewdialog.ui
     include/startnew.hpp              src/startnew.cpp             src/startnew.ui
+    include/startopen.hpp src/startopen.cpp src/startopen.ui
     include/startnewtemplate.hpp src/startnewtemplate.cpp
 
 

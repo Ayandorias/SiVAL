@@ -90,7 +90,7 @@ public slots:
     //// begin protected slots
 protected slots:
     void newProject();
-    void openProject();
+    void projectOpen();
     // void saveProject();
     void saveAsProject();
     //// end protected slots
@@ -102,6 +102,7 @@ private slots:
     //// begin signals
 signals:
     void createNewProject(SiVAL::ProjectNew prj);
+    void openProject(const QString &filename);
     //// end signals
 };
 }
