@@ -15,7 +15,7 @@
 //// end system includes
 
 //// begin project specific includes
-
+#include <sival.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -89,6 +89,10 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void newProject();
+    void openProject();
+    // void saveProject();
+    void saveAsProject();
     //// end protected slots
 
     //// begin private slots
@@ -97,10 +101,7 @@ private slots:
 
     //// begin signals
 signals:
-    void newProject();
-    void openProject();
-    void saveProject();
-    void saveAsProject();
+    void createNewProject(SiVAL::ProjectNew prj);
     //// end signals
 };
 }

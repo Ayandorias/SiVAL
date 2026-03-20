@@ -87,6 +87,13 @@ General::General(QJsonObject obj)
     } else {
         m_object["company"] = QString();
     }
+
+    if(obj["last_project"].isString()) {
+        m_object["last_project"] = obj["last_project"].toString();
+    } else {
+        m_object["last_project"] = QString();
+    }
+
 }
 /**************************************************************************************************/
 /**
@@ -146,6 +153,14 @@ bool General::openLastProject() {
 }
 void General::setOpenLastProject(bool open) {
     m_object["open_last_project"] = open;
+}
+
+QString General::lastProject() {
+    return m_object["last_project"].toString();
+}
+
+void General::setLastProject(const QString &project) {
+    m_object["last_project"] = project;
 }
 
 bool General::showSplashScreen() {

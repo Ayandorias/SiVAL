@@ -24,6 +24,9 @@ qt_add_executable(sival
     include/projectnewdialog.hpp      src/projectnewdialog.cpp
     include/projectpropertypanel.hpp  src/projectpropertypanel.cpp src/projectpropertypanel.ui
     include/enclosurenewdialog.hpp    src/enclosurenewdialog.cpp   src/enclosurenewdialog.ui
+    include/startnew.hpp              src/startnew.cpp             src/startnew.ui
+    include/startnewtemplate.hpp src/startnewtemplate.cpp
+
 
     # Settings Pages
     include/settingspanel.hpp         src/settingspanel.cpp
@@ -36,6 +39,7 @@ qt_add_executable(sival
     include/sival.hpp
     include/manufacturercard.hpp src/manufacturercard.cpp
     include/speakercard.hpp src/speakercard.cpp
+    include/projectcard.hpp src/projectcard.cpp
 )
 
 # =========================================================

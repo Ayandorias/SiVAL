@@ -116,7 +116,7 @@ QWidget* ProjectView::centerPanel() {
 void ProjectView::setProjectDocument(SiVAL::Core::ProjectDocument *doc) {
     m_projectDoc = doc;
     ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
-    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Enclosure));
+    p->setCurrentIndex(static_cast<int>(SiVAL::ProjectPanel::Enclosure));
     p->update(doc);
 }
 //// end public member methods
@@ -146,16 +146,16 @@ void ProjectView::retranslate() {
 //// begin protected slots
 void ProjectView::enclosure() {
     ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
-    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Enclosure));
+    p->setCurrentIndex(static_cast<int>(SiVAL::ProjectPanel::Enclosure));
 }
 void ProjectView::information() {
     ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
-    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Enclosure));
+    p->setCurrentIndex(static_cast<int>(SiVAL::ProjectPanel::Enclosure));
 
 }
 void ProjectView::properties() {
     ProjectPanel *p = qobject_cast<SiVAL::PM::ProjectPanel*>(m_centerPanel);
-    p->setCurrentIndex(static_cast<int>(SiVAL::Project::Properties));
+    p->setCurrentIndex(static_cast<int>(SiVAL::ProjectPanel::Properties));
 }
 //// end protected slots
 

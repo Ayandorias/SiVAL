@@ -10,11 +10,11 @@
 //// end includes
 
 //// begin system includes
-#include <iostream>
+#include <QFile>
 //// end system includes
 
 //// begin project specific includes
-#include "sivalcore/settings/lastprojectlist.hpp"
+#include "projectcard.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -38,11 +38,12 @@ namespace SiVAL {
 /**
  *
  */
-LastProjectList::LastProjectList(QJsonArray arr)
-    :QObject() {
-    m_array = arr;
-    if(arr.isEmpty()) {
-        std::cout << "Das Geht nicht so gut." << std::endl;
+ProjectCard::ProjectCard(const QString &filename, QWidget *parent)
+    :SiVAL::Gui::Card(parent) {
+    if(QFile::exists(filename)) {
+        m_projectDoc = SiVAL::Core::ProjectDocument::open(filename);
+        setTitle(m_projectDoc->projectName());
+        setIcon(":/sival/" + sSettings()->theme() + "/enclosure.svg");
     }
 }
 
@@ -50,15 +51,7 @@ LastProjectList::LastProjectList(QJsonArray arr)
 /**
  *
  */
-LastProjectList::~LastProjectList() {
-}
-
-void LastProjectList::add(const QString &project) {
-    m_array.prepend(project);
-}
-
-QJsonArray LastProjectList::array() {
-    return m_array;
+ProjectCard::~ProjectCard() {
 }
 //// end public member methods
 

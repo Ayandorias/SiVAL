@@ -1,5 +1,7 @@
-#ifndef HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP
-#define HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP
+// #ifndef HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP
+// #define HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP
+
+#pragma once
 
 /*
  * SiVAL
@@ -38,6 +40,7 @@ class EnclosureNewDialog;
 //// begin extern declaration
 //// end extern declaration
 
+namespace SiVAL {
 /**
  * class EnclosureNewDialog
  *
@@ -115,4 +118,5 @@ signals:
     void newEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver);
     //// end signals
 };
-#endif // HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP
+}
+// #endif // HEADER_GUARD_SiVAL_EnclosureNewDialog_HPP

@@ -57,11 +57,11 @@ Gui::NavigationPanel* StartView::navigationPanel() {
         connect(m_cardOpen, &SiVAL::Gui::Card::clicked, this, &StartView::openProject);
         l->addCard(m_cardOpen);
 
-        m_cardSave = new Gui::Card();
-        m_cardSave->setMinimumHeight(40);
-        m_cardSave->setMaximumHeight(40);
-        connect(m_cardSave, &SiVAL::Gui::Card::clicked, this, &StartView::saveProject);
-        l->addCard(m_cardSave);
+        // m_cardSave = new Gui::Card();
+        // m_cardSave->setMinimumHeight(40);
+        // m_cardSave->setMaximumHeight(40);
+        // connect(m_cardSave, &SiVAL::Gui::Card::clicked, this, &StartView::saveProject);
+        // l->addCard(m_cardSave);
 
         m_cardSaveAs = new Gui::Card();
         m_cardSaveAs->setMinimumHeight(40);
@@ -78,8 +78,10 @@ Gui::NavigationPanel* StartView::navigationPanel() {
 QWidget* StartView::centerPanel() {
     if(m_centerPanel == nullptr) {
         SiVAL::PM::StartPanel *p = new SiVAL::PM::StartPanel();
+        connect(p, &SiVAL::PM::StartPanel::createNewProject, this, &StartView::createNewProject);
         connect(p, &StartPanel::newEmptyProject, this, &StartView::newProject);
         m_centerPanel = p;
+        newProject();
     }
     return m_centerPanel;
 }
@@ -97,8 +99,8 @@ void StartView::retranslate() {
         m_cardOpen->setTitle(tr("Open..."));
         m_cardOpen->setIcon(":/sival/" + sSettings()->theme() + "/open.svg");
 
-        m_cardSave->setTitle(tr("Save"));
-        m_cardSave->setIcon(":/sival/" + sSettings()->theme() + "/save.svg");
+        // m_cardSave->setTitle(tr("Save"));
+        // m_cardSave->setIcon(":/sival/" + sSettings()->theme() + "/save.svg");
 
         m_cardSaveAs->setTitle(tr("Save as..."));
         m_cardSaveAs->setIcon(":/sival/" + sSettings()->theme() + "/save_as.svg");
@@ -111,4 +113,33 @@ void StartView::retranslate() {
 
 //// begin private member methods
 //// end private member methods
+
+//// begin public slots
+//// end public slots
+
+//// begin protected slots
+void StartView::newProject() {
+    StartPanel *p = qobject_cast<StartPanel*>(m_centerPanel);
+    p->changePage(SiVAL::StartPanel::New);
+    p->setHeader(tr("New"));
+}
+void StartView::openProject() {
+    StartPanel *p = qobject_cast<StartPanel*>(m_centerPanel);
+    p->changePage(SiVAL::StartPanel::Open);
+    p->setHeader(tr("Open"));
+}
+// void StartView::saveProject() {
+//     StartPanel *p = qobject_cast<StartPanel*>(m_centerPanel);
+//     p->changePage(SiVAL::Settings::General);
+//     p->setHeader(tr("General"));
+// }
+void StartView::saveAsProject() {
+    StartPanel *p = qobject_cast<StartPanel*>(m_centerPanel);
+    p->changePage(SiVAL::StartPanel::SaveAs);
+    p->setHeader(tr("Save as"));
+}
+//// end protected slots
+
+//// begin private slots
+//// end private slots
 }

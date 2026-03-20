@@ -75,6 +75,10 @@ int main(int argc, char *argv[])
     QString project = QString();
     if(args.count() > 1) {
         project = args.at(1);
+    } else {
+        if(sSettings()->openLastProject()) {
+            project = sSettings()->lastProject();
+        }
     }
     SiVAL::PM::ProjectManager w(project);
     if(splash) {

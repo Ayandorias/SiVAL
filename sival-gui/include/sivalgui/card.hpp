@@ -136,7 +136,7 @@ private slots:
 signals:
     void infoText(const QString &text);
     void clicked(SiVAL::Gui::Card *card);
-    void doubleClicked(SiVAL::Gui::Card *card);
+    void doubleClicked();
     //// end signals
 };
 }

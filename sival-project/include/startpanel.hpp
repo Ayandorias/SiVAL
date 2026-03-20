@@ -16,9 +16,13 @@
 //// end system includes
 
 //// begin project specific includes
+#include <sival.hpp>
+#include <projectcard.hpp>
 #include <startitem.hpp>
+#include <startnew.hpp>
 #include <sivalgui/label.hpp>
 #include <sivalgui/startitembig.hpp>
+#include <sivalgui/navigationwidget.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -40,7 +44,7 @@ namespace SiVAL::PM {
  * @brief
  *
  */
-class StartPanel : public QWidget
+class StartPanel : public SiVAL::Gui::NavigationWidget
 {
     Q_OBJECT
     //// begin public member methods
@@ -49,6 +53,7 @@ public:
     explicit StartPanel(QWidget *parent = nullptr);
     /// Destructor
     virtual ~StartPanel();
+    void changePage(SiVAL::StartPanel start);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -88,7 +93,8 @@ private:
     Gui::Label *m_newLabel;
     Gui::Label *m_recentProjects;
     QVBoxLayout *m_recentLayout;
-    int m_recentPos;
+
+    SiVAL::StartNew *m_new;
     //// end private member
 
     //// begin public slots
@@ -106,6 +112,7 @@ private slots:
     //// begin signals
 signals:
     void newEmptyProject();
+    void createNewProject(SiVAL::ProjectNew prj);
     //// end signals
 };
 }

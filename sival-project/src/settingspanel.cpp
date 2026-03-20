@@ -71,7 +71,7 @@ SettingsPanel::SettingsPanel(QWidget *parent)
 SettingsPanel::~SettingsPanel() {
 }
 
-void SettingsPanel::changePage(SiVAL::Settings settings) {
+void SettingsPanel::changePage(SiVAL::SettingsPanel settings) {
     m_navStack->setCurrentIndex(static_cast<int>(settings));
 }
 //// end public member methods

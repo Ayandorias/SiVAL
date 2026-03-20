@@ -133,17 +133,17 @@ void SettingsView::retranslate() {
 //// begin protected slots
 void SettingsView::about() {
     SettingsPanel *p = qobject_cast<SettingsPanel*>(m_centerPanel);
-    p->changePage(SiVAL::Settings::About);
+    p->changePage(SiVAL::SettingsPanel::About);
     p->setHeader(tr("About"));
 }
 void SettingsView::general() {
     SettingsPanel *p = qobject_cast<SettingsPanel*>(m_centerPanel);
-    p->changePage(SiVAL::Settings::General);
+    p->changePage(SiVAL::SettingsPanel::General);
     p->setHeader(tr("General"));
 }
 void SettingsView::speaker() {
     SettingsPanel *p = qobject_cast<SettingsPanel*>(m_centerPanel);
-    p->changePage(SiVAL::Settings::Speaker);
+    p->changePage(SiVAL::SettingsPanel::Speaker);
     p->setHeader(tr("Speaker"));
 }
 //// end protected slots

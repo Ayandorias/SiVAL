@@ -10,11 +10,11 @@
 //// end includes
 
 //// begin system includes
-#include <iostream>
 //// end system includes
 
 //// begin project specific includes
-#include "sivalcore/settings/lastprojectlist.hpp"
+#include "startnew.hpp"
+#include "ui_startnew.h"
 //// end project specific includes
 
 //// begin using namespaces
@@ -38,27 +38,19 @@ namespace SiVAL {
 /**
  *
  */
-LastProjectList::LastProjectList(QJsonArray arr)
-    :QObject() {
-    m_array = arr;
-    if(arr.isEmpty()) {
-        std::cout << "Das Geht nicht so gut." << std::endl;
-    }
+StartNew::StartNew(QWidget *parent)
+    :QWidget(parent), ui(new Ui::StartNew) {
+    ui->setupUi(this);
+
+    connect(ui->m_projectTemplates, &SiVAL::StartNewTemplate::createNewProject, this, &StartNew::createNewProject);
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-LastProjectList::~LastProjectList() {
-}
-
-void LastProjectList::add(const QString &project) {
-    m_array.prepend(project);
-}
-
-QJsonArray LastProjectList::array() {
-    return m_array;
+StartNew::~StartNew() {
+    delete ui;
 }
 //// end public member methods
 

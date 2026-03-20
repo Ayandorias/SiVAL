@@ -67,6 +67,9 @@ public:
     bool openLastProject();
     void setOpenLastProject(bool open);
 
+    QString lastProject();
+    void setLastProject(const QString &project);
+
     bool showSplashScreen();
     void setShowSplashScreen(bool enable);
 

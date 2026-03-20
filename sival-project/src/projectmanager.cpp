@@ -55,10 +55,11 @@ ProjectManager::ProjectManager(const QString filename, MainWindow *parent)
     m_group->addButton(btn, 0);
     m_navWidget->addWidget(m_startView->navigationPanel());
     m_stackWidget->addWidget(m_startView->centerPanel());
-    connect(m_startView, &SiVAL::PM::StartView::newProject, this, &ProjectManager::newProject);
-    connect(m_startView, &SiVAL::PM::StartView::openProject, this, &ProjectManager::openProject);
-    connect(m_startView, &SiVAL::PM::StartView::saveProject, this, &ProjectManager::saveProject);
-    connect(m_startView, &SiVAL::PM::StartView::saveAsProject, this, &ProjectManager::saveAsProject);
+    connect(m_startView, &SiVAL::PM::StartView::createNewProject, this, &ProjectManager::createNewProject);
+    // connect(m_startView, &SiVAL::PM::StartView::newProject, this, &ProjectManager::newProject);
+    // connect(m_startView, &SiVAL::PM::StartView::openProject, this, &ProjectManager::openProject);
+    // connect(m_startView, &SiVAL::PM::StartView::saveProject, this, &ProjectManager::saveProject);
+    // connect(m_startView, &SiVAL::PM::StartView::saveAsProject, this, &ProjectManager::saveAsProject);
 
     m_projectView = new SiVAL::PM::ProjectView();
     btn = m_projectView->navigationButton(m_navBar);
@@ -150,8 +151,8 @@ void ProjectManager::setNavigationHeader(int id) {
 //// end public slots
 
 //// begin protected slots
-void ProjectManager::newProject() {
-    m_projectNewDialog = new ProjectNewDialog(this);
+void ProjectManager::newProject(const QString &title, const QString &projectname, int volume) {
+    m_projectNewDialog = new ProjectNewDialog(title, projectname, volume, this);
     connect(m_projectNewDialog, &ProjectNewDialog::newProject, this, &ProjectManager::open);
     connect(m_projectNewDialog, &ProjectNewDialog::closeOverlay, this, [this] {
         m_projectNewDialog = nullptr;
@@ -160,6 +161,21 @@ void ProjectManager::newProject() {
     m_projectNewDialog->raise();
 }
 
+void ProjectManager::createNewProject(SiVAL::ProjectNew prj) {
+    switch(prj) {
+    case SiVAL::ProjectNew::BookShelf: {
+        std::cout << "Regallautsprecher erstellen" << std::endl;
+        newProject(tr("Bookshelf Speaker Project Settings"), tr("Bookshelf"), 15);
+        break;
+    }
+    case SiVAL::ProjectNew::FloorStand: {
+        std::cout << "Standlautsprecher erstellen" << std::endl;
+        newProject(tr("Floorstanding Speaker Project Settings"), tr("Floorstand"), 50);
+        break;
+    }
+    }
+
+}
 void ProjectManager::newSealedEnclosure(std::shared_ptr<SiVAL::Engine::AbstractDriver> driver) {
     std::cout << "Add new to Projekt: " << driver->model()<< std::endl;
 }
@@ -173,28 +189,31 @@ void ProjectManager::open(const QString &filepath) {
     // TODO: Es muss dann auf das ProjectView gewechselt werden.
     if(m_projectDoc) {
         m_projectDoc->save();
-    } else {
-        if(QFile::exists(filepath)) {
-            m_projectDoc = SiVAL::Core::ProjectDocument::open(filepath);
-            m_projectView->navigationButton(nullptr)->setDisabled(false);
-            m_projectView->setProjectDocument(m_projectDoc);
-        }
+        delete m_projectDoc;
+        m_projectDoc = nullptr;
+    }
+    if(QFile::exists(filepath)) {
+        m_projectDoc = SiVAL::Core::ProjectDocument::open(filepath);
+        m_projectView->navigationButton(nullptr)->setDisabled(false);
+        m_projectView->setProjectDocument(m_projectDoc);
+        sSettings()->setLastProject(filepath);
+        sSettings()->save();
     }
 }
-void ProjectManager::openProject() {
-    QString file = QFileDialog::getOpenFileName(this, tr("Open Project"), QString(), tr("Projects (*.sivalprj)"));
-    if(!file.isEmpty()) {
-        open(file);
-    }
-}
+// void ProjectManager::openProject() {
+//     QString file = QFileDialog::getOpenFileName(this, tr("Open Project"), QString(), tr("Projects (*.sivalprj)"));
+//     if(!file.isEmpty()) {
+//         open(file);
+//     }
+// }
 
 
-void ProjectManager::saveProject() {
+// void ProjectManager::saveProject() {
 
-}
-void ProjectManager::saveAsProject() {
+// }
+// void ProjectManager::saveAsProject() {
 
-}
+// }
 
 void ProjectManager::retranslateUI() {
     m_startView->navigationButton(m_navBar)->setText(tr("Welcome"));

@@ -69,6 +69,9 @@ public:
     QString company();
     void setCompany(const QString &company);
 
+    QString lastProject();
+    void setLastProject(const QString &project);
+
     QString themeSelect();
     void setThemeSelect(const QString &theme);
 

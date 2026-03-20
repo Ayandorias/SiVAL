@@ -48,7 +48,7 @@ public:
     explicit SettingsPanel(QWidget *parent = nullptr);
     /// Destructor
     virtual ~SettingsPanel();
-    void changePage(SiVAL::Settings settings);
+    void changePage(SiVAL::SettingsPanel settings);
     //// end public member methods
 
     //// begin public member methods (internal use only)

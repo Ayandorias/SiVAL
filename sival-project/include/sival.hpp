@@ -24,14 +24,26 @@
  */
 
 namespace SiVAL {
-enum class Settings {
+enum class StartPanel {
+    New = 0,
+    Open,
+    SaveAs,
+    Print,
+    Export
+};
+
+enum class ProjectPanel {
+    Enclosure = 0,
+    Properties,
+};
+enum class SettingsPanel {
     General = 0,
     Speaker,
     About
 };
-
-enum class Project {
-    Enclosure = 0,
-    Properties,
+enum class ProjectNew {
+    BookShelf = 0,
+    FloorStand
 };
+
 }

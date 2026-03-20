@@ -14,6 +14,8 @@
 #include <QFileDialog>
 #include <QJsonObject>
 #include <QUuid>
+
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
@@ -42,15 +44,17 @@ namespace SiVAL::PM {
 /**
  *
  */
-ProjectNewDialog::ProjectNewDialog(QWidget *parent)
+ProjectNewDialog::ProjectNewDialog(const QString &title, const QString &projectname, int volume, QWidget *parent)
     :SiVAL::Gui::OverlayDialog(parent) {
 
-
     setupUi(m_centerWidget);
+    m_projectName->setText(projectname);
+    textChanged(projectname);
 
     m_authorEdit->setText(sSettings()->author());
-    m_volumeEdit->setValue(25);
-    textChanged(QString());
+    m_volumeEdit->setValue(volume);
+
+    m_pLabel->setText(title);
 }
 
 /**************************************************************************************************/
@@ -187,7 +191,7 @@ void ProjectNewDialog::retranslateUi(QWidget *ProjectNewDialog) {
     ProjectNewDialog->setWindowTitle(QCoreApplication::translate("ProjectNewDialog", "Form", nullptr));
     m_headerInfo->setText(QCoreApplication::translate("ProjectNewDialog", "Generates an  Enclosure Project for your Speaker.", nullptr));
     m_volume->setText(QCoreApplication::translate("ProjectNewDialog", " Volume (l):", nullptr));
-    m_projectName->setPlaceholderText(QCoreApplication::translate("ProjectNewDialog", "Projectname", nullptr));
+    // m_projectName->setPlaceholderText(QCoreApplication::translate("ProjectNewDialog", "Projectname", nullptr));
     m_infoLabel->setText(QCoreApplication::translate("ProjectNewDialog", "A Folder with the project name already excist.", nullptr));
     m_selection->setText(QCoreApplication::translate("ProjectNewDialog", "Select Project Folder: ", nullptr));
     m_project->setText(QCoreApplication::translate("ProjectNewDialog", "Name:", nullptr));
@@ -198,7 +202,7 @@ void ProjectNewDialog::retranslateUi(QWidget *ProjectNewDialog) {
 
     m_pAccept->setText(QCoreApplication::translate("OverlayDialog", "Create", nullptr));
 
-    m_pLabel->setText(QCoreApplication::translate("OverlayDialog", "Enclosure Project Settings", nullptr));
+    // m_pLabel->setText(QCoreApplication::translate("OverlayDialog", "Enclosure Project Settings", nullptr));
 } // retranslateUi
 //// end protected member methods (internal use only)
 
@@ -246,6 +250,7 @@ void ProjectNewDialog::textChanged(const QString &text) {
     QDir dir;
     QString path = m_projectPath->text() + QString("/") + text;
 
+    std::cout << path.toStdString() << std::endl;
     if(dir.exists(path)) {
         m_warningLabel->show();
         m_infoLabel->show();

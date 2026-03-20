@@ -40,7 +40,7 @@
 
 //// begin static functions
 //// end static functions
-
+namespace  SiVAL {
 //// begin public member methods
 /**************************************************************************************************/
 /**
@@ -281,3 +281,4 @@ void EnclosureNewDialog::speakerSelected(SiVAL::Gui::Card *card){
 
 //// begin private slots
 //// end private slots
+}

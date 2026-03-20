@@ -53,7 +53,7 @@ class ProjectNewDialog : public SiVAL::Gui::OverlayDialog
     //// begin public member methods
 public:
     /// Constructor
-    explicit ProjectNewDialog(QWidget *parent = nullptr);
+    explicit ProjectNewDialog(const QString &title, const QString &projectname, int volume, QWidget *parent = nullptr);
     /// Destructor
     virtual ~ProjectNewDialog();
     //// end public member methods

@@ -412,7 +412,7 @@ SiVAL--SettingsPanel {
     background-color: #2D2D30;
 }
 
-#settingsHeader, #projectHeader {
+#settingsHeader, #projectHeader, #startHeader {
     background-color: #2D2D30;
 }
 

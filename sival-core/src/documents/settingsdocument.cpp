@@ -56,7 +56,13 @@ SettingsDocument::SettingsDocument(AbstractIOHandler *handler)
     QJsonDocument doc = QJsonDocument::fromJson(data, &err);
     m_doc = doc.object();
     m_general = new General(m_doc["general"].toObject());
+    QJsonValue l = m_doc["projectlist"];
+    if(l.isArray()) {
+        std::cout << "Das sit ein Array" << std::endl;
+    }
     m_lastProjectList = new LastProjectList(m_doc["projectlist"].toArray());
+
+    std::cout << doc.toJson().toStdString() << std::endl;
 }
 
 SettingsDocument::~SettingsDocument() {
@@ -83,6 +89,7 @@ bool SettingsDocument::save() {
 
     QJsonDocument doc;
     doc.setObject(m_doc);
+    std::cout << doc.toJson().toStdString() << std::endl;
     m_handler->save(doc.toJson());
 
     return true;
@@ -147,6 +154,14 @@ void SettingsDocument::setCompany(const QString &company) {
     m_general->setCompany(company);
 }
 
+QString SettingsDocument::lastProject() {
+    return m_general->lastProject();
+}
+void SettingsDocument::setLastProject(const QString &project) {
+    std::cout << "Last Project: " << project.toStdString() << std::endl;
+    m_general->setLastProject(project);
+}
+
 QString SettingsDocument::themeSelect() {
     return m_general->currentTheme();
 }
@@ -185,6 +200,7 @@ QStringList SettingsDocument::lastProjects() {
         stringList.append(value.toString());
     }
 
+    std::cout << "Anzahl nun: " << stringList.count() << std::endl;
     return stringList;
 }
 
