@@ -209,11 +209,11 @@ void SettingsDocument::addProject(const QString &project) {
     saveLastProject();
 }
 
-void SettingsDocument::addSpeaker(SiVAL::Core::SpeakerDocument *doc) {
+void SettingsDocument::addSpeaker(SiVAL::Core::DriverCatalog *doc) {
     m_speakerList.append(doc);
 }
 
-SiVAL::Core::SpeakerDocument* SettingsDocument::speaker(int pos) {
+SiVAL::Core::DriverCatalog* SettingsDocument::speaker(int pos) {
     return m_speakerList.at(pos);
 }
 

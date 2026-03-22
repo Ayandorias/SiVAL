@@ -39,9 +39,10 @@ add_library(sival-core SHARED
     include/sivalcore/io/fileiohandler.hpp src/io/fileiohandler.cpp
     include/sivalcore/io/settingsiohandler.hpp src/io/settingsiohandler.cpp
 
-    include/sivalcore/documents/speakerdocument.hpp src/documents/speakerdocument.cpp
+    include/sivalcore/documents/drivercatalog.hpp src/documents/drivercatalog.cpp
     include/sivalcore/generic/chassismanufacturer.hpp src/generic/chassismanufacturer.cpp
     include/sivalcore/settings/lastprojectlist.hpp src/settings/lastprojectlist.cpp
+    include/sivalcore/documents/speakerdocument.hpp src/documents/speakerdocument.cpp
 )
 
 # Alias für interne Nutzung

@@ -15,6 +15,7 @@
 
 //// begin system includes
 #include <QDateTime>
+#include <QDesktopServices>
 #include <QFile>
 #include <QFileInfo>
 //// end system includes
@@ -49,6 +50,10 @@ ProjectPropertyPanel::ProjectPropertyPanel(QWidget *parent)
     , ui(new Ui::ProjectPropertyPanel) {
     m_projectDocument = nullptr;
     ui->setupUi(this);
+
+    ui->m_openButton->setIcon(QIcon(":/sival/" + sSettings()->theme() + "/open.svg"));
+    ui->m_openButton->setIconSize(QSize(24, 24));
+    connect(ui->m_openButton, &QPushButton::clicked, this, &ProjectPropertyPanel::openDocumentLocation);
 }
 
 /**************************************************************************************************/
@@ -60,6 +65,14 @@ ProjectPropertyPanel::~ProjectPropertyPanel() {
 }
 
 void ProjectPropertyPanel::update(SiVAL::Core::ProjectDocument *doc) {
+    while (QLayoutItem* item = ui->m_SpeakerSpecLayout->takeAt(0)) {
+        if (QWidget* widget = item->widget()) {
+            widget->deleteLater();
+        }
+        delete item;
+    }
+    m_speakerList.clear();
+
     m_projectDocument = doc;
 
     ui->m_fileName->setText(m_projectDocument->filename());
@@ -80,12 +93,16 @@ void ProjectPropertyPanel::update(SiVAL::Core::ProjectDocument *doc) {
     QDateTime birth = info.birthTime(QTimeZone::UTC);
     ui->m_birthDate->setText(birth.toString("dd.MM.yyyy hh:mm"));
     ui->m_lastModified->setText(info.lastModified(QTimeZone::UTC).toString("dd.MM.yyyy hh:mm"));
-    ui->m_pLastRead->setText(info.lastRead(QTimeZone::UTC).toString("dd.MM.yyyy hh:mm"));
+    ui->m_lastRead->setText(info.lastRead(QTimeZone::UTC).toString("dd.MM.yyyy hh:mm"));
 
-    double volume;
-    QString unit;
-    doc->grossVolume(volume, unit);
-    ui->m_volumeSpin->setValue(volume);
+    ui->m_author->setText(doc->author());
+
+    QStringList list = doc->speakerList();
+    for(int i = 0; i < list.count(); ++i) {
+        SiVAL::Gui::SpeakerSpecification *spec = new SiVAL::Gui::SpeakerSpecification(info.absolutePath(), list.at(0), this);
+        ui->m_SpeakerSpecLayout->insertWidget(i, spec);
+        m_speakerList.append(spec);
+    }
 }
 //// end public member methods
 
@@ -105,6 +122,11 @@ void ProjectPropertyPanel::update(SiVAL::Core::ProjectDocument *doc) {
 //// end public slots
 
 //// begin protected slots
+void ProjectPropertyPanel::openDocumentLocation() {
+    QFileInfo fileInfo(m_projectDocument->filename());
+    QString folderPath = fileInfo.absolutePath();
+    QDesktopServices::openUrl(QUrl::fromLocalFile(folderPath));
+}
 //// end protected slots
 
 //// begin private slots

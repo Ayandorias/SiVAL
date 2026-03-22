@@ -57,7 +57,7 @@ public:
     /// Destructor
     virtual ~EnclosureNewDialog();
     ///
-    // SpeakerDocument* speaker();
+    // DriverCatalog* speaker();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -95,7 +95,7 @@ private:
     QSpacerItem *m_pVerticalSpacer;
     std::shared_ptr<SiVAL::Engine::AbstractDriver> m_driver;
     // SpeakerBrandCard *m_pLastSelected;
-    // SpeakerDocument *m_pSpeakerDoc;
+    // DriverCatalog *m_pSpeakerDoc;
     //// end private member
 
     //// begin public slots

@@ -18,7 +18,7 @@
 #include <sivalcore/settings/lastprojectlist.hpp>
 #include <sivalcore/settings/project.hpp>
 #include <sivalcore/settings/system.hpp>
-#include <sivalcore/documents/speakerdocument.hpp>
+#include <sivalcore/documents/drivercatalog.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -87,8 +87,8 @@ public:
     QStringList lastProjects();
     void addProject(const QString &project);
 
-    void addSpeaker(SiVAL::Core::SpeakerDocument *doc);
-    SiVAL::Core::SpeakerDocument* speaker(int pos);
+    void addSpeaker(SiVAL::Core::DriverCatalog *doc);
+    SiVAL::Core::DriverCatalog* speaker(int pos);
     int speakerCount();
     //// end public member methods
 
@@ -115,12 +115,12 @@ public:
     LastProjectList *m_lastProjectList;
     Project *m_project;
     System *m_system;
-    // SiVAL::Core::SpeakerDocument *m_speaker;
+    // SiVAL::Core::DriverCatalog *m_speaker;
     //// end public member
 
     //// begin protected member
 protected:
-    QVector<SiVAL::Core::SpeakerDocument*> m_speakerList;
+    QVector<SiVAL::Core::DriverCatalog*> m_speakerList;
     //// end protected member
 
     //// begin private member

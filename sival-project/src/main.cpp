@@ -2,7 +2,7 @@
 
 #include <QStandardPaths>
 #include <sivalcore/documents/settingsdocument.hpp>
-#include <sivalcore/documents/speakerdocument.hpp>
+#include <sivalcore/documents/drivercatalog.hpp>
 #include <sivalcore/io/fileiohandler.hpp>
 #include <sivalcore/io/settingsiohandler.hpp>
 #include <QApplication>
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
     QSplashScreen *splash = nullptr;
 
-    SiVAL::Core::SpeakerDocument *spkr = nullptr;
+    SiVAL::Core::DriverCatalog *spkr = nullptr;
     if(doc.showSplashScreen()) {
         // Generating a SplachScreen for loadng the speaker information.
         QString svgPath = ":/splash/splash";
@@ -52,10 +52,10 @@ int main(int argc, char *argv[])
         splash->setMask(pixmap.mask());
 
         // Hier mehrere Dinge prüfen, für die SiVAL-ADH Bibliothek
-        spkr = new SiVAL::Core::SpeakerDocument(new SiVAL::Core::FileIOHandler("/usr/share/sival/chassis/speakers.json"));
+        spkr = new SiVAL::Core::DriverCatalog(new SiVAL::Core::FileIOHandler("/usr/share/sival/chassis/speakers.json"));
         doc.addSpeaker(spkr);
 
-        QObject::connect(spkr, &SiVAL::Core::SpeakerDocument::status, splash, [splash](const QString &msg) {
+        QObject::connect(spkr, &SiVAL::Core::DriverCatalog::status, splash, [splash](const QString &msg) {
             splash->showMessage(msg, Qt::AlignBottom | Qt::AlignCenter, Qt::white);
         });
         splash->show();

@@ -9,14 +9,17 @@
  *
  */
 //// begin system includes
-#include <QJsonArray>
+#include <QJsonDocument>
 #include <QJsonObject>
 #include <QVector>
 //// end system includes
 
 //// begin project specific includes
 #include <sival/abstractions/driver.hpp>
-// #include <sival/components/driver/woofer.hpp>
+#include <sival/components/driver/factory.hpp>
+#include <sivalcore/core_global.hpp>
+#include <sivalcore/abstractions/abstractdocument.hpp>
+#include <sivalcore/generic/chassismanufacturer.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -25,32 +28,34 @@
 //// begin global definition
 //// end global definition
 
-namespace SiVAL::Core {
 //// begin forward declarations
-class DriverCatalog;
 //// end forward declarations
 
 //// begin extern declaration
 //// end extern declaration
 
+namespace SiVAL::Core {
 /**
- * class ChassisManufacturer
+ * class DriverCatalog
  *
  * @brief
  *
  */
-class ChassisManufacturer
+class SIVAL_CORE_EXPORT DriverCatalog : public AbstractDocument
 {
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit ChassisManufacturer(QJsonObject man, SiVAL::Core::DriverCatalog *doc);
+    explicit DriverCatalog(AbstractIOHandler *handler);
     /// Destructor
-    virtual ~ChassisManufacturer();
-    QString name();
-    void parse();
-    const QVector<std::shared_ptr<Engine::AbstractDriver>>& chassisList();
-    void setChassisList(QJsonArray arr);
+    virtual ~DriverCatalog();
+    void extracted(QJsonArray &arr);
+    QString filename();
+    virtual void parse() override;
+    void processing();
+    virtual bool save() override;
+    QVector<ChassisManufacturer*> manufacturerList();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -79,10 +84,9 @@ protected:
 
     //// begin private member
 private:
-    QString m_filename;
-    QJsonObject m_manufacturer;
-    DriverCatalog *m_doc;
-    QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>> m_chassisList;
+    QJsonDocument m_doc;
+    QJsonObject m_speakerObject;
+    QVector<ChassisManufacturer*> m_manufacturer;
     //// end private member
 
     //// begin public slots
@@ -99,6 +103,9 @@ private slots:
 
     //// begin signals
 signals:
+    void status(const QString &status);
+    void error(const QString &msg);
+    void finished();
     //// end signals
 };
 }

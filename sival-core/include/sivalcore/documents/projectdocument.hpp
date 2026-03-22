@@ -70,8 +70,11 @@ public:
     void setProjectName(const QString &name);
     QString projectName();
 
+    QStringList speakerList();
+
     void setVersion(float version);
     float version();
+
     //// end public member methods
 
     //// begin public member methods (internal use only)

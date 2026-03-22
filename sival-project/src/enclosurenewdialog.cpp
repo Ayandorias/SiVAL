@@ -23,7 +23,7 @@
 // #include "settingsdocument.hpp"
 
 #include <sivalgui/card.hpp>
-#include <sivalcore/documents/speakerdocument.hpp>
+#include <sivalcore/documents/drivercatalog.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -136,7 +136,7 @@ EnclosureNewDialog::~EnclosureNewDialog() {
     delete ui;
 }
 
-// SpeakerDocument* EnclosureNewDialog::speaker() {
+// DriverCatalog* EnclosureNewDialog::speaker() {
 //     return m_pSpeakerDoc;
 // }
 //// end public member methods
@@ -159,7 +159,7 @@ void EnclosureNewDialog::buildManufacturerList() {
     bool start = true;
 
     for(int i = 0; i < sSettings()->speakerCount(); i++) {
-        SiVAL::Core::SpeakerDocument *doc = sSettings()->speaker(i);
+        SiVAL::Core::DriverCatalog *doc = sSettings()->speaker(i);
         QVector<SiVAL::Core::ChassisManufacturer*> man = doc->manufacturerList();
 
         std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << man.count() << "|" << man.size() << std::endl;

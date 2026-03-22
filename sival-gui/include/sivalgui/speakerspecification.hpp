@@ -9,14 +9,14 @@
  *
  */
 //// begin system includes
-#include <QJsonArray>
-#include <QJsonObject>
-#include <QVector>
+#include <QGridLayout>
+#include <QLabel>
+#include <QWidget>
 //// end system includes
 
 //// begin project specific includes
-#include <sival/abstractions/driver.hpp>
-// #include <sival/components/driver/woofer.hpp>
+#include <sivalgui/headerlabel.hpp>
+#include <sivalgui/spinwidget.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -25,32 +25,28 @@
 //// begin global definition
 //// end global definition
 
-namespace SiVAL::Core {
 //// begin forward declarations
-class DriverCatalog;
 //// end forward declarations
 
 //// begin extern declaration
 //// end extern declaration
 
+namespace SiVAL::Gui {
 /**
- * class ChassisManufacturer
+ * class SpeakerSpecification
  *
  * @brief
  *
  */
-class ChassisManufacturer
+class SpeakerSpecification : public QWidget
 {
+    Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit ChassisManufacturer(QJsonObject man, SiVAL::Core::DriverCatalog *doc);
+    explicit SpeakerSpecification(const QString &path, const QString &uuid, QWidget *parent = nullptr);
     /// Destructor
-    virtual ~ChassisManufacturer();
-    QString name();
-    void parse();
-    const QVector<std::shared_ptr<Engine::AbstractDriver>>& chassisList();
-    void setChassisList(QJsonArray arr);
+    virtual ~SpeakerSpecification();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -79,10 +75,10 @@ protected:
 
     //// begin private member
 private:
-    QString m_filename;
-    QJsonObject m_manufacturer;
-    DriverCatalog *m_doc;
-    QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>> m_chassisList;
+    QGridLayout *m_speakerLayout;
+    HeaderLabel *m_title;
+    QLabel *m_volume;
+    SpinWidget *m_volSpinner;
     //// end private member
 
     //// begin public slots

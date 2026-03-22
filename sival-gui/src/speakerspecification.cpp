@@ -12,15 +12,10 @@
 //// begin system includes
 #include <QDir>
 #include <QFile>
-#include <QFileInfo>
-
-#include <sival/libsival.hpp>
-#include <sival/components/driver/factory.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include "sivalcore/documents/drivercatalog.hpp"
-#include "sivalcore/generic/chassismanufacturer.hpp"
+#include "sivalgui/speakerspecification.hpp"
 //// end project specific includes
 
 //// begin using namespaces
@@ -38,50 +33,42 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL::Core {
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**
  *
  */
-ChassisManufacturer::ChassisManufacturer(QJsonObject man, DriverCatalog *doc) {
-    m_manufacturer = man;
-    m_doc = doc;
-    parse();
+SpeakerSpecification::SpeakerSpecification(const QString &path, const QString &uuid, QWidget *parent)
+    :QWidget(parent) {
+    m_speakerLayout = new QGridLayout(this);
+
+    m_title = new HeaderLabel(this);
+    m_title->setText(uuid);
+    m_speakerLayout->addWidget(m_title, 0, 0, 1, 2);
+
+    m_volume = new QLabel(this);
+    m_volume->setText(tr("Volume (l)"));
+    m_speakerLayout->addWidget(m_volume, 1, 0, 1, 1);
+
+    m_volSpinner = new SpinWidget(this);
+    m_volSpinner->setValue(100);
+    m_speakerLayout->addWidget(m_volSpinner, 1, 1, 1, 1);
+
+
+
+    QString filename = path + QDir::separator() + uuid + QString(".sivalspkr");
+    QFile file(filename);
+    if(file.exists()) {
+
+    }
 }
 
 /**************************************************************************************************/
 /**
  *
  */
-ChassisManufacturer::~ChassisManufacturer() {
-    m_chassisList.clear();
-}
-QString ChassisManufacturer::name() {
-    return m_manufacturer["manufacturer"].toString();
-}
-void ChassisManufacturer::parse() {
-    QFileInfo info(m_doc->filename());
-    QString path = info.absolutePath();
-
-    path += QDir::separator() + name().toLower() + QDir::separator();
-    QJsonArray arr = m_manufacturer["uuids"].toArray();
-    for (const QJsonValue &value : arr) {
-        QString p = path + value.toString();
-
-        if(QFile::exists(p)) {
-            std::shared_ptr<SiVAL::Engine::AbstractDriver> woofer = SiVAL::Engine::Driver::Factory::create(SiVAL::Engine::DriverRole::WOOFER, p.toStdString());
-            m_chassisList.append(woofer);
-        }
-    }
-}
-
-const QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>>& ChassisManufacturer::chassisList()  {
-    return m_chassisList;
-}
-
-void ChassisManufacturer::setChassisList(QJsonArray arr) {
-
+SpeakerSpecification::~SpeakerSpecification() {
 }
 //// end public member methods
 

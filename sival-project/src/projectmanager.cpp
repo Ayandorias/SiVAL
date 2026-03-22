@@ -200,27 +200,12 @@ void ProjectManager::openProject(const QString &filepath) {
         sSettings()->save();
 
         // Button mit der ID 2 aktivieren
-        if (auto *btn = m_group->button(static_cast<int>(SiVAL::NavBar::Project))) {
-            btn->setChecked(true);
+        auto *btn = m_group->button(static_cast<int>(SiVAL::NavBar::Project));
+        btn->setChecked(true);
             // Falls du auch das Signal auslösen willst, das normalerweise beim Klicken kommt:
-            selection(nullptr);
-        }
+        selection(nullptr);
     }
 }
-// void ProjectManager::openProject() {
-//     QString file = QFileDialog::getOpenFileName(this, tr("Open Project"), QString(), tr("Projects (*.sivalprj)"));
-//     if(!file.isEmpty()) {
-//         open(file);
-//     }
-// }
-
-
-// void ProjectManager::saveProject() {
-
-// }
-// void ProjectManager::saveAsProject() {
-
-// }
 
 void ProjectManager::retranslateUI() {
     m_startView->navigationButton(m_navBar)->setText(tr("Welcome"));

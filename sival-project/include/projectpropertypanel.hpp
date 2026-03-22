@@ -14,6 +14,7 @@
 
 //// begin project specific includes
 #include <sivalcore/documents/projectdocument.hpp>
+#include <sivalgui/speakerspecification.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -81,6 +82,7 @@ private:
     Ui::ProjectPropertyPanel *ui;
 
     SiVAL::Core::ProjectDocument *m_projectDocument;
+    QVector<SiVAL::Gui::SpeakerSpecification*> m_speakerList;
     //// end private member
 
     //// begin public slots
@@ -89,6 +91,7 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void openDocumentLocation();
     //// end protected slots
 
     //// begin private slots

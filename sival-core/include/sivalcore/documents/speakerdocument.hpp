@@ -9,17 +9,11 @@
  *
  */
 //// begin system includes
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QVector>
+#include <sivalcore/abstractions/abstractdocument.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include <sival/abstractions/driver.hpp>
-#include <sival/components/driver/factory.hpp>
-#include <sivalcore/core_global.hpp>
-#include <sivalcore/abstractions/abstractdocument.hpp>
-#include <sivalcore/generic/chassismanufacturer.hpp>
+
 //// end project specific includes
 
 //// begin using namespaces
@@ -41,21 +35,15 @@ namespace SiVAL::Core {
  * @brief
  *
  */
-class SIVAL_CORE_EXPORT SpeakerDocument : public AbstractDocument
+class SpeakerDocument : public AbstractDocument
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerDocument(AbstractIOHandler *handler);
+    explicit SpeakerDocument() = delete;
     /// Destructor
     virtual ~SpeakerDocument();
-    void extracted(QJsonArray &arr);
-    QString filename();
-    virtual void parse() override;
-    void processing();
-    virtual bool save() override;
-    QVector<ChassisManufacturer*> manufacturerList();
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -64,6 +52,7 @@ public:
 
     //// begin protected member methods
 protected:
+    SpeakerDocument(const QString &filename, AbstractIOHandler *handler);
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -80,13 +69,12 @@ public:
 
     //// begin protected member
 protected:
+    QString m_filename;
+    QJsonObject m_object;
     //// end protected member
 
     //// begin private member
 private:
-    QJsonDocument m_doc;
-    QJsonObject m_speakerObject;
-    QVector<ChassisManufacturer*> m_manufacturer;
     //// end private member
 
     //// begin public slots
@@ -103,9 +91,6 @@ private slots:
 
     //// begin signals
 signals:
-    void status(const QString &status);
-    void error(const QString &msg);
-    void finished();
     //// end signals
 };
 }

@@ -53,6 +53,7 @@ add_library(sival-gui SHARED
     include/sivalgui/filesystempanel.hpp src/filesystempanel.cpp
     include/sivalgui/filelistview.hpp src/filelistview.cpp
     include/sivalgui/filesystemcard.hpp src/filesystemcard.cpp
+    include/sivalgui/speakerspecification.hpp src/speakerspecification.cpp
 )
 
 # Alias für saubere Referenzierung

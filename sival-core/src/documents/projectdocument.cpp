@@ -106,6 +106,17 @@ void ProjectDocument::setProjectName(const QString &name) {
 QString ProjectDocument::projectName() {
     return m_object["project_name"].toString();
 }
+
+QStringList ProjectDocument::speakerList() {
+    QStringList list;
+    QJsonArray arr = m_object["speaker"].toArray();
+    for (const QJsonValue &value : arr) {
+        if (value.isString()) {
+            list.append(value.toString());
+        }
+    }
+    return list;
+}
 void ProjectDocument::setVersion(float version) {
     m_object["version"] = version;
 }
