@@ -66,7 +66,6 @@ FileSystemPanel::FileSystemPanel(QWidget *parent)
         QString path = storage.rootPath();
         QString fsType = storage.fileSystemType();
 
-        std::cout << "Device: " << storage.displayName().toStdString() << " | " << storage.device().toStdString() << std::endl;
         // Filter für Schwachsinnige Pfade (EFI, Run, Tmp, etc.)
         if (path.startsWith("/run") || path.startsWith("/tmp") ||
             path.startsWith("/boot") || path.startsWith("/dev") ||
@@ -115,11 +114,10 @@ FileSystemPanel::FileSystemPanel(QWidget *parent)
     m_favorite->setObjectName("favoritePanel");
     m_favorite->setMinimumSize(QSize(0, 40));
     m_favorite->setMaximumSize(QSize(16777215, 40));
-    m_favorite->setText(tr("Favoriten"));
+    m_favorite->setText(tr("Last Projects"));
     layout->addWidget(m_favorite);
 
     QStringList list = sSettings()->lastProjects();
-    std::cout << "Projektanzahl: " << list.size() << " | " << list.count() << std::endl;
     for(int i = 0; i < list.size(); i++) {
         // if(QDir(list.at(i)).exists()) {
             addDriveButton(list.at(i), ":/sival/" + sSettings()->theme() + "/projects.svg", list.at(i));
@@ -170,8 +168,6 @@ void FileSystemPanel::addDriveButton(const QString &label, const QString &icon, 
 //// begin protected slots
 void FileSystemPanel::handleButtonClick() {
     if (auto *btn = qobject_cast<SiVAL::Gui::Card*>(sender())) {
-        // Pfad aus dem Button auslesen und als Signal verschicken
-        std::cout << "Pfad: " << btn->property("path").toString().toStdString() << std::endl;
         emit driveSelected(btn->property("path").toString());
     }
 }

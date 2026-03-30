@@ -43,9 +43,7 @@ ProjectPanel::ProjectPanel(QWidget *parent)
     m_header->setObjectName("projectHeader");
     m_header->setText("Hier kommt der Projektname hin!!!!");
 
-    m_enclosurePanel = new ProjectEnclosurePanel(this);
-    connect(m_enclosurePanel, &ProjectEnclosurePanel::sealedEnclosure, this, &ProjectPanel::sealedEnclosure);
-    connect(m_enclosurePanel, &ProjectEnclosurePanel::ventedEnclosure, this, &ProjectPanel::ventedEnclosure);
+    m_enclosurePanel = new ProjectSpeakerPanel(this);
     m_navStack->addWidget(m_enclosurePanel);
 
     m_propertyPanel = new ProjectPropertyPanel(this);

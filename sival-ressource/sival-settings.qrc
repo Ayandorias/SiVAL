@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/config">
         <file>settings/default_settings.sival</file>
+        <file>settings/speaker.sivalspkr</file>
+        <file>settings/enclosure_sealed.sivalenc</file>
     </qresource>
     <qresource prefix="/splash">
         <file alias="splash">logo/splash.svg</file>

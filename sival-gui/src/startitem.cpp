@@ -15,7 +15,7 @@
 //// end system includes
 
 //// begin project specific includes
-#include "startitem.hpp"
+#include <sivalgui/startitem.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -33,7 +33,7 @@
 //// begin static functions
 //// end static functions
 
-namespace SiVAL {
+namespace SiVAL::Gui {
 //// begin public member methods
 /**************************************************************************************************/
 /**

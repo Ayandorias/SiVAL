@@ -14,7 +14,7 @@
 //// end system includes
 
 //// begin project specific includes
-#include <projectenclosurepanel.hpp>
+#include <projectspeakerpanel.hpp>
 #include <projectpropertypanel.hpp>
 //// end project specific includes
 
@@ -75,7 +75,7 @@ protected:
 
     //// begin private member
 private:
-    ProjectEnclosurePanel *m_enclosurePanel;
+    ProjectSpeakerPanel *m_enclosurePanel;
     ProjectPropertyPanel *m_propertyPanel;
     //// end private member
 
@@ -93,8 +93,6 @@ private slots:
 
     //// begin signals
 signals:
-    void sealedEnclosure();
-    void ventedEnclosure();
     //// end signals
 };
 }

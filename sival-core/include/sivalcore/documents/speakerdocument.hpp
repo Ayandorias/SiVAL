@@ -9,11 +9,14 @@
  *
  */
 //// begin system includes
-#include <sivalcore/abstractions/abstractdocument.hpp>
+#include <QSharedPointer>
+#include <QVector>
+#include <sival/acousticsetup.hpp>
+#include <sival/core/environment.hpp>
 //// end system includes
 
 //// begin project specific includes
-
+#include <sivalcore/abstractions/abstractdocument.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -44,6 +47,24 @@ public:
     explicit SpeakerDocument() = delete;
     /// Destructor
     virtual ~SpeakerDocument();
+    static SpeakerDocument* create(const QString &filename);
+    static SpeakerDocument* open(const QString &filename);
+
+    QSharedPointer<SiVAL::Engine::AcousticSetup> createEnclosure(SiVAL::Engine::EnclosureType type);
+    void parse();
+    bool save();
+
+    int damping();
+    void setDamping(int damping);
+
+    QVector<QSharedPointer<SiVAL::Engine::AcousticSetup>>& enclosures();
+
+    QString name();
+    QString type();
+
+    void volume(double &volume, QString &unit);
+    void setVolume(double vol);
+
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -53,6 +74,7 @@ public:
     //// begin protected member methods
 protected:
     SpeakerDocument(const QString &filename, AbstractIOHandler *handler);
+
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -75,6 +97,7 @@ protected:
 
     //// begin private member
 private:
+    QVector<QSharedPointer<SiVAL::Engine::AcousticSetup>> m_setups;
     //// end private member
 
     //// begin public slots

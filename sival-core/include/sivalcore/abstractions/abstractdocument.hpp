@@ -46,6 +46,7 @@ public:
     virtual ~AbstractDocument();
     virtual void parse() = 0;
     virtual bool save() = 0;
+    void docChanged();
     //// end public member methods
 
     //// begin public member methods (internal use only)

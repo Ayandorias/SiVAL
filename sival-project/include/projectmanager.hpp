@@ -107,9 +107,7 @@ protected slots:
     // void saveProject();
     // void saveAsProject();
     void retranslateUI();
-    void sealedEnclosure();
     void selection(QAbstractButton *btn);
-    void ventedEnclosure();
     //// end protected slots
 
     //// begin private slots

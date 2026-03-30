@@ -39,6 +39,9 @@ AbstractDocument::AbstractDocument(AbstractIOHandler *handler)
 
 AbstractDocument::~AbstractDocument() {
 }
+void AbstractDocument::docChanged() {
+    emit changed();
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)

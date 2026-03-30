@@ -100,32 +100,32 @@ EnclosureNewDialog::EnclosureNewDialog(/*ManufacturerDocument *doc, */QWidget *p
     // m_pNextButton->hide();
 
     // SettingsDocument setdoc;
-    ui->comboBox->hide();
-    ui->comboBox_2->hide();
-    ui->label_7->hide();
-    ui->label_5->hide();
-    ui->label_17->hide();
-    ui->label_12->hide();
-    ui->label_3->hide();
-    ui->label_9->hide();
-    ui->label_10->hide();
-    ui->label_15->hide();
-    ui->label_6->hide();
-    ui->label_11->hide();
-    ui->label_20->hide();
-    ui->label_13->hide();
-    ui->label_4->hide();
-    ui->label_16->hide();
-    ui->label_19->hide();
-    ui->label_8->hide();
-    ui->m_pQtsMin->hide();
-    ui->m_pSPLMax->hide();
-    ui->m_pFsMax->hide();
-    ui->m_pSPLMin->hide();
-    ui->m_pRMSMax->hide();
-    ui->m_pFsMin->hide();
-    ui->m_pRMSMin->hide();
-    ui->m_pQtsMax->hide();
+    // ui->comboBox->hide();
+    // ui->comboBox_2->hide();
+    // ui->label_7->hide();
+    // ui->label_5->hide();
+    // ui->label_17->hide();
+    // ui->label_12->hide();
+    // ui->label_3->hide();
+    // ui->label_9->hide();
+    // ui->label_10->hide();
+    // ui->label_15->hide();
+    // ui->label_6->hide();
+    // ui->label_11->hide();
+    // ui->label_20->hide();
+    // ui->label_13->hide();
+    // ui->label_4->hide();
+    // ui->label_16->hide();
+    // ui->label_19->hide();
+    // ui->label_8->hide();
+    // ui->m_pQtsMin->hide();
+    // ui->m_pSPLMax->hide();
+    // ui->m_pFsMax->hide();
+    // ui->m_pSPLMin->hide();
+    // ui->m_pRMSMax->hide();
+    // ui->m_pFsMin->hide();
+    // ui->m_pRMSMin->hide();
+    // ui->m_pQtsMax->hide();
 }
 
 /**************************************************************************************************/
@@ -162,11 +162,9 @@ void EnclosureNewDialog::buildManufacturerList() {
         SiVAL::Core::DriverCatalog *doc = sSettings()->speaker(i);
         QVector<SiVAL::Core::ChassisManufacturer*> man = doc->manufacturerList();
 
-        std::cout << __FILE__ << ":" << __FUNCTION__ << ":" << man.count() << "|" << man.size() << std::endl;
         for(int j = 0; j < man.count(); j++) {
 
             SiVAL::Core::ChassisManufacturer* m = man.at(j);
-            std::cout << man.at(j)->name().toStdString() << std::endl;
 
             SiVAL::ManufacturerCard *card = new SiVAL::ManufacturerCard(ui->m_pManufacturer);
             card->setMinimumHeight(40);
@@ -217,7 +215,6 @@ void EnclosureNewDialog::clearSpeakerList() {
 //// begin protected slots
 void EnclosureNewDialog::changeSpeakerList(SiVAL::Gui::Card *card) {//SpeakerManufacturer *man) {
 
-    std::cout << card->title().toStdString() << std::endl;
     SiVAL::ManufacturerCard* derivedCard = qobject_cast<SiVAL::ManufacturerCard*>(card);
 
 //     m_pAccept->setDisabled(true);
@@ -240,13 +237,11 @@ void EnclosureNewDialog::changeSpeakerList(SiVAL::Gui::Card *card) {//SpeakerMan
     }
 
     SiVAL::Core::ChassisManufacturer* m = derivedCard->manufacturer();
-    std::cout << m->name().toStdString() << std::endl;
 
     if(m->name() == derivedCard->title()) {
         QVector<std::shared_ptr<SiVAL::Engine::AbstractDriver>> driver = m->chassisList();
         for(int k = 0; k < driver.count(); k++) {
             std::shared_ptr<SiVAL::Engine::AbstractDriver> d = driver.at(k);
-            std::cout << d->model() << std::endl;
             SiVAL::SpeakerCard *chassis = new SiVAL::SpeakerCard(ui->m_pSpeaker);
             chassis->setTitle(QString::fromStdString(d->model()));
             chassis->setInfo(QString::fromStdString(d->speakerType()));
@@ -266,7 +261,6 @@ void EnclosureNewDialog::speakerSelected(SiVAL::Gui::Card *card){
     SiVAL::SpeakerCard* derivedCard = qobject_cast<SiVAL::SpeakerCard*>(card);
     m_driver = derivedCard->driver();
 
-    std::cout << m_driver->model() << std::endl;
     m_pAccept->setDisabled(false);
 //     if(m_pLastSelected) {
 //         m_pLastSelected->setSelected(false);

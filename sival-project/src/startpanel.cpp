@@ -130,7 +130,6 @@ StartPanel::StartPanel(QWidget *parent)
     // spacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
 
     // QStringList list = sSettings()->lastProjects();
-    // std::cout << "Projektanzahl: " << list.size() << " | " << list.count() << std::endl;
     // for(int i = 0; i < list.size(); i++) {
     //     ProjectCard *btn = new ProjectCard(list.at(i),scrollAreaWidgetContents_2);
     //     m_recentLayout->addWidget(btn);

@@ -47,5 +47,11 @@
         <file>light/device-hdd.svg</file>
         <file>light/buildings.svg</file>
         <file>light/folder.svg</file>
+        <file>light/speaker_new.svg</file>
+        <file>light/projects_close.svg</file>
+        <file>light/enclosure_new.svg</file>
+        <file>light/save_changes.svg</file>
+        <file>light/enclosure_vented.svg</file>
+        <file>light/enclosure_sealed.svg</file>
     </qresource>
 </RCC>

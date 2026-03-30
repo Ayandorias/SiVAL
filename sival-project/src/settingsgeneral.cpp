@@ -107,7 +107,7 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     QHBoxLayout *h = new QHBoxLayout();
-    m_themeAuto = new StartItem(w);
+    m_themeAuto = new SiVAL::Gui::StartItem(w);
     m_themeAuto->setIcon(":/sival/" + sSettings()->theme() + "/theme_light.svg");
     m_themeAuto->setObjectName("m_themeAuto");
     m_themeAuto->setMinimumSize(QSize(200, 200));
@@ -116,7 +116,7 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
 
     h->addWidget(m_themeAuto);
 
-    m_themeLight = new StartItem(w);
+    m_themeLight = new SiVAL::Gui::StartItem(w);
     m_themeLight->setIcon(":/sival/" + sSettings()->theme() + "/theme_light.svg");
     m_themeLight->setObjectName("m_themeLight");
     m_themeLight->setMinimumSize(QSize(200, 200));
@@ -125,7 +125,7 @@ SettingsGeneral::SettingsGeneral(QWidget *parent)
 
     h->addWidget(m_themeLight);
 
-    m_themeDark = new StartItem(w);
+    m_themeDark = new SiVAL::Gui::StartItem(w);
     m_themeDark->setIcon(":/sival/" + sSettings()->theme() + "/theme_dark.svg");
     m_themeDark->setObjectName("m_themeDark");
     m_themeDark->setMinimumSize(QSize(200, 200));

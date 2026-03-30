@@ -16,7 +16,7 @@
 
 //// begin project specific includes
 #include <sival.hpp>
-#include <startitem.hpp>
+#include <sivalgui/startitem.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -82,8 +82,8 @@ private:
     // Ui::StartNewTemplate *ui;
     QHBoxLayout *m_layout;
     QSpacerItem *m_spacer;
-    SiVAL::StartItem *m_bookShelf;
-    SiVAL::StartItem *m_floorStand;
+    SiVAL::Gui::StartItem *m_bookShelf;
+    SiVAL::Gui::StartItem *m_floorStand;
     //// end private member
 
     //// begin public slots

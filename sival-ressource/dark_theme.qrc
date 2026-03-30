@@ -44,5 +44,11 @@
         <file>dark/device-hdd.svg</file>
         <file>dark/buildings.svg</file>
         <file>dark/folder.svg</file>
+        <file>dark/speaker_new.svg</file>
+        <file>dark/projects_close.svg</file>
+        <file>dark/enclosure_new.svg</file>
+        <file>dark/save_changes.svg</file>
+        <file>dark/enclosure_vented.svg</file>
+        <file>dark/enclosure_sealed.svg</file>
     </qresource>
 </RCC>

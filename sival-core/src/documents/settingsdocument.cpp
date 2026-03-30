@@ -11,6 +11,7 @@
 
 //// begin system includes
 #include <QGuiApplication>
+#include <QFile>
 #include <QStandardPaths>
 #include <QStyleHints>
 #include <QJsonDocument>
@@ -58,11 +59,8 @@ SettingsDocument::SettingsDocument(AbstractIOHandler *handler)
     m_general = new General(m_doc["general"].toObject());
     QJsonValue l = m_doc["projectlist"];
     if(l.isArray()) {
-        std::cout << "Das sit ein Array" << std::endl;
+        m_lastProjectList = new LastProjectList(m_doc["projectlist"].toArray());
     }
-    m_lastProjectList = new LastProjectList(m_doc["projectlist"].toArray());
-
-    std::cout << doc.toJson().toStdString() << std::endl;
 }
 
 SettingsDocument::~SettingsDocument() {
@@ -89,7 +87,6 @@ bool SettingsDocument::save() {
 
     QJsonDocument doc;
     doc.setObject(m_doc);
-    std::cout << doc.toJson().toStdString() << std::endl;
     m_handler->save(doc.toJson());
 
     return true;
@@ -158,7 +155,7 @@ QString SettingsDocument::lastProject() {
     return m_general->lastProject();
 }
 void SettingsDocument::setLastProject(const QString &project) {
-    std::cout << "Last Project: " << project.toStdString() << std::endl;
+
     m_general->setLastProject(project);
 }
 
@@ -200,7 +197,6 @@ QStringList SettingsDocument::lastProjects() {
         stringList.append(value.toString());
     }
 
-    std::cout << "Anzahl nun: " << stringList.count() << std::endl;
     return stringList;
 }
 
@@ -221,6 +217,15 @@ int SettingsDocument::speakerCount() {
     return m_speakerList.size();
 }
 
+QByteArray SettingsDocument::standardFileValues(const QString &filename) {
+    QFile file(filename);
+    QByteArray value;
+    if(file.open(QFile::ReadOnly | QFile::Text)) {
+        value = file.readAll();
+        file.close();
+    }
+    return value;
+}
 //// end public member methods
 
 //// begin public member methods (internal use only)

@@ -9,12 +9,12 @@
  *
  */
 //// begin system includes
-#include "sivalgui/card.hpp"
-#include <sivalgui/navigationpanel.hpp>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 //// end system includes
 
 //// begin project specific includes
-#include <QVBoxLayout>
+#include <sivalgui/navigationpanel.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -47,6 +47,7 @@ public:
     /// Destructor
     virtual ~CardList();
     void addCard(QWidget *card);
+    void addLayout(QHBoxLayout *layout);
     //// end public member methods
 
     //// begin public member methods (internal use only)

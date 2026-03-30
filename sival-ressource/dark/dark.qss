@@ -809,3 +809,8 @@ SiVAL--Gui--ToolButton#m_new { image: url(":/sival/dark/plus.svg"); }
 SiVAL--Gui--ToolButton#m_edit { image: url(":/sival/dark/edit.svg"); }
 
 SiVAL--Gui--ToolButton#m_delete { image: url(":/sival/dark/trash.svg"); }
+
+SiVAL--Gui--ToolButton#projectSave { image: url(":/sival/dark/save.svg"); }
+SiVAL--Gui--ToolButton#projectSaveChanges { image: url(":/sival/dark/save_changes.svg"); }
+
+SiVAL--Gui--ToolButton#projectClose { image: url(":/sival/dark/projects_close.svg"); }

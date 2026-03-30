@@ -69,8 +69,6 @@ ProjectManager::ProjectManager(const QString filename, MainWindow *parent)
     m_group->addButton(btn, 1);
     m_navWidget->addWidget(m_projectView->navigationPanel());
     m_stackWidget->addWidget(m_projectView->centerPanel());
-    connect(m_projectView, &SiVAL::PM::ProjectView::sealedEnclosure, this, &ProjectManager::sealedEnclosure);
-    connect(m_projectView, &SiVAL::PM::ProjectView::ventedEnclosure, this, &ProjectManager::ventedEnclosure);
 
     m_helpView = new SiVAL::PM::HelpView();
     btn = m_helpView->navigationButton(m_navBar);
@@ -197,6 +195,7 @@ void ProjectManager::openProject(const QString &filepath) {
         m_projectView->navigationButton(nullptr)->setDisabled(false);
         m_projectView->setProjectDocument(m_projectDoc);
         sSettings()->setLastProject(filepath);
+        sSettings()->addProject(filepath);
         sSettings()->save();
 
         // Button mit der ID 2 aktivieren
@@ -214,13 +213,6 @@ void ProjectManager::retranslateUI() {
     m_settingsView->navigationButton(m_navBar)->setText(tr("Settings"));
 }
 
-void ProjectManager::sealedEnclosure() {
-    EnclosureNewDialog *dlg = new EnclosureNewDialog(this);
-    connect(dlg, &EnclosureNewDialog::newEnclosure, this, &ProjectManager::newSealedEnclosure);
-    dlg->showNormal();
-    dlg->raise();
-}
-
 void ProjectManager::selection(QAbstractButton *btn) {
     for(QAbstractButton *button : m_group->buttons()) {
         if(button->isChecked()) {
@@ -230,13 +222,6 @@ void ProjectManager::selection(QAbstractButton *btn) {
             break;
         }
     }
-}
-
-void ProjectManager::ventedEnclosure() {
-    EnclosureNewDialog *dlg = new EnclosureNewDialog(this);
-    connect(dlg, &EnclosureNewDialog::newEnclosure, this, &ProjectManager::newVentedEnclosure);
-    dlg->showNormal();
-    dlg->raise();
 }
 //// end protected slots
 

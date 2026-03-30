@@ -97,9 +97,8 @@ bool SettingsIOHandler::save(QByteArray content) {
 //// begin private member methods
 SettingsIOHandler::SettingsIOHandler(const QString & filename)
     :AbstractIOHandler(filename) {
-    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
 
-    std::cout << configPath.toStdString() << std::endl;
+    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
 }
 
 QString SettingsIOHandler::getUserFilePath() const

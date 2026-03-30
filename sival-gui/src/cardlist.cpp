@@ -67,9 +67,14 @@ CardList::CardList(QWidget *parent)
 CardList::~CardList() {
 }
 
-void CardList:: addCard(QWidget *card) {
+void CardList::addCard(QWidget *card) {
     card->setParent(m_scrollContentWidget);
     m_contentLayout->insertWidget(m_index++, card);
+}
+
+void CardList::addLayout(QHBoxLayout *layout) {
+    // layout->setParent(m_scrollContentWidget);
+    m_contentLayout->insertLayout(m_index++, layout);
 }
 //// end public member methods
 

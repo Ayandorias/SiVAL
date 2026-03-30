@@ -77,8 +77,6 @@ StartOpen::~StartOpen() {
 
 //// begin protected slots
 void StartOpen::driveSelected(const QString &filepath) {
-    std::cout << " ich will hier was machen, aber ich weiß nicht ob das klappt" << std::endl;
-
     QFileInfo info(filepath);
     if(info.isDir()) {
         if(QDir(filepath).exists()) {

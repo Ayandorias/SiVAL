@@ -11,6 +11,7 @@
 //// begin system includes
 #include <sivalgui/view.hpp>
 #include <sivalgui/card.hpp>
+#include <sivalgui/toolbutton.hpp>
 #include <projectpanel.hpp>
 #include <sival/abstractions/enclosure.hpp>
 #include <sivalcore/documents/projectdocument.hpp>
@@ -84,6 +85,11 @@ private:
     SiVAL::Gui::Card *m_enclosure;
     SiVAL::Gui::Card *m_information;
     SiVAL::Gui::Card *m_properties;
+
+    QHBoxLayout *horizontalLayout;
+    SiVAL::Gui::ToolButton *m_save;
+    SiVAL::Gui::ToolButton *m_close;
+    QSpacerItem *horizontalSpacer;
     //// end private member
 
     //// begin public slots
@@ -94,7 +100,9 @@ public slots:
 protected slots:
     void enclosure();
     void information();
+    void projectChanged();
     void properties();
+    void save();
     //// end protected slots
 
     //// begin private slots
@@ -103,8 +111,6 @@ private slots:
 
     //// begin signals
 signals:
-    void sealedEnclosure();
-    void ventedEnclosure();
     //// end signals
 };
 }

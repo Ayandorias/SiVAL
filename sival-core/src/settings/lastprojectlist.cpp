@@ -54,6 +54,15 @@ LastProjectList::~LastProjectList() {
 }
 
 void LastProjectList::add(const QString &project) {
+    for (int i = 0; i < m_array.count(); ++i) {
+        QString prj = m_array.at(i).toString();
+        if(prj == project) {
+            std::cout << "Project already bekannt" << std::endl;
+            m_array.removeAt(i);
+            break;
+        }
+    }
+
     m_array.prepend(project);
 }
 

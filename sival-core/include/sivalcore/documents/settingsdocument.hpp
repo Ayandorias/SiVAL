@@ -90,6 +90,8 @@ public:
     void addSpeaker(SiVAL::Core::DriverCatalog *doc);
     SiVAL::Core::DriverCatalog* speaker(int pos);
     int speakerCount();
+
+    QByteArray standardFileValues(const QString &filename);
     //// end public member methods
 
     //// begin public member methods (internal use only)

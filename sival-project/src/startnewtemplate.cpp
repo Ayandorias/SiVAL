@@ -45,7 +45,7 @@ StartNewTemplate::StartNewTemplate(QWidget *parent)
     m_layout = new QHBoxLayout(this);
     m_layout->setSpacing(20);
 
-    m_bookShelf = new SiVAL::StartItem(this);
+    m_bookShelf = new SiVAL::Gui::StartItem(this);
     m_bookShelf->setObjectName("m_bookShelf");
     m_bookShelf->setMinimumSize(QSize(200, 200));
     m_bookShelf->setMaximumSize(QSize(200, 200));
@@ -53,7 +53,7 @@ StartNewTemplate::StartNewTemplate(QWidget *parent)
     connect(m_bookShelf, &SiVAL::Gui::Card::clicked, this, &SiVAL::StartNewTemplate::newProject);
     m_layout->addWidget(m_bookShelf);
 
-    m_floorStand = new SiVAL::StartItem(this);
+    m_floorStand = new SiVAL::Gui::StartItem(this);
     m_floorStand->setObjectName("m_floorStand");
     m_floorStand->setMinimumSize(QSize(200, 200));
     m_floorStand->setMaximumSize(QSize(200, 200));

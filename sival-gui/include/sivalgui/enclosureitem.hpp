@@ -9,16 +9,11 @@
  *
  */
 //// begin system includes
-#include <QScrollArea>
-#include <QVBoxLayout>
-#include <QWidget>
+#include <sivalgui/startitem.hpp>
 //// end system includes
 
 //// begin project specific includes
-#include <startitem.hpp>
-#include <sivalcore/documents/projectdocument.hpp>
-#include <sivalgui/label.hpp>
-#include <sivalgui/line.hpp>
+#include <sivalcore/documents/speakerdocument.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -33,23 +28,24 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL::PM {
+namespace SiVAL::Gui {
 /**
- * class ProjectEnclosurePanel
+ * class EnclosureItem
  *
  * @brief
  *
  */
-class ProjectEnclosurePanel : public QWidget
+class EnclosureItem : public StartItem
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit ProjectEnclosurePanel(QWidget *parent = nullptr);
+    explicit EnclosureItem(QWidget *parent);
     /// Destructor
-    virtual ~ProjectEnclosurePanel();
-    void update(SiVAL::Core::ProjectDocument *doc);
+    virtual ~EnclosureItem();
+    SiVAL::Core::SpeakerDocument* document();
+    void setDocument(SiVAL::Core::SpeakerDocument *doc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -58,7 +54,6 @@ public:
 
     //// begin protected member methods
 protected:
-    void retranslate();
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -79,16 +74,7 @@ protected:
 
     //// begin private member
 private:
-    QScrollArea *scrollArea, *scrollArea_2;
-    QVBoxLayout *verticalLayout, *m_EnclosureList;
-    Gui::Label *m_newLabel;
-    Gui::Label *m_projectEnclosures;
-    StartItem *m_sealedEnclosure;
-    StartItem *m_ventedEnclosure;
-    SiVAL::Gui::Line *line;
-
-
-    SiVAL::Core::ProjectDocument *m_projectDocument;
+    SiVAL::Core::SpeakerDocument *m_document;
     //// end private member
 
     //// begin public slots
@@ -105,8 +91,6 @@ private slots:
 
     //// begin signals
 signals:
-    void sealedEnclosure();
-    void ventedEnclosure();
     //// end signals
 };
 }

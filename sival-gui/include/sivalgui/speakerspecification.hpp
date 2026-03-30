@@ -15,6 +15,7 @@
 //// end system includes
 
 //// begin project specific includes
+#include <sivalcore/documents/speakerdocument.hpp>
 #include <sivalgui/headerlabel.hpp>
 #include <sivalgui/spinwidget.hpp>
 //// end project specific includes
@@ -44,7 +45,7 @@ class SpeakerSpecification : public QWidget
     //// begin public member methods
 public:
     /// Constructor
-    explicit SpeakerSpecification(const QString &path, const QString &uuid, QWidget *parent = nullptr);
+    explicit SpeakerSpecification(SiVAL::Core::SpeakerDocument*doc, QWidget *parent = nullptr);
     /// Destructor
     virtual ~SpeakerSpecification();
     //// end public member methods
@@ -77,8 +78,11 @@ protected:
 private:
     QGridLayout *m_speakerLayout;
     HeaderLabel *m_title;
+    Label *m_damping;
+    SpinWidget *m_dampingSpinner;
     QLabel *m_volume;
     SpinWidget *m_volSpinner;
+    SiVAL::Core::SpeakerDocument *m_doc;
     //// end private member
 
     //// begin public slots

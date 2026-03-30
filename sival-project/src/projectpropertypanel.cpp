@@ -16,11 +16,14 @@
 //// begin system includes
 #include <QDateTime>
 #include <QDesktopServices>
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QVector>
 //// end system includes
 
 //// begin project specific includes
+#include <sivalcore/documents/speakerdocument.hpp>
 #include "projectpropertypanel.hpp"
 //// end project specific includes
 
@@ -91,18 +94,22 @@ void ProjectPropertyPanel::update(SiVAL::Core::ProjectDocument *doc) {
     ui->m_sizeValue->setText(filesize);
 
     QDateTime birth = info.birthTime(QTimeZone::UTC);
-    ui->m_birthDate->setText(birth.toString("dd.MM.yyyy hh:mm"));
-    ui->m_lastModified->setText(info.lastModified(QTimeZone::UTC).toString("dd.MM.yyyy hh:mm"));
-    ui->m_lastRead->setText(info.lastRead(QTimeZone::UTC).toString("dd.MM.yyyy hh:mm"));
+    ui->m_birthDate->setText(birth.toString("dd.MM.yyyy hh:mm.ss"));
+    ui->m_lastModified->setText(info.lastModified(QTimeZone::UTC).toString("dd.MM.yyyy hh:mm.ss"));
+    ui->m_lastRead->setText(info.lastRead(QTimeZone::UTC).toString("dd.MM.yyyy hh:mm.ss"));
 
     ui->m_author->setText(doc->author());
 
-    QStringList list = doc->speakerList();
+    QVector<SiVAL::Core::SpeakerDocument*> list = doc->speakerList();
     for(int i = 0; i < list.count(); ++i) {
-        SiVAL::Gui::SpeakerSpecification *spec = new SiVAL::Gui::SpeakerSpecification(info.absolutePath(), list.at(0), this);
-        ui->m_SpeakerSpecLayout->insertWidget(i, spec);
+        SiVAL::Gui::SpeakerSpecification *spec = new SiVAL::Gui::SpeakerSpecification(list.at(i), this);
+        ui->m_SpeakerSpecLayout->addWidget(spec);
         m_speakerList.append(spec);
     }
+
+    QSpacerItem *verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+    ui->m_SpeakerSpecLayout->addItem(verticalSpacer_5);
 }
 //// end public member methods
 

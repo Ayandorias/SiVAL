@@ -12,6 +12,8 @@
 //// begin system includes
 #include <QDir>
 #include <QFile>
+
+#include <iostream>
 //// end system includes
 
 //// begin project specific includes
@@ -39,29 +41,47 @@ namespace SiVAL::Gui {
 /**
  *
  */
-SpeakerSpecification::SpeakerSpecification(const QString &path, const QString &uuid, QWidget *parent)
+SpeakerSpecification::SpeakerSpecification(Core::SpeakerDocument *doc, QWidget *parent)
     :QWidget(parent) {
+    m_doc = doc;
+
     m_speakerLayout = new QGridLayout(this);
+    m_speakerLayout->setContentsMargins(0, 0, 0, 0);
+    m_speakerLayout->setSpacing(0);
+    setMinimumHeight(72);
+    setMaximumHeight(72);
 
     m_title = new HeaderLabel(this);
-    m_title->setText(uuid);
+    m_title->setMaximumHeight(40);
     m_speakerLayout->addWidget(m_title, 0, 0, 1, 2);
 
+    ////////////////////////////////////////////////////
     m_volume = new QLabel(this);
-    m_volume->setText(tr("Volume (l)"));
+    m_volume->setMaximumHeight(32);
     m_speakerLayout->addWidget(m_volume, 1, 0, 1, 1);
 
     m_volSpinner = new SpinWidget(this);
-    m_volSpinner->setValue(100);
     m_speakerLayout->addWidget(m_volSpinner, 1, 1, 1, 1);
+    //////////////////////////////////////////////////////
+    m_damping = new Label(this);
+    m_damping->setMaximumHeight(32);
+    m_damping->setText(tr("Damping (%)"));
+    m_speakerLayout->addWidget(m_damping, 2, 0, 1, 1);
 
+    m_dampingSpinner = new SpinWidget(this);
+    m_dampingSpinner->setMinimum(0);
+    m_dampingSpinner->setMaximum(25);
+    m_speakerLayout->addWidget(m_dampingSpinner, 2, 1, 1, 1);
+    //////////////////////////////////////////////////////
 
-
-    QString filename = path + QDir::separator() + uuid + QString(".sivalspkr");
-    QFile file(filename);
-    if(file.exists()) {
-
-    }
+    QString header = m_doc->name() + QString(" - ") + m_doc->type();
+    m_title->setText(header);
+    double volume;
+    QString unit;
+    m_doc->volume(volume, unit);
+    m_volume->setText(tr("Volume (") + unit + QString(")"));
+    m_volSpinner->setValue(volume);
+    m_dampingSpinner->setValue(m_doc->damping());
 }
 
 /**************************************************************************************************/

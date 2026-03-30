@@ -349,7 +349,7 @@
     </message>
 </context>
 <context>
-    <name>SiVAL::PM::ProjectEnclosurePanel</name>
+    <name>SiVAL::PM::ProjectSpeakerPanel</name>
     <message>
         <location filename="../../sival-project/src/projectenclosurepanel.cpp" line="147"/>
         <source>New</source>

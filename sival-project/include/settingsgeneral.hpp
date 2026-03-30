@@ -27,7 +27,7 @@
 
 //// begin project specific includes
 #include <sivalgui/line.hpp>
-#include <startitem.hpp>
+#include <sivalgui/startitem.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -106,9 +106,9 @@ private:
     SiVAL::Gui::HeaderLabel *m_project;
     SiVAL::Gui::SpinWidget *m_SaveTime;
     SiVAL::Gui::HeaderLabel *m_startup;
-    StartItem *m_themeAuto;
-    StartItem *m_themeDark;
-    StartItem *m_themeLight;
+    SiVAL::Gui::StartItem *m_themeAuto;
+    SiVAL::Gui::StartItem *m_themeDark;
+    SiVAL::Gui::StartItem *m_themeLight;
     SiVAL::Gui::HeaderLabel *m_lang_app;
     SiVAL::Gui::Label *m_recProCount;
     QLineEdit *m_companyEdit;

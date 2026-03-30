@@ -43,6 +43,7 @@ add_library(sival-core SHARED
     include/sivalcore/generic/chassismanufacturer.hpp src/generic/chassismanufacturer.cpp
     include/sivalcore/settings/lastprojectlist.hpp src/settings/lastprojectlist.cpp
     include/sivalcore/documents/speakerdocument.hpp src/documents/speakerdocument.cpp
+
 )
 
 # Alias für interne Nutzung

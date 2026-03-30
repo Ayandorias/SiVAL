@@ -9,11 +9,17 @@
  *
  */
 //// begin system includes
-#include <sivalgui/card.hpp>
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QWidget>
 //// end system includes
 
 //// begin project specific includes
-
+#include <sivalcore/documents/projectdocument.hpp>
+#include <sivalgui/enclosureitem.hpp>
+#include <sivalgui/speakeritem.hpp>
+#include <sivalgui/label.hpp>
+#include <sivalgui/line.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -28,22 +34,23 @@
 //// begin extern declaration
 //// end extern declaration
 
-namespace SiVAL {
+namespace SiVAL::PM {
 /**
- * class StartItem
+ * class ProjectSpeakerPanel
  *
  * @brief
  *
  */
-class StartItem : public Gui::Card
+class ProjectSpeakerPanel : public QWidget
 {
     Q_OBJECT
     //// begin public member methods
 public:
     /// Constructor
-    explicit StartItem(QWidget *parent);
+    explicit ProjectSpeakerPanel(QWidget *parent = nullptr);
     /// Destructor
-    virtual ~StartItem();
+    virtual ~ProjectSpeakerPanel();
+    void update(SiVAL::Core::ProjectDocument *doc);
     //// end public member methods
 
     //// begin public member methods (internal use only)
@@ -52,7 +59,7 @@ public:
 
     //// begin protected member methods
 protected:
-    virtual void paintEvent(QPaintEvent *event) override;
+    void retranslate();
     //// end protected member methods
 
     //// begin protected member methods (internal use only)
@@ -61,6 +68,12 @@ protected:
 
     //// begin private member methods
 private:
+    void clearEnclosureList();
+    void clearSpeakerList();
+    void createEnclosureNew();
+    void createSpeakerNew();
+    void enclosureNew(QSharedPointer<Engine::AcousticSetup> as);
+    void speakerNew(Core::SpeakerDocument *spkr);
     //// end private member methods
 
     //// begin public member
@@ -73,6 +86,22 @@ protected:
 
     //// begin private member
 private:
+    QScrollArea *scrollArea, *scrollArea_2;
+    QVBoxLayout *verticalLayout;
+    Gui::Label *m_newLabel;
+    Gui::Label *m_projectEnclosures;
+    SiVAL::Gui::SpeakerItem *m_speakerNew;
+    SiVAL::Gui::EnclosureItem *m_enclosureNew;
+    SiVAL::Gui::Line *line;
+
+
+    SiVAL::Core::ProjectDocument *m_projectDocument;
+    SiVAL::Core::SpeakerDocument *m_spkrDoc;
+
+    QWidget *m_speakerWidget;
+    QHBoxLayout *m_speakerLayout, *m_EnclosureList;
+
+    QVector<SiVAL::Core::SpeakerDocument*> m_spkrList;
     //// end private member
 
     //// begin public slots
@@ -81,6 +110,9 @@ public slots:
 
     //// begin protected slots
 protected slots:
+    void createEnclosure();
+    void createSpeaker();
+    void speakerItemClicked(SiVAL::Gui::Card *card);
     //// end protected slots
 
     //// begin private slots

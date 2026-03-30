@@ -54,6 +54,10 @@ add_library(sival-gui SHARED
     include/sivalgui/filelistview.hpp src/filelistview.cpp
     include/sivalgui/filesystemcard.hpp src/filesystemcard.cpp
     include/sivalgui/speakerspecification.hpp src/speakerspecification.cpp
+    include/sivalgui/inputdialog.hpp src/inputdialog.cpp
+    include/sivalgui/speakeritem.hpp src/speakeritem.cpp
+    include/sivalgui/startitem.hpp src/startitem.cpp
+    include/sivalgui/enclosureitem.hpp src/enclosureitem.cpp
 )
 
 # Alias für saubere Referenzierung

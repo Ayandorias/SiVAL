@@ -1,0 +1,9 @@
+{
+    "uuid": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "created_at": "2026-03-23T15:45:00",
+    "type": "sealed",
+    "volume": {
+        "unit": "l",
+        "value": 120
+    }
+}

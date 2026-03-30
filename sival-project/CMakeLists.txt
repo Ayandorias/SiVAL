@@ -13,12 +13,11 @@ qt_add_executable(sival
     # Views & Panels
     include/startview.hpp             src/startview.cpp
     include/startpanel.hpp            src/startpanel.cpp
-    include/startitem.hpp             src/startitem.cpp
     include/settingsview.hpp          src/settingsview.cpp
     include/helpview.hpp              src/helpview.cpp
     include/projectview.hpp           src/projectview.cpp
     include/projectpanel.hpp          src/projectpanel.cpp
-    include/projectenclosurepanel.hpp src/projectenclosurepanel.cpp
+    include/projectspeakerpanel.hpp src/projectspeakerpanel.cpp
 
     # Dialoge & Properties
     include/projectnewdialog.hpp      src/projectnewdialog.cpp

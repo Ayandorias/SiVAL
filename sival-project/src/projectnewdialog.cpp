@@ -250,7 +250,6 @@ void ProjectNewDialog::textChanged(const QString &text) {
     QDir dir;
     QString path = m_projectPath->text() + QString("/") + text;
 
-    std::cout << path.toStdString() << std::endl;
     if(dir.exists(path)) {
         m_warningLabel->show();
         m_infoLabel->show();

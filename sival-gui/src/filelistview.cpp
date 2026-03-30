@@ -26,7 +26,6 @@ void FileListView::clearLayout() {
 void FileListView::loadDirectory(const QString &path, const QString &extension) {
     clearLayout();
 
-    std::cout << "Lade VErzeichnis" << std::endl;
     currentExtension = extension;
     QDir dir(path);
 

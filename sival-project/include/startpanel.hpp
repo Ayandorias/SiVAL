@@ -18,7 +18,7 @@
 //// begin project specific includes
 #include <sival.hpp>
 #include <projectcard.hpp>
-#include <startitem.hpp>
+#include <sivalgui/startitem.hpp>
 #include <startnew.hpp>
 #include <startopen.hpp>
 #include <sivalgui/filesystempanel.hpp>
@@ -91,7 +91,7 @@ private:
     QScrollArea *scrollArea_2;
     QWidget *scrollAreaWidgetContents_2;
 
-    StartItem *m_newBlank;
+    SiVAL::Gui::StartItem *m_newBlank;
     Gui::Label *m_newLabel;
     Gui::Label *m_recentProjects;
     QVBoxLayout *m_recentLayout;

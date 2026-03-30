@@ -38,9 +38,11 @@ set(SIVAL_ICONS
     plus.svg.in
     print.svg.in
     projects.svg.in
+    projects_close.svg.in
     project_properties.svg.in
     save.svg.in
     save_as.svg.in
+    save_changes.svg.in
     speaker.svg.in
     copy.svg.in
     indeterminate.svg.in
@@ -57,6 +59,10 @@ set(SIVAL_ICONS
     device-hdd.svg.in
     buildings.svg.in
     folder.svg.in
+    speaker_new.svg.in
+    enclosure_new.svg.in
+    enclosure_sealed.svg.in
+    enclosure_vented.svg.in
 )
 
 # ==============================================================================
@@ -159,6 +165,8 @@ add_library(sival-ressource SHARED
     dark_theme.qrc
     sival-settings.qrc
     settings/default_settings.sival
+    settings/speaker.sivalspkr
+    settings/enclosure_sealed.sivalenc
     res/template_theme.qss.in
 )
 

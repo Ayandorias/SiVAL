@@ -10,11 +10,12 @@
  */
 //// begin system includes
 #include <QJsonObject>
-#include <sivalcore/abstractions/abstractdocument.hpp>
+#include <QVector>
 //// end system includes
 
 //// begin project specific includes
-
+#include <sivalcore/abstractions/abstractdocument.hpp>
+#include <sivalcore/documents/speakerdocument.hpp>
 //// end project specific includes
 
 //// begin using namespaces
@@ -70,10 +71,12 @@ public:
     void setProjectName(const QString &name);
     QString projectName();
 
-    QStringList speakerList();
+    SpeakerDocument* createSpeaker(const QString &name);
+    QVector<SpeakerDocument*>& speakerList();
 
     void setVersion(float version);
     float version();
+
 
     //// end public member methods
 
@@ -92,6 +95,7 @@ protected:
 
     //// begin private member methods
 private:
+    QStringList speakerFiles();
     //// end private member methods
 
     //// begin public member
@@ -106,7 +110,8 @@ protected:
 private:
     QString m_filename;
     QJsonObject m_object;
-    //// end private member
+    QVector<SpeakerDocument*> m_speakerList;
+    //// end private membe*
 
     //// begin public slots
 public slots:
